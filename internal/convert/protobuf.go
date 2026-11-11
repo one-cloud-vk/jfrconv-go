@@ -14,12 +14,6 @@ import (
 	"os"
 )
 
-func init() {
-	writers["pprof"] = writePprof
-	writers["pb.gz"] = writePprofGzip
-	writers["otlp"] = writeOTLP
-}
-
 // pbOut streams known-size messages. No serialized profile or nested-message
 // byte slices are constructed, and varints do not allocate temporary buffers.
 type pbOut struct {

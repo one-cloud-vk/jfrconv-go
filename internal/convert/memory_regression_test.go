@@ -5,11 +5,93 @@ import (
 	"bufio"
 	"encoding/binary"
 	"io"
+	"jfrconv-go/internal/jfr"
 	"os"
 	"path/filepath"
+	"regexp"
 	"runtime"
+	"slices"
 	"testing"
 )
+
+func TestPathResolverReusesScratchAndPreservesOwnedTiers(t *testing.T) {
+	reader, err := jfr.Open(fixturePath("mixed.jfr"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer reader.Close()
+	chunk, err := reader.NextChunk()
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	t.Run("compiled-path-without-allocation", func(t *testing.T) {
+		o := DefaultOptions()
+		p := newProfile(o)
+		defer p.close()
+		resolver := pathResolver{names: make(nameCache)}
+		event := jfr.Event{Kind: jfr.Execution, StackID: 1}
+		if _, ok := resolver.resolve(chunk, &event, o, p, "collapsed"); !ok {
+			t.Fatal("fixture stack rejected")
+		}
+		allocations := testing.AllocsPerRun(20, func() {
+			if _, ok := resolver.resolve(chunk, &event, o, p, "collapsed"); !ok {
+				t.Fatal("warmed stack rejected")
+			}
+		})
+		if allocations != 0 {
+			t.Fatalf("warmed path resolution allocates %.0f objects", allocations)
+		}
+	})
+
+	t.Run("tiers-and-string-ownership", func(t *testing.T) {
+		o := DefaultOptions()
+		o.Threads, o.Classify, o.Reverse, o.Lines = true, true, true, true
+		p := newProfile(o)
+		defer p.close()
+		resolver := pathResolver{names: make(nameCache)}
+		event := jfr.Event{Kind: jfr.Execution, StackID: 3, TID: 1}
+		first, ok := resolver.resolve(chunk, &event, o, p, "collapsed")
+		if !ok || len(first.Tiers) == 0 {
+			t.Fatal("fixture needs interpreted/inlined tier counts")
+		}
+		tiers := append([]tierAt(nil), first.Tiers...)
+		for _, id := range []uint64{1, 2, 3, 1} {
+			event.StackID = id
+			if _, ok := resolver.resolve(chunk, &event, o, p, "collapsed"); !ok {
+				t.Fatal("fixture stack rejected")
+			}
+		}
+		if !slices.Equal(first.Tiers, tiers) {
+			t.Fatalf("cached tiers alias reusable scratch: %v != %v", first.Tiers, tiers)
+		}
+		for _, d := range resolver.descriptions[:cap(resolver.descriptions)] {
+			if d.Name != "" {
+				t.Fatal("description scratch retains strings")
+			}
+		}
+		for _, pair := range resolver.classification[:cap(resolver.classification)] {
+			if pair.Name != "" {
+				t.Fatal("classification scratch retains strings")
+			}
+		}
+	})
+
+	t.Run("filter-before-interning", func(t *testing.T) {
+		o := DefaultOptions()
+		o.Include = regexp.MustCompile("never-matches")
+		p := newProfile(o)
+		defer p.close()
+		resolver := pathResolver{names: make(nameCache)}
+		event := jfr.Event{Kind: jfr.Execution, StackID: 3}
+		if _, ok := resolver.resolve(chunk, &event, o, p, "collapsed"); ok {
+			t.Fatal("nonmatching path accepted")
+		}
+		if p.frames.n != 1 || p.nodes.n != 1 || p.strings.refs.n != 1 {
+			t.Fatal("rejected path grew the global profile")
+		}
+	})
+}
 
 // Repeat the event area of an actual committed fixture while keeping exactly
 // one chunk and the same metadata/constant pool. Thus event volume changes but

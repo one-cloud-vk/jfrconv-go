@@ -188,8 +188,8 @@ func (h *exactHeatmap) referenceOrder() error {
 			stack := c.Stack(id)
 			frames = frames[:0]
 			complete := true
-			for i := len(stack) - 1; i >= 0; i-- {
-				f := stack[i]
+			for i := stack.Len() - 1; i >= 0; i-- {
+				f := stack.At(i)
 				cacheKey := methodKey{f.Method, f.Kind}
 				names, ok := parts[cacheKey]
 				if !ok {
@@ -202,7 +202,7 @@ func (h *exactHeatmap) referenceOrder() error {
 				key := heatMethodKey{names.Class, names.Method, uint32(uint16(f.Line))<<16 | uint32(uint16(f.BCI)), f.Kind}
 				frame, ok := r.frames[key]
 				if names.Known && ok {
-					r.method(frame, i == len(stack)-1)
+					r.method(frame, i == stack.Len()-1)
 					frames = append(frames, frame)
 				} else {
 					complete = false

@@ -91,41 +91,52 @@ binary. The historical 4.1 scope consists of nine converter-consuming test
 declarations, including Linux-only `NativememTests.ldpreload`. The newer public
 converter suite is pinned separately at
 `e98d8c2b2d6e954ed1b39685fed1b25dc08db603` and contains six converter cases.
-All **15 scoped published converter cases passed** against the frozen final
-candidate. Under JDK 21 on macOS, eight historical 4.1 cases and all six newer
-converter cases passed with unchanged assertion sources. The one historical
-macOS `SKIP_CONFIG_MISMATCH` is the expected Linux-only
-`NativememTests.ldpreload`; its separate native Linux run passed. Passing this
-scope does not mean the entire profiler test tree was run.
-[Final macOS public reports](reports/public-macos/v0.1.0/summary.json),
-[Linux-only public result](reports/linux/go-public-tests.json).
+Version **0.1.1** passed all **15 scoped published converter cases**: eight
+historical 4.1 cases and six newer converter cases under JDK 21.0.7 on macOS,
+plus native Linux `NativememTests.ldpreload`. The expected historical macOS
+`SKIP_CONFIG_MISMATCH` is that Linux-only declaration, resolved by its Linux
+pass. Assertion sources were verified unchanged before and after execution.
+[Consolidated public results](reports/releases/v0.1.1/public/summary.json),
+[macOS runs](reports/releases/v0.1.1/public/success/summary.json),
+[Linux result](reports/releases/v0.1.1/linux/summary.json).
+This scope does not mean the entire profiler test tree was run.
 
-Two earlier Go runs under JDK 25 failed the timing-sensitive
-`JfrTests.regularPeak` fixture. Both attempts and their recordings are retained;
-Java 4.1 and Go produced exactly matching collapsed profiles when replaying
-the same recordings. The subsequent full native JDK 21 rerun passed unchanged
-assertions. Reports identify that fresh native rerun separately from reused,
-source-reverified Java baseline reports, whose original runtime/date are
-preserved.
-The macOS report package also retains the two prior Go-only JDK 25 attempts
-and their same-recording comparisons; they are not counted as passing runs.
+The first two 0.1.1 macOS attempts used a restricted execution sandbox and
+failed before conversion because the native profiler could not start the
+JVM's attach socket. A separate owned-JVM probe confirmed the target was alive
+before and after that failure; a local socket-bind probe returned `EPERM`.
+The successful full attempt used the same permitted attach context as the
+previous baseline, without sudo or root. Assertions and converter source did
+not change between attempts. Both setup failures and the live-target evidence
+are retained: [attempt 1](reports/releases/v0.1.1/public/prior-default-sandbox/attempt-1/summary.json),
+[attempt 2](reports/releases/v0.1.1/public/prior-default-sandbox/attempt-2/summary.json),
+[diagnostic](reports/releases/v0.1.1/public/attach-diagnostic-default/report.json).
 
-The final candidate passed [71/71 semantic checks](reports/releases/v0.1.0/validation.json)
-against Java 4.1, including real JDK/async-profiler recordings, protobuf and
-HTML codecs, span filters and malformed-input preservation. The
-[versioned evidence](reports/releases/v0.1.0/evidence.json) pins the binary,
-source and UI results. On Linux arm64, **59 native Go tests passed and two
-root-only system-device tests skipped**; task-owned FIFO/descriptor tests and
-the original JavaScript heatmap oracle ran. A separate 64-input conversion
-passed a 64 MiB whole-tree cgroup with kernel `memory.peak` 17,154,048 bytes
-and no OOM events. [Linux summary](reports/linux/summary.json).
+Fresh 0.1.1 checks passed **65 macOS tests with no skips**, format, vet and
+release build, plus [71/71 semantic comparisons](reports/releases/v0.1.1/validation.json)
+against Java 4.1. They cover real JDK/async-profiler recordings, protobuf and
+HTML codecs, span filters, malformed-input preservation, compact stack columns
+with full-width method IDs/locations and reusable path scratch ownership.
+The [versioned evidence](reports/releases/v0.1.1/evidence.json) pins the frozen
+source and executable. [UI-PARITY.md](UI-PARITY.md) records fresh renderer and
+heatmap ID/RGB checks.
 
-The Linux source/tool hashes retain the exact validated snapshot. After that
-run, `benchmark.py` received an input-pool-only amendment tested on macOS
-without invoking a converter or timing run. The amended helper was **not**
-tested by the recorded Linux suite. Its old/new hashes and helper-only checks
-are preserved in the [amendment report](reports/linux/benchmark-input-pool-amendment.json)
-and the Linux summary; production source and binary hashes are unchanged.
+On Linux arm64, **63 tests passed and two root-only system-device tests
+skipped**; task-owned FIFO/descriptor tests and the original JavaScript color
+oracle ran. A 64-input conversion completed in a strict 64 MiB whole-tree
+cgroup with kernel `memory.peak` **17,063,936 bytes** and no OOM events. This
+includes process-tree and charged page-cache memory, not just process RSS.
+[Linux report](reports/releases/v0.1.1/linux/summary.json).
+
+The [0.1.0 evidence](reports/releases/v0.1.0/evidence.json) and
+[public history](reports/public-macos/v0.1.0/summary.json) remain unchanged.
+That earlier release had two JDK 25 `regularPeak` workload-window failures;
+Java 4.1 and Go decoded each retained recording identically, and the subsequent
+native JDK 21 run passed unchanged assertions. Those failures are separate
+from 0.1.1's pre-conversion sandbox setup failures. Historical Java baseline
+reports retain their original runtime/date; they are not presented as fresh
+Java baseline runs. The older Linux benchmark-input-pool helper amendment is
+also retained with its [original provenance](reports/linux/benchmark-input-pool-amendment.json).
 
 ```sh
 # Historical published assertion sources; use a fresh destination.
@@ -149,13 +160,11 @@ python3 tools/validate.py --go bin/jfrconv \
 Upstream runs require a JDK and native profiler build prerequisites; the full
 historical scope requires Linux.
 
-The final macOS arm64 performance matrix uses **29 workloads with 21 measured
-pairs each**, pinned to the final executable and Java JAR hashes in
-[README.md](README.md). Median peak RSS is lower in **29/29** rows
-(**26.06–97.51%** reduction), as is p95 peak RSS. Go wins p50 latency in
-**25/29** rows and p95 in **26/29**; the 10M-event, ordinary batch, limited
-batch and deep shared-constant-pool rows have slower median latency. These
-measurements are specific to the retained inputs, flags and host. Full results,
-all regressions and raw trials are in [BENCHMARKS.md](BENCHMARKS.md); they are
-not inferred from earlier Rust binaries or development candidates.
-[Final matrix summary](benchmarks/v0.1.0-macos/summary.json).
+The historical **0.1.0** Java-paired matrix has **29 workloads with 21 measured
+pairs each**, pinned to that release's executable. Median peak RSS is lower in
+29/29 rows (26.06–97.51% reduction), as is p95 peak RSS; p50 latency wins 25/29
+and p95 wins 26/29. These figures remain labeled 0.1.0. Version 0.1.1 has a
+separate six-workload old/new followup with its own frozen binary and source
+provenance. [BENCHMARKS.md](BENCHMARKS.md) records the methods, raw trials and
+regressions for each version; historical results are not relabeled as 0.1.1.
+[Historical matrix](benchmarks/v0.1.0-macos/summary.json).

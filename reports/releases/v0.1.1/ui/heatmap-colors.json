@@ -1,0 +1,238 @@
+{
+  "native_binary_sha256": "785dfc5fd23cf07dae4e26f905d2699ee8c128a63e3256b7b1a255428170d6de",
+  "cases": [
+    {
+      "case": "ap41-heatmap-alloc",
+      "flags": [
+        "--alloc"
+      ],
+      "java_file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/semantic-jdk21/ap41-heatmap-alloc.java.heatmap.html",
+      "native_file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/semantic-jdk21/ap41-heatmap-alloc.go.heatmap.html",
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 119,
+      "native_methods": 119,
+      "java_digest": "f9b0ca5a78f46ea51ee7e16b1638dc27c85824693e72202ec85cd7c4eb31c003",
+      "native_digest": "f9b0ca5a78f46ea51ee7e16b1638dc27c85824693e72202ec85cd7c4eb31c003",
+      "difference_count": 0,
+      "differences": [],
+      "same_stack_timeline_counts": true,
+      "semantic_timeline": {
+        "startMs": 1794322293577,
+        "blocks": 101,
+        "samples": 25935,
+        "stacks": 8,
+        "digest": "cac2ab73255cbe8f39a996c7489e1e12267e703e8218c66a95f1e7a6f83a20e2"
+      }
+    },
+    {
+      "case": "ap41-heatmap-lock",
+      "flags": [
+        "--lock"
+      ],
+      "java_file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/semantic-jdk21/ap41-heatmap-lock.java.heatmap.html",
+      "native_file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/semantic-jdk21/ap41-heatmap-lock.go.heatmap.html",
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 6,
+      "native_methods": 6,
+      "java_digest": "80d0096bf276e5173a2ec93be7149c706fbe1d9af480e7d49f4bd3d58fe6b9c2",
+      "native_digest": "80d0096bf276e5173a2ec93be7149c706fbe1d9af480e7d49f4bd3d58fe6b9c2",
+      "difference_count": 0,
+      "differences": [],
+      "same_stack_timeline_counts": true,
+      "semantic_timeline": {
+        "startMs": 1794322293577,
+        "blocks": 95,
+        "samples": 67,
+        "stacks": 1,
+        "digest": "bf07215c2ba9cd375742b2b5ec0da0d0955cfe6b65e018246d54d613c2206d9b"
+      }
+    },
+    {
+      "case": "ap41-heatmap-wall",
+      "flags": [
+        "--wall"
+      ],
+      "java_file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/semantic-jdk21/ap41-heatmap-wall.java.heatmap.html",
+      "native_file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/semantic-jdk21/ap41-heatmap-wall.go.heatmap.html",
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 0,
+      "native_methods": 0,
+      "java_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "native_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "difference_count": 0,
+      "differences": [],
+      "same_stack_timeline_counts": true,
+      "semantic_timeline": {
+        "startMs": 0,
+        "blocks": 0,
+        "samples": 0,
+        "stacks": 0,
+        "digest": "2e1cfa82b035c26cbbbdae632cea070514eb8b773f616aaeaf668e2f0be8f10d"
+      }
+    },
+    {
+      "case": "heatmap-cpu",
+      "flags": [
+        "--cpu"
+      ],
+      "java_file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/semantic-jdk21/heatmap-cpu.java.heatmap.html",
+      "native_file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/semantic-jdk21/heatmap-cpu.go.heatmap.html",
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 5,
+      "native_methods": 5,
+      "java_digest": "1020d3b81191ad43fa68d3b3b3b8079648276598de42aae3616445bbf10ff1d9",
+      "native_digest": "1020d3b81191ad43fa68d3b3b3b8079648276598de42aae3616445bbf10ff1d9",
+      "difference_count": 0,
+      "differences": [],
+      "same_stack_timeline_counts": true,
+      "semantic_timeline": {
+        "startMs": 1700000000000,
+        "blocks": 51,
+        "samples": 6,
+        "stacks": 4,
+        "digest": "5f35469f8e1c62345889d489a03aed2cae94e4028a2baeb9c3b67c8dc7cc63e3"
+      }
+    },
+    {
+      "case": "heatmap-wall",
+      "flags": [
+        "--wall"
+      ],
+      "java_file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/semantic-jdk21/heatmap-wall.java.heatmap.html",
+      "native_file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/semantic-jdk21/heatmap-wall.go.heatmap.html",
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 8,
+      "native_methods": 8,
+      "java_digest": "fa715f5093df4dddd91254af9c4d652ff538a2a0d00408bb3897efe2ef0f3a4c",
+      "native_digest": "fa715f5093df4dddd91254af9c4d652ff538a2a0d00408bb3897efe2ef0f3a4c",
+      "difference_count": 0,
+      "differences": [],
+      "same_stack_timeline_counts": true,
+      "semantic_timeline": {
+        "startMs": 1700000000000,
+        "blocks": 51,
+        "samples": 4,
+        "stacks": 4,
+        "digest": "8e1bf2f8d075ec7832bc76276f75007608b858b0b1498f36f2159811f7e425f8"
+      }
+    },
+    {
+      "case": "jdk-heatmap-alloc",
+      "flags": [
+        "--alloc"
+      ],
+      "java_file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/semantic-jdk21/jdk-heatmap-alloc.java.heatmap.html",
+      "native_file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/semantic-jdk21/jdk-heatmap-alloc.go.heatmap.html",
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 9,
+      "native_methods": 9,
+      "java_digest": "6ffca7038d27d371bc6ea48f5b7bb3ae207768df2b8997b1c06a7e2cd419130b",
+      "native_digest": "6ffca7038d27d371bc6ea48f5b7bb3ae207768df2b8997b1c06a7e2cd419130b",
+      "difference_count": 0,
+      "differences": [],
+      "same_stack_timeline_counts": true,
+      "semantic_timeline": {
+        "startMs": 1794322288843,
+        "blocks": 99,
+        "samples": 2020,
+        "stacks": 2,
+        "digest": "e7a5923dd54ed004189f275ee4f40d7c785b991345e490d92e0a7dfd59f74f4f"
+      }
+    },
+    {
+      "case": "jdk-heatmap-lock",
+      "flags": [
+        "--lock"
+      ],
+      "java_file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/semantic-jdk21/jdk-heatmap-lock.java.heatmap.html",
+      "native_file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/semantic-jdk21/jdk-heatmap-lock.go.heatmap.html",
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 6,
+      "native_methods": 6,
+      "java_digest": "8aa0533f14b3256f3c57d9b480cb88b5e40dfb0f590c55fac70c188c595873c2",
+      "native_digest": "8aa0533f14b3256f3c57d9b480cb88b5e40dfb0f590c55fac70c188c595873c2",
+      "difference_count": 0,
+      "differences": [],
+      "same_stack_timeline_counts": true,
+      "semantic_timeline": {
+        "startMs": 1794322288843,
+        "blocks": 90,
+        "samples": 77,
+        "stacks": 1,
+        "digest": "328c77ea7644ecb64012e8fc9eda88bfa3ca3fe0c41f38f80465867e0dfe33a2"
+      }
+    },
+    {
+      "case": "jdk-heatmap-wall",
+      "flags": [
+        "--wall"
+      ],
+      "java_file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/semantic-jdk21/jdk-heatmap-wall.java.heatmap.html",
+      "native_file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/semantic-jdk21/jdk-heatmap-wall.go.heatmap.html",
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 99,
+      "native_methods": 99,
+      "java_digest": "bdb526c01188bc302a37051fc618c39e34c4b5b05cb7eb5f41ee423774f9daab",
+      "native_digest": "bdb526c01188bc302a37051fc618c39e34c4b5b05cb7eb5f41ee423774f9daab",
+      "difference_count": 0,
+      "differences": [],
+      "same_stack_timeline_counts": true,
+      "semantic_timeline": {
+        "startMs": 1794322288843,
+        "blocks": 100,
+        "samples": 2335,
+        "stacks": 10,
+        "digest": "459abb13cfc0d9a470fc9eed41fc72891328646a83dc421111b93197c7e4a21f"
+      }
+    },
+    {
+      "case": "ap41-heatmap-cpu",
+      "flags": [
+        "--cpu"
+      ],
+      "java_file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/ui-jdk21/ap-heatmap/java.html",
+      "native_file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/ui-jdk21/ap-heatmap/go.html",
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 756,
+      "native_methods": 756,
+      "java_digest": "83c31fd0993271e6df13eb7c40873229b9ca8e74e641ec57d355fbed56eed4ab",
+      "native_digest": "83c31fd0993271e6df13eb7c40873229b9ca8e74e641ec57d355fbed56eed4ab",
+      "difference_count": 0,
+      "differences": [],
+      "same_stack_timeline_counts": true,
+      "semantic_timeline": {
+        "startMs": 1794322293577,
+        "blocks": 101,
+        "samples": 5488,
+        "stacks": 246,
+        "digest": "1ea0fcb4810508637faee43ec64c85094a6a2001fea27e95052fbe8b210337fa"
+      }
+    },
+    {
+      "case": "jdk-heatmap-cpu",
+      "flags": [
+        "--cpu"
+      ],
+      "java_file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/ui-jdk21/jdk-heatmap-cpu/java.html",
+      "native_file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/ui-jdk21/jdk-heatmap-cpu/go.html",
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 0,
+      "native_methods": 0,
+      "java_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "native_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "difference_count": 0,
+      "differences": [],
+      "same_stack_timeline_counts": true,
+      "semantic_timeline": {
+        "startMs": 0,
+        "blocks": 0,
+        "samples": 0,
+        "stacks": 0,
+        "digest": "2e1cfa82b035c26cbbbdae632cea070514eb8b773f616aaeaf668e2f0be8f10d"
+      }
+    }
+  ],
+  "all_exact": true,
+  "nonempty_cases": 8,
+  "empty_cases": 2
+}

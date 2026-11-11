@@ -1,0 +1,2 @@
+go v41 returncode 0 {'PASS': 8, 'SKIP_CONFIG_MISMATCH': 1}
+go current returncode 0 {'PASS': 6}

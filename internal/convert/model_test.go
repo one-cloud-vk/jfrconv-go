@@ -71,6 +71,10 @@ func (h *budgetHeatSession) AfterChunk(*jfr.Chunk) error      { return nil }
 func (h *budgetHeatSession) Finish() error                    { return nil }
 func (h *budgetHeatSession) Write(*bufio.Writer) error        { return nil }
 func (h *budgetHeatSession) Close()                           { h.file.Close() }
+func (h *budgetHeatSession) ResolveRetained(*jfr.Chunk, *jfr.Event) (cachedPath, bool, error) {
+	return cachedPath{}, false, nil
+}
+func (h *budgetHeatSession) Retained(uint32, uint64, uint64, uint64) error { return nil }
 func TestMajorBudgetPanicPreservesCleanupAndDiffError(t *testing.T) {
 	dir := t.TempDir()
 	o := DefaultOptions()

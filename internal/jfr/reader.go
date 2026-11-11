@@ -467,16 +467,15 @@ func (r *Reader) pool(c *Chunk, t typ) {
 			}
 			_, exists := c.stacks[id]
 			var ref stackRef
-			var frames []StackFrame
 			if !exists {
 				var err error
-				ref, frames, err = c.allocStack(depth)
+				ref, err = c.allocStack(depth)
 				in.fail(err)
 			}
 			for j := 0; j < depth && in.err == nil; j++ {
 				f := StackFrame{Method: in.u(), Line: int32(in.u()), BCI: int32(in.u()), Kind: in.b()}
-				if !exists {
-					frames[j] = f
+				if !exists && in.err == nil {
+					in.fail(c.setFrame(ref.start+uint64(j), f))
 				}
 			}
 			if !exists && r.cpEntry(c, true) {

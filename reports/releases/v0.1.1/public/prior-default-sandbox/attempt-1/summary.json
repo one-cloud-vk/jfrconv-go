@@ -1,0 +1,39 @@
+{
+  "status": "failed",
+  "platform": "Darwin arm64",
+  "results": [
+    {
+      "implementation": "go",
+      "suite": "v41",
+      "report": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/public-macos-jdk21/go/v41/public-tests.json",
+      "returncode": 1,
+      "counts": {
+        "FAIL": 1,
+        "PASS": 7,
+        "SKIP_CONFIG_MISMATCH": 1
+      }
+    }
+  ],
+  "baseline_java": [
+    {
+      "suite": "v41",
+      "revision": "5930966a92860f6e5d2d89ab6faab5815720bad9",
+      "source_assertions_reverified": true,
+      "reused_report": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/public-macos-jdk21/baseline-v41-java.json",
+      "original_report_sha256": "88afe5356503f0e38144893fd6e08f3328d81b2d396dd3a6009b97edd442235c",
+      "note": "Historical source-unchanged Java baseline, runtime/version and date retained in copied original report."
+    },
+    {
+      "suite": "current",
+      "revision": "e98d8c2b2d6e954ed1b39685fed1b25dc08db603",
+      "source_assertions_reverified": true,
+      "reused_report": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/public-macos-jdk21/baseline-current-java.json",
+      "original_report_sha256": "5d9068b2db7dc99fd95da74b59199c2450900a0e50515b470929b2a3e483ec41",
+      "note": "Historical source-unchanged Java baseline, runtime/version and date retained in copied original report."
+    }
+  ],
+  "error": {
+    "type": "RuntimeError",
+    "message": "go/v41 public suite failed; preserve logs and investigate"
+  }
+}

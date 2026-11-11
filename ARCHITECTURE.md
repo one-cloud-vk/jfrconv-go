@@ -15,15 +15,20 @@ chunk/profile ownership and preserved async-profiler 4.1 behavior.
 whole recording. Constant-pool tables belong to the current chunk and are
 replaced at chunk boundaries. Events are reused callback values: consumers
 must resolve their IDs while the owning chunk is alive, rather than retaining
-event pointers. Optional `TrackStackOrder` reconstructs Java dictionary
+event pointers. Stack traces are immutable views over dense 1024-frame slabs.
+Separate method, location and kind columns use 13 bytes per ordinary frame,
+plus slab headers and allocator rounding. Slabs containing wide method IDs add
+a four-byte high column. Full 64-bit IDs and signed 32-bit line/BCI values are
+preserved; viewing a frame does not allocate. Optional `TrackStackOrder` reconstructs Java dictionary
 traversal only for the heatmap reference pass.
 
 `internal/convert` interns immutable strings in an arena. Frames and prefix
 nodes live in numeric slabs addressed by integer IDs. Their elements contain
 no Go pointers, reducing the graph scanned by GC; growing a slab list does not
 copy all previously stored nodes. Flat hash indexes resolve interned names,
-frames and stack edges. Reusable path buffers and per-chunk caches avoid a new
-object for each CPU sample. There are no per-event goroutines or channels.
+frames and stack edges. A chunk-local path resolver reuses its description, frame-ID and classification
+buffers across representative stacks; its string references are cleared after
+each call. Per-chunk caches avoid a new object for each CPU sample. There are no per-event goroutines or channels.
 
 Each conversion owns its profile, input reader and spill files. It releases
 them before another input is processed. Span filtering scans merged per-thread
@@ -36,7 +41,7 @@ workload-dependent state; they are not a constant-size cache.
 
 The original UI hashes numeric method IDs for its shades. The backend therefore
 models Java's method and stack encounter order, rather than merely producing
-an equivalent unordered graph. A sparse constant-pool dictionary tracks
+an equivalent unordered graph. A reference-order constant-pool dictionary tracks
 occupied slots, resize history and logical capacity across chunk clears. A
 second constant-pool-only pass ranks selected typed methods and stacks;
 compact on-disk records preserve extra-event encounter order.

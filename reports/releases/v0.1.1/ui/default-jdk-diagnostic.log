@@ -1,0 +1,11 @@
+heatmap ap41-heatmap-alloc PASS
+heatmap ap41-heatmap-lock PASS
+heatmap ap41-heatmap-wall PASS
+heatmap heatmap-cpu PASS
+heatmap heatmap-wall PASS
+heatmap jdk-heatmap-alloc PASS
+heatmap jdk-heatmap-lock PASS
+heatmap jdk-heatmap-wall PASS
+heatmap ap41-heatmap-cpu PASS
+heatmap jdk-heatmap-cpu PASS
+UI and exact heatmap checks complete

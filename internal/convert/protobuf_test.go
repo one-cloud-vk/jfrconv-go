@@ -16,6 +16,8 @@ import (
 	"testing"
 )
 
+type writerFunc func(*profile, *bufio.Writer, Options) error
+
 type wireValue struct {
 	n uint64
 	b []byte

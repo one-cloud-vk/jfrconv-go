@@ -13,10 +13,6 @@ import (
 	"strings"
 )
 
-type writerFunc func(*profile, *bufio.Writer, Options) error
-
-var writers = map[string]writerFunc{"html": writeHTML, "collapsed": writeCollapsed}
-
 // The exact heatmap backend owns reference-order metadata, weighted spools and
 // its bounded LZ index. Event is borrowed only for the duration of Add.
 type heatmapSession interface {
@@ -26,13 +22,11 @@ type heatmapSession interface {
 	Finish() error
 	Write(*bufio.Writer) error
 	Close()
-}
-type retainedHeatmap interface {
 	ResolveRetained(*jfr.Chunk, *jfr.Event) (cachedPath, bool, error)
 	Retained(leaf uint32, count, value, timeNS uint64) error
 }
 
-var makeHeatmap func(string, *profile, Options) (heatmapSession, error)
+var makeHeatmap = newHeatmap
 
 func readProfile(path string, o Options, format string) (p *profile, heat heatmapSession, err error) {
 	defer func() {
@@ -62,9 +56,6 @@ func readProfile(path string, o Options, format string) (p *profile, heat heatma
 	}
 	if strings.EqualFold(filepath.Ext(path), ".jfr") || n == 4 && string(magic[:]) == "FLR\x00" {
 		if format == "heatmap" {
-			if makeHeatmap == nil {
-				return p, nil, fmt.Errorf("heatmap backend is not linked")
-			}
 			heat, err = makeHeatmap(path, p, o)
 			if err != nil {
 				return p, heat, err
@@ -87,6 +78,23 @@ func readProfile(path string, o Options, format string) (p *profile, heat heatma
 		err = readText(path, o, p)
 	}
 	return p, heat, err
+}
+
+func writeProfile(p *profile, w *bufio.Writer, format string, o Options) error {
+	switch format {
+	case "html":
+		return writeHTML(p, w, o)
+	case "collapsed":
+		return writeCollapsed(p, w, o)
+	case "pprof":
+		return writePprof(p, w, o)
+	case "pb.gz":
+		return writePprofGzip(p, w, o)
+	case "otlp":
+		return writeOTLP(p, w, o)
+	default:
+		return fmt.Errorf("unknown output format %q", format)
+	}
 }
 
 func Run(input string, out io.Writer, format string, o Options) (stats Stats, err error) {
@@ -116,11 +124,7 @@ func Run(input string, out io.Writer, format string, o Options) (stats Stats, er
 	if heat != nil {
 		err = heat.Write(w)
 	} else {
-		write, ok := writers[format]
-		if !ok {
-			return stats, fmt.Errorf("unknown output format %q", format)
-		}
-		err = write(p, w, o)
+		err = writeProfile(p, w, format, o)
 	}
 	if err == nil {
 		err = w.Flush()
@@ -207,7 +211,7 @@ func RunDiff(base, current string, out io.Writer, format string, o Options) (sta
 	stats.Units = p.nodes.at(0).Total
 	p.seal()
 	w := bufio.NewWriterSize(out, 128*1024)
-	err = writers[format](p, w, o)
+	err = writeProfile(p, w, format, o)
 	if err == nil {
 		err = w.Flush()
 	}

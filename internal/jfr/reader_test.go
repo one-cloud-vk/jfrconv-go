@@ -180,7 +180,7 @@ func TestMixedFixtureAllFamiliesAndChunkOwnership(t *testing.T) {
 			t.Fatal(class, ok)
 		}
 		stack := c.Stack(1)
-		if len(stack) != 2 || stack[0] != (StackFrame{Method: 2, Kind: 1, Line: 20, BCI: 3}) {
+		if stack.Len() != 2 || stack.At(0) != (StackFrame{Method: 2, Kind: 1, Line: 20, BCI: 3}) {
 			t.Fatal(stack)
 		}
 		if first == nil {
@@ -417,7 +417,7 @@ func TestJavaDictionaryPreallocateAndClearRetainCapacity(t *testing.T) {
 
 func TestHasStackDistinguishesEmptyFromMissing(t *testing.T) {
 	c := Chunk{stacks: map[uint64]stackRef{1: {}}}
-	if c.Stack(1) != nil || !c.HasStack(1) || c.HasStack(2) {
+	if c.Stack(1).Len() != 0 || !c.HasStack(1) || c.HasStack(2) {
 		t.Fatal("empty stack identity lost")
 	}
 }

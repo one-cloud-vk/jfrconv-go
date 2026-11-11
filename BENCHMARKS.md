@@ -1,5 +1,30 @@
 # jfrconv-go performance and validation evidence
 
+## v0.1.1: lower RSS and native old/new comparison
+
+The compact stack representation and reused conversion scratch reduce deep constant-pool median RSS from **128.09 to 53.73 MiB (58.05%)**, and diverse collapsed RSS from **49.81 to 40.73 MiB (18.22%)**. Dense heatmap RSS falls 2.39%; the small/startup working set stays at the same runtime floor. Latency is mixed: deep and diverse cases improve, while 10M and limited-batch tail latency regress. Every result remains visible below.
+
+This followup compares native **0.1.0 against 0.1.1**, with **21 measured pairs per case**, equal warmups, separate first pairs and alternating order. Canonical stack/count output and exact heatmap timeline/used-ID/RGB proofs pass after every pair outside timing. Ratios are old/new; below 1 means 0.1.1 is slower. No trial was removed or retried. The original 29-case Java matrix remains in the 0.1.0 section with its original binary/runtime hashes.
+
+Old SHA256: `144204d7e755411903b058f5153aa583bd4adf4c1212667c52d73ae75c85bca6`. New SHA256: `785dfc5fd23cf07dae4e26f905d2699ee8c128a63e3256b7b1a255428170d6de`. Source manifest SHA256: `7ac225a55b826584e03b6301b39fbc8be66a094d7fc7be72e581aaccdab98930`. Go 1.27.4, arm64 macOS 15.8.2; GOGC/GOMEMLIMIT/GOMAXPROCS/GODEBUG remain unset.
+
+| Case | Median RSS MiB, old / new | p95 RSS MiB, old / new | p50 ms, old / new | p95 ms, old / new | p50 / p95 speedup |
+|---|---:|---:|---:|---:|---:|
+| startup-100k | 5.17 / 5.17 | 5.27 / 5.23 | 6.08 / 6.03 | 6.86 / 7.12 | 1.008× / 0.963× |
+| throughput-10m | 5.28 / 5.28 | 5.58 / 5.45 | 257.58 / 261.38 | 286.49 / 355.33 | 0.985× / 0.806× |
+| diverse-2m-collapsed | 49.81 / 40.73 | 51.77 / 43.69 | 196.62 / 193.18 | 289.11 / 223.65 | 1.018× / 1.293× |
+| diverse-2m-heatmap | 54.92 / 53.61 | 59.11 / 56.89 | 1159.83 / 1156.71 | 1663.62 / 1575.42 | 1.003× / 1.056× |
+| deep-shared-cp | 128.09 / 53.73 | 132.41 / 55.17 | 422.82 / 392.50 | 450.42 / 441.99 | 1.077× / 1.019× |
+| batch-limited-eight-inputs | 7.41 / 7.36 | 7.70 / 7.78 | 428.51 / 441.48 | 484.48 / 611.01 | 0.971× / 0.793× |
+
+Median RSS is lower in 4/6 cases and equal in 2/6; p95 RSS is lower in 5/6. The limited-batch p95 RSS increase is 7.70→7.78 MiB (+1.01%). Latency improves in 4/6 p50 and 3/6 p95 cells. In particular, 10M p95 is 286.49→355.33 ms and limited-batch p95 is 484.48→611.01 ms. These measurements do not support a universal latency improvement.
+
+Five additional limited-batch RSS-only pairs observed both supervisor and worker, without monitor errors. Old/new sampled tree medians are 11.875/11.922 MiB and largest observed peaks 12.313/12.188 MiB: approximately the same working-set floor. The sampled sums double-count shared pages and can miss short-lived children; they are lower bounds and are excluded from timing percentiles.
+
+A separate, predeclared lower-limit diagnostic used identical `--memory-limit 48M --max-rss 96M` flags on the 33 MB deep input. Version 0.1.0 exits 75 and preserves the existing output. Version 0.1.1 succeeds and matches the unlimited baseline's complete 40,000-unit, 128-frame path. The normal stored-frame layout uses 13 bytes instead of 24, while optional high-ID slabs preserve arbitrary 64-bit method IDs; raw 32-bit line/BCI values are preserved. The admission/runtime target and polled worker RSS guard retain their documented limits; this test establishes the observed recording-specific result.
+
+[Six-case summary](benchmarks/v0.1.1-native-comparison/summary.json), [all raw pairs/proofs](benchmarks/v0.1.1-native-comparison/comparison.json), [predeclared plan](benchmarks/v0.1.1-native-comparison/plan.json), [raw-stat recomputation audit](benchmarks/v0.1.1-native-comparison/recomputed-audit.json), [lower-limit diagnostic](benchmarks/v0.1.1-native-comparison/limit-diagnostic/report.json), [source manifest](benchmarks/v0.1.1-native-comparison/source-freeze.json), [reproduction](benchmarks/v0.1.1-native-comparison/reproduction/README.md). Functional/public/UI evidence is pinned in [0.1.1 release evidence](reports/releases/v0.1.1/evidence.json).
+
 ## v0.1.0: 29 predeclared Java 4.1 comparisons
 
 The frozen native Go executable wins **median and p95 RSS in all 29 cases**. Median RSS is **26.1–97.5% lower** than Java; p95 RSS is 24.8–97.4% lower. Go wins latency in 25/29 p50 cells and 26/29 p95 cells. The 10M stream, both long batches and deep constant-pool case have slower medians; they remain in the full table and raw trials.

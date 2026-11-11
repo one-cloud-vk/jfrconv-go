@@ -58,24 +58,34 @@ the bundled upstream decoder/color functions. It does not execute scripts
 supplied by those pages. It compares used semantic identity, numeric ID and
 actual RGB separately and exits nonzero on a difference.
 
-## Final candidate UI checks
+## Version 0.1.1 UI checks
 
-The [versioned evidence](reports/releases/v0.1.0/evidence.json) identifies the
-final candidate and reference jar. The corpus has **24 page pairs**: **21
+The [versioned evidence](reports/releases/v0.1.1/evidence.json) identifies the
+frozen 0.1.1 executable, source and reference jar. These are fresh JDK 21
+checks. The corpus has **24 page pairs**: **21
 flamegraph pairs** execute the original application, while three heatmap
 entries receive seeded copies only. All **21 static HTML/CSS shell comparisons** match. At each
 of DPR 1 and DPR 2, **273 interaction phases** have identical draw calls/state
 and **714 assertions** pass across the Java/native pages. These checks include
 tooltips, zoom, inversion, search, navigation, reset and original handlers.
-[Static shells](reports/releases/v0.1.0/ui/static-shell.json),
-[DPR 1](reports/releases/v0.1.0/ui/renderer-dpr1.json),
-[DPR 2](reports/releases/v0.1.0/ui/renderer-dpr2.json).
+[Static shells](reports/releases/v0.1.1/ui/static-shell.json),
+[DPR 1](reports/releases/v0.1.1/ui/renderer-dpr1.json),
+[DPR 2](reports/releases/v0.1.1/ui/renderer-dpr2.json).
 
-The final [heatmap comparison](reports/releases/v0.1.0/ui/heatmap-colors.json)
+The final [heatmap comparison](reports/releases/v0.1.1/ui/heatmap-colors.json)
 covers **10 modes: eight nonempty and two empty**. All used method IDs/RGB and
 semantic stack/timeline counts match. Reports retain input hashes and case
 names. Compact report JSON is included; generated and seeded HTML referenced
 inside the renderer records remains in the original test work directory.
+Current shell checks compare HTML/CSS after removing complete script elements;
+the original JavaScript is exercised separately by the renderer. The initial
+missing-page harness error and a separate default-selection JDK diagnostic are
+retained in the evidence package; neither required a production change.
+
+The previous [0.1.0 UI evidence](reports/releases/v0.1.0/evidence.json) retains
+its original executable hashes and reports. It is not relabeled as a run of
+0.1.1. Compact stack columns and reusable conversion scratch in 0.1.1 preserve
+the same typed method identities and reference ordering.
 
 ## Explicit limits
 

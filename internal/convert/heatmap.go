@@ -43,16 +43,14 @@ type exactHeatmap struct {
 	pathFrames []uint32
 }
 
-func init() {
-	makeHeatmap = func(path string, p *profile, o Options) (heatmapSession, error) {
-		f, e := heatTemp(o.TempDir)
-		if e != nil {
-			return nil, e
-		}
-		r := newHeatReference()
-		p.heat = r
-		return &exactHeatmap{path: path, p: p, o: o, ref: r, spool: f, out: bufio.NewWriterSize(f, 128*1024), groups: make(map[heatGroupKey]heatGroup)}, nil
+func newHeatmap(path string, p *profile, o Options) (heatmapSession, error) {
+	f, e := heatTemp(o.TempDir)
+	if e != nil {
+		return nil, e
 	}
+	r := newHeatReference()
+	p.heat = r
+	return &exactHeatmap{path: path, p: p, o: o, ref: r, spool: f, out: bufio.NewWriterSize(f, 128*1024), groups: make(map[heatGroupKey]heatGroup)}, nil
 }
 func (h *exactHeatmap) BeforeChunk(*jfr.Chunk) error {
 	h.cache = make(map[heatCacheKey]uint32)
@@ -142,8 +140,8 @@ func (h *exactHeatmap) resolve(c *jfr.Chunk, e *jfr.Event) (uint32, error) {
 	}
 	stack := c.Stack(e.StackID)
 	ids := h.pathFrames[:0]
-	for i := len(stack) - 1; i >= 0; i-- {
-		f := stack[i]
+	for i := stack.Len() - 1; i >= 0; i-- {
+		f := stack.At(i)
 		key := methodKey{f.Method, f.Kind}
 		names, ok := h.names[key]
 		if !ok {

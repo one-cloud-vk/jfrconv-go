@@ -1,0 +1,347 @@
+{
+  "implementation": "native Go",
+  "version": "0.1.1",
+  "platform": "macOS arm64; separate native Linux arm64 validation",
+  "native_binary_sha256": "785dfc5fd23cf07dae4e26f905d2699ee8c128a63e3256b7b1a255428170d6de",
+  "java_4_1_jar_sha256": "2464b34abd47243941d81d53110591d66d7db3b3fae46c79fc85057eeddda19b",
+  "collection_method": "Existing compact reports/logs copied and hashed only; no compiler/test/Java/Node/profiler/benchmark/container execution during packaging.",
+  "source_provenance": "source-freeze.json",
+  "source_provenance_sha256": "7ac225a55b826584e03b6301b39fbc8be66a094d7fc7be72e581aaccdab98930",
+  "source_files_reverified": 67,
+  "production_source_unchanged_during_validation": true,
+  "macos_checks": {
+    "passed_top_level_tests": 65,
+    "failed": 0,
+    "skipped": 0,
+    "format_tests_vet_build_all_exit_zero": true,
+    "report": "macos/checks.json"
+  },
+  "semantic_validation": {
+    "passed": 71,
+    "failed": 0,
+    "pending": 0,
+    "report": "validation.json"
+  },
+  "ui": {
+    "generated_pairs": 24,
+    "flamegraph_pairs": 21,
+    "heatmap_seed_only_pairs": 3,
+    "identical_HTML_CSS_shells": 21,
+    "renderers": [
+      {
+        "devicePixelRatio": 1,
+        "flamegraph_pairs": 21,
+        "identical_phases": 273,
+        "passed_assertions_across_java_and_native": 714,
+        "report": "ui/renderer-dpr1.json"
+      },
+      {
+        "devicePixelRatio": 2,
+        "flamegraph_pairs": 21,
+        "identical_phases": 273,
+        "passed_assertions_across_java_and_native": 714,
+        "report": "ui/renderer-dpr2.json"
+      }
+    ],
+    "exact_used_method_ID_RGB_timeline_modes": 10,
+    "nonempty_modes": 8,
+    "empty_modes": 2,
+    "heatmap_report": "ui/heatmap-colors.json",
+    "scope": "Original JavaScript with deterministic DOM/canvas mocks; not a new real-browser pixel/layout matrix. The initial missing-page harness error and a separate default-JDK selection diagnostic are retained, without production changes."
+  },
+  "published_converter_cases": {
+    "passed": 15,
+    "macos_historical": 8,
+    "macos_current": 6,
+    "linux_only": 1,
+    "report": "public/summary.json",
+    "complete_profiler_tree_claimed": false
+  },
+  "linux_validation": {
+    "passed": 63,
+    "root_only_device_tests_skipped": 2,
+    "report": "linux/summary.json",
+    "report_sha256": "da63a35b0ee6b0d77ba88834cbd464ef7c44934f476401e4bdde4b06afa5246e",
+    "strict_64MiB_cgroup_peak_bytes": 17063936,
+    "OOM_events": 0,
+    "accounting_note": "Kernel cgroup memory includes process tree and charged page cache; not process RSS."
+  },
+  "artifacts": {
+    "source-freeze.json": {
+      "source": "work/go-rss-followup/source-freeze.json",
+      "sha256": "7ac225a55b826584e03b6301b39fbc8be66a094d7fc7be72e581aaccdab98930",
+      "bytes": 7425
+    },
+    "functional-summary.json": {
+      "source": "work/go-rss-followup/semantic-ui-summary.json",
+      "sha256": "917368393ed4b7df3584177859f110fe95242bee48ae21a1aca6f4c0e2971ac8",
+      "bytes": 1658
+    },
+    "validation.json": {
+      "source": "work/go-rss-followup/semantic-jdk21/validation.json",
+      "sha256": "e6dc6695367d55aa5e1dce1bf0049562da40d00109a9e65c6cb24aee817ae2ef",
+      "bytes": 1894
+    },
+    "validation.log": {
+      "source": "work/go-rss-followup/semantic-jdk21/validation.log",
+      "sha256": "61c9d8d734872a1ab62c4e1fdbe5227a7058254894cb5aacd375f4881021b716",
+      "bytes": 1241
+    },
+    "macos/checks.json": {
+      "source": "work/go-rss-followup/checks/checks.json",
+      "sha256": "1784d8535dab9fdc5e9b923cdd6712e6de122bec230710488ad8e7d00b161157",
+      "bytes": 1678
+    },
+    "macos/format.log": {
+      "source": "work/go-rss-followup/checks/format.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "macos/tests.log": {
+      "source": "work/go-rss-followup/checks/tests.log",
+      "sha256": "70c07a9b227a8f245ac33ccf11f88e27e41ec588d8c9870da10dba235069cd3a",
+      "bytes": 14409
+    },
+    "macos/vet.log": {
+      "source": "work/go-rss-followup/checks/vet.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "macos/build.log": {
+      "source": "work/go-rss-followup/checks/build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "ui/manifest.json": {
+      "source": "work/go-rss-followup/ui-jdk21/manifest.json",
+      "sha256": "9e189198330da5001097f13473bdfeab61dc5e45e38bae1f1412d7e5705070e9",
+      "bytes": 34983
+    },
+    "ui/static-shell.json": {
+      "source": "work/go-rss-followup/ui-jdk21/static-shell.json",
+      "sha256": "c874fee3127468f9bf78632c3f4d9877a98a8b6a1cd899eb18dab407db7277c2",
+      "bytes": 5963
+    },
+    "ui/heatmap-colors.json": {
+      "source": "work/go-rss-followup/ui-jdk21/heatmap-colors.json",
+      "sha256": "30f7bdd78760f5d7a45fed4621715e9fb3a92b828fdc61f7edbb02dc459ba7bc",
+      "bytes": 9749
+    },
+    "ui/renderer-dpr1.json": {
+      "source": "work/go-rss-followup/ui-jdk21/renderer-dpr1/report.json",
+      "sha256": "60750d7de03c1e028f3859529cce76489bd09e84df53064c47fe5000434c66d7",
+      "bytes": 137722
+    },
+    "ui/renderer-dpr2.json": {
+      "source": "work/go-rss-followup/ui-jdk21/renderer-dpr2/report.json",
+      "sha256": "074c8ecb7badad460691262e3e27d163cdd7699905f3daba150328069abf7495",
+      "bytes": 137722
+    },
+    "ui/renderer-dpr1.log": {
+      "source": "work/go-rss-followup/ui-jdk21/renderer-dpr1.log",
+      "sha256": "20b34d0a1710569197f70b41d01b859912dd7ebe128839e15bd48251bddd44b2",
+      "bytes": 565
+    },
+    "ui/renderer-dpr2.log": {
+      "source": "work/go-rss-followup/ui-jdk21/renderer-dpr2.log",
+      "sha256": "20b34d0a1710569197f70b41d01b859912dd7ebe128839e15bd48251bddd44b2",
+      "bytes": 565
+    },
+    "ui/default-jdk-diagnostic.json": {
+      "source": "work/go-rss-followup/ui-jdk21/heatmap-colors-default-jdk-diagnostic.json",
+      "sha256": "ff0708f84cbd57f1e7eb8c55adf1d96b3197b44d3cd533e7599fe4f5d7b7153b",
+      "bytes": 9558
+    },
+    "ui/initial-harness-failure.log": {
+      "source": "work/go-rss-followup/ui-jdk21.initial-harness-failure.log",
+      "sha256": "3862f36b60ac2b93b00ea5983b1439c3a54dabcda457d75e678ed4d5de44bc36",
+      "bytes": 2255
+    },
+    "ui/default-jdk-diagnostic.log": {
+      "source": "work/go-rss-followup/ui-jdk21.heatmaps.log",
+      "sha256": "fea2f5df9199993f03ad9e9e872d9eb420e9cba831b016bb763958884882a13a",
+      "bytes": 332
+    },
+    "ui/heatmaps-final.log": {
+      "source": "work/go-rss-followup/ui-jdk21.heatmaps-final.log",
+      "sha256": "fea2f5df9199993f03ad9e9e872d9eb420e9cba831b016bb763958884882a13a",
+      "bytes": 332
+    },
+    "public/success/summary.json": {
+      "source": "work/go-rss-followup/public-macos-jdk21-attempt3/summary.json",
+      "sha256": "f70647abd790591cac0adc7b19ea5291685f16db3cac0f8a10d38fdb512d14ca",
+      "bytes": 1910
+    },
+    "public/success/baseline-v41-java.json": {
+      "source": "work/go-rss-followup/public-macos-jdk21-attempt3/baseline-v41-java.json",
+      "sha256": "88afe5356503f0e38144893fd6e08f3328d81b2d396dd3a6009b97edd442235c",
+      "bytes": 2568
+    },
+    "public/success/baseline-current-java.json": {
+      "source": "work/go-rss-followup/public-macos-jdk21-attempt3/baseline-current-java.json",
+      "sha256": "5d9068b2db7dc99fd95da74b59199c2450900a0e50515b470929b2a3e483ec41",
+      "bytes": 2139
+    },
+    "public/success/v41/public-tests.json": {
+      "source": "work/go-rss-followup/public-macos-jdk21-attempt3/go/v41/public-tests.json",
+      "sha256": "450483d7cd8be4b5962c4cd6899f078a0df59e114533a2b4af00382cd8ce00c3",
+      "bytes": 9112
+    },
+    "public/success/v41/tests.log": {
+      "source": "work/go-rss-followup/public-macos-jdk21-attempt3/go/v41/tests.log",
+      "sha256": "19303bf73416c42d1eeb96d178c95093153cd62205dbaf25cf3987721a68c158",
+      "bytes": 4297
+    },
+    "public/success/current/public-tests.json": {
+      "source": "work/go-rss-followup/public-macos-jdk21-attempt3/go/current/public-tests.json",
+      "sha256": "99870e83f7f465e347e57384b1d12c2929cffa347b388849aca78dceed6fe243",
+      "bytes": 12708
+    },
+    "public/success/current/tests.log": {
+      "source": "work/go-rss-followup/public-macos-jdk21-attempt3/go/current/tests.log",
+      "sha256": "970aea9e05b91445d46ed4389c317336770352813aa4af0753a7d64da30f9299",
+      "bytes": 3728
+    },
+    "public/success/driver.log": {
+      "source": "work/go-rss-followup/public-macos-jdk21-attempt3.log",
+      "sha256": "ebbc24ffcca1e8dbbd6d9a1d8be0c9c747f3ce14866d7ec8d7d079a1a4e046e2",
+      "bytes": 95
+    },
+    "public/prior-default-sandbox/attempt-1/summary.json": {
+      "source": "work/go-rss-followup/public-macos-jdk21/summary.json",
+      "sha256": "bfb5817cac05b3739addc633f56c1a0a5e3248321d2aa989dbec41ef50e3c169",
+      "bytes": 1548
+    },
+    "public/prior-default-sandbox/attempt-1/public-tests.json": {
+      "source": "work/go-rss-followup/public-macos-jdk21/go/v41/public-tests.json",
+      "sha256": "af02188a3aabbbd91827275c30ebe89faa6ed6d60a14e5e63dfcde741783ac32",
+      "bytes": 9109
+    },
+    "public/prior-default-sandbox/attempt-1/tests.log": {
+      "source": "work/go-rss-followup/public-macos-jdk21/go/v41/tests.log",
+      "sha256": "84aaac341bb7efcc794404c13a8e06b8b28198d0a689bb353b5627abc1840c3e",
+      "bytes": 4396
+    },
+    "public/prior-default-sandbox/attempt-1/regularPeak.perr": {
+      "source": "work/go-rss-followup/public-macos-jdk21/go/v41/profiles/JfrTests.regularPeak/perr",
+      "sha256": "5ae0bab53aff2e5b50cd585c92ef96c1ae20e0659907aa277d565f1ba3fe69d6",
+      "bytes": 60
+    },
+    "public/prior-default-sandbox/attempt-1/regularPeak.pout": {
+      "source": "work/go-rss-followup/public-macos-jdk21/go/v41/profiles/JfrTests.regularPeak/pout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "public/prior-default-sandbox/attempt-1/driver.log": {
+      "source": "work/go-rss-followup/public-macos-jdk21.log",
+      "sha256": "8f9d5a33b7813a1e067a488f22cdb9559fc50cc3e906071921f5b478bfe4eccb",
+      "bytes": 795
+    },
+    "public/prior-default-sandbox/attempt-2/summary.json": {
+      "source": "work/go-rss-followup/public-macos-jdk21-attempt2/summary.json",
+      "sha256": "3e0f6ce56762acbfc19a2830accc955e7626e2864f97003bce42ff84c9d21d17",
+      "bytes": 1575
+    },
+    "public/prior-default-sandbox/attempt-2/public-tests.json": {
+      "source": "work/go-rss-followup/public-macos-jdk21-attempt2/go/v41/public-tests.json",
+      "sha256": "e3c3ba96597fa65fcc48233b152d053ccb311bf2830deb350e6af43b17e1e0a0",
+      "bytes": 9126
+    },
+    "public/prior-default-sandbox/attempt-2/tests.log": {
+      "source": "work/go-rss-followup/public-macos-jdk21-attempt2/go/v41/tests.log",
+      "sha256": "efef09d7266254f5f48508a7d6cdea521c01daf3f0ed2ca9a594d2ef88275eac",
+      "bytes": 4397
+    },
+    "public/prior-default-sandbox/attempt-2/regularPeak.perr": {
+      "source": "work/go-rss-followup/public-macos-jdk21-attempt2/go/v41/profiles/JfrTests.regularPeak/perr",
+      "sha256": "5ae0bab53aff2e5b50cd585c92ef96c1ae20e0659907aa277d565f1ba3fe69d6",
+      "bytes": 60
+    },
+    "public/prior-default-sandbox/attempt-2/regularPeak.pout": {
+      "source": "work/go-rss-followup/public-macos-jdk21-attempt2/go/v41/profiles/JfrTests.regularPeak/pout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "public/prior-default-sandbox/attempt-2/driver.log": {
+      "source": "work/go-rss-followup/public-macos-jdk21-attempt2.log",
+      "sha256": "fcc5623efb07ef9143a82aa4a712845faf50249dd9df27996b7c23898dfa8896",
+      "bytes": 813
+    },
+    "public/prior-default-sandbox/attach-setup-failure.json": {
+      "source": "work/go-rss-followup/public-macos-jdk21/attach-setup-failure.json",
+      "sha256": "d0e937720a494c2aa89691bad0a30792372820e225d8fe1936369098403208c3",
+      "bytes": 700
+    },
+    "public/attach-diagnostic-default/report.json": {
+      "source": "work/go-rss-followup/attach-diagnostic-default/report.json",
+      "sha256": "dd1894bd9558ffa1ee0fc71c9316157dd7ae8f23c8e6b5db883c8ca5f51e33c7",
+      "bytes": 1053
+    },
+    "public/attach-diagnostic-default/target.stdout": {
+      "source": "work/go-rss-followup/attach-diagnostic-default/target.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "public/attach-diagnostic-default/target.stderr": {
+      "source": "work/go-rss-followup/attach-diagnostic-default/target.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "reproduction/verify-ui-jdk21.py": {
+      "source": "work/go-rss-followup/verify-ui-jdk21.py",
+      "sha256": "ea37958a2642c48b96a0cb90e33955fab8b7cdb043a88d13f12a70123e11bea5",
+      "bytes": 6148
+    },
+    "reproduction/run-public-jdk21.py": {
+      "source": "work/go-rss-followup/run-public-jdk21.py",
+      "sha256": "0a0c18d9b5ffd626ef8144e55d81638c30e08d6919f9f7ebf8421343c5fb1342",
+      "bytes": 5290
+    },
+    "reproduction/run-public-jdk21-attempt2.py": {
+      "source": "work/go-rss-followup/run-public-jdk21-attempt2.py",
+      "sha256": "3547b180db89a4086617e9851322455b8bfd2501d71a3668104c21bb41e503dc",
+      "bytes": 5299
+    },
+    "reproduction/run-public-jdk21-attempt3.py": {
+      "source": "work/go-rss-followup/run-public-jdk21-attempt3.py",
+      "sha256": "b2e119943fc9d266c5b21b4b6cee59160a12cbc8c1e2862c25e9f490b0118b91",
+      "bytes": 5468
+    },
+    "reproduction/validate.py": {
+      "source": "outputs/jfrconv-go/tools/validate.py",
+      "sha256": "da84f67b2a50821cf3dc4fe83010a933f8eccf6b44f684c406d2e11d107aa0ac",
+      "bytes": 18090
+    },
+    "reproduction/fixtures.py": {
+      "source": "outputs/jfrconv-go/tools/fixtures.py",
+      "sha256": "bb3f7b7fdb28c2778901c45b5100ca1b5c7b9b75995e03a173f4f0e11826c6ef",
+      "bytes": 16934
+    },
+    "reproduction/heatmap_decode.js": {
+      "source": "outputs/jfrconv-go/tools/heatmap_decode.js",
+      "sha256": "b553e2eb91dd0d486c955972e8db79899b9090f8ef0e8f3bfd121ccfe89dcae4",
+      "bytes": 4970
+    },
+    "reproduction/heatmap_colors.js": {
+      "source": "outputs/jfrconv-go/tools/heatmap_colors.js",
+      "sha256": "90163f57970b7958b6cd68ad470e0d294bce7ec71c81f3eebeb6c3b0e8c3ce22",
+      "bytes": 3550
+    },
+    "reproduction/ui_renderer_parity.js": {
+      "source": "outputs/jfrconv-go/tools/ui_renderer_parity.js",
+      "sha256": "0511f00161a54dce3f9c3b820a8469768afd5e1cf171fa8a2d39259e707b19dd",
+      "bytes": 13811
+    },
+    "reproduction/RustBridge.java": {
+      "source": "work/upstream-macos/v41-rust/src/converter/one/convert/RustBridge.java",
+      "sha256": "5b767555d812f58bcd3f7da9e5cb3de74aa85dc3239ffe2ddeaf0dc72ff49258",
+      "bytes": 3131
+    },
+    "public/summary.json": {
+      "source": "Derived from preserved successful Mac and Linux public reports",
+      "sha256": "3a9c3112d9b9de913aeca57901bae8e37b89ae7bce6525c563655c5a449a124b",
+      "bytes": 1414
+    }
+  },
+  "omitted_artifacts": "No generated HTML/seeded pages, test JVM recordings, executables, JARs or duplicate input fixtures copied. Their original paths/hashes remain in raw reports. Old v0.1.0 history is unchanged."
+}

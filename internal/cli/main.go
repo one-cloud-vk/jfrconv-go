@@ -21,8 +21,7 @@ type Engine struct {
 	Diff func(base, current string, out io.Writer, format string, options convert.Options) (convert.Stats, error)
 }
 
-// Main owns CLI diagnostics and exit status. Engine injection keeps CLI and
-// filesystem tests independent of the profile parser without shipping stubs.
+// Main runs the CLI and returns its exit status.
 func Main(args []string, stdout, stderr io.Writer, engine Engine) int {
 	worker, err := configureWorker()
 	if err != nil {
@@ -58,7 +57,10 @@ func Main(args []string, stdout, stderr io.Writer, engine Engine) int {
 	if config.Diff && engine.Diff == nil || !config.Diff && engine.Run == nil {
 		return reportError(stderr, fmt.Errorf("conversion engine is unavailable"))
 	}
-	stats := make([]convert.Stats, 0, len(plan.jobs))
+	var stats []convert.Stats
+	if worker != nil {
+		stats = make([]convert.Stats, 0, len(plan.jobs))
+	}
 	for id, job := range plan.jobs {
 		var outputDir string
 		if worker != nil {
@@ -68,16 +70,15 @@ func Main(args []string, stdout, stderr io.Writer, engine Engine) int {
 		if err != nil {
 			return reportError(stderr, err)
 		}
-		stats = append(stats, stat)
 		if worker == nil {
 			converted(stderr, job, stat)
+		} else {
+			stats = append(stats, stat)
 		}
 		if config.Options.MemoryStats {
 			memoryStats(stderr)
 		}
-		// A limited multi-input invocation promptly releases the previous file's
-		// garbage/pages before constructing another profile. A final single-file
-		// conversion exits naturally, avoiding an unnecessary full GC on its path.
+		// Return the previous profile's pages before the next limited conversion.
 		if worker != nil && id+1 < len(plan.jobs) {
 			debug.FreeOSMemory()
 		}
@@ -138,8 +139,7 @@ func executeJob(job job, format string, options convert.Options, engine Engine, 
 }
 
 func memoryStats(stderr io.Writer) {
-	// Explicit diagnostics report post-GC live heap. This pause is opt-in and
-	// does not contaminate default conversion timing measurements.
+	// Collect first so the diagnostic reports live heap.
 	runtime.GC()
 	var stats runtime.MemStats
 	runtime.ReadMemStats(&stats)

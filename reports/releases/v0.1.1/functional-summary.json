@@ -1,0 +1,43 @@
+{
+  "implementation": "native Go",
+  "version": "0.1.1",
+  "go_binary_sha256": "785dfc5fd23cf07dae4e26f905d2699ee8c128a63e3256b7b1a255428170d6de",
+  "java_jar_sha256": "2464b34abd47243941d81d53110591d66d7db3b3fae46c79fc85057eeddda19b",
+  "java_executable": "/opt/homebrew/opt/openjdk@21/bin/java",
+  "java_version": "openjdk version \"21.0.7\" 2025-04-15\nOpenJDK Runtime Environment Homebrew (build 21.0.7)\nOpenJDK 64-Bit Server VM Homebrew (build 21.0.7, mixed mode, sharing)",
+  "semantic": {
+    "passed": 71,
+    "failed": 0,
+    "pending": 0,
+    "report": "semantic-jdk21/validation.json"
+  },
+  "ui": {
+    "page_pairs": 24,
+    "flamegraph_pairs": 21,
+    "heatmap_seed_only_pairs": 3,
+    "static_shells_identical": 21,
+    "renderer": {
+      "dpr1": {
+        "phases": 273,
+        "assertions": 714,
+        "all_phases_identical": true
+      },
+      "dpr2": {
+        "phases": 273,
+        "assertions": 714,
+        "all_phases_identical": true
+      }
+    },
+    "heatmap_modes": 10,
+    "heatmap_nonempty": 8,
+    "heatmap_empty": 2,
+    "all_heatmap_IDs_RGB_timeline_exact": true
+  },
+  "harness_notes": [
+    "The initial UI driver assumed the separate JDK CPU heatmap existed; renderer checks had passed, the missing-file error and log are preserved. No production failure or source change.",
+    "A default-selection JDK diagnostic (99 methods) is retained separately. The final ten-mode corpus retains the original --cpu selection for its JDK CPU case."
+  ],
+  "source_changed_during_validation": false,
+  "source_freeze_sha256": "7ac225a55b826584e03b6301b39fbc8be66a094d7fc7be72e581aaccdab98930",
+  "source_files_reverified": 67
+}

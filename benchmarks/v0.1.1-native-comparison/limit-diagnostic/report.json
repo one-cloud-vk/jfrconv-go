@@ -1,0 +1,57 @@
+{
+  "status": "complete",
+  "plan_sha256": "99e7d1dcac864830c31b695d529272bef1eb103394f20e448f3d8a0f63db8fdf",
+  "not_a_latency_measurement": true,
+  "input_sha256": "6e901634586c5e7ca3e2ef8d2e4ae181f77ff7a83b2c0492d8b4a9462d204a61",
+  "unlimited_baseline_reference": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/official-comparison/deep-shared-cp/old.collapsed",
+  "reference_units": 40000,
+  "reference_paths": 1,
+  "reference_frames": 128,
+  "cases": [
+    {
+      "binary": "old",
+      "binary_sha256": "144204d7e755411903b058f5153aa583bd4adf4c1212667c52d73ae75c85bca6",
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/baseline/jfrconv-0.1.0",
+        "--cpu",
+        "--memory-limit",
+        "48M",
+        "--max-rss",
+        "96M",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-diagnostic/deep-shared-cp.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/limit-diagnostic/old.collapsed"
+      ],
+      "exit_code": 75,
+      "preexisting_output_preserved": true,
+      "matches_unlimited_baseline": null,
+      "output_sha256": "41adeedd755426164646810b7c79aac0d316f27c77349fe24f4d45645b983832",
+      "stdout": "old.stdout.log",
+      "stderr": "old.stderr.log"
+    },
+    {
+      "binary": "new",
+      "binary_sha256": "785dfc5fd23cf07dae4e26f905d2699ee8c128a63e3256b7b1a255428170d6de",
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/frozen/jfrconv-0.1.1",
+        "--cpu",
+        "--memory-limit",
+        "48M",
+        "--max-rss",
+        "96M",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-diagnostic/deep-shared-cp.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/limit-diagnostic/new.collapsed"
+      ],
+      "exit_code": 0,
+      "preexisting_output_preserved": false,
+      "matches_unlimited_baseline": true,
+      "output_sha256": "de349b65d2bf040ea62acd8aafc68f65b601bf54063a11134d3c2cb6f14b5ae5",
+      "stdout": "new.stdout.log",
+      "stderr": "new.stderr.log"
+    }
+  ],
+  "hypothesis_observed": true
+}

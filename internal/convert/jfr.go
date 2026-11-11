@@ -249,7 +249,6 @@ func readJFR(path string, o Options, p *profile, format string, heat heatmapSess
 		return err
 	}
 	defer r.Close()
-	r.Budget = o.MemoryLimit
 	start, end := r.StartNS, r.EndNS
 	p.StartNS = start
 	p.EndNS = end
@@ -298,8 +297,14 @@ func readJFR(path string, o Options, p *profile, format string, heat heatmapSess
 			if err != nil {
 				return err
 			}
-			agg := newAggregator(o.Threads)
-			names := make(nameCache)
+			var agg *aggregator
+			if !o.Leak && heat == nil {
+				agg = newAggregator(o.Threads)
+			}
+			var resolver pathResolver
+			if heat == nil {
+				resolver.names = make(nameCache)
+			}
 			var native *nativeSorter
 			if o.Leak {
 				native = &nativeSorter{dir: o.TempDir}
@@ -375,17 +380,13 @@ func readJFR(path string, o Options, p *profile, format string, heat heatmapSess
 						var resolved cachedPath
 						var exists bool
 						if heat != nil {
-							retained, ok := heat.(retainedHeatmap)
-							if !ok {
-								return fmt.Errorf("heatmap backend does not support retained allocations")
-							}
 							var resolveErr error
-							resolved, exists, resolveErr = retained.ResolveRetained(c, &e)
+							resolved, exists, resolveErr = heat.ResolveRetained(c, &e)
 							if resolveErr != nil {
 								return resolveErr
 							}
 						} else {
-							resolved, exists = resolvePath(c, &e, o, p, format, names)
+							resolved, exists = resolver.resolve(c, &e, o, p, format)
 						}
 						if exists {
 							cached = &resolved
@@ -410,7 +411,7 @@ func readJFR(path string, o Options, p *profile, format string, heat heatmapSess
 			} else if heat == nil {
 				err = agg.each(o.Grain, func(a aggregate) error {
 					e := a.Event.expand()
-					resolved, ok := resolvePath(c, &e, o, p, format, names)
+					resolved, ok := resolver.resolve(c, &e, o, p, format)
 					if !ok {
 						return nil
 					}
@@ -501,11 +502,7 @@ func readJFR(path string, o Options, p *profile, format string, heat heatmapSess
 			}
 			p.credit(*g.Path, amount, count, value, g.Time)
 			if heat != nil {
-				retained, ok := heat.(retainedHeatmap)
-				if !ok {
-					return fmt.Errorf("heatmap backend does not support retained allocations")
-				}
-				if err := retained.Retained(id, count, value, g.Time); err != nil {
+				if err := heat.Retained(id, count, value, g.Time); err != nil {
 					return err
 				}
 			}

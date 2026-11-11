@@ -18,13 +18,17 @@ import (
 )
 
 const (
-	envWorker     = "_JFRCONV_GO_WORKER"
-	envBudget     = "_JFRCONV_GO_BUDGET"
-	envRSS        = "_JFRCONV_GO_RSS"
-	envOutputs    = "_JFRCONV_GO_OUTPUTS"
-	envSpill      = "_JFRCONV_GO_SPILL"
-	manifestName  = "manifest"
-	manifestMagic = "JFRGO001"
+	envWorker         = "_JFRCONV_GO_WORKER"
+	envBudget         = "_JFRCONV_GO_BUDGET"
+	envRSS            = "_JFRCONV_GO_RSS"
+	envOutputs        = "_JFRCONV_GO_OUTPUTS"
+	envSpill          = "_JFRCONV_GO_SPILL"
+	manifestName      = "manifest"
+	manifestMagic     = "JFRGO001"
+	minWorkerBudget   = 1 << 20
+	runtimeReserve    = 16 << 20
+	rssSampleInterval = 2 * time.Millisecond
+	maxRSSMisses      = 4
 )
 
 type limitError struct{ message string }
@@ -32,7 +36,7 @@ type limitError struct{ message string }
 func (e *limitError) Error() string { return e.message }
 
 type workerSettings struct {
-	budget, rss    uint64
+	budget         uint64
 	outputs, spill string
 }
 
@@ -48,7 +52,7 @@ func configureWorker() (*workerSettings, error) {
 	if err != nil {
 		return nil, fmt.Errorf("invalid worker RSS guard")
 	}
-	settings := &workerSettings{budget: budget, rss: rss, outputs: os.Getenv(envOutputs), spill: os.Getenv(envSpill)}
+	settings := &workerSettings{budget: budget, outputs: os.Getenv(envOutputs), spill: os.Getenv(envSpill)}
 	for _, directory := range []string{settings.outputs, settings.spill} {
 		if !filepath.IsAbs(directory) {
 			return nil, fmt.Errorf("invalid worker scratch directory")
@@ -59,8 +63,7 @@ func configureWorker() (*workerSettings, error) {
 		}
 	}
 	debug.SetMemoryLimit(int64(budget))
-	// Reject obviously unworkable budgets cleanly. SetMemoryLimit is otherwise
-	// deliberately soft: no claim that every Go/runtime allocation is intercepted.
+	// SetMemoryLimit is soft; reject a budget below the runtime's startup usage.
 	var stats runtime.MemStats
 	runtime.ReadMemStats(&stats)
 	if stats.Sys-stats.HeapReleased > budget {
@@ -81,9 +84,9 @@ func configureWorker() (*workerSettings, error) {
 func effectiveBudget(options convert.Options) uint64 {
 	budget := options.MemoryLimit
 	if options.MaxRSS != 0 {
-		derived := uint64(1 << 20)
-		if options.MaxRSS > 17<<20 {
-			derived = options.MaxRSS - (16 << 20)
+		derived := uint64(minWorkerBudget)
+		if options.MaxRSS > runtimeReserve+minWorkerBudget {
+			derived = options.MaxRSS - runtimeReserve
 		}
 		if budget == 0 || derived < budget {
 			budget = derived
@@ -98,7 +101,7 @@ func supervise(plan plan, args []string, stdout, stderr io.Writer) (int, error) 
 		if _, err := residentBytes(os.Getpid()); err != nil {
 			return 1, fmt.Errorf("cannot observe RSS; refusing an unenforced guard: %w", err)
 		}
-		if options.MaxRSS < 1<<20 {
+		if options.MaxRSS < minWorkerBudget {
 			return LimitExit, &limitError{"RSS limit is below the worker startup floor"}
 		}
 	}
@@ -145,19 +148,19 @@ func supervise(plan plan, args []string, stdout, stderr io.Writer) (int, error) 
 	} else {
 		done := make(chan error, 1)
 		go func() { done <- command.Wait() }()
-		ticker := time.NewTicker(2 * time.Millisecond)
+		ticker := time.NewTicker(rssSampleInterval)
 		defer ticker.Stop()
 		missing := 0
-		finished := false
-		for !finished {
+	wait:
+		for {
 			select {
 			case waitErr = <-done:
-				finished = true
+				break wait
 			case <-ticker.C:
 				actual, err := residentBytes(command.Process.Pid)
 				if err != nil {
 					missing++
-					if missing < 4 {
+					if missing < maxRSSMisses {
 						continue
 					}
 					_ = command.Process.Kill()

@@ -1,0 +1,174 @@
+{
+  "native_binary_sha256": "785dfc5fd23cf07dae4e26f905d2699ee8c128a63e3256b7b1a255428170d6de",
+  "method": "Remove complete script elements and compare remaining HTML/CSS bytes; original JavaScript is checked by the renderer below.",
+  "cases": [
+    {
+      "case": "mixed-cpu",
+      "same_HTML_CSS_shell": true,
+      "sha256": {
+        "java": "3f94a29a9cf06cb714e2bcf680f793beea6a9dee01cb172015255729ce06f4cb",
+        "go": "3f94a29a9cf06cb714e2bcf680f793beea6a9dee01cb172015255729ce06f4cb"
+      }
+    },
+    {
+      "case": "mixed-alloc",
+      "same_HTML_CSS_shell": true,
+      "sha256": {
+        "java": "21dfd2cda29177097fb06f11f6e4d2e75350ad27451bd5fb294d3caa40540e98",
+        "go": "21dfd2cda29177097fb06f11f6e4d2e75350ad27451bd5fb294d3caa40540e98"
+      }
+    },
+    {
+      "case": "mixed-reverse",
+      "same_HTML_CSS_shell": true,
+      "sha256": {
+        "java": "3f94a29a9cf06cb714e2bcf680f793beea6a9dee01cb172015255729ce06f4cb",
+        "go": "3f94a29a9cf06cb714e2bcf680f793beea6a9dee01cb172015255729ce06f4cb"
+      }
+    },
+    {
+      "case": "ap-cpu",
+      "same_HTML_CSS_shell": true,
+      "sha256": {
+        "java": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126",
+        "go": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126"
+      }
+    },
+    {
+      "case": "ap-alloc",
+      "same_HTML_CSS_shell": true,
+      "sha256": {
+        "java": "4f28a17214bd0347cec8e8934f6935ea6cf47319e2c1789b92d6138ea4a6397a",
+        "go": "4f28a17214bd0347cec8e8934f6935ea6cf47319e2c1789b92d6138ea4a6397a"
+      }
+    },
+    {
+      "case": "ap-reverse",
+      "same_HTML_CSS_shell": true,
+      "sha256": {
+        "java": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126",
+        "go": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126"
+      }
+    },
+    {
+      "case": "ap-inverted",
+      "same_HTML_CSS_shell": true,
+      "sha256": {
+        "java": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126",
+        "go": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126"
+      }
+    },
+    {
+      "case": "ap-title-highlight",
+      "same_HTML_CSS_shell": true,
+      "sha256": {
+        "java": "ed69dec4e6cae4a6a452820755b95f0fbf64fe18e7a0fc740bdc75022b5e9efc",
+        "go": "ed69dec4e6cae4a6a452820755b95f0fbf64fe18e7a0fc740bdc75022b5e9efc"
+      }
+    },
+    {
+      "case": "ap-filtered",
+      "same_HTML_CSS_shell": true,
+      "sha256": {
+        "java": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126",
+        "go": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126"
+      }
+    },
+    {
+      "case": "ap-title-literal",
+      "same_HTML_CSS_shell": true,
+      "sha256": {
+        "java": "56c184153b9a283e7117c4472ba2948344cf58506f4df1dbc3633375098524b2",
+        "go": "56c184153b9a283e7117c4472ba2948344cf58506f4df1dbc3633375098524b2"
+      }
+    },
+    {
+      "case": "collapsed-skip-height",
+      "same_HTML_CSS_shell": true,
+      "sha256": {
+        "java": "21dfd2cda29177097fb06f11f6e4d2e75350ad27451bd5fb294d3caa40540e98",
+        "go": "21dfd2cda29177097fb06f11f6e4d2e75350ad27451bd5fb294d3caa40540e98"
+      }
+    },
+    {
+      "case": "ap-html-skip",
+      "same_HTML_CSS_shell": true,
+      "sha256": {
+        "java": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126",
+        "go": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126"
+      }
+    },
+    {
+      "case": "ap-html-reverse-skip",
+      "same_HTML_CSS_shell": true,
+      "sha256": {
+        "java": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126",
+        "go": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126"
+      }
+    },
+    {
+      "case": "ap-html-reverse",
+      "same_HTML_CSS_shell": true,
+      "sha256": {
+        "java": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126",
+        "go": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126"
+      }
+    },
+    {
+      "case": "ap-html-filter",
+      "same_HTML_CSS_shell": true,
+      "sha256": {
+        "java": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126",
+        "go": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126"
+      }
+    },
+    {
+      "case": "ap-regex-alternation",
+      "same_HTML_CSS_shell": true,
+      "sha256": {
+        "java": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126",
+        "go": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126"
+      }
+    },
+    {
+      "case": "ap-regex-casefold",
+      "same_HTML_CSS_shell": true,
+      "sha256": {
+        "java": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126",
+        "go": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126"
+      }
+    },
+    {
+      "case": "ap-highlight-regex",
+      "same_HTML_CSS_shell": true,
+      "sha256": {
+        "java": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126",
+        "go": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126"
+      }
+    },
+    {
+      "case": "cross-go-html-filter",
+      "same_HTML_CSS_shell": true,
+      "sha256": {
+        "java": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126",
+        "go": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126"
+      }
+    },
+    {
+      "case": "cross-rust-html-regex",
+      "same_HTML_CSS_shell": true,
+      "sha256": {
+        "java": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126",
+        "go": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126"
+      }
+    },
+    {
+      "case": "java-html-regex-quoted",
+      "same_HTML_CSS_shell": true,
+      "sha256": {
+        "java": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126",
+        "go": "e9fa0722612f2a469abd86f4585006acb4b53caca6c22c1c0d60c081a67ea126"
+      }
+    }
+  ]
+}

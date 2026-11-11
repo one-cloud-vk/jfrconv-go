@@ -85,7 +85,7 @@ func makePlan(c Config) (plan, error) {
 				return p, fmt.Errorf("invalid input filename")
 			}
 			ext := filepath.Ext(name)
-			// Rust Path::with_extension and Java preserve a leading-only dot.
+			// A leading dot alone is not a filename extension.
 			if ext == name {
 				ext = ""
 			}

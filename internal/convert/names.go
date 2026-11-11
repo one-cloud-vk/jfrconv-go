@@ -211,27 +211,40 @@ type description struct {
 	Line       int32
 }
 
-func resolvePath(c *jfr.Chunk, e *jfr.Event, o Options, p *profile, format string, names nameCache) (cachedPath, bool) {
+// A resolver belongs to one chunk. Returned tier counts never alias its scratch.
+type pathResolver struct {
+	names          nameCache
+	descriptions   []description
+	ids            []uint32
+	classification []nameKind
+}
+
+func (r *pathResolver) resolve(c *jfr.Chunk, e *jfr.Event, o Options, p *profile, format string) (cachedPath, bool) {
 	flame := format != "pprof" && format != "pb.gz" && format != "otlp"
 	stack := c.Stack(e.StackID)
-	if stack == nil && !c.HasStack(e.StackID) && flame && e.MethodID == 0 {
+	if flame && e.MethodID == 0 && stack.Len() == 0 && !c.HasStack(e.StackID) {
 		return cachedPath{}, false
 	}
-	descriptions := make([]description, 0, len(stack)+3)
+	defer func() {
+		clear(r.descriptions)
+		r.descriptions = r.descriptions[:0]
+		clear(r.classification)
+		r.classification = r.classification[:0]
+	}()
 	if o.Threads {
-		descriptions = append(descriptions, description{Name: threadName(c, e.TID), Kind: 3, Role: 1})
+		r.descriptions = append(r.descriptions, description{Name: threadName(c, e.TID), Kind: 3, Role: 1})
 	}
 	if o.Classify {
-		pairs := make([]nameKind, len(stack))
-		for i, f := range stack {
-			pairs[i] = nameKind{cachedName(c, f.Method, f.Kind, o, names), f.Kind}
+		for i := 0; i < stack.Len(); i++ {
+			f := stack.At(i)
+			r.classification = append(r.classification, nameKind{cachedName(c, f.Method, f.Kind, o, r.names), f.Kind})
 		}
-		name, kind := category(pairs)
-		descriptions = append(descriptions, description{Name: name, Kind: kind, Role: 2})
+		name, kind := category(r.classification)
+		r.descriptions = append(r.descriptions, description{Name: name, Kind: kind, Role: 2})
 	}
-	for i := len(stack) - 1; i >= 0; i-- {
-		f := stack[i]
-		name := cachedName(c, f.Method, f.Kind, o, names)
+	for i := stack.Len() - 1; i >= 0; i-- {
+		f := stack.At(i)
+		name := cachedName(c, f.Method, f.Kind, o, r.names)
 		line := int32(uint16(f.Line))
 		storedLine := line
 		if flame {
@@ -242,21 +255,21 @@ func resolvePath(c *jfr.Chunk, e *jfr.Event, o Options, p *profile, format strin
 				name += "@" + strconv.FormatUint(uint64(uint16(f.BCI)), 10)
 			}
 		}
-		descriptions = append(descriptions, description{Name: name, Kind: f.Kind, Line: storedLine})
+		r.descriptions = append(r.descriptions, description{Name: name, Kind: f.Kind, Line: storedLine})
 	}
 	if e.ClassID != 0 && format != "otlp" {
 		kind := uint8(2)
 		if e.Kind == jfr.Allocation && !e.TLAB {
 			kind = 5
 		}
-		descriptions = append(descriptions, description{Name: className(c, e.ClassID, o), Kind: kind})
+		r.descriptions = append(r.descriptions, description{Name: className(c, e.ClassID, o), Kind: kind})
 	}
 	if e.MethodID != 0 {
-		descriptions = append(descriptions, description{Name: cachedName(c, e.MethodID, 1, o, names), Kind: 1})
+		r.descriptions = append(r.descriptions, description{Name: cachedName(c, e.MethodID, 1, o, r.names), Kind: 1})
 	}
 	if flame {
 		included := o.Include == nil
-		for _, d := range descriptions {
+		for _, d := range r.descriptions {
 			if o.Exclude != nil && o.Exclude.MatchString(d.Name) {
 				return cachedPath{}, false
 			}
@@ -268,16 +281,13 @@ func resolvePath(c *jfr.Chunk, e *jfr.Event, o Options, p *profile, format strin
 			return cachedPath{}, false
 		}
 	}
-	ids := make([]uint32, len(descriptions))
-	for i, d := range descriptions {
-		ids[i] = p.frameName(d.Name, d.Kind, d.Line, 0, d.Role)
+	r.ids = r.ids[:0]
+	for _, d := range r.descriptions {
+		r.ids = append(r.ids, p.frameName(d.Name, d.Kind, d.Line, 0, d.Role))
 	}
+	ids := r.ids
 	if flame {
-		var ok bool
-		ids, ok = transformPath(ids, o, p)
-		if !ok {
-			return cachedPath{}, false
-		}
+		ids = layoutPath(ids, o, p)
 	}
 	return p.path(ids, true), true
 }
@@ -296,6 +306,10 @@ func transformPath(ids []uint32, o Options, p *profile) ([]uint32, bool) {
 	if !included {
 		return nil, false
 	}
+	return layoutPath(ids, o, p), true
+}
+
+func layoutPath(ids []uint32, o Options, p *profile) []uint32 {
 	if len(ids) > p.originalDepth {
 		p.originalDepth = len(ids)
 	}
@@ -304,7 +318,7 @@ func transformPath(ids []uint32, o Options, p *profile) ([]uint32, bool) {
 		if skip > len(ids) {
 			skip = len(ids)
 		}
-		return ids[skip:], true
+		return ids[skip:]
 	}
 	skip := o.Skip
 	if skip == 0 && len(ids) > 0 && p.frames.at(ids[0]).Role == 1 {
@@ -312,9 +326,9 @@ func transformPath(ids []uint32, o Options, p *profile) ([]uint32, bool) {
 	}
 	if skip >= len(ids) {
 		if skip == 1 && o.Skip == 0 && len(ids) > 0 {
-			return ids[:1], true
+			return ids[:1]
 		}
-		return ids[:0], true
+		return ids[:0]
 	}
 	start := 0
 	if o.Skip > 0 {
@@ -325,5 +339,5 @@ func transformPath(ids []uint32, o Options, p *profile) ([]uint32, bool) {
 	for i, j := start, len(ids)-1; i < j; i, j = i+1, j-1 {
 		ids[i], ids[j] = ids[j], ids[i]
 	}
-	return ids, true
+	return ids
 }

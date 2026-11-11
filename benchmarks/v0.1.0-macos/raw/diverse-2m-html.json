@@ -1,0 +1,756 @@
+{
+  "command": [
+    "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/benchmark.py",
+    "--go",
+    "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/jfrconv-go-build/jfrconv",
+    "--java-jar",
+    "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.1/build/jar/jfr-converter.jar",
+    "--java",
+    "/opt/homebrew/opt/openjdk@21/bin/java",
+    "--input",
+    "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/fixtures/2000000-high-cardinality.jfr",
+    "--input-pool",
+    "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/native-benchmark-macos-final/frozen-inputs",
+    "--repeat",
+    "21",
+    "--warmup",
+    "1",
+    "--format",
+    "html",
+    "--event-mode",
+    "cpu",
+    "--repeat-inputs",
+    "1",
+    "--workdir",
+    "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/native-benchmark-macos-final/go/diverse-2m-html",
+    "--go-tool",
+    "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/toolchains/go1.27.4/go/bin/go",
+    "--flag=--lines"
+  ],
+  "go_binary_source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/jfrconv-go-build/jfrconv",
+  "java_jar_source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.1/build/jar/jfr-converter.jar",
+  "implementation": "native Go",
+  "status": "complete",
+  "go_build_info": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/native-benchmark-macos-final/go/diverse-2m-html/jfrconv-measured: go1.27.4\n\tpath\tjfrconv-go/cmd/jfrconv\n\tmod\tjfrconv-go\t(devel)\t\n\tbuild\t-buildmode=exe\n\tbuild\t-compiler=gc\n\tbuild\t-trimpath=true\n\tbuild\tDefaultGODEBUG=containermaxprocs=0,cryptocustomrand=1,decoratemappings=0,gotestjsonbuildtext=1,httpcookiemaxnum=0,httpservecontentmaxranges=1,multipathtcp=0,randseednop=0,rsa1024min=0,tlsmlkem=0,tlssecpmlkem=0,tlssha1=1,tracebacklabels=0,updatemaxprocs=0,urlmaxqueryparams=0,urlstrictcolons=0,x509rsacrt=0,x509sha256skid=0,x509sslcertoverrideplatform=0,x509usepolicies=0\n\tbuild\tCGO_ENABLED=0\n\tbuild\tGOARCH=arm64\n\tbuild\tGOOS=darwin\n\tbuild\tGOARM64=v8.0",
+  "go_runtime_environment": {
+    "GOGC": null,
+    "GOMEMLIMIT": null,
+    "GOMAXPROCS": null,
+    "GODEBUG": null
+  },
+  "tree_rss_diagnostic_pairs": 0,
+  "tree_rss_method": null,
+  "frozen_input_pool": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/native-benchmark-macos-final/frozen-inputs",
+  "java_version": "openjdk version \"21.0.7\" 2025-04-15\nOpenJDK Runtime Environment Homebrew (build 21.0.7)\nOpenJDK 64-Bit Server VM Homebrew (build 21.0.7, mixed mode, sharing)",
+  "hardware": {
+    "machine": "arm64",
+    "processor": "arm",
+    "logical_cpus": 8
+  },
+  "go_binary_sha256": "144204d7e755411903b058f5153aa583bd4adf4c1212667c52d73ae75c85bca6",
+  "java_jar_sha256": "2464b34abd47243941d81d53110591d66d7db3b3fae46c79fc85057eeddda19b",
+  "platform": "macOS-15.8.2-arm64-arm-64bit-Mach-O",
+  "python": "3.13.0",
+  "repeat": 21,
+  "warmups_per_implementation": 1,
+  "format": "html",
+  "java_options": [],
+  "flags": [
+    "--cpu",
+    "--lines"
+  ],
+  "go_flags": [],
+  "method": "Fresh processes measured with wait4 child ru_maxrss; equal warmups; alternating pair order; p50 median and p95 nearest-rank; first fresh pair kept separate; input page-cache state uncontrolled; macOS RSS bytes, Linux KiB normalized to bytes.",
+  "output_verification_method": "Canonical output after every pair outside measurement; pprof includes vector values, resolved labels, sample types/units and time/duration, with producer comments/mapping title excluded; heatmap includes all used method IDs and RGB.",
+  "recordings": [
+    {
+      "input_source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/fixtures/2000000-high-cardinality.jfr",
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/native-benchmark-macos-final/go/diverse-2m-html/inputs/0/2000000-high-cardinality.jfr",
+      "input_pool_file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/native-benchmark-macos-final/frozen-inputs/acb11419fd390425986a09409a7281fbe6dda6c8e4d3c8f6eb573e5b0090cb76",
+      "input_bytes": 26017760,
+      "input_sha256": "acb11419fd390425986a09409a7281fbe6dda6c8e4d3c8f6eb573e5b0090cb76",
+      "input_count_per_process": 1,
+      "processed_input_bytes_per_process": 26017760,
+      "runs": {
+        "java": [
+          {
+            "peak_rss_bytes": 226344960,
+            "wall_seconds": 0.7315228750230744,
+            "user_cpu_seconds": 0.9517089999999999,
+            "system_cpu_seconds": 0.30725399999999997,
+            "major_faults": 0,
+            "minor_faults": 15065,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 225230848,
+            "wall_seconds": 0.932250042038504,
+            "user_cpu_seconds": 1.169189,
+            "system_cpu_seconds": 0.41705,
+            "major_faults": 0,
+            "minor_faults": 15015,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 227966976,
+            "wall_seconds": 0.7780129999737255,
+            "user_cpu_seconds": 1.073186,
+            "system_cpu_seconds": 0.332104,
+            "major_faults": 0,
+            "minor_faults": 15165,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 225787904,
+            "wall_seconds": 0.6807792499894276,
+            "user_cpu_seconds": 0.888463,
+            "system_cpu_seconds": 0.29645,
+            "major_faults": 0,
+            "minor_faults": 15049,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 226000896,
+            "wall_seconds": 0.6605604579672217,
+            "user_cpu_seconds": 0.879178,
+            "system_cpu_seconds": 0.285993,
+            "major_faults": 0,
+            "minor_faults": 15054,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 224460800,
+            "wall_seconds": 0.6452877499978058,
+            "user_cpu_seconds": 0.851362,
+            "system_cpu_seconds": 0.283408,
+            "major_faults": 0,
+            "minor_faults": 14965,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 223821824,
+            "wall_seconds": 0.8281864580349065,
+            "user_cpu_seconds": 1.084065,
+            "system_cpu_seconds": 0.36084299999999997,
+            "major_faults": 0,
+            "minor_faults": 14941,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 228343808,
+            "wall_seconds": 0.9101177499978803,
+            "user_cpu_seconds": 0.9958659999999999,
+            "system_cpu_seconds": 0.43219399999999997,
+            "major_faults": 0,
+            "minor_faults": 15188,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 220430336,
+            "wall_seconds": 1.2674454999505542,
+            "user_cpu_seconds": 1.407384,
+            "system_cpu_seconds": 0.475996,
+            "major_faults": 28,
+            "minor_faults": 15396,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 226394112,
+            "wall_seconds": 1.1443502500187606,
+            "user_cpu_seconds": 1.4052339999999999,
+            "system_cpu_seconds": 0.49041199999999996,
+            "major_faults": 2,
+            "minor_faults": 15086,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 227033088,
+            "wall_seconds": 1.0654502079705708,
+            "user_cpu_seconds": 1.459559,
+            "system_cpu_seconds": 0.468947,
+            "major_faults": 0,
+            "minor_faults": 15127,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 227393536,
+            "wall_seconds": 0.8915737079805695,
+            "user_cpu_seconds": 1.074608,
+            "system_cpu_seconds": 0.403234,
+            "major_faults": 5,
+            "minor_faults": 15138,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 227328000,
+            "wall_seconds": 0.9727762090042233,
+            "user_cpu_seconds": 1.066977,
+            "system_cpu_seconds": 0.440303,
+            "major_faults": 0,
+            "minor_faults": 15147,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 226115584,
+            "wall_seconds": 0.8745260839932598,
+            "user_cpu_seconds": 1.19099,
+            "system_cpu_seconds": 0.375753,
+            "major_faults": 1,
+            "minor_faults": 15057,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 224051200,
+            "wall_seconds": 0.9979340420104563,
+            "user_cpu_seconds": 1.203875,
+            "system_cpu_seconds": 0.444814,
+            "major_faults": 0,
+            "minor_faults": 14956,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 224886784,
+            "wall_seconds": 0.7940969580085948,
+            "user_cpu_seconds": 1.025359,
+            "system_cpu_seconds": 0.34818099999999996,
+            "major_faults": 1,
+            "minor_faults": 14975,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 226623488,
+            "wall_seconds": 0.9294659160077572,
+            "user_cpu_seconds": 1.2510459999999999,
+            "system_cpu_seconds": 0.408414,
+            "major_faults": 0,
+            "minor_faults": 15112,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 226148352,
+            "wall_seconds": 0.8632972919731401,
+            "user_cpu_seconds": 1.14538,
+            "system_cpu_seconds": 0.37448699999999996,
+            "major_faults": 0,
+            "minor_faults": 15083,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 227033088,
+            "wall_seconds": 0.7869085000129417,
+            "user_cpu_seconds": 1.058355,
+            "system_cpu_seconds": 0.34443999999999997,
+            "major_faults": 0,
+            "minor_faults": 15130,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 229277696,
+            "wall_seconds": 0.7596625830046833,
+            "user_cpu_seconds": 1.011584,
+            "system_cpu_seconds": 0.33088799999999996,
+            "major_faults": 0,
+            "minor_faults": 15271,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 222527488,
+            "wall_seconds": 0.8774695000029169,
+            "user_cpu_seconds": 1.165753,
+            "system_cpu_seconds": 0.37445,
+            "major_faults": 0,
+            "minor_faults": 14375,
+            "exit_code": 0
+          }
+        ],
+        "go": [
+          {
+            "peak_rss_bytes": 51953664,
+            "wall_seconds": 0.25301666697487235,
+            "user_cpu_seconds": 0.24454099999999998,
+            "system_cpu_seconds": 0.013023,
+            "major_faults": 1,
+            "minor_faults": 3450,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 52412416,
+            "wall_seconds": 0.24472945800516754,
+            "user_cpu_seconds": 0.234117,
+            "system_cpu_seconds": 0.012645,
+            "major_faults": 0,
+            "minor_faults": 3491,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 52838400,
+            "wall_seconds": 0.2587381670018658,
+            "user_cpu_seconds": 0.249581,
+            "system_cpu_seconds": 0.013089,
+            "major_faults": 1,
+            "minor_faults": 3498,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 51298304,
+            "wall_seconds": 0.25637320801615715,
+            "user_cpu_seconds": 0.248044,
+            "system_cpu_seconds": 0.012059,
+            "major_faults": 0,
+            "minor_faults": 3398,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 52051968,
+            "wall_seconds": 0.2385416249744594,
+            "user_cpu_seconds": 0.230453,
+            "system_cpu_seconds": 0.011444,
+            "major_faults": 0,
+            "minor_faults": 3461,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 52920320,
+            "wall_seconds": 0.24111416697269306,
+            "user_cpu_seconds": 0.232367,
+            "system_cpu_seconds": 0.012303,
+            "major_faults": 0,
+            "minor_faults": 3517,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 52707328,
+            "wall_seconds": 0.28206820803461596,
+            "user_cpu_seconds": 0.27247,
+            "system_cpu_seconds": 0.014881,
+            "major_faults": 1,
+            "minor_faults": 3490,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 51675136,
+            "wall_seconds": 0.24348383396863937,
+            "user_cpu_seconds": 0.235087,
+            "system_cpu_seconds": 0.011403,
+            "major_faults": 0,
+            "minor_faults": 3436,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 48594944,
+            "wall_seconds": 0.3833581249928102,
+            "user_cpu_seconds": 0.370697,
+            "system_cpu_seconds": 0.019840999999999998,
+            "major_faults": 1,
+            "minor_faults": 3253,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 52936704,
+            "wall_seconds": 0.451284000009764,
+            "user_cpu_seconds": 0.40204799999999996,
+            "system_cpu_seconds": 0.022883999999999998,
+            "major_faults": 0,
+            "minor_faults": 3521,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 48840704,
+            "wall_seconds": 0.3844970000209287,
+            "user_cpu_seconds": 0.37166899999999997,
+            "system_cpu_seconds": 0.019674999999999998,
+            "major_faults": 0,
+            "minor_faults": 3271,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 53182464,
+            "wall_seconds": 0.30580137501237914,
+            "user_cpu_seconds": 0.29551099999999997,
+            "system_cpu_seconds": 0.016080999999999998,
+            "major_faults": 1,
+            "minor_faults": 3536,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 51658752,
+            "wall_seconds": 0.507926583988592,
+            "user_cpu_seconds": 0.438245,
+            "system_cpu_seconds": 0.028707999999999997,
+            "major_faults": 0,
+            "minor_faults": 3443,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 52084736,
+            "wall_seconds": 0.4394057499594055,
+            "user_cpu_seconds": 0.39341,
+            "system_cpu_seconds": 0.025123,
+            "major_faults": 1,
+            "minor_faults": 3451,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 53706752,
+            "wall_seconds": 0.3178371249814518,
+            "user_cpu_seconds": 0.305265,
+            "system_cpu_seconds": 0.018777,
+            "major_faults": 0,
+            "minor_faults": 3577,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 53248000,
+            "wall_seconds": 0.2992174159735441,
+            "user_cpu_seconds": 0.28945899999999997,
+            "system_cpu_seconds": 0.015606,
+            "major_faults": 1,
+            "minor_faults": 3530,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 51724288,
+            "wall_seconds": 0.32458295801188797,
+            "user_cpu_seconds": 0.31415099999999996,
+            "system_cpu_seconds": 0.017252,
+            "major_faults": 0,
+            "minor_faults": 3442,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 48562176,
+            "wall_seconds": 0.30561920802574605,
+            "user_cpu_seconds": 0.29750299999999996,
+            "system_cpu_seconds": 0.013972,
+            "major_faults": 0,
+            "minor_faults": 3240,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 52264960,
+            "wall_seconds": 0.25831654196372256,
+            "user_cpu_seconds": 0.247078,
+            "system_cpu_seconds": 0.014948999999999999,
+            "major_faults": 1,
+            "minor_faults": 3471,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 52297728,
+            "wall_seconds": 0.26886991696665064,
+            "user_cpu_seconds": 0.259162,
+            "system_cpu_seconds": 0.013737,
+            "major_faults": 0,
+            "minor_faults": 3466,
+            "exit_code": 0
+          },
+          {
+            "peak_rss_bytes": 51134464,
+            "wall_seconds": 0.3254937499877997,
+            "user_cpu_seconds": 0.31565299999999996,
+            "system_cpu_seconds": 0.015947,
+            "major_faults": 1,
+            "minor_faults": 3388,
+            "exit_code": 0
+          }
+        ]
+      },
+      "commands": {
+        "java": [
+          "/opt/homebrew/opt/openjdk@21/bin/java",
+          "-jar",
+          "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/native-benchmark-macos-final/go/diverse-2m-html/java-baseline.jar",
+          "--cpu",
+          "--lines",
+          "-o",
+          "html",
+          "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/native-benchmark-macos-final/go/diverse-2m-html/inputs/0/2000000-high-cardinality.jfr",
+          "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/native-benchmark-macos-final/go/diverse-2m-html/2000000-high-cardinality.java.html"
+        ],
+        "go": [
+          "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/native-benchmark-macos-final/go/diverse-2m-html/jfrconv-measured",
+          "--cpu",
+          "--lines",
+          "-o",
+          "html",
+          "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/native-benchmark-macos-final/go/diverse-2m-html/inputs/0/2000000-high-cardinality.jfr",
+          "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/native-benchmark-macos-final/go/diverse-2m-html/2000000-high-cardinality.go.html"
+        ]
+      },
+      "first_fresh_process": {
+        "java": {
+          "peak_rss_bytes": 225378304,
+          "wall_seconds": 0.9734442500048317,
+          "user_cpu_seconds": 1.258595,
+          "system_cpu_seconds": 0.40256,
+          "major_faults": 0,
+          "minor_faults": 15030,
+          "exit_code": 0
+        },
+        "go": {
+          "peak_rss_bytes": 51183616,
+          "wall_seconds": 0.5037935419823043,
+          "user_cpu_seconds": 0.272285,
+          "system_cpu_seconds": 0.01943,
+          "major_faults": 0,
+          "minor_faults": 3415,
+          "exit_code": 0
+        }
+      },
+      "warmup_runs": {
+        "java": [
+          {
+            "peak_rss_bytes": 226639872,
+            "wall_seconds": 1.0360951669863425,
+            "user_cpu_seconds": 1.245432,
+            "system_cpu_seconds": 0.455244,
+            "major_faults": 0,
+            "minor_faults": 15097,
+            "exit_code": 0
+          }
+        ],
+        "go": [
+          {
+            "peak_rss_bytes": 53886976,
+            "wall_seconds": 0.3540350829716772,
+            "user_cpu_seconds": 0.33787999999999996,
+            "system_cpu_seconds": 0.021265,
+            "major_faults": 0,
+            "minor_faults": 3583,
+            "exit_code": 0
+          }
+        ]
+      },
+      "output_verification": {
+        "warmup_pairs": [
+          {
+            "output_matches": true,
+            "output_total": 2000000,
+            "output_stacks": 66676
+          }
+        ],
+        "measured_pairs": [
+          {
+            "output_matches": true,
+            "output_total": 2000000,
+            "output_stacks": 66676
+          },
+          {
+            "output_matches": true,
+            "output_total": 2000000,
+            "output_stacks": 66676
+          },
+          {
+            "output_matches": true,
+            "output_total": 2000000,
+            "output_stacks": 66676
+          },
+          {
+            "output_matches": true,
+            "output_total": 2000000,
+            "output_stacks": 66676
+          },
+          {
+            "output_matches": true,
+            "output_total": 2000000,
+            "output_stacks": 66676
+          },
+          {
+            "output_matches": true,
+            "output_total": 2000000,
+            "output_stacks": 66676
+          },
+          {
+            "output_matches": true,
+            "output_total": 2000000,
+            "output_stacks": 66676
+          },
+          {
+            "output_matches": true,
+            "output_total": 2000000,
+            "output_stacks": 66676
+          },
+          {
+            "output_matches": true,
+            "output_total": 2000000,
+            "output_stacks": 66676
+          },
+          {
+            "output_matches": true,
+            "output_total": 2000000,
+            "output_stacks": 66676
+          },
+          {
+            "output_matches": true,
+            "output_total": 2000000,
+            "output_stacks": 66676
+          },
+          {
+            "output_matches": true,
+            "output_total": 2000000,
+            "output_stacks": 66676
+          },
+          {
+            "output_matches": true,
+            "output_total": 2000000,
+            "output_stacks": 66676
+          },
+          {
+            "output_matches": true,
+            "output_total": 2000000,
+            "output_stacks": 66676
+          },
+          {
+            "output_matches": true,
+            "output_total": 2000000,
+            "output_stacks": 66676
+          },
+          {
+            "output_matches": true,
+            "output_total": 2000000,
+            "output_stacks": 66676
+          },
+          {
+            "output_matches": true,
+            "output_total": 2000000,
+            "output_stacks": 66676
+          },
+          {
+            "output_matches": true,
+            "output_total": 2000000,
+            "output_stacks": 66676
+          },
+          {
+            "output_matches": true,
+            "output_total": 2000000,
+            "output_stacks": 66676
+          },
+          {
+            "output_matches": true,
+            "output_total": 2000000,
+            "output_stacks": 66676
+          },
+          {
+            "output_matches": true,
+            "output_total": 2000000,
+            "output_stacks": 66676
+          }
+        ],
+        "tree_rss_pairs": [],
+        "first_fresh_process": {
+          "output_matches": true,
+          "output_total": 2000000,
+          "output_stacks": 66676
+        }
+      },
+      "execution_order": [
+        [
+          "java",
+          "go"
+        ],
+        [
+          "go",
+          "java"
+        ],
+        [
+          "java",
+          "go"
+        ],
+        [
+          "go",
+          "java"
+        ],
+        [
+          "java",
+          "go"
+        ],
+        [
+          "go",
+          "java"
+        ],
+        [
+          "java",
+          "go"
+        ],
+        [
+          "go",
+          "java"
+        ],
+        [
+          "java",
+          "go"
+        ],
+        [
+          "go",
+          "java"
+        ],
+        [
+          "java",
+          "go"
+        ],
+        [
+          "go",
+          "java"
+        ],
+        [
+          "java",
+          "go"
+        ],
+        [
+          "go",
+          "java"
+        ],
+        [
+          "java",
+          "go"
+        ],
+        [
+          "go",
+          "java"
+        ],
+        [
+          "java",
+          "go"
+        ],
+        [
+          "go",
+          "java"
+        ],
+        [
+          "java",
+          "go"
+        ],
+        [
+          "go",
+          "java"
+        ],
+        [
+          "java",
+          "go"
+        ]
+      ],
+      "output_matches": true,
+      "output_total": 2000000,
+      "output_stacks": 66676,
+      "java": {
+        "median_peak_rss_bytes": 226148352,
+        "p95_peak_rss_bytes": 228343808,
+        "max_peak_rss_bytes": 229277696,
+        "median_wall_seconds": 0.8745260839932598,
+        "p95_wall_seconds": 1.1443502500187606,
+        "max_wall_seconds": 1.2674454999505542
+      },
+      "go": {
+        "median_peak_rss_bytes": 52084736,
+        "p95_peak_rss_bytes": 53248000,
+        "max_peak_rss_bytes": 53706752,
+        "median_wall_seconds": 0.2992174159735441,
+        "p95_wall_seconds": 0.451284000009764,
+        "max_wall_seconds": 0.507926583988592
+      },
+      "rss_reduction_percent": 76.96877490400638,
+      "latency_p50_speedup_ratio": 2.922711170230087,
+      "latency_p95_speedup_ratio": 2.5357651722507364
+    }
+  ]
+}

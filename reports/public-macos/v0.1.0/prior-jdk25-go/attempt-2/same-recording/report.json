@@ -1,0 +1,36 @@
+{
+  "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/native-public-macos-final-rerun/go/v41/profiles/JfrTests.regularPeak/f.jfr",
+  "input_sha256": "d3f4cccebce936f3e83b95543217ca363355302e5c9d795ae60c29d4193a2d70",
+  "cases": [
+    {
+      "flags": [
+        "--to",
+        "2500"
+      ],
+      "same_canonical_output": true,
+      "peak_samples": 30,
+      "total": 110
+    },
+    {
+      "flags": [
+        "--from",
+        "2500",
+        "--to",
+        "5000"
+      ],
+      "same_canonical_output": true,
+      "peak_samples": 0,
+      "total": 54
+    },
+    {
+      "flags": [
+        "--from",
+        "5000"
+      ],
+      "same_canonical_output": true,
+      "peak_samples": 0,
+      "total": 36
+    }
+  ],
+  "conclusion": "Both original Java4.1 and frozen Go violate the workload timing expectation on this exact JDK25 recording while producing identical output."
+}

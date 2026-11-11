@@ -1,0 +1,2 @@
+jdk.jfr x1: RSS Java 43.09 MiB vs Go 5.67 MiB (86.8% lower); p50 0.0624s vs 0.0047s; p95 0.0637s vs 0.0050s
+/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/native-benchmark-macos-final/go/real-jdk-pprof/benchmark.json

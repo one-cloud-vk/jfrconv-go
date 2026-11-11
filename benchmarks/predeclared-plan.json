@@ -1,0 +1,337 @@
+{
+  "status": "PREDECLARED BEFORE PERFORMANCE RUNS",
+  "implementations": [
+    "Java async-profiler 4.1",
+    "native Rust exact-heatmap candidate",
+    "native Go candidate"
+  ],
+  "reference_revision": "5930966a92860f6e5d2d89ab6faab5815720bad9",
+  "comparisons": "Each native implementation is paired with the same immutable Java baseline on identical inputs. Different native batches are not a direct Rust-vs-Go latency comparison.",
+  "protocol": {
+    "default_measured_pairs": 21,
+    "equal_warmups_per_implementation": 1,
+    "first_fresh_process_pair": "retained separately, excluded from percentiles; page-cache state uncontrolled",
+    "order": "alternate Java/native execution order on every pair",
+    "rss": "wait4 high-water resident bytes, normalized by OS; Python harness excluded. Limited-process-tree diagnostic samples separately.",
+    "latency": "whole CLI subprocess, startup and output writing included; p50 median and p95 nearest-rank",
+    "verification": "remove expected output before each process; compare canonical output after every first-fresh, warmup, measured and instrumented RSS pair, outside subprocess intervals; pprof includes vector values/units/time and heatmap includes used IDs/RGB",
+    "raw_trials": "retain every result, including command failure metrics, in an atomic report persisted after each process and verification; no outlier removal",
+    "environment": "record immutable executable/JAR/input SHA256, toolchain/runtime versions, build info, flags, GOGC/GOMEMLIMIT/GOMAXPROCS/GODEBUG, hardware/OS",
+    "quiet_slot": "no builds, native fixture profiling or other team CPU work during measurement",
+    "input_isolation": "copy each input to the report directory before measurements; record SHA256 and recheck at case completion"
+  },
+  "datasets": {
+    "cpu-100k": {
+      "generator": "tools/fixtures.py",
+      "samples": 100000,
+      "chunks": 4,
+      "stacks": 3
+    },
+    "cpu-2m": {
+      "generator": "tools/fixtures.py",
+      "samples": 2000000,
+      "chunks": 4,
+      "stacks": 3
+    },
+    "cpu-10m": {
+      "generator": "tools/fixtures.py",
+      "samples": 10000000,
+      "chunks": 4,
+      "stacks": 3
+    },
+    "cpu-diverse-2m": {
+      "generator": "tools/fixtures.py",
+      "samples": 2000000,
+      "chunks": 4,
+      "stacks": 50000
+    },
+    "real-jdk": {
+      "source": "work/fixtures/jdk.jfr",
+      "sha256": "449ccf29fc8ab15741c8327b36312a81ba3db9a1a4b5453895a6298c143200f6",
+      "bytes": 186377
+    },
+    "real-ap41": {
+      "source": "work/fixtures/ap41.jfr",
+      "sha256": "d1e26c9ac284212f6ab36f25f6ccbbe0a60876f287159f8aaf9fb3da51150559",
+      "bytes": 741942
+    },
+    "deep-shared-cp": {
+      "generator": "tools/fixtures.py --deep-shared --chunks 2",
+      "chunks": 2,
+      "stacks_per_chunk": 20000,
+      "depth": 128,
+      "methods": 128,
+      "samples": 40000,
+      "location_variation": "each raw stack has distinct line/BCI; method names and IDs shared across chunks",
+      "merged_profile": "one 128-frame path without --lines",
+      "path": "work/go-diagnostic/deep-shared-cp.jfr",
+      "sha256": "6e901634586c5e7ca3e2ef8d2e4ae181f77ff7a83b2c0492d8b4a9462d204a61",
+      "bytes": 33209440
+    }
+  },
+  "cases": [
+    {
+      "case": "startup-100k",
+      "dataset": "cpu-100k",
+      "format": "collapsed",
+      "flags": [],
+      "measured_pairs": 21
+    },
+    {
+      "case": "low-2m-collapsed",
+      "dataset": "cpu-2m",
+      "format": "collapsed",
+      "flags": [],
+      "measured_pairs": 21
+    },
+    {
+      "case": "low-2m-html",
+      "dataset": "cpu-2m",
+      "format": "html",
+      "flags": [],
+      "measured_pairs": 21
+    },
+    {
+      "case": "low-2m-pprof",
+      "dataset": "cpu-2m",
+      "format": "pprof",
+      "flags": [],
+      "measured_pairs": 21
+    },
+    {
+      "case": "low-2m-pb.gz",
+      "dataset": "cpu-2m",
+      "format": "pb.gz",
+      "flags": [],
+      "measured_pairs": 21
+    },
+    {
+      "case": "low-2m-otlp",
+      "dataset": "cpu-2m",
+      "format": "otlp",
+      "flags": [],
+      "measured_pairs": 21
+    },
+    {
+      "case": "low-2m-heatmap",
+      "dataset": "cpu-2m",
+      "format": "heatmap",
+      "flags": [],
+      "measured_pairs": 21
+    },
+    {
+      "case": "throughput-10m",
+      "dataset": "cpu-10m",
+      "format": "collapsed",
+      "flags": [],
+      "measured_pairs": 21
+    },
+    {
+      "case": "diverse-2m-collapsed",
+      "dataset": "cpu-diverse-2m",
+      "format": "collapsed",
+      "flags": [
+        "--lines"
+      ],
+      "measured_pairs": 21
+    },
+    {
+      "case": "diverse-2m-html",
+      "dataset": "cpu-diverse-2m",
+      "format": "html",
+      "flags": [
+        "--lines"
+      ],
+      "measured_pairs": 21
+    },
+    {
+      "case": "diverse-2m-pprof",
+      "dataset": "cpu-diverse-2m",
+      "format": "pprof",
+      "flags": [
+        "--lines"
+      ],
+      "measured_pairs": 21
+    },
+    {
+      "case": "diverse-2m-pb.gz",
+      "dataset": "cpu-diverse-2m",
+      "format": "pb.gz",
+      "flags": [
+        "--lines"
+      ],
+      "measured_pairs": 21
+    },
+    {
+      "case": "diverse-2m-otlp",
+      "dataset": "cpu-diverse-2m",
+      "format": "otlp",
+      "flags": [
+        "--lines"
+      ],
+      "measured_pairs": 21
+    },
+    {
+      "case": "diverse-2m-heatmap",
+      "dataset": "cpu-diverse-2m",
+      "format": "heatmap",
+      "flags": [
+        "--lines"
+      ],
+      "measured_pairs": 21
+    },
+    {
+      "case": "real-jdk-collapsed",
+      "dataset": "real-jdk",
+      "format": "collapsed",
+      "flags": [],
+      "measured_pairs": 21,
+      "event_mode": "all"
+    },
+    {
+      "case": "real-jdk-html",
+      "dataset": "real-jdk",
+      "format": "html",
+      "flags": [],
+      "measured_pairs": 21,
+      "event_mode": "all"
+    },
+    {
+      "case": "real-jdk-pprof",
+      "dataset": "real-jdk",
+      "format": "pprof",
+      "flags": [],
+      "measured_pairs": 21,
+      "event_mode": "all"
+    },
+    {
+      "case": "real-jdk-pb.gz",
+      "dataset": "real-jdk",
+      "format": "pb.gz",
+      "flags": [],
+      "measured_pairs": 21,
+      "event_mode": "all"
+    },
+    {
+      "case": "real-jdk-otlp",
+      "dataset": "real-jdk",
+      "format": "otlp",
+      "flags": [],
+      "measured_pairs": 21,
+      "event_mode": "all"
+    },
+    {
+      "case": "real-jdk-heatmap",
+      "dataset": "real-jdk",
+      "format": "heatmap",
+      "flags": [],
+      "measured_pairs": 21,
+      "event_mode": "all"
+    },
+    {
+      "case": "real-ap41-collapsed",
+      "dataset": "real-ap41",
+      "format": "collapsed",
+      "flags": [],
+      "measured_pairs": 21,
+      "event_mode": "all"
+    },
+    {
+      "case": "real-ap41-html",
+      "dataset": "real-ap41",
+      "format": "html",
+      "flags": [],
+      "measured_pairs": 21,
+      "event_mode": "all"
+    },
+    {
+      "case": "real-ap41-pprof",
+      "dataset": "real-ap41",
+      "format": "pprof",
+      "flags": [],
+      "measured_pairs": 21,
+      "event_mode": "all"
+    },
+    {
+      "case": "real-ap41-pb.gz",
+      "dataset": "real-ap41",
+      "format": "pb.gz",
+      "flags": [],
+      "measured_pairs": 21,
+      "event_mode": "all"
+    },
+    {
+      "case": "real-ap41-otlp",
+      "dataset": "real-ap41",
+      "format": "otlp",
+      "flags": [],
+      "measured_pairs": 21,
+      "event_mode": "all"
+    },
+    {
+      "case": "real-ap41-heatmap",
+      "dataset": "real-ap41",
+      "format": "heatmap",
+      "flags": [],
+      "measured_pairs": 21,
+      "event_mode": "all"
+    },
+    {
+      "case": "batch-eight-inputs",
+      "dataset": "cpu-2m",
+      "format": "collapsed",
+      "flags": [],
+      "measured_pairs": 21,
+      "repeat_inputs": 8
+    },
+    {
+      "case": "batch-limited-eight-inputs",
+      "dataset": "cpu-2m",
+      "format": "collapsed",
+      "flags": [],
+      "measured_pairs": 21,
+      "repeat_inputs": 8,
+      "native_flags": [
+        "--memory-limit",
+        "16M",
+        "--max-rss",
+        "32M"
+      ],
+      "additional_tree_rss_diagnostic_pairs": 5
+    }
+  ],
+  "expensive_heatmap_exception": {
+    "eligible_case": "diverse-2m-heatmap",
+    "condition": "The separately retained first fresh Java run exceeds 60 seconds for one file. Before timed pairs start, explicitly record this exception and use 7 pairs, or 5 only if needed to complete the run; retain all trials and disclose the smaller N. Otherwise use 21 pairs.",
+    "no_posthoc_selection": true
+  },
+  "acceptance": {
+    "primary": "Native median and p95 RSS lower than Java across predeclared representative cases, plus safe configured-limit failure/cleanup and long-batch plateau. No promise native Go beats Rust runtime floor.",
+    "latency": "Compare and report every native/Java p50 and p95; investigate regressions without discarding trials. Do not claim universal victory from a simple low-cardinality fixture.",
+    "heatmap": "Exact selected-method IDs/RGB/ties and semantic stack/count/time parity are required independently of benchmark timing."
+  },
+  "rss_diagnostics_before_final_freeze": [
+    {
+      "case": "deep-shared-cp-default-vs-policy",
+      "dataset": "deep-shared-cp",
+      "format": "collapsed",
+      "flags": [],
+      "pairs_per_policy": 1,
+      "policies": [
+        {
+          "name": "inherited-default",
+          "environment": "record inherited GOMAXPROCS/GOGC"
+        },
+        {
+          "name": "proposed-rss-policy",
+          "environment": {
+            "GOMAXPROCS": "1",
+            "GOGC": "50"
+          }
+        }
+      ],
+      "purpose": "RSS-only diagnostic of raw CP pressure and proposed runtime policy; no publishable latency inference; any changes require later complete frozen matrix",
+      "execution": "after fixture generation/functional output verification; one pair per policy explicitly authorized during compilation"
+    }
+  ]
+}

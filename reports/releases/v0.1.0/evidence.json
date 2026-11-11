@@ -1,0 +1,159 @@
+{
+  "implementation": "go",
+  "version": "0.1.0",
+  "platform": "macOS arm64",
+  "native_binary_sha256": "144204d7e755411903b058f5153aa583bd4adf4c1212667c52d73ae75c85bca6",
+  "java_4_1_jar_sha256": "2464b34abd47243941d81d53110591d66d7db3b3fae46c79fc85057eeddda19b",
+  "collection_method": "Existing final evidence copied and hashed only. No build, test, converter, renderer, profiler, benchmark, or container was run during collection.",
+  "macos_checks": {
+    "all_exit_zero": true,
+    "checks": [
+      "format",
+      "tests",
+      "vet",
+      "build"
+    ],
+    "tests": {
+      "exit_code": 0,
+      "log": "macos/tests.log",
+      "passed_packages": [
+        "jfrconv-go/internal/cli",
+        "jfrconv-go/internal/convert",
+        "jfrconv-go/internal/jfr"
+      ]
+    }
+  },
+  "semantic_validation": {
+    "passed": 71,
+    "failed": 0,
+    "report": "validation.json"
+  },
+  "ui": {
+    "generated_pairs": 24,
+    "identical_HTML_CSS_shells": 21,
+    "renderers": [
+      {
+        "devicePixelRatio": 1,
+        "flamegraph_pairs": 21,
+        "identical_phases": 273,
+        "passed_assertions_across_java_and_native": 714,
+        "seed": 4321705,
+        "canvas_width": 1200
+      },
+      {
+        "devicePixelRatio": 2,
+        "flamegraph_pairs": 21,
+        "identical_phases": 273,
+        "passed_assertions_across_java_and_native": 714,
+        "seed": 4321705,
+        "canvas_width": 1200
+      }
+    ],
+    "heatmap_used_method_ID_and_RGB": {
+      "exact_modes": 10,
+      "nonempty": 8,
+      "empty": 2
+    },
+    "scope": "Renderer reports execute original flamegraph JavaScript in a deterministic DOM/canvas host. Three heatmap corpus entries are seeded only; separate ten-mode reports compare used method IDs and RGB. These reports do not claim fresh browser pixel/layout or full heatmap interaction testing."
+  },
+  "source_provenance": "source-provenance.json",
+  "source_provenance_sha256": "742c65642de511fd3ad24fedff0b71280403c2e5b42fd84228bfef3aa3081c8c",
+  "artifacts": {
+    "macos/checks.json": {
+      "source": "work/native-release-checks/go/checks.json",
+      "sha256": "0df9a3f25e12115871305624fc1cd39dd6dc2cdf78f6b4a4333e87f1e7be28f5",
+      "bytes": 1674
+    },
+    "macos/format.log": {
+      "source": "work/native-release-checks/go/format.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "macos/tests.log": {
+      "source": "work/native-release-checks/go/tests.log",
+      "sha256": "a82783ac87c9a9e68cbb4f90d846d80793b027141e2d8aec0c013bcdf8a4011f",
+      "bytes": 195
+    },
+    "macos/vet.log": {
+      "source": "work/native-release-checks/go/vet.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "macos/build.log": {
+      "source": "work/native-release-checks/go/build.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "validation.json": {
+      "source": "work/go-validation-final/validation.json",
+      "sha256": "d48ecb1e5e4203d33164e90d327a2f26078f832532ba7ec48db937c20f5fb368",
+      "bytes": 1885
+    },
+    "ui/manifest.json": {
+      "source": "work/go-ui-final/manifest.json",
+      "sha256": "c6f9a6b807ec4ee42f234e6073c7e0d51750606279b28f858da1594968d24238",
+      "bytes": 32775
+    },
+    "ui/static-shell.json": {
+      "source": "work/go-ui-final/static-shell.json",
+      "sha256": "c3242d431ef2707c90a13adc3fc9e70dc880a8fa0165b733bd3690cdaf718ced",
+      "bytes": 5824
+    },
+    "ui/heatmap-colors.json": {
+      "source": "work/go-ui-final/heatmap-colors.json",
+      "sha256": "21ebf2fc24bceada4a8ba85ee80c39393315a1deb02a9eefe69bec24c4b4ecc9",
+      "bytes": 9092
+    },
+    "ui/renderer-dpr1.json": {
+      "source": "work/go-ui-final/renderer-dpr1/report.json",
+      "sha256": "d4696c4a38c4215548dd919e24bd1d0073ca9271c10ac7f4fa3fe315b1b3a7ee",
+      "bytes": 137722
+    },
+    "ui/renderer-dpr1.log": {
+      "source": "work/go-ui-final/renderer-dpr1.log",
+      "sha256": "20b34d0a1710569197f70b41d01b859912dd7ebe128839e15bd48251bddd44b2",
+      "bytes": 565
+    },
+    "ui/renderer-dpr2.json": {
+      "source": "work/go-ui-final/renderer-dpr2/report.json",
+      "sha256": "496cbf425610ad3e2bb6cfb244f1fc500ae1d1fb47315469861370546288244d",
+      "bytes": 137722
+    },
+    "ui/renderer-dpr2.log": {
+      "source": "work/go-ui-final/renderer-dpr2.log",
+      "sha256": "20b34d0a1710569197f70b41d01b859912dd7ebe128839e15bd48251bddd44b2",
+      "bytes": 565
+    },
+    "reproduction/validate.py": {
+      "source": "outputs/jfrconv-go/tools/validate.py",
+      "sha256": "da84f67b2a50821cf3dc4fe83010a933f8eccf6b44f684c406d2e11d107aa0ac",
+      "bytes": 18090
+    },
+    "reproduction/fixtures.py": {
+      "source": "outputs/jfrconv-go/tools/fixtures.py",
+      "sha256": "bb3f7b7fdb28c2778901c45b5100ca1b5c7b9b75995e03a173f4f0e11826c6ef",
+      "bytes": 16934
+    },
+    "reproduction/heatmap_decode.js": {
+      "source": "outputs/jfrconv-go/tools/heatmap_decode.js",
+      "sha256": "b553e2eb91dd0d486c955972e8db79899b9090f8ef0e8f3bfd121ccfe89dcae4",
+      "bytes": 4970
+    },
+    "reproduction/heatmap_colors.js": {
+      "source": "outputs/jfrconv-go/tools/heatmap_colors.js",
+      "sha256": "90163f57970b7958b6cd68ad470e0d294bce7ec71c81f3eebeb6c3b0e8c3ce22",
+      "bytes": 3550
+    },
+    "reproduction/ui_renderer_parity.js": {
+      "source": "outputs/jfrconv-go/tools/ui_renderer_parity.js",
+      "sha256": "0511f00161a54dce3f9c3b820a8469768afd5e1cf171fa8a2d39259e707b19dd",
+      "bytes": 13811
+    },
+    "reproduction/verify_native_ui_final.py": {
+      "source": "work/verify_native_ui_final.py",
+      "sha256": "3086d6124e036d59c6f995f0c96c0d54d0376074dd15c99284dc15c9618dd353",
+      "bytes": 3379
+    }
+  },
+  "omitted_artifacts": "Generated HTML, seeded HTML, binary copies and converted profile payloads remain in the original work directories. Input/output paths and SHA256 values are retained in the reports; regeneration requires those recorded/generated corpus inputs."
+}

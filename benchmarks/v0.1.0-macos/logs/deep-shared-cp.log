@@ -1,0 +1,2 @@
+deep-shared-cp.jfr x1: RSS Java 174.55 MiB vs Go 129.06 MiB (26.1% lower); p50 0.3039s vs 0.4416s; p95 0.3676s vs 0.4748s
+/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/native-benchmark-macos-final/go/deep-shared-cp/benchmark.json

@@ -1,0 +1,334 @@
+{
+  "method": "Independent recomputation of all medians, nearest-rank p95, maxima and ratios from all 58 retained 21-pair raw result arrays; no process executions.",
+  "matrix_sha256": "0409a1e43a05e7ce36a7436a85fb56976c1a73a6508dbf6f542af4d2f5b3e2f1",
+  "results": {
+    "go": {
+      "cases": 29,
+      "pairs_per_case": 21,
+      "measured_processes": 1218,
+      "rss_wins": 29,
+      "p95_rss_wins": 29,
+      "p50_wins": 25,
+      "p95_wins": 26,
+      "losses": [
+        {
+          "case": "throughput-10m",
+          "rss_reduction_percent": 97.30370838934135,
+          "p50_speedup": 0.8862784221944763,
+          "p95_speedup": 1.0223316849128858,
+          "java": {
+            "median_peak_rss_bytes": 207208448,
+            "p95_peak_rss_bytes": 207978496,
+            "max_peak_rss_bytes": 208125952,
+            "median_wall_seconds": 0.22490633302368224,
+            "p95_wall_seconds": 0.2763818330131471,
+            "max_wall_seconds": 0.27854633302195
+          },
+          "go": {
+            "median_peak_rss_bytes": 5586944,
+            "p95_peak_rss_bytes": 5750784,
+            "max_peak_rss_bytes": 5849088,
+            "median_wall_seconds": 0.2537648750003427,
+            "p95_wall_seconds": 0.2703445829683915,
+            "max_wall_seconds": 0.27208216598955914
+          }
+        },
+        {
+          "case": "batch-eight-inputs",
+          "rss_reduction_percent": 95.4234098607452,
+          "p50_speedup": 0.8087218670258973,
+          "p95_speedup": 0.8261068540821379,
+          "java": {
+            "median_peak_rss_bytes": 217661440,
+            "p95_peak_rss_bytes": 220282880,
+            "max_peak_rss_bytes": 222232576,
+            "median_wall_seconds": 0.3486982919857837,
+            "p95_wall_seconds": 0.3667278329958208,
+            "max_wall_seconds": 0.3766079589840956
+          },
+          "go": {
+            "median_peak_rss_bytes": 9961472,
+            "p95_peak_rss_bytes": 10289152,
+            "max_peak_rss_bytes": 10354688,
+            "median_wall_seconds": 0.43117208301555365,
+            "p95_wall_seconds": 0.44392300001345575,
+            "max_wall_seconds": 0.4663507080404088
+          }
+        },
+        {
+          "case": "batch-limited-eight-inputs",
+          "rss_reduction_percent": 96.4312546957175,
+          "p50_speedup": 0.7948386130514781,
+          "p95_speedup": 0.8666064106266148,
+          "java": {
+            "median_peak_rss_bytes": 218071040,
+            "p95_peak_rss_bytes": 221249536,
+            "max_peak_rss_bytes": 221904896,
+            "median_wall_seconds": 0.34886887500761077,
+            "p95_wall_seconds": 0.39455333299702033,
+            "max_wall_seconds": 0.4768665840383619
+          },
+          "go": {
+            "median_peak_rss_bytes": 7782400,
+            "p95_peak_rss_bytes": 8126464,
+            "max_peak_rss_bytes": 8159232,
+            "median_wall_seconds": 0.4389178749988787,
+            "p95_wall_seconds": 0.45528550003655255,
+            "max_wall_seconds": 0.45958887500455603
+          }
+        },
+        {
+          "case": "deep-shared-cp",
+          "rss_reduction_percent": 26.05854444543908,
+          "p50_speedup": 0.688086589690462,
+          "p95_speedup": 0.7741136275049761,
+          "java": {
+            "median_peak_rss_bytes": 183025664,
+            "p95_peak_rss_bytes": 184565760,
+            "max_peak_rss_bytes": 186220544,
+            "median_wall_seconds": 0.303851125005167,
+            "p95_wall_seconds": 0.3675877909990959,
+            "max_wall_seconds": 0.3934510000399314
+          },
+          "go": {
+            "median_peak_rss_bytes": 135331840,
+            "p95_peak_rss_bytes": 138756096,
+            "max_peak_rss_bytes": 140902400,
+            "median_wall_seconds": 0.44158849999075755,
+            "p95_wall_seconds": 0.47484991600504145,
+            "max_wall_seconds": 0.4826539159985259
+          }
+        }
+      ],
+      "examples": {
+        "startup-100k": {
+          "java": {
+            "median_peak_rss_bytes": 49135616,
+            "p95_peak_rss_bytes": 49610752,
+            "max_peak_rss_bytes": 50118656,
+            "median_wall_seconds": 0.06256295903585851,
+            "p95_wall_seconds": 0.07716283400077373,
+            "max_wall_seconds": 0.07761033298447728
+          },
+          "go": {
+            "median_peak_rss_bytes": 5472256,
+            "p95_peak_rss_bytes": 5619712,
+            "max_peak_rss_bytes": 5652480,
+            "median_wall_seconds": 0.006869124947115779,
+            "p95_wall_seconds": 0.007864708022680134,
+            "max_wall_seconds": 0.009048458014149219
+          },
+          "rss_reduction_percent": 88.86295431810603,
+          "p50_speedup": 9.10784991065384,
+          "p95_speedup": 9.811277644160805
+        },
+        "throughput-10m": {
+          "java": {
+            "median_peak_rss_bytes": 207208448,
+            "p95_peak_rss_bytes": 207978496,
+            "max_peak_rss_bytes": 208125952,
+            "median_wall_seconds": 0.22490633302368224,
+            "p95_wall_seconds": 0.2763818330131471,
+            "max_wall_seconds": 0.27854633302195
+          },
+          "go": {
+            "median_peak_rss_bytes": 5586944,
+            "p95_peak_rss_bytes": 5750784,
+            "max_peak_rss_bytes": 5849088,
+            "median_wall_seconds": 0.2537648750003427,
+            "p95_wall_seconds": 0.2703445829683915,
+            "max_wall_seconds": 0.27208216598955914
+          },
+          "rss_reduction_percent": 97.30370838934135,
+          "p50_speedup": 0.8862784221944763,
+          "p95_speedup": 1.0223316849128858
+        },
+        "diverse-2m-collapsed": {
+          "java": {
+            "median_peak_rss_bytes": 231145472,
+            "p95_peak_rss_bytes": 237240320,
+            "max_peak_rss_bytes": 239321088,
+            "median_wall_seconds": 0.5414068750105798,
+            "p95_wall_seconds": 0.5864386669709347,
+            "max_wall_seconds": 0.621472625003662
+          },
+          "go": {
+            "median_peak_rss_bytes": 49070080,
+            "p95_peak_rss_bytes": 52887552,
+            "max_peak_rss_bytes": 53526528,
+            "median_wall_seconds": 0.1886674999841489,
+            "p95_wall_seconds": 0.21279829199193045,
+            "max_wall_seconds": 0.24644524999894202
+          },
+          "rss_reduction_percent": 78.77091012191664,
+          "p50_speedup": 2.869635072580422,
+          "p95_speedup": 2.755842922804912
+        },
+        "deep-shared-cp": {
+          "java": {
+            "median_peak_rss_bytes": 183025664,
+            "p95_peak_rss_bytes": 184565760,
+            "max_peak_rss_bytes": 186220544,
+            "median_wall_seconds": 0.303851125005167,
+            "p95_wall_seconds": 0.3675877909990959,
+            "max_wall_seconds": 0.3934510000399314
+          },
+          "go": {
+            "median_peak_rss_bytes": 135331840,
+            "p95_peak_rss_bytes": 138756096,
+            "max_peak_rss_bytes": 140902400,
+            "median_wall_seconds": 0.44158849999075755,
+            "p95_wall_seconds": 0.47484991600504145,
+            "max_wall_seconds": 0.4826539159985259
+          },
+          "rss_reduction_percent": 26.05854444543908,
+          "p50_speedup": 0.688086589690462,
+          "p95_speedup": 0.7741136275049761
+        }
+      },
+      "rss_reduction_percent_range": [
+        26.05854444543908,
+        97.50672207284282
+      ],
+      "p50_speedup_range": [
+        0.688086589690462,
+        14.217649204072806
+      ],
+      "p95_speedup_range": [
+        0.7741136275049761,
+        14.179382615645165
+      ]
+    },
+    "rust": {
+      "cases": 29,
+      "pairs_per_case": 21,
+      "measured_processes": 1218,
+      "rss_wins": 29,
+      "p95_rss_wins": 29,
+      "p50_wins": 28,
+      "p95_wins": 28,
+      "losses": [
+        {
+          "case": "deep-shared-cp",
+          "rss_reduction_percent": 55.49298292661125,
+          "p50_speedup": 0.4961028025260548,
+          "p95_speedup": 0.5203518070687356,
+          "java": {
+            "median_peak_rss_bytes": 183287808,
+            "p95_peak_rss_bytes": 183779328,
+            "max_peak_rss_bytes": 184352768,
+            "median_wall_seconds": 0.307338125014212,
+            "p95_wall_seconds": 0.34330741700250655,
+            "max_wall_seconds": 0.3710861669969745
+          },
+          "rust": {
+            "median_peak_rss_bytes": 81575936,
+            "p95_peak_rss_bytes": 86016000,
+            "max_peak_rss_bytes": 86884352,
+            "median_wall_seconds": 0.6195049160160124,
+            "p95_wall_seconds": 0.6597602090332657,
+            "max_wall_seconds": 0.70757962501375
+          }
+        }
+      ],
+      "examples": {
+        "startup-100k": {
+          "java": {
+            "median_peak_rss_bytes": 49086464,
+            "p95_peak_rss_bytes": 49430528,
+            "max_peak_rss_bytes": 49479680,
+            "median_wall_seconds": 0.06234666699310765,
+            "p95_wall_seconds": 0.07519449997926131,
+            "max_wall_seconds": 0.07551037502707914
+          },
+          "rust": {
+            "median_peak_rss_bytes": 3588096,
+            "p95_peak_rss_bytes": 3637248,
+            "max_peak_rss_bytes": 3653632,
+            "median_wall_seconds": 0.006007916992530227,
+            "p95_wall_seconds": 0.006383374973665923,
+            "max_wall_seconds": 0.006435874965973198
+          },
+          "rss_reduction_percent": 92.69025367156209,
+          "p50_speedup": 10.377418175155317,
+          "p95_speedup": 11.779740386467958
+        },
+        "throughput-10m": {
+          "java": {
+            "median_peak_rss_bytes": 207519744,
+            "p95_peak_rss_bytes": 207945728,
+            "max_peak_rss_bytes": 208338944,
+            "median_wall_seconds": 0.21594270900823176,
+            "p95_wall_seconds": 0.2505259590107016,
+            "max_wall_seconds": 0.2520572920329869
+          },
+          "rust": {
+            "median_peak_rss_bytes": 3702784,
+            "p95_peak_rss_bytes": 3801088,
+            "max_peak_rss_bytes": 3833856,
+            "median_wall_seconds": 0.13134704198455438,
+            "p95_wall_seconds": 0.14001299999654293,
+            "max_wall_seconds": 0.17138133401749656
+          },
+          "rss_reduction_percent": 98.21569556292437,
+          "p50_speedup": 1.6440622167465737,
+          "p95_speedup": 1.7893049860862018
+        },
+        "diverse-2m-collapsed": {
+          "java": {
+            "median_peak_rss_bytes": 229998592,
+            "p95_peak_rss_bytes": 236814336,
+            "max_peak_rss_bytes": 238747648,
+            "median_wall_seconds": 0.6288348750094883,
+            "p95_wall_seconds": 0.8358884999761358,
+            "max_wall_seconds": 0.8780812920304015
+          },
+          "rust": {
+            "median_peak_rss_bytes": 62914560,
+            "p95_peak_rss_bytes": 69271552,
+            "max_peak_rss_bytes": 70860800,
+            "median_wall_seconds": 0.31569837499409914,
+            "p95_wall_seconds": 0.4370662500150502,
+            "max_wall_seconds": 0.45348070800537243
+          },
+          "rss_reduction_percent": 72.64567602222539,
+          "p50_speedup": 1.9918850549080025,
+          "p95_speedup": 1.9124983911417373
+        },
+        "deep-shared-cp": {
+          "java": {
+            "median_peak_rss_bytes": 183287808,
+            "p95_peak_rss_bytes": 183779328,
+            "max_peak_rss_bytes": 184352768,
+            "median_wall_seconds": 0.307338125014212,
+            "p95_wall_seconds": 0.34330741700250655,
+            "max_wall_seconds": 0.3710861669969745
+          },
+          "rust": {
+            "median_peak_rss_bytes": 81575936,
+            "p95_peak_rss_bytes": 86016000,
+            "max_peak_rss_bytes": 86884352,
+            "median_wall_seconds": 0.6195049160160124,
+            "p95_wall_seconds": 0.6597602090332657,
+            "max_wall_seconds": 0.70757962501375
+          },
+          "rss_reduction_percent": 55.49298292661125,
+          "p50_speedup": 0.4961028025260548,
+          "p95_speedup": 0.5203518070687356
+        }
+      },
+      "rss_reduction_percent_range": [
+        55.49298292661125,
+        98.49095796676441
+      ],
+      "p50_speedup_range": [
+        0.4961028025260548,
+        11.591965805373212
+      ],
+      "p95_speedup_range": [
+        0.5203518070687356,
+        12.33286958000756
+      ]
+    }
+  }
+}

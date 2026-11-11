@@ -1,0 +1,27 @@
+{
+  "purpose": "Input pool helper-only test; no converter or timing execution",
+  "Linux_tool_provenance": "Linux suite used pre-amendment benchmark helper. Production source/binary unchanged. New helper tested here on macOS only.",
+  "results": [
+    {
+      "project": "jfrconv-go",
+      "sha256": "f9a89040e46c1140bf274c59c61e325100b1b9f7eae63368794117cfde664090",
+      "one_physical_copy_per_SHA": true,
+      "aliases_only_link_pool": true,
+      "mutable_original_isolated": true,
+      "readonly0444": true,
+      "reuse_and_corruption_checks": true,
+      "previous_Linux_snapshot_tool_sha256": "6182b2268d2ac85707cfc3f0a1fda89b4fca336ba1d0068d9159b33e73055e0a"
+    },
+    {
+      "project": "jfrconv-rs",
+      "sha256": "9155068f5b1b931423eb30eb3c1f8f82330fcc3ff94b7cfa0fc81d7ad90779a2",
+      "one_physical_copy_per_SHA": true,
+      "aliases_only_link_pool": true,
+      "mutable_original_isolated": true,
+      "readonly0444": true,
+      "reuse_and_corruption_checks": true,
+      "previous_Linux_snapshot_tool_sha256": "0a9f4f6908d3daef560a20f6364686c6909e85bd18755b2f503473d2b42b51c8"
+    }
+  ],
+  "reason": "Disk pressure requires one shared physical immutable input copy per SHA across all official matrix cases; no official benchmark trials preceded this amendment."
+}

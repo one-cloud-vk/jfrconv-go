@@ -1,0 +1,2 @@
+2000000-samples.jfr x1: RSS Java 102.25 MiB vs Go 5.36 MiB (94.8% lower); p50 0.1265s vs 0.0563s; p95 0.1477s vs 0.0584s
+/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/native-benchmark-macos-final/go/low-2m-otlp/benchmark.json

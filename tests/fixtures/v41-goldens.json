@@ -1,0 +1,253 @@
+{
+  "source_revision": "5930966a92860f6e5d2d89ab6faab5815720bad9",
+  "provenance": "Captured from Java async-profiler 4.1; retained unchanged from verified Rust compatibility fixtures. Canonical stack/count maps; no JVM needed to run these offline engine tests.",
+  "cases": [
+    {
+      "name": "all",
+      "flags": [],
+      "expected": "demo/Main.run_[j];demo/Worker.work_[j] 12\ndemo/Main.run_[j];malloc 1\nsecond/Main.run_[j];malloc 1\nsecond/Main.run_[j];second/Worker.work_[j] 12\n"
+    },
+    {
+      "name": "cpu",
+      "flags": [
+        "--cpu"
+      ],
+      "expected": "demo/Main.run_[j];demo/Worker.work_[j] 2\ndemo/Main.run_[j];malloc 1\nsecond/Main.run_[j];malloc 1\nsecond/Main.run_[j];second/Worker.work_[j] 2\n"
+    },
+    {
+      "name": "wall",
+      "flags": [
+        "--wall"
+      ],
+      "expected": "demo/Main.run_[j];demo/Worker.work_[j] 10\nsecond/Main.run_[j];second/Worker.work_[j] 10\n"
+    },
+    {
+      "name": "threads",
+      "flags": [
+        "--cpu",
+        "--threads"
+      ],
+      "expected": "[worker-α tid=1];demo/Main.run_[j];demo/Worker.work_[j] 2\n[worker-α tid=1];second/Main.run_[j];second/Worker.work_[j] 2\n[io-worker tid=2];demo/Main.run_[j];malloc 1\n[io-worker tid=2];second/Main.run_[j];malloc 1\n"
+    },
+    {
+      "name": "wall-threads",
+      "flags": [
+        "--wall",
+        "-t"
+      ],
+      "expected": "[worker-α tid=1];demo/Main.run_[j];demo/Worker.work_[j] 7\n[worker-α tid=1];second/Main.run_[j];second/Worker.work_[j] 7\n[io-worker tid=2];demo/Main.run_[0];demo/Worker.work_[i] 3\n[io-worker tid=2];second/Main.run_[0];second/Worker.work_[i] 3\n"
+    },
+    {
+      "name": "alloc",
+      "flags": [
+        "--alloc"
+      ],
+      "expected": "demo/Main.run_[j];demo/Worker.work_[i];byte[]_[k] 2\ndemo/Main.run_[j];demo/Worker.work_[i];byte[]_[i] 1\nsecond/Main.run_[j];second/Worker.work_[i];byte[]_[k] 2\nsecond/Main.run_[j];second/Worker.work_[i];byte[]_[i] 1\n"
+    },
+    {
+      "name": "alloc-total",
+      "flags": [
+        "--alloc",
+        "--total"
+      ],
+      "expected": "demo/Main.run_[j];demo/Worker.work_[j];byte[]_[k] 384\ndemo/Main.run_[j];demo/Worker.work_[j];byte[]_[i] 1024\nsecond/Main.run_[j];second/Worker.work_[j];byte[]_[k] 384\nsecond/Main.run_[j];second/Worker.work_[j];byte[]_[i] 1024\n"
+    },
+    {
+      "name": "alloc-thread-lines",
+      "flags": [
+        "--alloc",
+        "-t",
+        "--lines"
+      ],
+      "expected": "[worker-α tid=1];demo/Main.run:10_[j];demo/Worker.work:20_[j];byte[]_[k] 1\n[worker-α tid=1];demo/Main.run:10_[j];demo/Worker.work:20_[j];byte[]_[i] 1\n[worker-α tid=1];second/Main.run:10_[j];second/Worker.work:20_[j];byte[]_[k] 1\n[worker-α tid=1];second/Main.run:10_[j];second/Worker.work:20_[j];byte[]_[i] 1\n[io-worker tid=2];demo/Main.run:10_[0];demo/Worker.work:22_[i];byte[]_[k] 1\n[io-worker tid=2];second/Main.run:10_[0];second/Worker.work:22_[i];byte[]_[k] 1\n"
+    },
+    {
+      "name": "live",
+      "flags": [
+        "--live",
+        "--total"
+      ],
+      "expected": "demo/Main.run_[0];demo/Worker.work_[i];byte[]_[i] 512\nsecond/Main.run_[0];second/Worker.work_[i];byte[]_[i] 512\n"
+    },
+    {
+      "name": "lock",
+      "flags": [
+        "--lock"
+      ],
+      "expected": "demo/Main.run_[0];demo/Worker.work_[i];demo.Lock_[i] 2\nsecond/Main.run_[0];second/Worker.work_[i];second.Lock_[i] 2\n"
+    },
+    {
+      "name": "lock-total",
+      "flags": [
+        "--lock",
+        "--total"
+      ],
+      "expected": "demo/Main.run_[0];demo/Worker.work_[i];demo.Lock_[i] 50000\nsecond/Main.run_[0];second/Worker.work_[i];second.Lock_[i] 50000\n"
+    },
+    {
+      "name": "malloc",
+      "flags": [
+        "--nativemem"
+      ],
+      "expected": "demo/Main.run_[j];demo/Worker.work_[j] 1\ndemo/Main.run_[j];malloc 2\nsecond/Main.run_[j];malloc 2\nsecond/Main.run_[j];second/Worker.work_[j] 1\n"
+    },
+    {
+      "name": "malloc-total",
+      "flags": [
+        "--nativemem",
+        "--total"
+      ],
+      "expected": "demo/Main.run_[j];demo/Worker.work_[j] 4096\ndemo/Main.run_[j];malloc 2048\nsecond/Main.run_[j];malloc 2048\nsecond/Main.run_[j];second/Worker.work_[j] 4096\n"
+    },
+    {
+      "name": "lines",
+      "flags": [
+        "--lines"
+      ],
+      "expected": "demo/Main.run:10_[j];demo/Worker.work:20_[j] 9\ndemo/Main.run:10_[j];malloc 1\ndemo/Main.run:10_[j];demo/Worker.work:22_[i] 3\nsecond/Main.run:10_[j];malloc 1\nsecond/Main.run:10_[j];second/Worker.work:20_[j] 9\nsecond/Main.run:10_[j];second/Worker.work:22_[i] 3\n"
+    },
+    {
+      "name": "bci",
+      "flags": [
+        "--bci"
+      ],
+      "expected": "demo/Main.run_[j];demo/Worker.work@3_[j] 9\ndemo/Main.run_[j];malloc 1\ndemo/Main.run_[j];demo/Worker.work@4_[i] 3\nsecond/Main.run_[j];malloc 1\nsecond/Main.run_[j];second/Worker.work@3_[j] 9\nsecond/Main.run_[j];second/Worker.work@4_[i] 3\n"
+    },
+    {
+      "name": "simple",
+      "flags": [
+        "--simple"
+      ],
+      "expected": "Main.run_[j];Worker.work_[j] 24\nMain.run_[j];malloc 2\n"
+    },
+    {
+      "name": "dot",
+      "flags": [
+        "--dot"
+      ],
+      "expected": "demo.Main.run_[j];demo.Worker.work_[j] 12\ndemo.Main.run_[j];malloc 1\nsecond.Main.run_[j];malloc 1\nsecond.Main.run_[j];second.Worker.work_[j] 12\n"
+    },
+    {
+      "name": "norm",
+      "flags": [
+        "--norm"
+      ],
+      "expected": "demo/Main.run_[j];demo/Worker.work_[j] 12\ndemo/Main.run_[j];malloc 1\nsecond/Main.run_[j];malloc 1\nsecond/Main.run_[j];second/Worker.work_[j] 12\n"
+    },
+    {
+      "name": "classify",
+      "flags": [
+        "--classify"
+      ],
+      "expected": "[c2_comp]_[i];demo/Main.run_[j];demo/Worker.work_[j] 9\n[c2_comp]_[i];second/Main.run_[j];second/Worker.work_[j] 9\n[native];demo/Main.run_[j];malloc 1\n[native];second/Main.run_[j];malloc 1\n[Interpreter];demo/Main.run_[0];demo/Worker.work_[i] 3\n[Interpreter];second/Main.run_[0];second/Worker.work_[i] 3\n"
+    },
+    {
+      "name": "reverse",
+      "flags": [
+        "--reverse"
+      ],
+      "expected": "demo/Worker.work_[j];demo/Main.run_[j] 12\nmalloc;demo/Main.run_[j] 1\nmalloc;second/Main.run_[j] 1\nsecond/Worker.work_[j];second/Main.run_[j] 12\n"
+    },
+    {
+      "name": "reverse-thread",
+      "flags": [
+        "--reverse",
+        "--threads"
+      ],
+      "expected": "[worker-α tid=1];demo/Worker.work_[j];demo/Main.run_[j] 9\n[worker-α tid=1];second/Worker.work_[j];second/Main.run_[j] 9\n[io-worker tid=2];demo/Worker.work_[i];demo/Main.run_[0] 3\n[io-worker tid=2];malloc;demo/Main.run_[j] 1\n[io-worker tid=2];malloc;second/Main.run_[j] 1\n[io-worker tid=2];second/Worker.work_[i];second/Main.run_[0] 3\n"
+    },
+    {
+      "name": "skip",
+      "flags": [
+        "--skip",
+        "1"
+      ],
+      "expected": "demo/Worker.work_[j] 12\nmalloc 2\nsecond/Worker.work_[j] 12\n"
+    },
+    {
+      "name": "reverse-skip",
+      "flags": [
+        "--reverse",
+        "--skip",
+        "1"
+      ],
+      "expected": "demo/Worker.work_[j] 12\nmalloc 2\nsecond/Worker.work_[j] 12\n"
+    },
+    {
+      "name": "include",
+      "flags": [
+        "-I",
+        "demo/Worker.*"
+      ],
+      "expected": "demo/Main.run_[j];demo/Worker.work_[j] 12\n"
+    },
+    {
+      "name": "exclude",
+      "flags": [
+        "-X",
+        ".*malloc"
+      ],
+      "expected": "demo/Main.run_[j];demo/Worker.work_[j] 12\nsecond/Main.run_[j];second/Worker.work_[j] 12\n"
+    },
+    {
+      "name": "include-exclude",
+      "flags": [
+        "-I",
+        ".*Main.*",
+        "-X",
+        "second/.*"
+      ],
+      "expected": "demo/Main.run_[j];demo/Worker.work_[j] 12\ndemo/Main.run_[j];malloc 1\n"
+    },
+    {
+      "name": "state",
+      "flags": [
+        "--state",
+        "sleeping"
+      ],
+      "expected": "demo/Main.run_[0];demo/Worker.work_[i] 3\nsecond/Main.run_[0];second/Worker.work_[i] 3\n"
+    },
+    {
+      "name": "states",
+      "flags": [
+        "-s",
+        "default,runnable"
+      ],
+      "expected": "demo/Main.run_[j];demo/Worker.work_[j] 9\ndemo/Main.run_[j];malloc 1\nsecond/Main.run_[j];malloc 1\nsecond/Main.run_[j];second/Worker.work_[j] 9\n"
+    },
+    {
+      "name": "relative-time",
+      "flags": [
+        "--from",
+        "1000",
+        "--to",
+        "2000"
+      ],
+      "expected": "second/Main.run_[j];second/Worker.work_[j] 12\nsecond/Main.run_[j];malloc 1\n"
+    },
+    {
+      "name": "absolute-time",
+      "flags": [
+        "--from",
+        "1700000001000"
+      ],
+      "expected": "second/Main.run_[j];second/Worker.work_[j] 12\nsecond/Main.run_[j];malloc 1\n"
+    },
+    {
+      "name": "negative-time",
+      "flags": [
+        "--from",
+        "-1000"
+      ],
+      "expected": "demo/Main.run_[j];demo/Worker.work_[j] 12\ndemo/Main.run_[j];malloc 1\nsecond/Main.run_[j];malloc 1\nsecond/Main.run_[j];second/Worker.work_[j] 12\n"
+    },
+    {
+      "name": "minwidth",
+      "flags": [
+        "--minwidth",
+        "40"
+      ],
+      "expected": "demo/Main.run_[j];demo/Worker.work_[j] 12\nsecond/Main.run_[j];second/Worker.work_[j] 12\n"
+    }
+  ]
+}

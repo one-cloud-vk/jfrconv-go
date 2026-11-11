@@ -1,0 +1,50 @@
+[
+  {
+    "key": [
+      "roles/Main",
+      "run",
+      0,
+      10,
+      1,
+      false
+    ],
+    "id": 2,
+    "rgb": "#3ae83a"
+  },
+  {
+    "key": [
+      "roles/Main",
+      "run",
+      0,
+      10,
+      1,
+      true
+    ],
+    "id": 3,
+    "rgb": "#23d423"
+  },
+  {
+    "key": [
+      "roles/Worker",
+      "work",
+      3,
+      20,
+      1,
+      false
+    ],
+    "id": 1,
+    "rgb": "#46f346"
+  },
+  {
+    "key": [
+      "roles/Worker",
+      "work",
+      3,
+      20,
+      1,
+      true
+    ],
+    "id": 4,
+    "rgb": "#2bdb2b"
+  }
+]

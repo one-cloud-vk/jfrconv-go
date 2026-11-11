@@ -1,0 +1,18 @@
+{
+  "returncode": 0,
+  "binary_sha256": "1661654fd9b9b77c2e1db16730a645a942b8de775e490fa5cccbd30c2ed68f70",
+  "configured_memory_max_bytes": 67108864,
+  "configured_swap_bytes": 0,
+  "inputs": 64,
+  "soft_go_memory_limit_bytes": 16777216,
+  "worker_sampled_rss_limit_bytes": 33554432,
+  "method": "Disposable default-security Docker cgroup, --memory=64m --memory-swap=64m, no network or added capabilities. Kernel cgroup memory includes the process tree and charged page cache; it is not a sum of process RSS.",
+  "kernel_memory": {
+    "memory.max": "67108864",
+    "memory.peak": "17154048",
+    "memory.current": "7180288",
+    "memory.events": "low 0\nhigh 0\nmax 0\noom 0\noom_kill 0\noom_group_kill 0",
+    "memory.swap.max": "0"
+  },
+  "all_checks_passed": true
+}

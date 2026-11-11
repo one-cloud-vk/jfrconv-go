@@ -1,0 +1,2 @@
+2000000-high-cardinality.jfr x1: RSS Java 292.14 MiB vs Go 53.33 MiB (81.7% lower); p50 5.7985s vs 0.7073s; p95 6.0338s vs 0.7947s
+/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/native-benchmark-macos-final/go/diverse-2m-heatmap/benchmark.json

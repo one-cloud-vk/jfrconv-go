@@ -1,0 +1,5 @@
+?   	jfrconv-go/assets	[no test files]
+?   	jfrconv-go/cmd/jfrconv	[no test files]
+ok  	jfrconv-go/internal/cli	0.537s
+ok  	jfrconv-go/internal/convert	1.411s
+ok  	jfrconv-go/internal/jfr	0.433s

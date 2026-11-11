@@ -1,0 +1,36 @@
+{
+  "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/native-public-macos-final/go/v41/profiles/JfrTests.regularPeak/f.jfr",
+  "input_sha256": "48d854ca6a6391f5fd1f89da1f4089d5d881cdc9675e6ad5f142186df1d23843",
+  "conclusion": "Original Java and frozen Go have identical results on the failed timing-sensitive public recording. First time window contains a peak sample, violating the upstream workload timing assertion in both implementations.",
+  "cases": [
+    {
+      "flags": [
+        "--to",
+        "2500"
+      ],
+      "same_canonical_output": true,
+      "peak_samples": 27,
+      "total": 112
+    },
+    {
+      "flags": [
+        "--from",
+        "2500",
+        "--to",
+        "5000"
+      ],
+      "same_canonical_output": true,
+      "peak_samples": 0,
+      "total": 59
+    },
+    {
+      "flags": [
+        "--from",
+        "5000"
+      ],
+      "same_canonical_output": true,
+      "peak_samples": 0,
+      "total": 15
+    }
+  ]
+}

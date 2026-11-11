@@ -1,0 +1,35 @@
+{
+  "revision": "5930966a92860f6e5d2d89ab6faab5815720bad9",
+  "suite": "v4.1",
+  "transport_bridge": true,
+  "assertion_files_unchanged": true,
+  "command": [
+    "java",
+    "-ea",
+    "-Djava.library.path=build/test/lib",
+    "-DthreadCount=1",
+    "-DretryCount=0",
+    "-DlogDir=/work/v41-go/public-test-results/profiles",
+    "-cp",
+    "build/test.jar:build/jar/*:build/lib/*:test/deps/*:test/gen/*",
+    "one.profiler.test.Runner",
+    "NativememTests.ldpreload"
+  ],
+  "returncode": 0,
+  "elapsed_seconds": 0.8946262919926085,
+  "counts": {
+    "PASS": 1
+  },
+  "tests": [
+    {
+      "status": "PASS",
+      "test": "NativememTests.ldpreload (args: once)",
+      "seconds": 0.833
+    }
+  ],
+  "platform": "Linux aarch64",
+  "java_version": "openjdk version \"21.0.11\" 2026-04-21 LTS\nOpenJDK Runtime Environment Temurin-21.0.11+10 (build 21.0.11+10-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.11+10 (build 21.0.11+10-LTS, mixed mode, sharing)",
+  "go_binary": "/work/final-go-bin/jfrconv",
+  "adapter": "Only Output.convertJfrToCollapsed, static JfrToFlame/JfrToHeatmap.convert and Main.main transport entry points are redirected. Published test assertions are byte-for-byte unchanged. /dev/null and all actual requested output paths are passed directly to the native CLI.",
+  "go_binary_sha256": "1661654fd9b9b77c2e1db16730a645a942b8de775e490fa5cccbd30c2ed68f70"
+}

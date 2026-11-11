@@ -1,0 +1,41 @@
+{
+  "implementation": "native Go",
+  "version": "v0.1.0",
+  "native_binary_sha256": "144204d7e755411903b058f5153aa583bd4adf4c1212667c52d73ae75c85bca6",
+  "status": "complete",
+  "historical_macOS_passed": 8,
+  "current_macOS_passed": 6,
+  "historical_macOS_Linux_only_skips": 1,
+  "scoped_public_cases_total": 15,
+  "Linux_only_case": "NativememTests.ldpreload, run separately in the Linux reports.",
+  "java_executable": "/opt/homebrew/opt/openjdk@21/bin/java",
+  "java_version": "openjdk version \"21.0.7\" 2025-04-15\nOpenJDK Runtime Environment Homebrew (build 21.0.7)\nOpenJDK 64-Bit Server VM Homebrew (build 21.0.7, mixed mode, sharing)",
+  "assertion_sources_unchanged": true,
+  "actual_requested_output_paths_preserved": true,
+  "transport_note": "Reused compiled generic adapter is historically named RustBridge; JFRCONV_BINARY directly invokes the recorded native binary. The Go production application does not call Rust or Java.",
+  "results": [
+    {
+      "implementation": "go",
+      "suite": "v41",
+      "report": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/native-public-macos-final-jdk21/go/v41/public-tests.json",
+      "returncode": 0,
+      "counts": {
+        "PASS": 8,
+        "SKIP_CONFIG_MISMATCH": 1
+      },
+      "packaged_report": "jdk21/v41/public-tests.json"
+    },
+    {
+      "implementation": "go",
+      "suite": "current",
+      "report": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/native-public-macos-final-jdk21/go/current/public-tests.json",
+      "returncode": 0,
+      "counts": {
+        "PASS": 6
+      },
+      "packaged_report": "jdk21/current/public-tests.json"
+    }
+  ],
+  "prior_jdk25_attempts": "prior-jdk25-go/attempt-1 and attempt-2 retain two Go-only regularPeak workload-timing failures with exact original-Java replay; they are not silently dropped.",
+  "final_environment_alignment": "All final public native suites and performance Java baselines use the same JDK21 executable as the original public Java baseline."
+}

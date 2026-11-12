@@ -1,7 +1,0 @@
-{
-  "commit": "11aaea310cb75843f0e7532365d8cedc8d0e14c8",
-  "note": "Pristine Java test/converter JARs are portable original Mac-build bytecode; native profiler/test libraries are the newly compiled pinned Linux4.5 artifacts. Only used for explicit environment/failure comparison.",
-  "test_jar_sha256": "5484f17256ee3ab8eead384a168a92658a6bacd9a511fca20314fc4f0ab2dd6a",
-  "converter_jar_sha256": "ded43c350f75766b82570ac297c9dd3c3efd69e73de26474615cf2df90e1fc94",
-  "linux_profiler_sha256": "39a4948c91c5ee67187a8e02ec8d0b1cd14f992e288922eb8c0043fcad1239c3"
-}

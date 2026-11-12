@@ -1,9 +1,0 @@
-{
-  "baseline_binary": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/baseline/jfrconv-0.1.0",
-  "sha256": "144204d7e755411903b058f5153aa583bd4adf4c1212667c52d73ae75c85bca6",
-  "source_binary": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/jfrconv-go-build/jfrconv",
-  "copied_before_followup_builds": true,
-  "readonly_mode": "0555",
-  "version": "0.1.0",
-  "free_bytes": 978530304
-}

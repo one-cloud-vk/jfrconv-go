@@ -12,7 +12,7 @@ import (
 	"jfrconv-go/internal/convert"
 )
 
-const Help = `jfrconv-go — native converter targeting async-profiler 4.5
+const Help = `jfrconv-go — JFR converter (async-profiler 4.5)
 Usage: jfrconv [options] <input> [<input>...] [<output>]
 
   -o, --output FORMAT   html (default), collapsed, pprof, pb.gz, otlp, heatmap
@@ -36,7 +36,7 @@ Usage: jfrconv [options] <input> [<input>...] [<output>]
       --classify       Group stacks into JVM activity categories
   -I, --include REGEX   Keep stacks containing a full-matching frame
   -X, --exclude REGEX   Remove stacks containing a full-matching frame
-      --title TEXT     Flame graph title (trusted HTML, as in Java 4.1)
+      --title TEXT     Flame graph title (trusted HTML)
       --minwidth N     Minimum frame width as percent of total
       --grain N        Coarsen samples by this factor
       --skip N         Skip N root frames
@@ -52,12 +52,12 @@ Limits run in an isolated worker. Failure exits 75 and removes owned scratch;
 staged outputs are published only after success. GOMEMLIMIT is soft and is
 not a kernel RSS cap. Linux cgroups/container limits provide hard accounting.
 
-Span extensions:
+Spans and method traces:
       --latency TIME   Same-thread spans of at least TIME (ms default; s/ms/us/ns)
       --tag STRING     Same-thread spans with this exact literal tag
       --trace          Convert jdk.MethodTrace events
 
-      --version        Print version and compatibility target
+      --version        Print version
   -h, --help           Show this help
 `
 

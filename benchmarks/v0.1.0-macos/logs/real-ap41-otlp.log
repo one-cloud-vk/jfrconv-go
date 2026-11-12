@@ -1,2 +1,0 @@
-ap41.jfr x1: RSS Java 44.22 MiB vs Go 6.17 MiB (86.0% lower); p50 0.0662s vs 0.0057s; p95 0.0683s vs 0.0060s
-/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/native-benchmark-macos-final/go/real-ap41-otlp/benchmark.json

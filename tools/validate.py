@@ -97,7 +97,6 @@ def main():
     parser.add_argument('--java', default='java')
     parser.add_argument('--workdir', type=Path, default=Path('work/validation'))
     parser.add_argument('--real', type=Path, action='append', default=[])
-    parser.add_argument('--skip-heatmap', action='store_true', help='record heatmap checks as PENDING during backend development; not a final acceptance mode')
     args = parser.parse_args()
     args.go = args.go.resolve(); args.java_jar = args.java_jar.resolve()
     args.workdir.mkdir(parents=True, exist_ok=True)
@@ -110,7 +109,6 @@ def main():
     fixture = generate(args.workdir / 'mixed.jfr')
     passed = []
     failures = []
-    pending = []
 
     def run(command, expected=0):
         result = subprocess.run(list(map(str, command)), capture_output=True, text=True, timeout=60)
@@ -147,11 +145,7 @@ def main():
         expected, actual = collapsed(java_out), collapsed(go_out)
         assert actual == expected, f'{name}\nmissing: {expected - actual}\nextra: {actual - expected}'
 
-    def check(name, fn, feature=None):
-        if feature == 'heatmap' and args.skip_heatmap:
-            pending.append({'name':name,'reason':'heatmap backend explicitly pending during development'})
-            print('PENDING', name, flush=True)
-            return
+    def check(name, fn):
         try:
             fn()
             passed.append(name)
@@ -232,10 +226,10 @@ def main():
         assert decoded['go'] == decoded['java'], decoded
     wall_fixture = Path(__file__).resolve().parents[1] / 'tests/fixtures/heatmap-wall45.jfr'
     for mode, source in [('cpu', fixture), ('wall', wall_fixture)]:
-        check('heatmap-' + mode, lambda m=mode, s=source: heatmap_parity(s, ['--'+m], 'heatmap-' + m), feature='heatmap')
+        check('heatmap-' + mode, lambda m=mode, s=source: heatmap_parity(s, ['--'+m], 'heatmap-' + m))
     for source in args.real:
         for mode in ['wall','alloc','lock']:
-            check(source.stem + '-heatmap-' + mode, lambda s=source, m=mode: heatmap_parity(s, ['--'+m], s.stem + '-heatmap-' + m), feature='heatmap')
+            check(source.stem + '-heatmap-' + mode, lambda s=source, m=mode: heatmap_parity(s, ['--'+m], s.stem + '-heatmap-' + m))
 
     def malformed():
         raw = fixture.read_bytes()
@@ -266,9 +260,9 @@ def main():
         assert set(outputs['go']) == {'profile.cpu.collapsed','profile.wall.collapsed'}
     check('multi-file-dotted-names', lambda: multi_file_names(False))
     check('multi-file-dotted-names-limited', lambda: multi_file_names(True))
-    report = {'implementation':'native Go', 'binary_source':str(binary_source), 'pending':pending, 'all_requested_features_present':not pending, 'passed': passed, 'failures': failures, 'count': len(passed), 'java_baseline': str(args.java_jar), 'go_binary_sha256': hashlib.sha256(args.go.read_bytes()).hexdigest(), 'java_jar_sha256': hashlib.sha256(args.java_jar.read_bytes()).hexdigest()}
+    report = {'implementation':'native Go', 'binary_source':str(binary_source), 'passed': passed, 'failures': failures, 'count': len(passed), 'java_baseline': str(args.java_jar), 'go_binary_sha256': hashlib.sha256(args.go.read_bytes()).hexdigest(), 'java_jar_sha256': hashlib.sha256(args.java_jar.read_bytes()).hexdigest()}
     (args.workdir / 'validation.json').write_text(json.dumps(report, indent=2) + '\n')
-    print(f'{len(passed)} checks passed; {len(failures)} failed; {len(pending)} explicitly pending')
+    print(f'{len(passed)} checks passed; {len(failures)} failed')
     return bool(failures)
 
 

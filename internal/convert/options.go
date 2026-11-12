@@ -21,8 +21,8 @@ const (
 	ModeNativeLock
 )
 
-// Options is the shared, immutable per-invocation contract. Runtime memory
-// limits are soft; MaxRSS is enforced by the CLI's separate supervisor.
+// Options controls a conversion. Runtime memory limits are soft;
+// the CLI supervisor enforces MaxRSS.
 type Options struct {
 	Mode                                         Mode
 	CPU, CPUTime, Wall, Threads, Classify, Total bool
@@ -71,6 +71,5 @@ type Stats struct{ Samples, Units uint64 }
 
 var ErrMemoryBudget = errors.New("conversion memory budget exceeded")
 
-// The CLI calls Run/RunDiff with a staged output and publishes only after
-// success. Their implementations are supplied by the conversion engine.
+// Runner converts one input to the requested output format.
 type Runner func(input string, out io.Writer, format string, options Options) (Stats, error)

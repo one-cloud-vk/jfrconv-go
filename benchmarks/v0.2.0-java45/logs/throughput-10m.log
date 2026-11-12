@@ -1,2 +1,0 @@
-10000000-samples.jfr x1: RSS Java 198.48 MiB vs Go 5.19 MiB (97.4% lower); p50 0.2205s vs 0.2694s; p95 0.2822s vs 0.3154s
-/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/performance-final/throughput-10m/benchmark.json

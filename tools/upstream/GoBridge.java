@@ -3,7 +3,6 @@ package one.convert;
 
 import java.io.*;
 import java.lang.reflect.*;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.util.*;
 import java.util.regex.Pattern;
@@ -15,6 +14,19 @@ public final class GoBridge {
         if (value == null || value.isEmpty()) throw new IOException("JFRCONV_BINARY is not set");
         return value;
     }
+    private static final Map<one.jfr.JfrReader, String> inputs =
+            Collections.synchronizedMap(new WeakHashMap<one.jfr.JfrReader, String>());
+    public static void register(one.jfr.JfrReader reader, String input) { inputs.put(reader, input); }
+    public static void dumpOtlp(one.jfr.JfrReader reader, Arguments args, OutputStream output) throws IOException {
+        String input = inputs.get(reader);
+        if (input == null) throw new IOException("Native OTLP test transport requires a filename-backed reader");
+        Path temporary = Files.createTempFile("jfrconv-public-", ".otlp");
+        try {
+            convert(input, temporary.toString(), args, "otlp");
+            Files.copy(temporary, output);
+        } finally { Files.deleteIfExists(temporary); }
+    }
+
     public static int execute(String... args) throws IOException {
         List<String> command = new ArrayList<>(); command.add(binary());
         command.addAll(Arrays.asList(args));
@@ -41,9 +53,9 @@ public final class GoBridge {
                     if ((Boolean) value) cli.add("--" + name);
                 } else if (value instanceof String || value instanceof Number || value instanceof Pattern) {
                     cli.add("--" + name);
-                    // Java Arguments stores latency in ns; native CLI accepts ms.
+                    // Preserve Java Arguments' nanoseconds without floating-point conversion.
                     cli.add("latency".equals(name) && value instanceof Number
-                            ? Double.toString(((Number) value).doubleValue() / 1_000_000.0)
+                            ? Long.toString(((Number) value).longValue()) + "ns"
                             : value.toString());
                 }
             } catch (IllegalAccessException e) { throw new IOException(e); }

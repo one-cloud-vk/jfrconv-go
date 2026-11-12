@@ -1,2 +1,0 @@
-2000000-high-cardinality.jfr x1: RSS Java 309.75 MiB vs Go 55.73 MiB (82.0% lower); p50 0.7215s vs 0.7278s; p95 0.8283s vs 0.8216s
-/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/performance-final/diverse-2m-heatmap/benchmark.json

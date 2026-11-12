@@ -32,7 +32,7 @@ func Main(args []string, stdout, stderr io.Writer, engine Engine) int {
 		return reportError(stderr, err)
 	}
 	if config.Version {
-		fmt.Fprintf(stdout, "jfrconv-go %s (async-profiler 4.5 compatibility target; Span API)\n", convert.Version)
+		fmt.Fprintf(stdout, "jfrconv-go %s (async-profiler 4.5)\n", convert.Version)
 		return 0
 	}
 	if config.Help || len(config.Files) == 0 {

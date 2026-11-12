@@ -6,7 +6,7 @@ all measured pairs. The first fresh-process pair is retained separately; file
 page-cache state is uncontrolled and these are not claimed as cold-disk results.
 Child wait4() RSS is bytes on macOS and KiB on Linux; Python-parent RSS excluded.
 
-  python3 tools/benchmark.py --go target/release/jfrconv --java-jar old.jar \
+  python3 tools/benchmark.py --go bin/jfrconv --java-jar jfr-converter.jar \
       --input recording.jfr --repeat 21 --warmup 1
   python3 tools/benchmark.py ... --repeat-inputs 8 --go-flag=--max-rss \
       --go-flag=64M
@@ -327,7 +327,7 @@ def main():
         parser.error('--repeat and --repeat-inputs must be positive; --warmup nonnegative')
     args.go = args.go.resolve(); args.java_jar = args.java_jar.resolve()
     args.workdir.mkdir(parents=True, exist_ok=True)
-    # Rebuilds in another agent/process cannot silently mix executables within a
+    # Concurrent rebuilds cannot silently mix executables within a
     # report. Measure immutable copies and record both original source paths.
     binary_source, jar_source = args.go, args.java_jar
     measured_binary = (args.workdir / 'jfrconv-measured').resolve()

@@ -1,6 +1,0 @@
-{
-  "upstream_commit": "11aaea310cb75843f0e7532365d8cedc8d0e14c8",
-  "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/Makefile",
-  "sha256": "77276d7e2003727921013efdf6251f52b5039ef7a8aa2f2ec70db7937a205fda",
-  "note": "Pinned upstream source is an extracted archive without.git; Makefile matches the already-staged4.5 Mac native transport build and is recorded separately from the src/test/docs upstream manifest."
-}

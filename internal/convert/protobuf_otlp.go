@@ -1,8 +1,7 @@
 // Copyright The async-profiler authors
 // Copyright 2026 jfrconv-go contributors
 // SPDX-License-Identifier: Apache-2.0
-// Field numbers and event semantics match async-profiler v4.5 (11aaea310cb7),
-// not the different development schema in later async-profiler revisions.
+// Protobuf fields and event semantics follow async-profiler v4.5.
 package convert
 
 import (
@@ -291,10 +290,8 @@ func otlpDefaultPeriod(p *profile) uint64 {
 	return 10000000
 }
 
-// writeOTLP encodes v4.5's per-event arrays and global stack dictionary once
-// into bounded disk spools. Only dictionary cardinality, not event/group/chunk
-// count, contributes unbounded memory. Even one group with millions of events
-// is emitted by streaming its timestamp and value columns separately.
+// writeOTLP streams timestamp/value columns through disk spools.
+// In-memory dictionaries grow with distinct stacks and attributes.
 func writeOTLP(p *profile, out *bufio.Writer, _ Options) error {
 	if p.spool == nil {
 		return errors.New("OTLP sample spool is missing")

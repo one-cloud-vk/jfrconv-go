@@ -13,11 +13,9 @@ import (
 const otlpMergeFanIn = 8
 const otlpMergeLevels = 9
 
-// Group key occupies nativeRecord.Time; Sequence preserves event order.
-// Only equal-level runs merge. Each event is rewritten at most once per level,
-// instead of repeatedly merging a growing prefix. Nine base-eight levels cap
-// run metadata/final merge inputs at 63; the production bound supports almost
-// 4.4 trillion events in one chunk (roughly176TB of raw records).
+// nativeRecord.Time stores the group key; Sequence preserves event order.
+// Equal-level runs merge once per level. Nine levels bound run metadata
+// and the final merge to 63 inputs.
 type otlpSorter struct {
 	nativeSorter
 	levels        []uint8

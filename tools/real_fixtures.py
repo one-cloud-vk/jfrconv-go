@@ -2,7 +2,7 @@
 """Record the included Java workload using JDK JFR and optionally async-profiler.
 
 Requires a JDK. For the AP recording pass --async-profiler-lib with the path to
-libasyncProfiler.so (Linux) or libasyncProfiler.dylib (macOS) from release 4.1.
+libasyncProfiler.so (Linux) or libasyncProfiler.dylib (macOS) from release 4.5.
 """
 import argparse
 from pathlib import Path

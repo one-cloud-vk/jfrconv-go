@@ -1,9 +1,0 @@
-{
-  "Id": "sha256:949f7645022e8cd5cd65eac4b342e7505c86b721b6338f8b677c6f2edc180262",
-  "RepoDigests": [
-    "eclipse-temurin@sha256:949f7645022e8cd5cd65eac4b342e7505c86b721b6338f8b677c6f2edc180262"
-  ],
-  "Architecture": "arm64",
-  "Os": "linux",
-  "Created": "2026-05-07T23:59:37.774876235Z"
-}

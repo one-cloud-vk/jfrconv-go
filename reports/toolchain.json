@@ -1,7 +1,0 @@
-{
-  "version": "go1.27.4",
-  "os": "darwin",
-  "arch": "arm64",
-  "url": "https://go.dev/dl/go1.27.4.darwin-arm64.tar.gz",
-  "sha256": "91a44a2b8a716600ad94a4f143e156116620db8828086a6e3602291be9bd0bb4"
-}

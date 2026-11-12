@@ -1,9 +1,0 @@
-go v41 returncode 1 {'FAIL': 1, 'PASS': 7, 'SKIP_CONFIG_MISMATCH': 1}
-Traceback (most recent call last):
-  File "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/run-public-jdk21-attempt2.py", line 56, in <module>
-    if __name__=='__main__':main()
-                            ~~~~^^
-  File "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/run-public-jdk21-attempt2.py", line 51, in main
-    if result.returncode!=0 or counts.get('PASS')!=expected_pass:raise RuntimeError(f'{impl}/{suite} public suite failed; preserve logs and investigate')
-                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-RuntimeError: go/v41 public suite failed; preserve logs and investigate

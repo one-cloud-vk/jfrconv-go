@@ -1,6 +1,0 @@
-{
-  "status": "retained failed Go-only JDK25 public attempt; not final candidate correctness failure",
-  "reason": "The unchanged regularPeak workload peak occurred in its forbidden first2.5s window. Original Java4.1 and Go outputs are identical for all three windows on the exact retained recording.",
-  "input_recording": "JFR omitted from compact release; original input SHA and complete replay facts retained in same-recording/report.json.",
-  "environment_resolution": "Final full native suites align with the original public Java baseline JDK21, with assertions unchanged. Both failed attempts remain visible."
-}

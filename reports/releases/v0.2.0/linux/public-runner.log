@@ -1,7 +1,0 @@
-{
-  "returncode": 0,
-  "counts": {
-    "PASS": 27
-  },
-  "report": "/task/results/public-native/public-tests.json"
-}

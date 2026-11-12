@@ -52,11 +52,11 @@ func TestDescriptorCloneRetainsOffsetAndOwnership(t *testing.T) {
 	}
 }
 
-func TestStdoutAliasPreservesRegularFilePrefixInBothModes(t *testing.T) {
+func TestStdoutAliasPreservesRegularFilePrefixWithLimits(t *testing.T) {
 	if os.Geteuid() == 0 {
 		t.Skip("skip system descriptor aliases as root; task-owned FIFO remains covered")
 	}
-	for _, limited := range []bool{false, true} {
+	for _, limits := range [][]string{nil, {"--memory-limit", "32M"}, {"--max-rss", "64M"}} {
 		directory := t.TempDir()
 		input := fixtureFile(t, directory, "in.jfr", "ok")
 		capture, err := os.CreateTemp(directory, "capture-")
@@ -66,10 +66,7 @@ func TestStdoutAliasPreservesRegularFilePrefixInBothModes(t *testing.T) {
 		if _, err := io.WriteString(capture, "prefix\n"); err != nil {
 			t.Fatal(err)
 		}
-		args := []string{"-o", "collapsed", input, "/dev/stdout"}
-		if limited {
-			args = append([]string{"--memory-limit", "32M"}, args...)
-		}
+		args := append(append([]string{}, limits...), "-o", "collapsed", input, "/dev/stdout")
 		command, cancel := helperCommand(t, args...)
 		command.Env = replaceEnvironment(command.Env, map[string]string{helperEnvironment: "append-after"})
 		command.Stdout = capture
@@ -79,19 +76,19 @@ func TestStdoutAliasPreservesRegularFilePrefixInBothModes(t *testing.T) {
 		cancel()
 		_ = capture.Close()
 		if err != nil {
-			t.Fatalf("limited=%v: %v %s", limited, err, &diagnostics)
+			t.Fatalf("limits=%v: %v %s", limits, err, &diagnostics)
 		}
 		data, err := os.ReadFile(capture.Name())
 		if err != nil {
 			t.Fatal(err)
 		}
 		if string(data) != "prefix\n"+fakeProfile+"after\n" {
-			t.Fatalf("limited=%v changed prefix/offset: %q", limited, data)
+			t.Fatalf("limits=%v changed prefix/offset: %q", limits, data)
 		}
 	}
 }
 
-func TestNullDeviceIdentityInBothModes(t *testing.T) {
+func TestNullDeviceIdentityWithLimits(t *testing.T) {
 	if os.Geteuid() == 0 {
 		t.Skip("skip direct /dev/null identity probe as root; task-owned FIFO remains covered")
 	}
@@ -102,15 +99,12 @@ func TestNullDeviceIdentityInBothModes(t *testing.T) {
 	if before.Mode()&os.ModeCharDevice == 0 {
 		t.Fatal("/dev/null is not a character device")
 	}
-	for _, limited := range []bool{false, true} {
+	for _, limits := range [][]string{nil, {"--memory-limit", "32M"}, {"--max-rss", "64M"}} {
 		directory := t.TempDir()
 		input := fixtureFile(t, directory, "in.jfr", "ok")
-		args := []string{"-o", "collapsed", input, "/dev/null"}
-		if limited {
-			args = append([]string{"--memory-limit", "32M"}, args...)
-		}
+		args := append(append([]string{}, limits...), "-o", "collapsed", input, "/dev/null")
 		if code := Main(args, io.Discard, io.Discard, fakeEngine()); code != 0 {
-			t.Fatalf("limited=%v exit%d", limited, code)
+			t.Fatalf("limits=%v exit%d", limits, code)
 		}
 		after, err := os.Stat("/dev/null")
 		if err != nil {
@@ -123,7 +117,7 @@ func TestNullDeviceIdentityInBothModes(t *testing.T) {
 }
 
 func TestOwnedFIFOReceivesCompletedResultAndKeepsIdentity(t *testing.T) {
-	for _, limited := range []bool{false, true} {
+	for _, limits := range [][]string{nil, {"--memory-limit", "32M"}, {"--max-rss", "64M"}} {
 		directory := t.TempDir()
 		input := fixtureFile(t, directory, "in.jfr", "ok")
 		fifo := filepath.Join(directory, "result.fifo")
@@ -140,10 +134,7 @@ func TestOwnedFIFOReceivesCompletedResultAndKeepsIdentity(t *testing.T) {
 		}
 		received := make(chan result, 1)
 		go func() { data, err := os.ReadFile(fifo); received <- result{data, err} }()
-		args := []string{"-o", "collapsed", input, fifo}
-		if limited {
-			args = append([]string{"--memory-limit", "32M"}, args...)
-		}
+		args := append(append([]string{}, limits...), "-o", "collapsed", input, fifo)
 		command, cancel := helperCommand(t, args...)
 		var diagnostics bytes.Buffer
 		command.Stderr = &diagnostics
@@ -156,12 +147,12 @@ func TestOwnedFIFOReceivesCompletedResultAndKeepsIdentity(t *testing.T) {
 			if openErr == nil {
 				_ = syscall.Close(fd)
 			}
-			t.Fatalf("limited=%v: %v %s", limited, err, &diagnostics)
+			t.Fatalf("limits=%v: %v %s", limits, err, &diagnostics)
 		}
 		select {
 		case got := <-received:
 			if got.err != nil || string(got.data) != fakeProfile {
-				t.Fatalf("limited=%v got%q %v", limited, got.data, got.err)
+				t.Fatalf("limits=%v got%q %v", limits, got.data, got.err)
 			}
 		case <-time.After(3 * time.Second):
 			t.Fatal("FIFO reader did not complete")

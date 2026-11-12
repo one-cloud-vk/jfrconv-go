@@ -11,6 +11,7 @@ import (
 	"path/filepath"
 	"regexp"
 	"runtime"
+	"runtime/debug"
 	"strconv"
 	"strings"
 	"testing"
@@ -236,8 +237,12 @@ func TestTinyRSSAndRuntimeBudgetsExit75WithoutChangingOutput(t *testing.T) {
 		input := fixtureFile(t, directory, "in.jfr", "ok")
 		output := fixtureFile(t, directory, "out.collapsed", "old")
 		args := append(append([]string{}, flags...), input, output)
+		previous := debug.SetMemoryLimit(-1)
 		if code := Main(args, io.Discard, io.Discard, fakeEngine()); code != LimitExit {
 			t.Fatalf("%v exit%d", flags, code)
+		}
+		if limit := debug.SetMemoryLimit(-1); limit != previous {
+			t.Fatalf("%v did not restore runtime memory limit: %d, want %d", flags, limit, previous)
 		}
 		data, _ := os.ReadFile(output)
 		if string(data) != "old" {

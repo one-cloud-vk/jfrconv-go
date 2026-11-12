@@ -79,8 +79,10 @@ the end. `--trace` selects `jdk.MethodTrace` events separately.
 ```
 
 `--memory-limit` guards major parser/model allocations and sets Go's soft
-runtime memory limit. It is not a hard RSS cap. `--max-rss` monitors a separate
-worker's resident memory every 2 ms; it can overshoot between samples and does
+runtime memory limit. A single conversion runs in the current process; batches
+use a worker so a failed batch preserves existing outputs. It is not a hard
+RSS cap. `--max-rss` always monitors a separate worker's resident memory every
+2 ms; it can overshoot between samples and does
 not include the supervisor. Use a Linux cgroup or container limit for a strict
 limit on the whole process tree. Sizes use binary units.
 

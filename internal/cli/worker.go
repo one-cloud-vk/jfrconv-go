@@ -63,11 +63,8 @@ func configureWorker() (*workerSettings, error) {
 		}
 	}
 	debug.SetMemoryLimit(int64(budget))
-	// SetMemoryLimit is soft; reject a budget below the runtime's startup usage.
-	var stats runtime.MemStats
-	runtime.ReadMemStats(&stats)
-	if stats.Sys-stats.HeapReleased > budget {
-		return nil, &limitError{fmt.Sprintf("memory budget is below worker startup memory (%d bytes)", budget)}
+	if err := checkRuntimeBudget(budget); err != nil {
+		return nil, err
 	}
 	if rss != 0 {
 		actual, err := residentBytes(os.Getpid())
@@ -79,6 +76,16 @@ func configureWorker() (*workerSettings, error) {
 		}
 	}
 	return settings, nil
+}
+
+func checkRuntimeBudget(budget uint64) error {
+	// SetMemoryLimit is soft; reject a budget below the runtime's startup usage.
+	var stats runtime.MemStats
+	runtime.ReadMemStats(&stats)
+	if stats.Sys-stats.HeapReleased > budget {
+		return &limitError{fmt.Sprintf("memory budget is below runtime startup memory (%d bytes)", budget)}
+	}
+	return nil
 }
 
 func effectiveBudget(options convert.Options) uint64 {

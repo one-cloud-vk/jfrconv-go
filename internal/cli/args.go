@@ -48,9 +48,10 @@ Usage: jfrconv [options] <input> [<input>...] [<output>]
       --memory-limit N Soft Go runtime/application budget, e.g. 64M
       --max-rss N      Worker RSS guard (2 ms polling; can briefly overshoot)
 
-Limits run in an isolated worker. Failure exits 75 and removes owned scratch;
-staged outputs are published only after success. GOMEMLIMIT is soft and is
-not a kernel RSS cap. Linux cgroups/container limits provide hard accounting.
+A single conversion with --memory-limit runs in process. Batches and --max-rss
+use an isolated worker. Budget denial exits 75 and removes owned scratch;
+staged outputs are published only after success. Go's runtime limit is soft;
+Linux cgroups/container limits provide hard accounting.
 
 Spans and method traces:
       --latency TIME   Same-thread spans of at least TIME (ms default; s/ms/us/ns)

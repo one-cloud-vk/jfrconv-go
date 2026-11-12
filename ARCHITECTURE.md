@@ -41,10 +41,13 @@ are externally grouped by raw thread/stack identity and event ordinal. An
 eight-way tiered merge bounds run metadata; timestamps and values stream to
 encoded output. No per-event timestamp list remains in memory.
 
-Scratch files are created in the conversion's temporary directory and unlinked
-immediately on supported Unix systems. Open handles keep them usable; closing
-the process reclaims them. Memory use follows the working sets above;
-temporary disk use can grow with the event/output size.
+Scratch files are created in the conversion's temporary directory. Heatmap
+scratch is unlinked immediately on supported Unix systems; other formats
+remove their files when conversion finishes. Limited conversions own a scratch
+directory and remove it on return. A caller that may forcibly kill conversion
+should provide an owned `TMPDIR` and remove it after process exit. Memory use
+follows the working sets above; temporary disk use can grow with event/output
+size.
 
 ## Limits and output
 
@@ -53,10 +56,12 @@ runtime memory limit. Resizing indexes charges both old and new storage while
 they coexist. The guard does not account for every map, stack or temporary
 allocation, and Go may exceed its soft target to make progress.
 
-With either limit flag, the CLI launches its own worker. `--max-rss` samples
-worker RSS every 2 ms and kills it on an observed excess. Polling can overshoot;
-supervisor memory is separate. A strict whole-process-tree limit requires a
-Linux cgroup or container limit.
+For one conversion, `--memory-limit` applies the runtime and application budget
+in the current process and restores the previous runtime limit on return.
+Batches use a worker to stage all outputs before publishing. `--max-rss` always
+uses a worker, samples its RSS every 2 ms and kills it on an observed excess.
+Polling can overshoot; supervisor memory is separate. A strict
+whole-process-tree limit requires a Linux cgroup or container limit.
 
 A limited worker stages the whole batch before publishing. Limit denial returns
 75 and removes owned scratch. Regular output replacement is atomic per file,

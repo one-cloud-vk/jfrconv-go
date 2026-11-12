@@ -44,11 +44,24 @@ func Main(args []string, stdout, stderr io.Writer, engine Engine) int {
 		return reportError(stderr, err)
 	}
 	if worker == nil && (config.Options.MemoryLimit != 0 || config.Options.MaxRSS != 0) {
-		code, err := supervise(plan, args, stdout, stderr)
+		if config.Options.MaxRSS != 0 || len(plan.jobs) > 1 {
+			code, err := supervise(plan, args, stdout, stderr)
+			if err != nil {
+				return reportError(stderr, err)
+			}
+			return code
+		}
+		previous := debug.SetMemoryLimit(int64(config.Options.MemoryLimit))
+		defer debug.SetMemoryLimit(previous)
+		if err := checkRuntimeBudget(config.Options.MemoryLimit); err != nil {
+			return reportError(stderr, err)
+		}
+		spill, err := os.MkdirTemp("", "jfrconv-spill-")
 		if err != nil {
 			return reportError(stderr, err)
 		}
-		return code
+		defer os.RemoveAll(spill)
+		plan.config.Options.TempDir = spill
 	}
 	if worker != nil {
 		plan.config.Options.MemoryLimit = worker.budget

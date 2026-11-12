@@ -1,0 +1,17 @@
+{
+  "purpose": "Work-only4.5DOMhost adaptation; original17 interaction assertions unchanged, four new4.5 assertions added. Generated upstream scripts unchanged.",
+  "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/ui_renderer_parity.js",
+  "source_sha256": "0511f00161a54dce3f9c3b820a8469768afd5e1cf171fa8a2d39259e707b19dd",
+  "adapted": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/ui-renderer45.js",
+  "adapted_sha256": "81dd3225467587bc543479a5256b566c2fdcef6087549ad0089da916cdafc68e",
+  "changes": [
+    "new4.5DOMelements",
+    "ownedThemeState",
+    "themeDOMAPIs",
+    "executeOriginalThemePrelude",
+    "snapshotThemeState",
+    "fourAdditional4.5ControlPhases",
+    "fourAdditional4.5AssertionsKeepOriginal17",
+    "correctReferenceDescription"
+  ]
+}

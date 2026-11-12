@@ -1,12 +1,14 @@
-jfrconv-rs
+jfrconv-go
 
-Portions are derived from async-profiler version 4.1, commit
-5930966a92860f6e5d2d89ab6faab5815720bad9.
+Portions are derived from async-profiler version 4.5, commit
+11aaea310cb75843f0e7532365d8cedc8d0e14c8.
 Copyright The async-profiler authors. Licensed under Apache-2.0.
 
-The HTML flame graph template in assets/flame.html is from that release.
-The original heatmap template in assets/heatmap.html is from that release.
+The original templates in assets/flame.html and assets/heatmap.html are from
+that release. Normal and differential flame graphs share the 4.5 template.
 
-Differential flame graph behavior and assets/flame-diff.html are derived from
-async-profiler commit e98d8c2b2d6e954ed1b39685fed1b25dc08db603
-(public master, 2026-11-09), with the same Apache-2.0 attribution.
+Earlier conversion code also derives from jfrconv-rs and async-profiler 4.1,
+commit 5930966a92860f6e5d2d89ab6faab5815720bad9. Differential conversion code
+includes portions based on async-profiler commit
+e98d8c2b2d6e954ed1b39685fed1b25dc08db603 (public master, 2026-11-09), with
+the same Apache-2.0 attribution.

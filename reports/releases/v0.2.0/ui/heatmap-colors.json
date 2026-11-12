@@ -1,0 +1,615 @@
+{
+  "version": "0.2.0",
+  "go_binary_sha256": "a9d7e8fc1fb440157df5f56ae34029e78cdf5b79005bc38d7a9406da4df1feb5",
+  "java_jar_sha256": "ded43c350f75766b82570ac297c9dd3c3efd69e73de26474615cf2df90e1fc94",
+  "all_exact": true,
+  "base_modes": [
+    {
+      "case": "ap41-heatmap-alloc",
+      "flags": [
+        "--alloc"
+      ],
+      "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/fixtures/ap41.jfr",
+      "source_sha256": "d1e26c9ac284212f6ab36f25f6ccbbe0a60876f287159f8aaf9fb3da51150559",
+      "files": {
+        "java": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-semantic-jdk21-attempt2/ap41-heatmap-alloc.java.heatmap.html",
+        "go": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-semantic-jdk21-attempt2/ap41-heatmap-alloc.go.heatmap.html"
+      },
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 119,
+      "native_methods": 119,
+      "java_digest": "f9b0ca5a78f46ea51ee7e16b1638dc27c85824693e72202ec85cd7c4eb31c003",
+      "native_digest": "f9b0ca5a78f46ea51ee7e16b1638dc27c85824693e72202ec85cd7c4eb31c003",
+      "difference_count": 0,
+      "differences": [],
+      "timeline_equal": true,
+      "semantic_timeline": {
+        "startMs": 1794322293578,
+        "blocks": 101,
+        "samples": 25935,
+        "stacks": 8,
+        "digest": "8fba088c1ef421f46385a7a1c2a9b8895134589502ad837a819126bc1b3b8ff9"
+      }
+    },
+    {
+      "case": "ap41-heatmap-lock",
+      "flags": [
+        "--lock"
+      ],
+      "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/fixtures/ap41.jfr",
+      "source_sha256": "d1e26c9ac284212f6ab36f25f6ccbbe0a60876f287159f8aaf9fb3da51150559",
+      "files": {
+        "java": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-semantic-jdk21-attempt2/ap41-heatmap-lock.java.heatmap.html",
+        "go": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-semantic-jdk21-attempt2/ap41-heatmap-lock.go.heatmap.html"
+      },
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 6,
+      "native_methods": 6,
+      "java_digest": "80d0096bf276e5173a2ec93be7149c706fbe1d9af480e7d49f4bd3d58fe6b9c2",
+      "native_digest": "80d0096bf276e5173a2ec93be7149c706fbe1d9af480e7d49f4bd3d58fe6b9c2",
+      "difference_count": 0,
+      "differences": [],
+      "timeline_equal": true,
+      "semantic_timeline": {
+        "startMs": 1794322293662,
+        "blocks": 95,
+        "samples": 67,
+        "stacks": 1,
+        "digest": "f6e9d7f4f36ec2718767f128b16db2c8a87c448d0a0436fd5fe990179c03cb81"
+      }
+    },
+    {
+      "case": "ap41-heatmap-wall",
+      "flags": [
+        "--wall"
+      ],
+      "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/fixtures/ap41.jfr",
+      "source_sha256": "d1e26c9ac284212f6ab36f25f6ccbbe0a60876f287159f8aaf9fb3da51150559",
+      "files": {
+        "java": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-semantic-jdk21-attempt2/ap41-heatmap-wall.java.heatmap.html",
+        "go": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-semantic-jdk21-attempt2/ap41-heatmap-wall.go.heatmap.html"
+      },
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 0,
+      "native_methods": 0,
+      "java_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "native_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "difference_count": 0,
+      "differences": [],
+      "timeline_equal": true,
+      "semantic_timeline": {
+        "startMs": 0,
+        "blocks": 0,
+        "samples": 0,
+        "stacks": 0,
+        "digest": "2e1cfa82b035c26cbbbdae632cea070514eb8b773f616aaeaf668e2f0be8f10d"
+      }
+    },
+    {
+      "case": "heatmap-cpu",
+      "flags": [
+        "--cpu"
+      ],
+      "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-semantic-jdk21-attempt2/mixed.jfr",
+      "source_sha256": "734617f892a58761c79fffdb0e379c1899b2ca46c18eeec5f94d74720586274f",
+      "files": {
+        "java": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-semantic-jdk21-attempt2/heatmap-cpu.java.heatmap.html",
+        "go": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-semantic-jdk21-attempt2/heatmap-cpu.go.heatmap.html"
+      },
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 5,
+      "native_methods": 5,
+      "java_digest": "1020d3b81191ad43fa68d3b3b3b8079648276598de42aae3616445bbf10ff1d9",
+      "native_digest": "1020d3b81191ad43fa68d3b3b3b8079648276598de42aae3616445bbf10ff1d9",
+      "difference_count": 0,
+      "differences": [],
+      "timeline_equal": true,
+      "semantic_timeline": {
+        "startMs": 1700000000000,
+        "blocks": 51,
+        "samples": 6,
+        "stacks": 4,
+        "digest": "5f35469f8e1c62345889d489a03aed2cae94e4028a2baeb9c3b67c8dc7cc63e3"
+      }
+    },
+    {
+      "case": "heatmap-wall",
+      "flags": [
+        "--wall"
+      ],
+      "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tests/fixtures/heatmap-wall45.jfr",
+      "source_sha256": "46f3ee6f6b18ca976bd65c4f227a57f795ef0457e70bfbbcd0e96f122ed6ae58",
+      "files": {
+        "java": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-semantic-jdk21-attempt2/heatmap-wall.java.heatmap.html",
+        "go": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-semantic-jdk21-attempt2/heatmap-wall.go.heatmap.html"
+      },
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 3,
+      "native_methods": 3,
+      "java_digest": "8a221886287eb1277c100455ec4f75e0d2e725d9aaee757dafaebcf5436e0e10",
+      "native_digest": "8a221886287eb1277c100455ec4f75e0d2e725d9aaee757dafaebcf5436e0e10",
+      "difference_count": 0,
+      "differences": [],
+      "timeline_equal": true,
+      "semantic_timeline": {
+        "startMs": 1699999999981,
+        "blocks": 9,
+        "samples": 6,
+        "stacks": 2,
+        "digest": "0d8f1761b4020599a24250875cdd78a8ffa4b894cb4efc0c2a81d6de22a5f554"
+      }
+    },
+    {
+      "case": "jdk-heatmap-alloc",
+      "flags": [
+        "--alloc"
+      ],
+      "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/fixtures/jdk.jfr",
+      "source_sha256": "449ccf29fc8ab15741c8327b36312a81ba3db9a1a4b5453895a6298c143200f6",
+      "files": {
+        "java": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-semantic-jdk21-attempt2/jdk-heatmap-alloc.java.heatmap.html",
+        "go": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-semantic-jdk21-attempt2/jdk-heatmap-alloc.go.heatmap.html"
+      },
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 9,
+      "native_methods": 9,
+      "java_digest": "6ffca7038d27d371bc6ea48f5b7bb3ae207768df2b8997b1c06a7e2cd419130b",
+      "native_digest": "6ffca7038d27d371bc6ea48f5b7bb3ae207768df2b8997b1c06a7e2cd419130b",
+      "difference_count": 0,
+      "differences": [],
+      "timeline_equal": true,
+      "semantic_timeline": {
+        "startMs": 1794322288881,
+        "blocks": 99,
+        "samples": 2020,
+        "stacks": 2,
+        "digest": "05cf9054e5242c4f432bc81ccad63c8ef301877fe22bc506b87c5b80ee4941e5"
+      }
+    },
+    {
+      "case": "jdk-heatmap-lock",
+      "flags": [
+        "--lock"
+      ],
+      "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/fixtures/jdk.jfr",
+      "source_sha256": "449ccf29fc8ab15741c8327b36312a81ba3db9a1a4b5453895a6298c143200f6",
+      "files": {
+        "java": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-semantic-jdk21-attempt2/jdk-heatmap-lock.java.heatmap.html",
+        "go": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-semantic-jdk21-attempt2/jdk-heatmap-lock.go.heatmap.html"
+      },
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 6,
+      "native_methods": 6,
+      "java_digest": "8aa0533f14b3256f3c57d9b480cb88b5e40dfb0f590c55fac70c188c595873c2",
+      "native_digest": "8aa0533f14b3256f3c57d9b480cb88b5e40dfb0f590c55fac70c188c595873c2",
+      "difference_count": 0,
+      "differences": [],
+      "timeline_equal": true,
+      "semantic_timeline": {
+        "startMs": 1794322289020,
+        "blocks": 90,
+        "samples": 77,
+        "stacks": 1,
+        "digest": "e04cd6fb2c675164fa5b2dcb1403c597577f1a3d5923a6f280c830b3119a9a75"
+      }
+    },
+    {
+      "case": "jdk-heatmap-wall",
+      "flags": [
+        "--wall"
+      ],
+      "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/fixtures/jdk.jfr",
+      "source_sha256": "449ccf29fc8ab15741c8327b36312a81ba3db9a1a4b5453895a6298c143200f6",
+      "files": {
+        "java": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-semantic-jdk21-attempt2/jdk-heatmap-wall.java.heatmap.html",
+        "go": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-semantic-jdk21-attempt2/jdk-heatmap-wall.go.heatmap.html"
+      },
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 99,
+      "native_methods": 99,
+      "java_digest": "bdb526c01188bc302a37051fc618c39e34c4b5b05cb7eb5f41ee423774f9daab",
+      "native_digest": "bdb526c01188bc302a37051fc618c39e34c4b5b05cb7eb5f41ee423774f9daab",
+      "difference_count": 0,
+      "differences": [],
+      "timeline_equal": true,
+      "semantic_timeline": {
+        "startMs": 1794322288875,
+        "blocks": 100,
+        "samples": 2335,
+        "stacks": 10,
+        "digest": "fb36278a0d405ef9b586e3cd8c95a4517adc0903091ac3eb0465bd967e9f8577"
+      }
+    },
+    {
+      "case": "ap41-heatmap-cpu",
+      "flags": [
+        "--cpu"
+      ],
+      "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/fixtures/ap41.jfr",
+      "source_sha256": "d1e26c9ac284212f6ab36f25f6ccbbe0a60876f287159f8aaf9fb3da51150559",
+      "files": {
+        "java": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/ap-heatmap/java.html",
+        "go": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/ap-heatmap/go.html"
+      },
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 756,
+      "native_methods": 756,
+      "java_digest": "83c31fd0993271e6df13eb7c40873229b9ca8e74e641ec57d355fbed56eed4ab",
+      "native_digest": "83c31fd0993271e6df13eb7c40873229b9ca8e74e641ec57d355fbed56eed4ab",
+      "difference_count": 0,
+      "differences": [],
+      "timeline_equal": true,
+      "semantic_timeline": {
+        "startMs": 1794322293579,
+        "blocks": 101,
+        "samples": 5488,
+        "stacks": 246,
+        "digest": "87d69b7b4f7d72cb5d5f7bcc49c879d32252154f2d6abfbb20115ab037f5c1ce"
+      }
+    },
+    {
+      "case": "jdk-heatmap-cpu",
+      "flags": [
+        "--cpu"
+      ],
+      "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/fixtures/jdk.jfr",
+      "source_sha256": "449ccf29fc8ab15741c8327b36312a81ba3db9a1a4b5453895a6298c143200f6",
+      "files": {
+        "java": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/jdk-heatmap-cpu/java.html",
+        "go": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/jdk-heatmap-cpu/go.html"
+      },
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 0,
+      "native_methods": 0,
+      "java_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "native_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "difference_count": 0,
+      "differences": [],
+      "timeline_equal": true,
+      "semantic_timeline": {
+        "startMs": 0,
+        "blocks": 0,
+        "samples": 0,
+        "stacks": 0,
+        "digest": "2e1cfa82b035c26cbbbdae632cea070514eb8b773f616aaeaf668e2f0be8f10d"
+      }
+    }
+  ],
+  "reference_order_thread_probes": [
+    {
+      "case": "probe-order",
+      "flags": [
+        "--cpu"
+      ],
+      "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tests/fixtures/heatmap-order.jfr",
+      "source_sha256": "7d76e390ab31bdd033bd2394446fbc9b62c80fde803a11a3def0ff956c58c771",
+      "files": {
+        "java": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/probe-order/java.html",
+        "go": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/probe-order/go.html"
+      },
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 11,
+      "native_methods": 11,
+      "java_digest": "0dbe3f1a5a7078bf2feea3134577e3e8bc6dfb570ef2049767ddc7125fd73a2f",
+      "native_digest": "0dbe3f1a5a7078bf2feea3134577e3e8bc6dfb570ef2049767ddc7125fd73a2f",
+      "difference_count": 0,
+      "differences": [],
+      "timeline_equal": true,
+      "semantic_timeline": {
+        "startMs": 1700000000000,
+        "blocks": 101,
+        "samples": 10,
+        "stacks": 8,
+        "digest": "1c50876bc2b4eb696200f452f40ea9902971f93b7709381dcf7c37527520e446"
+      }
+    },
+    {
+      "case": "probe-start",
+      "flags": [
+        "--cpu"
+      ],
+      "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tests/fixtures/heatmap-start.jfr",
+      "source_sha256": "8e0b41fe2ecb579702809a6c3eb64fa220bdcf8668050fb308c683bf99fb6511",
+      "files": {
+        "java": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/probe-start/java.html",
+        "go": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/probe-start/go.html"
+      },
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 4,
+      "native_methods": 4,
+      "java_digest": "bc9d2cfcd9de84e75c62f97c9405e6110446211cbb0845285522e97b9399bf59",
+      "native_digest": "bc9d2cfcd9de84e75c62f97c9405e6110446211cbb0845285522e97b9399bf59",
+      "difference_count": 0,
+      "differences": [],
+      "timeline_equal": true,
+      "semantic_timeline": {
+        "startMs": 1700000000000,
+        "blocks": 1,
+        "samples": 5,
+        "stacks": 2,
+        "digest": "f035175670bad287587b4586ab6597dbbd12a77d1a54d45d146e46a06601eecf"
+      }
+    },
+    {
+      "case": "probe-cpu",
+      "flags": [
+        "--cpu"
+      ],
+      "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tests/fixtures/mixed.jfr",
+      "source_sha256": "734617f892a58761c79fffdb0e379c1899b2ca46c18eeec5f94d74720586274f",
+      "files": {
+        "java": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/probe-cpu/java.html",
+        "go": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/probe-cpu/go.html"
+      },
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 5,
+      "native_methods": 5,
+      "java_digest": "1020d3b81191ad43fa68d3b3b3b8079648276598de42aae3616445bbf10ff1d9",
+      "native_digest": "1020d3b81191ad43fa68d3b3b3b8079648276598de42aae3616445bbf10ff1d9",
+      "difference_count": 0,
+      "differences": [],
+      "timeline_equal": true,
+      "semantic_timeline": {
+        "startMs": 1700000000000,
+        "blocks": 51,
+        "samples": 6,
+        "stacks": 4,
+        "digest": "5f35469f8e1c62345889d489a03aed2cae94e4028a2baeb9c3b67c8dc7cc63e3"
+      }
+    },
+    {
+      "case": "probe-cpu-threads",
+      "flags": [
+        "--cpu",
+        "--threads"
+      ],
+      "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tests/fixtures/mixed.jfr",
+      "source_sha256": "734617f892a58761c79fffdb0e379c1899b2ca46c18eeec5f94d74720586274f",
+      "files": {
+        "java": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/probe-cpu-threads/java.html",
+        "go": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/probe-cpu-threads/go.html"
+      },
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 7,
+      "native_methods": 7,
+      "java_digest": "ce3a6b409d98d234fb51f6d219b34306e047cc518a6f30459c7aa36305e6db75",
+      "native_digest": "ce3a6b409d98d234fb51f6d219b34306e047cc518a6f30459c7aa36305e6db75",
+      "difference_count": 0,
+      "differences": [],
+      "timeline_equal": true,
+      "semantic_timeline": {
+        "startMs": 1700000000000,
+        "blocks": 51,
+        "samples": 6,
+        "stacks": 4,
+        "digest": "4fcf1cf44bc4a959c3823a87da5dcf378029bae5d84cb22580f71b87c153c8a8"
+      }
+    },
+    {
+      "case": "probe-alloc",
+      "flags": [
+        "--alloc"
+      ],
+      "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tests/fixtures/mixed.jfr",
+      "source_sha256": "734617f892a58761c79fffdb0e379c1899b2ca46c18eeec5f94d74720586274f",
+      "files": {
+        "java": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/probe-alloc/java.html",
+        "go": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/probe-alloc/go.html"
+      },
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 10,
+      "native_methods": 10,
+      "java_digest": "c3ba3882a73ccc2ba06ac3887be9b859443d58d268fd9803c89d23a376666d60",
+      "native_digest": "c3ba3882a73ccc2ba06ac3887be9b859443d58d268fd9803c89d23a376666d60",
+      "difference_count": 0,
+      "differences": [],
+      "timeline_equal": true,
+      "semantic_timeline": {
+        "startMs": 1700000000000,
+        "blocks": 51,
+        "samples": 6,
+        "stacks": 6,
+        "digest": "0b50e0f34357790031e5fd86fd3504f8d4e612aae144ed30aafa844b218c36bd"
+      }
+    },
+    {
+      "case": "probe-alloc-threads",
+      "flags": [
+        "--alloc",
+        "--threads"
+      ],
+      "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tests/fixtures/mixed.jfr",
+      "source_sha256": "734617f892a58761c79fffdb0e379c1899b2ca46c18eeec5f94d74720586274f",
+      "files": {
+        "java": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/probe-alloc-threads/java.html",
+        "go": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/probe-alloc-threads/go.html"
+      },
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 12,
+      "native_methods": 12,
+      "java_digest": "8fbccd1772d6980119a888b04ff09ffced16e24f77ca75afe7d1f57f0e75f839",
+      "native_digest": "8fbccd1772d6980119a888b04ff09ffced16e24f77ca75afe7d1f57f0e75f839",
+      "difference_count": 0,
+      "differences": [],
+      "timeline_equal": true,
+      "semantic_timeline": {
+        "startMs": 1700000000000,
+        "blocks": 51,
+        "samples": 6,
+        "stacks": 6,
+        "digest": "ba01cafc0fdab9b908ce6fc92d448a96ce1d5eae02ac860424f02ae8644a8bc3"
+      }
+    },
+    {
+      "case": "probe-lock",
+      "flags": [
+        "--lock"
+      ],
+      "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tests/fixtures/mixed.jfr",
+      "source_sha256": "734617f892a58761c79fffdb0e379c1899b2ca46c18eeec5f94d74720586274f",
+      "files": {
+        "java": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/probe-lock/java.html",
+        "go": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/probe-lock/go.html"
+      },
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 10,
+      "native_methods": 10,
+      "java_digest": "5aedbb8e69ae277da5ff47679c85fb2c6a0712964814062d7830ec1e83936e66",
+      "native_digest": "5aedbb8e69ae277da5ff47679c85fb2c6a0712964814062d7830ec1e83936e66",
+      "difference_count": 0,
+      "differences": [],
+      "timeline_equal": true,
+      "semantic_timeline": {
+        "startMs": 1700000000000,
+        "blocks": 51,
+        "samples": 4,
+        "stacks": 4,
+        "digest": "77055c0898469c7922705068debde41ca1e9df44ef7e5676faf2b55339c7ab5d"
+      }
+    },
+    {
+      "case": "probe-lock-threads",
+      "flags": [
+        "--lock",
+        "--threads"
+      ],
+      "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tests/fixtures/mixed.jfr",
+      "source_sha256": "734617f892a58761c79fffdb0e379c1899b2ca46c18eeec5f94d74720586274f",
+      "files": {
+        "java": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/probe-lock-threads/java.html",
+        "go": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/probe-lock-threads/go.html"
+      },
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 12,
+      "native_methods": 12,
+      "java_digest": "d839a27e3eb8e653177388386496f8baa0bc44ccb16c34678eec66c5a93d09f1",
+      "native_digest": "d839a27e3eb8e653177388386496f8baa0bc44ccb16c34678eec66c5a93d09f1",
+      "difference_count": 0,
+      "differences": [],
+      "timeline_equal": true,
+      "semantic_timeline": {
+        "startMs": 1700000000000,
+        "blocks": 51,
+        "samples": 4,
+        "stacks": 4,
+        "digest": "ce2ae8cb2d8f7c4f9cf10ef1fda537f548c2a0da9d388a47bd0c811b441c9d33"
+      }
+    },
+    {
+      "case": "probe-span-request",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "request"
+      ],
+      "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "source_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "files": {
+        "java": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/probe-span-request/java.html",
+        "go": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/probe-span-request/go.html"
+      },
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 18,
+      "native_methods": 18,
+      "java_digest": "5b0d39bc969feb8abebc970f0a8d515f6904158b24326b597075b3c9d93ace77",
+      "native_digest": "5b0d39bc969feb8abebc970f0a8d515f6904158b24326b597075b3c9d93ace77",
+      "difference_count": 0,
+      "differences": [],
+      "timeline_equal": true,
+      "semantic_timeline": {
+        "startMs": 1794479627348,
+        "blocks": 7,
+        "samples": 129,
+        "stacks": 7,
+        "digest": "9255267af0475e1d8a2ffcb3d766c4a45cff85057da8e68167be81ece3f0c35b"
+      }
+    }
+  ],
+  "weighted_wall_first_time_probes": [
+    {
+      "case": "wall45-wall",
+      "flags": [
+        "--wall"
+      ],
+      "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tests/fixtures/heatmap-wall45.jfr",
+      "source_sha256": "46f3ee6f6b18ca976bd65c4f227a57f795ef0457e70bfbbcd0e96f122ed6ae58",
+      "files": {
+        "java": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/wall45-wall/java.html",
+        "go": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/wall45-wall/go.html"
+      },
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 3,
+      "native_methods": 3,
+      "java_digest": "8a221886287eb1277c100455ec4f75e0d2e725d9aaee757dafaebcf5436e0e10",
+      "native_digest": "8a221886287eb1277c100455ec4f75e0d2e725d9aaee757dafaebcf5436e0e10",
+      "difference_count": 0,
+      "differences": [],
+      "timeline_equal": true,
+      "semantic_timeline": {
+        "startMs": 1699999999981,
+        "blocks": 9,
+        "samples": 6,
+        "stacks": 2,
+        "digest": "0d8f1761b4020599a24250875cdd78a8ffa4b894cb4efc0c2a81d6de22a5f554"
+      }
+    },
+    {
+      "case": "wall45-threaded",
+      "flags": [
+        "--wall",
+        "--threads"
+      ],
+      "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tests/fixtures/heatmap-wall45.jfr",
+      "source_sha256": "46f3ee6f6b18ca976bd65c4f227a57f795ef0457e70bfbbcd0e96f122ed6ae58",
+      "files": {
+        "java": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/wall45-threaded/java.html",
+        "go": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/wall45-threaded/go.html"
+      },
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 5,
+      "native_methods": 5,
+      "java_digest": "7da7398af85a3c94b7f40f0efe2cb94a4cd9c1521df74f6d34daab1c2f9b44e5",
+      "native_digest": "7da7398af85a3c94b7f40f0efe2cb94a4cd9c1521df74f6d34daab1c2f9b44e5",
+      "difference_count": 0,
+      "differences": [],
+      "timeline_equal": true,
+      "semantic_timeline": {
+        "startMs": 1699999999981,
+        "blocks": 9,
+        "samples": 6,
+        "stacks": 2,
+        "digest": "23a22e8a52bffb31e7d8b00e77ca6d9315381189f02b6a7afc36f78156067f0b"
+      }
+    },
+    {
+      "case": "wall45-filter",
+      "flags": [
+        "--wall",
+        "--include",
+        "demo/Worker.*"
+      ],
+      "source": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tests/fixtures/heatmap-wall45.jfr",
+      "source_sha256": "46f3ee6f6b18ca976bd65c4f227a57f795ef0457e70bfbbcd0e96f122ed6ae58",
+      "files": {
+        "java": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/wall45-filter/java.html",
+        "go": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-ui-jdk21/heatmap-extra/wall45-filter/go.html"
+      },
+      "same_used_method_IDs_RGB": true,
+      "java_methods": 2,
+      "native_methods": 2,
+      "java_digest": "6c6ff714fd41accfdc476768fb193a24bd370e3d1fd4fe9a074036a4fc199e04",
+      "native_digest": "6c6ff714fd41accfdc476768fb193a24bd370e3d1fd4fe9a074036a4fc199e04",
+      "difference_count": 0,
+      "differences": [],
+      "timeline_equal": true,
+      "semantic_timeline": {
+        "startMs": 1700000000001,
+        "blocks": 8,
+        "samples": 4,
+        "stacks": 1,
+        "digest": "d8def9900715ace017643bdb99f553c1b914913f9184d98255521e1c594fc702"
+      }
+    }
+  ],
+  "exact_comparisons": 22
+}

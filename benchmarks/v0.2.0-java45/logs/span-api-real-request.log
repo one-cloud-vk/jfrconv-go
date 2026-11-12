@@ -1,0 +1,2 @@
+span-api45.jfr x1: RSS Java 42.78 MiB vs Go 6.02 MiB (85.9% lower); p50 0.0694s vs 0.0047s; p95 0.0721s vs 0.0051s
+/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/performance-final/span-api-real-request/benchmark.json

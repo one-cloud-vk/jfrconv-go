@@ -95,7 +95,7 @@ func threadName(c *jfr.Chunk, id uint64) string {
 	if strings.HasPrefix(name, "[tid=") {
 		return name
 	}
-	if name != "" {
+	if name != "" || c.HasThread(id) {
 		return "[" + name + " tid=" + strconv.FormatUint(id, 10) + "]"
 	}
 	return "[tid=" + strconv.FormatUint(id, 10) + "]"
@@ -219,11 +219,47 @@ type pathResolver struct {
 	classification []nameKind
 }
 
+func (r *pathResolver) includeStack(c *jfr.Chunk, e *jfr.Event, o Options, classID uint64) bool {
+	included := o.Include == nil
+	check := func(name string) bool {
+		if o.Exclude != nil && o.Exclude.MatchString(name) {
+			return false
+		}
+		if o.Include != nil && o.Include.MatchString(name) {
+			included = true
+		}
+		return true
+	}
+	if o.Threads && !check(threadName(c, e.TID)) {
+		return false
+	}
+	if classID != 0 && !check(className(c, classID, o)) {
+		return false
+	}
+	stack := c.Stack(e.StackID)
+	for i := 0; i < stack.Len(); i++ {
+		f := stack.At(i)
+		if !check(cachedName(c, f.Method, f.Kind, o, r.names)) {
+			return false
+		}
+	}
+	return included
+}
+
 func (r *pathResolver) resolve(c *jfr.Chunk, e *jfr.Event, o Options, p *profile, format string) (cachedPath, bool) {
 	flame := format != "pprof" && format != "pb.gz" && format != "otlp"
 	stack := c.Stack(e.StackID)
-	if flame && e.MethodID == 0 && stack.Len() == 0 && !c.HasStack(e.StackID) {
+	if flame && stack.Len() == 0 && !c.HasStack(e.StackID) {
 		return cachedPath{}, false
+	}
+	if !flame && (o.Include != nil || o.Exclude != nil) {
+		classID := e.ClassID
+		if format == "otlp" {
+			classID = 0
+		}
+		if !r.includeStack(c, e, o, classID) {
+			return cachedPath{}, false
+		}
 	}
 	defer func() {
 		clear(r.descriptions)
@@ -231,10 +267,10 @@ func (r *pathResolver) resolve(c *jfr.Chunk, e *jfr.Event, o Options, p *profile
 		clear(r.classification)
 		r.classification = r.classification[:0]
 	}()
-	if o.Threads {
+	if o.Threads && format != "otlp" && (flame || e.TID != 0) {
 		r.descriptions = append(r.descriptions, description{Name: threadName(c, e.TID), Kind: 3, Role: 1})
 	}
-	if o.Classify {
+	if o.Classify && format != "otlp" && (flame || c.HasStack(e.StackID)) {
 		for i := 0; i < stack.Len(); i++ {
 			f := stack.At(i)
 			r.classification = append(r.classification, nameKind{cachedName(c, f.Method, f.Kind, o, r.names), f.Kind})
@@ -264,9 +300,6 @@ func (r *pathResolver) resolve(c *jfr.Chunk, e *jfr.Event, o Options, p *profile
 		}
 		r.descriptions = append(r.descriptions, description{Name: className(c, e.ClassID, o), Kind: kind})
 	}
-	if e.MethodID != 0 {
-		r.descriptions = append(r.descriptions, description{Name: cachedName(c, e.MethodID, 1, o, r.names), Kind: 1})
-	}
 	if flame {
 		included := o.Include == nil
 		for _, d := range r.descriptions {
@@ -289,7 +322,7 @@ func (r *pathResolver) resolve(c *jfr.Chunk, e *jfr.Event, o Options, p *profile
 	if flame {
 		ids = layoutPath(ids, o, p)
 	}
-	return p.path(ids, true), true
+	return p.path(ids, format != "otlp"), true
 }
 
 func transformPath(ids []uint32, o Options, p *profile) ([]uint32, bool) {

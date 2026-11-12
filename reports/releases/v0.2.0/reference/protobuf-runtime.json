@@ -1,0 +1,8 @@
+{
+  "artifact": "com.google.protobuf:protobuf-java:4.31.1",
+  "source": "https://repo.maven.apache.org/maven2/com/google/protobuf/protobuf-java/4.31.1/protobuf-java-4.31.1.jar",
+  "sha1_matches_MavenCentral": "1828b20315b63d5f71b3c61b094494a8f1acdc5a",
+  "sha256": "d60dfe7c68a0d38a248cca96924f289dc7e1966a887ee7cae397701af08575ae",
+  "bytes": 1873183,
+  "purpose": "Exact runtime required by pinned4.5 generated test classes; test dependency only, no native Go production dependency."
+}

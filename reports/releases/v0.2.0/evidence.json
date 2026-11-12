@@ -1,0 +1,98 @@
+{
+  "release": "v0.2.0",
+  "compatibility_target": "async-profiler v4.5",
+  "upstream_commit": "11aaea310cb75843f0e7532365d8cedc8d0e14c8",
+  "native_binary_sha256": "a9d7e8fc1fb440157df5f56ae34029e78cdf5b79005bc38d7a9406da4df1feb5",
+  "java_jar_sha256": "ded43c350f75766b82570ac297c9dd3c3efd69e73de26474615cf2df90e1fc94",
+  "source_freeze_sha256": "680a235d0231be4c6c001aea6b633ece193b19893f7700f89128e7b627147897",
+  "build_source_freeze_sha256": "73968c9525ecf8895d3344f29fed525aa4445d1a23487bc6ff6920c0ff88f5d8",
+  "source_files": 76,
+  "source_files_match_delivery": true,
+  "native_source_unchanged_after_build": true,
+  "helper_only_amendment": "helper-amendment.json",
+  "macos": {
+    "native_tests_passed": 86,
+    "native_tests_skipped": 0,
+    "format_tests_vet_build_python_codecs": true,
+    "python_codec_tests_passed": 6,
+    "report": "macos/checks.json"
+  },
+  "semantic": {
+    "passed": 81,
+    "failures": 0,
+    "pending": 0,
+    "real_recordings": 3,
+    "report": "validation.json"
+  },
+  "ui": {
+    "page_pairs": 24,
+    "flamegraph_pairs": 21,
+    "static_shells_identical": 21,
+    "renderer": [
+      {
+        "dpr": 1,
+        "flamegraph_pairs": 21,
+        "phases": 357,
+        "assertions": 882,
+        "all_phases_identical": true
+      },
+      {
+        "dpr": 2,
+        "flamegraph_pairs": 21,
+        "phases": 357,
+        "assertions": 882,
+        "all_phases_identical": true
+      }
+    ],
+    "heatmap_exact_comparisons": 22,
+    "heatmap_base_modes": 10,
+    "heatmap_thread_order_span_cases": 9,
+    "heatmap_weighted_wall_first_time_cases": 3,
+    "report": "ui/heatmap-colors.json",
+    "scope": "Original4.5 JavaScript, deterministic RNG and DOM/canvas mocks; not a real-browser pixel/layout test. Heatmap corpus entries are seeded only; exact heatmap IDs/RGB/timelines use separate decoders."
+  },
+  "unicode": {
+    "same_final_binary": true,
+    "real_jni_cases_passed": 6,
+    "java_utf8_vectors": 16,
+    "report": "official-span/unicode.json"
+  },
+  "attempts": {
+    "initial_semantic": "attempts/missing-wall-setting/validation.json",
+    "initial_ui_host": "attempts/renderer-missing-dom/driver.log",
+    "explanation": "Initial pristineJava4.5 wall heatmap failed before comparison because legacy synthetic fixture omitted ActiveSetting. Final validator uses shipped valid4.5 weighted wall fixture. Original renderer host lacked new4.5 DOM controls; only host APIs changed, all original assertions retained and four newcontrol assertions added. No native production/test source changed."
+  },
+  "reports_note": "Compact evidence only: generated HTML, seeded pages, binaries and recording duplicates are intentionally not copied. Original execution paths/commands are retained in reports. Work-driver snapshots record actual staged execution; shipped tools accept ordinary user-supplied inputs. Public/Linux/performance evidence is packaged separately.",
+  "official_api": {
+    "final_binary_comparisons_passed": 60,
+    "official_span_cases": 21,
+    "unicode_tag_modes": 6,
+    "unicode_formats_per_case": 6,
+    "unicode_comparisons": 36,
+    "method_trace_goldens": 3,
+    "report": "official-span/final-oracles.json"
+  },
+  "linux": {
+    "native_tests_passed": 84,
+    "native_tests_skipped": 2,
+    "python_codec_tests_passed": 6,
+    "published_cases_passed": 27,
+    "published_cases_skipped": 0,
+    "actual_span_api_differentials_passed": 10,
+    "strict_cgroup_bytes": 67108864,
+    "kernel_memory_peak_bytes": 16977920,
+    "oom_events": 0,
+    "report": "linux/summary.json",
+    "metric": "kernel charged process-tree/cache memory, not process RSS",
+    "amended_helpers_executed_on_linux": false
+  },
+  "public": {
+    "pinned_declared_scope": 27,
+    "macos_passed": 19,
+    "macos_linux_only_skips": 8,
+    "linux_passed": 27,
+    "linux_skipped": 0,
+    "native_latency_supplement_passed": true,
+    "report": "public/summary.json"
+  }
+}

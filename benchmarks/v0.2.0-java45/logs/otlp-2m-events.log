@@ -1,0 +1,2 @@
+2000000-samples.jfr x1: RSS Java 181.09 MiB vs Go 14.44 MiB (92.0% lower); p50 0.1817s vs 0.8931s; p95 0.2367s vs 1.0400s
+/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/performance-final/otlp-2m-events/benchmark.json

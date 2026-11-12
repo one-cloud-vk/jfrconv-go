@@ -123,6 +123,48 @@ func TestHeatmapReferenceMatchesRecordedJavaIDsAndRGB(t *testing.T) {
 	}
 }
 
+func TestHeatmap45WeightedWallAndFirstOccupiedBlock(t *testing.T) {
+	o := DefaultOptions()
+	o.Wall = true
+	o.TempDir = t.TempDir()
+	var output bytes.Buffer
+	stats, err := Run("../../tests/fixtures/heatmap-wall45.jfr", &output, "heatmap", o)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if stats.Samples != 6 || !strings.Contains(output.String(), "1699999999981") {
+		t.Fatalf("lost wall multiplicity or shifted the first time block: %+v", stats)
+	}
+	node, err := exec.LookPath("node")
+	if err != nil {
+		t.Skip("original JavaScript timeline decoder requires Node")
+	}
+	file := filepath.Join(t.TempDir(), "wall.html")
+	if err = os.WriteFile(file, output.Bytes(), 0600); err != nil {
+		t.Fatal(err)
+	}
+	decoded, err := exec.Command(node, "../../tools/heatmap_decode.js", file).CombinedOutput()
+	if err != nil {
+		t.Fatalf("timeline decoder: %v\n%s", err, decoded)
+	}
+	golden, err := os.ReadFile("../../tests/fixtures/heatmap-wall45.timeline.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var actual, expected map[string]any
+	if err = json.Unmarshal(decoded, &actual); err != nil {
+		t.Fatal(err)
+	}
+	if err = json.Unmarshal(golden, &expected); err != nil {
+		t.Fatal(err)
+	}
+	actualJSON, _ := json.Marshal(actual)
+	expectedJSON, _ := json.Marshal(expected)
+	if !bytes.Equal(actualJSON, expectedJSON) {
+		t.Fatalf("Java 4.5 weighted timeline differs:\n%s\n%s", actualJSON, expectedJSON)
+	}
+}
+
 func TestHeatmapLZSpillPreservesEdgesAndCapsCaches(t *testing.T) {
 	l := newHeatLZ(t.TempDir())
 	defer l.close()

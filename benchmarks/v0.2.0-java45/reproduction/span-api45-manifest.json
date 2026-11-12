@@ -1,0 +1,214 @@
+{
+  "release": "async-profiler4.5",
+  "commit": "11aaea310cb75843f0e7532365d8cedc8d0e14c8",
+  "recording": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+  "sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+  "bytes": 135712,
+  "producer_source_sha256": "a928c33647f92c7dd8db75532a7444d4dd0fdb67037e7547046bd27299f19144",
+  "api_source_sha256": "9c3e24edc4e36a8d9896dbac26e279522dd8aaf46c3fa1059798407310a6910e",
+  "native_profiler_sha256": "7be27bacaa8a1ba05a0115f0cab460d6df5377a6101c7e71948f17e4cdaee42f",
+  "chunk_count": 3,
+  "chunks": [
+    {
+      "offset": 0,
+      "bytes": 91698,
+      "start_ns": 1794479627346455000,
+      "duration_ns": 778299000,
+      "start_ticks": 280182360997083,
+      "ticks_per_sec": 1000000000
+    },
+    {
+      "offset": 91698,
+      "bytes": 20720,
+      "start_ns": 1794479628124754000,
+      "duration_ns": 90549000,
+      "start_ticks": 280183139309583,
+      "ticks_per_sec": 1000000000
+    },
+    {
+      "offset": 112418,
+      "bytes": 23294,
+      "start_ns": 1794479628215303000,
+      "duration_ns": 160467000,
+      "start_ticks": 280183229859666,
+      "ticks_per_sec": 1000000000
+    }
+  ],
+  "span_count": 14,
+  "spans": [
+    {
+      "tag": "nested.inner",
+      "start": "2026-11-12T10:33:47.408164292Z",
+      "duration": "PT0.075018083S",
+      "thread": {
+        "osName": "main",
+        "osThreadId": 4611,
+        "javaName": "main",
+        "javaThreadId": 1
+      }
+    },
+    {
+      "tag": "request",
+      "start": "2026-11-12T10:33:47.348115958Z",
+      "duration": "PT0.135083292S",
+      "thread": {
+        "osName": "main",
+        "osThreadId": 4611,
+        "javaName": "main",
+        "javaThreadId": 1
+      }
+    },
+    {
+      "tag": "",
+      "start": "2026-11-12T10:33:47.483203875Z",
+      "duration": "PT0.070051667S",
+      "thread": {
+        "osName": "main",
+        "osThreadId": 4611,
+        "javaName": "main",
+        "javaThreadId": 1
+      }
+    },
+    {
+      "tag": null,
+      "start": "2026-11-12T10:33:47.553264417Z",
+      "duration": "PT0.070308791S",
+      "thread": {
+        "osName": "main",
+        "osThreadId": 4611,
+        "javaName": "main",
+        "javaThreadId": 1
+      }
+    },
+    {
+      "tag": "emit.explicit",
+      "start": "2026-11-12T10:33:47.623598958Z",
+      "duration": "PT0.089090125S",
+      "thread": {
+        "osName": "main",
+        "osThreadId": 4611,
+        "javaName": "main",
+        "javaThreadId": 1
+      }
+    },
+    {
+      "tag": "literal.*",
+      "start": "2026-11-12T10:33:47.623598958Z",
+      "duration": "PT0.089090125S",
+      "thread": {
+        "osName": "main",
+        "osThreadId": 4611,
+        "javaName": "main",
+        "javaThreadId": 1
+      }
+    },
+    {
+      "tag": "optional.busy",
+      "start": "2026-11-12T10:33:47.712727Z",
+      "duration": "PT0.090062833S",
+      "thread": {
+        "osName": "main",
+        "osThreadId": 4611,
+        "javaName": "main",
+        "javaThreadId": 1
+      }
+    },
+    {
+      "tag": "optional.explicit",
+      "start": "2026-11-12T10:33:47.802794417Z",
+      "duration": "PT0.090030541S",
+      "thread": {
+        "osName": "main",
+        "osThreadId": 4611,
+        "javaName": "main",
+        "javaThreadId": 1
+      }
+    },
+    {
+      "tag": "worker.a",
+      "start": "2026-11-12T10:33:47.894534792Z",
+      "duration": "PT0.140019666S",
+      "thread": {
+        "osName": "span-worker-a",
+        "osThreadId": 32771,
+        "javaName": "span-worker-a",
+        "javaThreadId": 21
+      }
+    },
+    {
+      "tag": "worker.b",
+      "start": "2026-11-12T10:33:47.894545625Z",
+      "duration": "PT0.150030583S",
+      "thread": {
+        "osName": "span-worker-b",
+        "osThreadId": 33027,
+        "javaName": "span-worker-b",
+        "javaThreadId": 22
+      }
+    },
+    {
+      "tag": "cross-chunk",
+      "start": "2026-11-12T10:33:48.044602625Z",
+      "duration": "PT0.250946583S",
+      "thread": {
+        "osName": "main",
+        "osThreadId": 4611,
+        "javaName": "main",
+        "javaThreadId": 1
+      }
+    },
+    {
+      "tag": "boundary.left",
+      "start": "2026-11-12T10:33:48.295559417Z",
+      "duration": "PT0.040009375S",
+      "thread": {
+        "osName": "main",
+        "osThreadId": 4611,
+        "javaName": "main",
+        "javaThreadId": 1
+      }
+    },
+    {
+      "tag": "zero-duration",
+      "start": "2026-11-12T10:33:48.335572417Z",
+      "duration": "PT0S",
+      "thread": {
+        "osName": "main",
+        "osThreadId": 4611,
+        "javaName": "main",
+        "javaThreadId": 1
+      }
+    },
+    {
+      "tag": "boundary.right",
+      "start": "2026-11-12T10:33:48.335576458Z",
+      "duration": "PT0.040008584S",
+      "thread": {
+        "osName": "main",
+        "osThreadId": 4611,
+        "javaName": "main",
+        "javaThreadId": 1
+      }
+    }
+  ],
+  "API_exercised": [
+    "start",
+    "end",
+    "endIfProfiled",
+    "emit",
+    "emitIfProfiled",
+    "Recording.timestamp",
+    "Recording.clockFrequency",
+    "Recording.state"
+  ],
+  "properties": [
+    "real official API/native writer, no synthetic JFR mutation",
+    "null and empty tag kept distinct",
+    "literal regex metacharacters in a tag",
+    "nested spans",
+    "two named worker threads",
+    "span crosses two forced real chunk boundaries",
+    "exact zero-duration emitted interval",
+    "before/after session spans suppressed"
+  ]
+}

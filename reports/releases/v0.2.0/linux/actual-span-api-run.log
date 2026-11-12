@@ -1,0 +1,5 @@
+{
+  "status": "PASS",
+  "cases": 10,
+  "api_span_tag": "duringSession"
+}

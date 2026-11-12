@@ -12,13 +12,15 @@ import (
 	"jfrconv-go/internal/convert"
 )
 
-const Help = `jfrconv-go — native converter targeting async-profiler 4.1
+const Help = `jfrconv-go — native converter targeting async-profiler 4.5
 Usage: jfrconv [options] <input> [<input>...] [<output>]
 
   -o, --output FORMAT   html (default), collapsed, pprof, pb.gz, otlp, heatmap
       --cpu / --wall    Select CPU / wall-clock samples
+      --cpu-time       Select JDK CPUTimeSample events
       --alloc / --live  Select allocation / live object events
       --lock           Select monitor-enter and thread-park events
+      --nativelock     Select native (pthread) lock contention events
       --nativemem      Select native malloc/free events
       --leak           Retain outstanding native allocations only
       --tail RATIO     Ignore last fraction of leak allocations (default 0.1)
@@ -51,9 +53,9 @@ staged outputs are published only after success. GOMEMLIMIT is soft and is
 not a kernel RSS cap. Linux cgroups/container limits provide hard accounting.
 
 Span extensions:
-      --latency MS     Same-thread spans whose duration is at least MS
-      --tag REGEX      Same-thread spans whose tag fully matches
-      --trace          Convert profiler.Span / MethodTrace durations
+      --latency TIME   Same-thread spans of at least TIME (ms default; s/ms/us/ns)
+      --tag STRING     Same-thread spans with this exact literal tag
+      --trace          Convert jdk.MethodTrace events
 
       --version        Print version and compatibility target
   -h, --help           Show this help
@@ -68,7 +70,7 @@ type Config struct {
 
 func Parse(args []string) (Config, error) {
 	c := Config{Options: convert.DefaultOptions()}
-	var alloc, live, lock, native, trace, literal bool
+	var alloc, live, lock, nativeLock, native, trace, literal bool
 	for i := 0; i < len(args); i++ {
 		arg := args[i]
 		if literal || !strings.HasPrefix(arg, "-") || arg == "-" {
@@ -99,12 +101,16 @@ func Parse(args []string) (Config, error) {
 			c.Options.CPU = true
 		case "--wall":
 			c.Options.Wall = true
+		case "--cpu-time":
+			c.Options.CPUTime = true
 		case "--alloc":
 			alloc = true
 		case "--live":
 			live = true
 		case "--lock":
 			lock = true
+		case "--nativelock":
+			nativeLock = true
 		case "--nativemem":
 			native = true
 		case "--trace":
@@ -137,6 +143,7 @@ func Parse(args []string) (Config, error) {
 			c.Output, err = value()
 		case "--title":
 			c.Options.Title, err = value()
+			c.Options.HasTitle = err == nil
 		case "--highlight":
 			c.Options.Highlight, err = value()
 			c.Options.HasHighlight = err == nil
@@ -145,17 +152,23 @@ func Parse(args []string) (Config, error) {
 			if err == nil {
 				c.Options.State = strings.Split(strings.ToUpper(text), ",")
 			}
-		case "-I", "--include", "-X", "--exclude", "--tag":
+		case "--tag":
+			c.Options.Tag, err = value()
+			c.Options.HasTag = err == nil
+		case "--latency":
+			text, err = value()
+			if err == nil {
+				c.Options.LatencyNS, err = parseDuration(text)
+			}
+		case "-I", "--include", "-X", "--exclude":
 			text, err = value()
 			if err == nil {
 				var expression *regexp.Regexp
 				expression, err = Pattern(text)
 				if arg == "-I" || arg == "--include" {
 					c.Options.Include = expression
-				} else if arg == "-X" || arg == "--exclude" {
-					c.Options.Exclude = expression
 				} else {
-					c.Options.Tag = expression
+					c.Options.Exclude = expression
 				}
 			}
 		case "--from", "--to":
@@ -190,7 +203,7 @@ func Parse(args []string) (Config, error) {
 				}
 				c.Options.Skip = int(n)
 			}
-		case "--minwidth", "--grain", "--tail", "--latency":
+		case "--minwidth", "--grain", "--tail":
 			text, err = value()
 			if err == nil {
 				var n float64
@@ -202,9 +215,6 @@ func Parse(args []string) (Config, error) {
 					c.Options.Grain = n
 				case "--tail":
 					c.Options.Tail = n
-				case "--latency":
-					c.Options.Latency = n
-					c.Options.HasLatency = err == nil
 				}
 			}
 		default:
@@ -217,6 +227,8 @@ func Parse(args []string) (Config, error) {
 	switch {
 	case native:
 		c.Options.Mode = convert.ModeNative
+	case nativeLock:
+		c.Options.Mode = convert.ModeNativeLock
 	case live:
 		c.Options.Mode = convert.ModeLive
 	case alloc:
@@ -232,10 +244,29 @@ func Parse(args []string) (Config, error) {
 	if c.Options.Leak && c.Options.Mode != convert.ModeNative {
 		return c, fmt.Errorf("--leak requires --nativemem")
 	}
-	if c.Options.Mode != convert.ModeExecution && (c.Options.CPU || c.Options.Wall || c.Options.State != nil) {
+	if c.Options.Mode != convert.ModeExecution && (c.Options.CPU || c.Options.CPUTime || c.Options.Wall || c.Options.State != nil) {
 		return c, fmt.Errorf("CPU/wall/thread-state filters require execution samples")
 	}
 	return c, nil
+}
+
+func parseDuration(text string) (int64, error) {
+	multiplier := int64(1_000_000)
+	for _, unit := range []struct {
+		suffix string
+		nanos  int64
+	}{{"ms", 1_000_000}, {"us", 1_000}, {"ns", 1}, {"s", 1_000_000_000}} {
+		if strings.HasSuffix(text, unit.suffix) {
+			text = strings.TrimSuffix(text, unit.suffix)
+			multiplier = unit.nanos
+			break
+		}
+	}
+	n, err := strconv.ParseInt(text, 10, 64)
+	if err != nil || n > math.MaxInt64/multiplier || n < math.MinInt64/multiplier {
+		return 0, fmt.Errorf("duration must be an integer that fits int64 nanoseconds")
+	}
+	return n * multiplier, nil
 }
 
 // Pattern uses full-frame matching, including RE2's Java-compatible \Q...\E.

@@ -1,0 +1,19 @@
+[
+  "docker",
+  "run",
+  "--rm",
+  "--network=none",
+  "--memory=64m",
+  "--memory-swap=64m",
+  "--mount",
+  "type=bind,src=/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/linux/bin/jfrconv,dst=/task-bin/jfrconv,readonly",
+  "--mount",
+  "type=bind,src=/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/linux/go-source/tests/fixtures/mixed.jfr,dst=/input/mixed.jfr,readonly",
+  "--mount",
+  "type=bind,src=/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/linux/cgroup-output,dst=/task-out",
+  "--entrypoint",
+  "/bin/bash",
+  "sha256:949f7645022e8cd5cd65eac4b342e7505c86b721b6338f8b677c6f2edc180262",
+  "-c",
+  "\nset -eu\nmkdir -p /task-out/tmp /task-out/results\nexport TMPDIR=/task-out/tmp TMP=/task-out/tmp TEMP=/task-out/tmp\nset -- --cpu --memory-stats --memory-limit 16M --max-rss 32M -o collapsed\nindex=0\nwhile test \"$index\" -lt 64; do set -- \"$@\" /input/mixed.jfr; index=$((index+1)); done\n/task-bin/jfrconv \"$@\" /task-out/results\nfor name in memory.max memory.peak memory.current memory.events memory.swap.max; do\n  if test -r \"/sys/fs/cgroup/$name\"; then\n    printf '%s\\n' \"[$name]\"\n    cat \"/sys/fs/cgroup/$name\"\n  fi\ndone > /task-out/kernel-memory.txt\n"
+]

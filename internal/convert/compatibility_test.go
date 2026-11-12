@@ -155,9 +155,8 @@ func TestOfflineJava41GoldenProfiles(t *testing.T) {
 func TestSpanTagAndClockAcrossChunks(t *testing.T) {
 	o := DefaultOptions()
 	o.CPU = true
-	o.HasLatency = true
-	o.Latency = 100
-	o.Tag = regexp.MustCompile("cross-request")
+	o.LatencyNS = 100_000_000
+	o.Tag, o.HasTag = "cross-request", true
 	actual := canonicalCollapsed(t, string(engineOutput(t, fixturePath("cross-span.jfr"), "collapsed", o)))
 	if want := map[string]uint64{"before/Main.run_[j];before/Worker.work_[j]": 1, "after/Main.run_[j];after/Worker.work_[j]": 1}; !reflect.DeepEqual(actual, want) {
 		t.Fatal(actual)
@@ -195,12 +194,14 @@ func TestNativeLeakChronologyKeepsOriginalChunkIdentity(t *testing.T) {
 		t.Fatal(actual)
 	}
 }
-func TestMethodTraceUsesMethodLeafAndEachChunkFrequency(t *testing.T) {
+func TestMethodTraceMatchesJava45RawTicksAndRecordedStack(t *testing.T) {
 	o := DefaultOptions()
 	o.Mode = ModeTrace
 	o.Total = true
 	actual := canonicalCollapsed(t, string(engineOutput(t, fixturePath("method-trace.jfr"), "collapsed", o)))
-	want := map[string]uint64{"demo/Main.run_[j];malloc;demo/Worker.work_[j]": 37500000, "demo/Worker.work_[j]": 12500000}
+	// Java 4.5 labels totals as nanoseconds but leaves trace durations in ticks.
+	// It does not append MethodTrace.method or recover a missing recorded stack.
+	want := map[string]uint64{"demo/Main.run_[j];malloc": 75000000}
 	if !reflect.DeepEqual(actual, want) {
 		t.Fatal(actual)
 	}
@@ -244,10 +245,13 @@ func TestEnginePreservesEmptySamplesInProtobufAndOmitsCollapsedRows(t *testing.T
 		chunk := parseWire(t, raw.b)
 		for _, raw := range chunk[2] {
 			sample := parseWire(t, raw.b)
-			values := packedWire(t, sample[3][0].b)
-			total += values[0]
-			if wireUint(t, sample, 2) == 0 {
-				empty += values[0]
+			if len(sample[5]) != 1 || len(sample[5][0].b)%8 != 0 || len(sample[4]) != 0 {
+				t.Fatal("unit-valued OTLP requires fixed64 timestamps and implicit ones", sample)
+			}
+			count := uint64(len(sample[5][0].b) / 8)
+			total += count
+			if wireUint(t, sample, 1) == 0 {
+				empty += count
 			}
 		}
 	}

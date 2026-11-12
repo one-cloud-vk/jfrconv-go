@@ -17,7 +17,7 @@ function section(from, to) {
 // Only the trusted, bundled upstream decoder is evaluated. Input HTML supplies
 // encoded data and a JSON string table, and its JavaScript is never executed.
 const decoder = Function(
-  'const zoomToGroupSize=[1,50,250];\n' +
+  'const localStorage={getItem:()=>null};const zoomToGroupSize=[1,50,250];\n' +
   section('class DataBuffer {', 'class HeatmapCollection extends') +
   section('function calculateMinMax(', 'function calculateInitialZoom(') +
   section('function methodName(', 'function readMethods(') +

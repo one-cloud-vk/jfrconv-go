@@ -16,17 +16,17 @@ func TestArgumentsPreserveSelectionAndSpanFilters(t *testing.T) {
 		t.Fatal(err)
 	}
 	o := c.Options
-	if !o.CPU || !o.Wall || !o.Threads || !o.Total || !o.Reverse || !o.Inverted || !o.Classify || !o.HasLatency || !o.HasHighlight || !o.Lines || !o.BCI || !o.Norm || !o.Dot || !o.Simple {
+	if !o.CPU || !o.Wall || !o.Threads || !o.Total || !o.Reverse || !o.Inverted || !o.Classify || o.LatencyNS < 0 || !o.HasHighlight || !o.Lines || !o.BCI || !o.Norm || !o.Dot || !o.Simple {
 		t.Fatalf("lost flags: %+v", o)
 	}
-	if o.From != -200 || o.To != 300 || o.Latency != 5 || o.Tail != .1 || o.Skip != 1 || o.Grain != 2 || o.MinWidth != .5 || o.Title != "A <b>B</b>" {
+	if o.From != -200 || o.To != 300 || o.LatencyNS != 5_000_000 || o.Tail != .1 || o.Skip != 1 || o.Grain != 2 || o.MinWidth != .5 || o.Title != "A <b>B</b>" {
 		t.Fatalf("lost values: %+v", o)
 	}
 	if len(o.State) != 2 || o.State[0] != "R" || o.State[1] != "S" || len(c.Files) != 2 || c.Files[0] != "-input.jfr" {
 		t.Fatalf("state/files: %+v", c)
 	}
-	if !o.Tag.MatchString("request-1") || o.Tag.MatchString("xrequest-1") {
-		t.Fatal("tag is not a whole-frame match")
+	if !o.HasTag || o.Tag != `\Qrequest-1\E` {
+		t.Fatal("tag must remain a literal string")
 	}
 	for _, args := range [][]string{{"--grain", "NaN"}, {"--tail", "2"}, {"--title"}, {"--memory-limit", "0"}, {"--max-rss", "1.5M"}, {"--skip", "-1"}, {"--leak"}, {"--alloc", "--cpu"}, {"--include", "(?=bad)"}} {
 		if _, err := Parse(args); err == nil {
@@ -36,6 +36,32 @@ func TestArgumentsPreserveSelectionAndSpanFilters(t *testing.T) {
 	c, err = Parse([]string{"--alloc", "--live", "--nativemem", "--leak"})
 	if err != nil || c.Options.Mode != convert.ModeNative {
 		t.Fatalf("mode priority: %+v %v", c, err)
+	}
+}
+
+func TestSpanDurationUnitsAndLiteralTags(t *testing.T) {
+	for text, want := range map[string]int64{"5": 5_000_000, "2s": 2_000_000_000, "3ms": 3_000_000, "4us": 4_000, "5ns": 5, "0": 0, "-1": -1_000_000} {
+		c, err := Parse([]string{"--latency", text, "--tag", "request[0].*"})
+		if err != nil || c.Options.LatencyNS != want || c.Options.Tag != "request[0].*" || !c.Options.HasTag {
+			t.Fatalf("%q: %+v %v", text, c.Options, err)
+		}
+	}
+	for _, text := range []string{"1.5", "1.5ms", "1m", "NaN", "9223372036854775807s"} {
+		if _, err := Parse([]string{"--latency", text}); err == nil {
+			t.Fatalf("accepted invalid duration %q", text)
+		}
+	}
+	c, err := Parse([]string{"--tag", ""})
+	if err != nil || !c.Options.HasTag || c.Options.Tag != "" || !c.Options.SpanFilter() {
+		t.Fatalf("lost empty literal tag: %+v %v", c.Options, err)
+	}
+	c, err = Parse([]string{"--cpu-time"})
+	if err != nil || !c.Options.CPUTime || c.Options.Mode != convert.ModeExecution {
+		t.Fatalf("lost cpu-time mode: %+v %v", c.Options, err)
+	}
+	c, err = Parse([]string{"--nativelock"})
+	if err != nil || c.Options.Mode != convert.ModeNativeLock {
+		t.Fatalf("lost native-lock mode: %+v %v", c.Options, err)
 	}
 }
 

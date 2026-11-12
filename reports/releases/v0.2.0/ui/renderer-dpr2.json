@@ -1,0 +1,4279 @@
+{
+  "description": "Actual generated4.5 flamegraph JavaScript executed with identical seeded Math.random and DOM/canvas mocks. Compares geometry, all draw calls, DOM updates and original event handlers; browser pixel/layout QA remains separate.",
+  "seed": 4321705,
+  "canvas_width": 1200,
+  "devicePixelRatio": 2,
+  "go_binary_sha256": "a9d7e8fc1fb440157df5f56ae34029e78cdf5b79005bc38d7a9406da4df1feb5",
+  "java_jar_sha256": "ded43c350f75766b82570ac297c9dd3c3efd69e73de26474615cf2df90e1fc94",
+  "cases": [
+    {
+      "case": "mixed-cpu",
+      "format": "html",
+      "files": {
+        "java": "mixed-cpu/java.html",
+        "go": "mixed-cpu/go.html"
+      },
+      "input_html_sha256": {
+        "java": "c9e878355dc5cf0e4773f9e4bc9907d4fa97e01d6ea5bc57e3c59876a258c1a9",
+        "go": "44186b59013916f2d88e56cc1348d8322942bd0cfa46e691757418379f5a8d8b"
+      },
+      "seeded": {
+        "java": "mixed-cpu/seeded/java.html",
+        "go": "mixed-cpu/seeded/go.html"
+      },
+      "checks_per_implementation": 21,
+      "java_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "go_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "phases": [
+        {
+          "phase": "initial",
+          "equal": true,
+          "java_draw_calls": 15,
+          "go_draw_calls": 15,
+          "java_digest": "c68d7ce6636a6b2a2875a3b17c862873f4316fc07f8387251323effaf60242c5",
+          "go_digest": "c68d7ce6636a6b2a2875a3b17c862873f4316fc07f8387251323effaf60242c5"
+        },
+        {
+          "phase": "hover",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "19fb84573dcd895db478e35cef62c0f53c4387a00b9b49dbc2ada2c7753036b2",
+          "go_digest": "19fb84573dcd895db478e35cef62c0f53c4387a00b9b49dbc2ada2c7753036b2"
+        },
+        {
+          "phase": "select-tooltip",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "86e58e99700ea79ffde1279c6645615fb5cc67bb2dd46b41f6a1e33605abd09a",
+          "go_digest": "86e58e99700ea79ffde1279c6645615fb5cc67bb2dd46b41f6a1e33605abd09a"
+        },
+        {
+          "phase": "zoom",
+          "equal": true,
+          "java_draw_calls": 10,
+          "go_draw_calls": 10,
+          "java_digest": "bc95c891bfc9dd4777f7eed04bbbeea1b2831c327f25a3737bd19855de5aedfd",
+          "go_digest": "bc95c891bfc9dd4777f7eed04bbbeea1b2831c327f25a3737bd19855de5aedfd"
+        },
+        {
+          "phase": "invert",
+          "equal": true,
+          "java_draw_calls": 15,
+          "go_draw_calls": 15,
+          "java_digest": "d629406855b4c1a95a5dfb2ead265e721a9e9075a24e40e3c964be8a999a79a0",
+          "go_digest": "d629406855b4c1a95a5dfb2ead265e721a9e9075a24e40e3c964be8a999a79a0"
+        },
+        {
+          "phase": "search-button",
+          "equal": true,
+          "java_draw_calls": 15,
+          "go_draw_calls": 15,
+          "java_digest": "60f4be5f9ae5fbbc2ca2dacd41e57235962853fb5779552f14d6722cfcfa6d7d",
+          "go_digest": "60f4be5f9ae5fbbc2ca2dacd41e57235962853fb5779552f14d6722cfcfa6d7d"
+        },
+        {
+          "phase": "next-match",
+          "equal": true,
+          "java_draw_calls": 10,
+          "go_draw_calls": 10,
+          "java_digest": "38db603d90d3edd6e466eb81034865aa088fd41ab8a656dfa05b4924d748f2b4",
+          "go_digest": "38db603d90d3edd6e466eb81034865aa088fd41ab8a656dfa05b4924d748f2b4"
+        },
+        {
+          "phase": "previous-match",
+          "equal": true,
+          "java_draw_calls": 10,
+          "go_draw_calls": 10,
+          "java_digest": "97c54186d7ae5f0bc3832b59a015e615360689a184106a990014ac250c56ceeb",
+          "go_digest": "97c54186d7ae5f0bc3832b59a015e615360689a184106a990014ac250c56ceeb"
+        },
+        {
+          "phase": "escape-clear",
+          "equal": true,
+          "java_draw_calls": 10,
+          "go_draw_calls": 10,
+          "java_digest": "f5172389879d283ac79e1c43da83d659dad61338e88c4e09da49f3e06c5dbb48",
+          "go_digest": "f5172389879d283ac79e1c43da83d659dad61338e88c4e09da49f3e06c5dbb48"
+        },
+        {
+          "phase": "ctrl-f",
+          "equal": true,
+          "java_draw_calls": 10,
+          "go_draw_calls": 10,
+          "java_digest": "e18e37737cc4e8052ad22ecac4ff4491baa50eeaa491ac6fd056e7b85f264309",
+          "go_digest": "e18e37737cc4e8052ad22ecac4ff4491baa50eeaa491ac6fd056e7b85f264309"
+        },
+        {
+          "phase": "reset-button",
+          "equal": true,
+          "java_draw_calls": 10,
+          "go_draw_calls": 10,
+          "java_digest": "aece88894b16a267a5c6a0205346083c06ebfcf0972541ff104bc3e2135bf1cd",
+          "go_digest": "aece88894b16a267a5c6a0205346083c06ebfcf0972541ff104bc3e2135bf1cd"
+        },
+        {
+          "phase": "search-cancel",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "46b156cf81b28079ecb75d9db545553c4b6280af5459b5ddc70af0265c93afb5",
+          "go_digest": "46b156cf81b28079ecb75d9db545553c4b6280af5459b5ddc70af0265c93afb5"
+        },
+        {
+          "phase": "mouseout",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "e6cdecce7e6d8fd0ca46bdbd231124e387191175801928ac50fa7bc6a70ec494",
+          "go_digest": "e6cdecce7e6d8fd0ca46bdbd231124e387191175801928ac50fa7bc6a70ec494"
+        },
+        {
+          "phase": "darkmode-button",
+          "equal": true,
+          "java_draw_calls": 10,
+          "go_draw_calls": 10,
+          "java_digest": "fddadee0faf0d87c5c15cbf7f178e0efadb8d0aad78f3a30e00637fafbac0472",
+          "go_digest": "fddadee0faf0d87c5c15cbf7f178e0efadb8d0aad78f3a30e00637fafbac0472"
+        },
+        {
+          "phase": "darkmode-key",
+          "equal": true,
+          "java_draw_calls": 10,
+          "go_draw_calls": 10,
+          "java_digest": "8bdb3deec8b21fe9f10713e0ecf1a7ff34937d45b39fa109818f0d1260f65be2",
+          "go_digest": "8bdb3deec8b21fe9f10713e0ecf1a7ff34937d45b39fa109818f0d1260f65be2"
+        },
+        {
+          "phase": "legend-show",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "d8fe8ba1b1db3660d4fad3cf4d0e76a50011cf13914df5ab77e5212123932a75",
+          "go_digest": "d8fe8ba1b1db3660d4fad3cf4d0e76a50011cf13914df5ab77e5212123932a75"
+        },
+        {
+          "phase": "legend-hide",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "9c73460ea3caad6088ce8dd5170ea3927d89db997a12de37334181f845a1b341",
+          "go_digest": "9c73460ea3caad6088ce8dd5170ea3927d89db997a12de37334181f845a1b341"
+        }
+      ],
+      "all_phases_identical": true
+    },
+    {
+      "case": "mixed-alloc",
+      "format": "html",
+      "files": {
+        "java": "mixed-alloc/java.html",
+        "go": "mixed-alloc/go.html"
+      },
+      "input_html_sha256": {
+        "java": "1ddb9d509b9408b60c7af29aaa9ed31a75ce44c64990ac50cc23640ce597aa29",
+        "go": "8b5207b5a80051ba77555f9705f7c82638d8a16ac8fe7ff0cdc756f29d84d9fa"
+      },
+      "seeded": {
+        "java": "mixed-alloc/seeded/java.html",
+        "go": "mixed-alloc/seeded/go.html"
+      },
+      "checks_per_implementation": 21,
+      "java_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "go_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "phases": [
+        {
+          "phase": "initial",
+          "equal": true,
+          "java_draw_calls": 19,
+          "go_draw_calls": 19,
+          "java_digest": "52569054d1252d6a549d0d9dbafdba73349402c6cce03bd734da096365df4cc0",
+          "go_digest": "52569054d1252d6a549d0d9dbafdba73349402c6cce03bd734da096365df4cc0"
+        },
+        {
+          "phase": "hover",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "1dda24748b6ec8266e25007119bd9d2c7e497eb402be3dd5ea91dd0b3c578f73",
+          "go_digest": "1dda24748b6ec8266e25007119bd9d2c7e497eb402be3dd5ea91dd0b3c578f73"
+        },
+        {
+          "phase": "select-tooltip",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "fe1fa8a990ec68b13c534e169bae890ad0fb12c2ae041088e62c38e3486b1d28",
+          "go_digest": "fe1fa8a990ec68b13c534e169bae890ad0fb12c2ae041088e62c38e3486b1d28"
+        },
+        {
+          "phase": "zoom",
+          "equal": true,
+          "java_draw_calls": 13,
+          "go_draw_calls": 13,
+          "java_digest": "6107a136ac9d8748188e614bbdfb5babed9c6c795bfb4b6e8f503207ddc5bafe",
+          "go_digest": "6107a136ac9d8748188e614bbdfb5babed9c6c795bfb4b6e8f503207ddc5bafe"
+        },
+        {
+          "phase": "invert",
+          "equal": true,
+          "java_draw_calls": 19,
+          "go_draw_calls": 19,
+          "java_digest": "9cf01eb861eb7a3bc420072901983c6c43675f582a3d42298e1f4dbee0f3f52d",
+          "go_digest": "9cf01eb861eb7a3bc420072901983c6c43675f582a3d42298e1f4dbee0f3f52d"
+        },
+        {
+          "phase": "search-button",
+          "equal": true,
+          "java_draw_calls": 19,
+          "go_draw_calls": 19,
+          "java_digest": "e3b7ee184c815635ab7b92961b3523feb785d3946a056db3c1248078fb6feffd",
+          "go_digest": "e3b7ee184c815635ab7b92961b3523feb785d3946a056db3c1248078fb6feffd"
+        },
+        {
+          "phase": "next-match",
+          "equal": true,
+          "java_draw_calls": 13,
+          "go_draw_calls": 13,
+          "java_digest": "c078b033b315aecb5f572a04721caa8012cdc08937d43a734d3a3a96283f1d81",
+          "go_digest": "c078b033b315aecb5f572a04721caa8012cdc08937d43a734d3a3a96283f1d81"
+        },
+        {
+          "phase": "previous-match",
+          "equal": true,
+          "java_draw_calls": 13,
+          "go_draw_calls": 13,
+          "java_digest": "d0a0b0f5e727311b6fc39f2b9c5b0fe1ee226118ce16dad9e7e7516d5db80e4d",
+          "go_digest": "d0a0b0f5e727311b6fc39f2b9c5b0fe1ee226118ce16dad9e7e7516d5db80e4d"
+        },
+        {
+          "phase": "escape-clear",
+          "equal": true,
+          "java_draw_calls": 13,
+          "go_draw_calls": 13,
+          "java_digest": "e3b8c3dd231b67ece9a2c4ea2f50fc8fae61ddf3f76acbcb55de44d25e58a26f",
+          "go_digest": "e3b8c3dd231b67ece9a2c4ea2f50fc8fae61ddf3f76acbcb55de44d25e58a26f"
+        },
+        {
+          "phase": "ctrl-f",
+          "equal": true,
+          "java_draw_calls": 13,
+          "go_draw_calls": 13,
+          "java_digest": "b13d6b751707e8d9a79217c1691f0f644657ebd1652d9569b0a80919d9b13fc6",
+          "go_digest": "b13d6b751707e8d9a79217c1691f0f644657ebd1652d9569b0a80919d9b13fc6"
+        },
+        {
+          "phase": "reset-button",
+          "equal": true,
+          "java_draw_calls": 13,
+          "go_draw_calls": 13,
+          "java_digest": "da29225286df12b7e47b501059cb7f514d6a1357d885bebf13c37d42e6163d15",
+          "go_digest": "da29225286df12b7e47b501059cb7f514d6a1357d885bebf13c37d42e6163d15"
+        },
+        {
+          "phase": "search-cancel",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "8e14539b2cd79efaf21dbe2c2d21ed543c764183a3371194fb8691df940a773a",
+          "go_digest": "8e14539b2cd79efaf21dbe2c2d21ed543c764183a3371194fb8691df940a773a"
+        },
+        {
+          "phase": "mouseout",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "e7cf29b359922e8ba150e328e64e8229a643304e63de371ecaf805b49ccc2c86",
+          "go_digest": "e7cf29b359922e8ba150e328e64e8229a643304e63de371ecaf805b49ccc2c86"
+        },
+        {
+          "phase": "darkmode-button",
+          "equal": true,
+          "java_draw_calls": 13,
+          "go_draw_calls": 13,
+          "java_digest": "6eb3b9dcbdaf3c82d02c6c1d83596c9ae008012de63afabc2fe2262f235a1fea",
+          "go_digest": "6eb3b9dcbdaf3c82d02c6c1d83596c9ae008012de63afabc2fe2262f235a1fea"
+        },
+        {
+          "phase": "darkmode-key",
+          "equal": true,
+          "java_draw_calls": 13,
+          "go_draw_calls": 13,
+          "java_digest": "cfb12f11d83b3203edaa8add7753f9a52240b4111b989c821b3a2ca177efbaff",
+          "go_digest": "cfb12f11d83b3203edaa8add7753f9a52240b4111b989c821b3a2ca177efbaff"
+        },
+        {
+          "phase": "legend-show",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "b3d7f52d48a2185be8c334e803c4d851200b8325456d565678bf14ced680a294",
+          "go_digest": "b3d7f52d48a2185be8c334e803c4d851200b8325456d565678bf14ced680a294"
+        },
+        {
+          "phase": "legend-hide",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "7abcac5d5f3f3b60daa6f5038df8521e2fe52fb758bcea861de04cd5afb92e70",
+          "go_digest": "7abcac5d5f3f3b60daa6f5038df8521e2fe52fb758bcea861de04cd5afb92e70"
+        }
+      ],
+      "all_phases_identical": true
+    },
+    {
+      "case": "mixed-reverse",
+      "format": "html",
+      "files": {
+        "java": "mixed-reverse/java.html",
+        "go": "mixed-reverse/go.html"
+      },
+      "input_html_sha256": {
+        "java": "4fb85b0a9aa61ab33fe831ea5e0202cc2434542ee10fff7881c3222e03313a01",
+        "go": "083ae9bcfc97202936bee1f4303c66833a51b55de6d7b5a91e1fdb89f50c10ea"
+      },
+      "seeded": {
+        "java": "mixed-reverse/seeded/java.html",
+        "go": "mixed-reverse/seeded/go.html"
+      },
+      "checks_per_implementation": 21,
+      "java_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "go_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "phases": [
+        {
+          "phase": "initial",
+          "equal": true,
+          "java_draw_calls": 17,
+          "go_draw_calls": 17,
+          "java_digest": "b18284cf09f3a06862d321917c83e06c9ef04dc205baece72dbfb32a55043e43",
+          "go_digest": "b18284cf09f3a06862d321917c83e06c9ef04dc205baece72dbfb32a55043e43"
+        },
+        {
+          "phase": "hover",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "9036aa138b8100e4d822e5a8602eab2b353472286c2e6ecedcba702ed5622781",
+          "go_digest": "9036aa138b8100e4d822e5a8602eab2b353472286c2e6ecedcba702ed5622781"
+        },
+        {
+          "phase": "select-tooltip",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "953e96926084715601df80c44c879fdb4d38e50a6c657ba96c28043413c39584",
+          "go_digest": "953e96926084715601df80c44c879fdb4d38e50a6c657ba96c28043413c39584"
+        },
+        {
+          "phase": "zoom",
+          "equal": true,
+          "java_draw_calls": 9,
+          "go_draw_calls": 9,
+          "java_digest": "723bfc2dc4ec4b3d2163057c505e3e0f78b2760131548e31fb911d1562a89e18",
+          "go_digest": "723bfc2dc4ec4b3d2163057c505e3e0f78b2760131548e31fb911d1562a89e18"
+        },
+        {
+          "phase": "invert",
+          "equal": true,
+          "java_draw_calls": 17,
+          "go_draw_calls": 17,
+          "java_digest": "313d744d4606a86c67084364991eff908fe63fa3686d22449d0744e797c83c89",
+          "go_digest": "313d744d4606a86c67084364991eff908fe63fa3686d22449d0744e797c83c89"
+        },
+        {
+          "phase": "search-button",
+          "equal": true,
+          "java_draw_calls": 17,
+          "go_draw_calls": 17,
+          "java_digest": "29192b29c068bcbcb3b3573903b736b7527322ef0765ca424c8aa87d90b7b05e",
+          "go_digest": "29192b29c068bcbcb3b3573903b736b7527322ef0765ca424c8aa87d90b7b05e"
+        },
+        {
+          "phase": "next-match",
+          "equal": true,
+          "java_draw_calls": 9,
+          "go_draw_calls": 9,
+          "java_digest": "1b8a2715cc3c0d94a8951d611e8ce00869ab562fdc1af2d4cebf98b0e68103f8",
+          "go_digest": "1b8a2715cc3c0d94a8951d611e8ce00869ab562fdc1af2d4cebf98b0e68103f8"
+        },
+        {
+          "phase": "previous-match",
+          "equal": true,
+          "java_draw_calls": 9,
+          "go_draw_calls": 9,
+          "java_digest": "55adc46736c0ce2cb4499bc6511b126da865a4a7200ee58c325f3a22bac5cc9d",
+          "go_digest": "55adc46736c0ce2cb4499bc6511b126da865a4a7200ee58c325f3a22bac5cc9d"
+        },
+        {
+          "phase": "escape-clear",
+          "equal": true,
+          "java_draw_calls": 9,
+          "go_draw_calls": 9,
+          "java_digest": "05d4a880a96590d8e3d946618d0e2c1fa454ee327fe8fca7ce7d59a61ed6c56f",
+          "go_digest": "05d4a880a96590d8e3d946618d0e2c1fa454ee327fe8fca7ce7d59a61ed6c56f"
+        },
+        {
+          "phase": "ctrl-f",
+          "equal": true,
+          "java_draw_calls": 9,
+          "go_draw_calls": 9,
+          "java_digest": "374da3deafdad5b401104fe3a9fa092a6bae5cfc73188347cfa8e51cb5808a5e",
+          "go_digest": "374da3deafdad5b401104fe3a9fa092a6bae5cfc73188347cfa8e51cb5808a5e"
+        },
+        {
+          "phase": "reset-button",
+          "equal": true,
+          "java_draw_calls": 9,
+          "go_draw_calls": 9,
+          "java_digest": "066e1ea05b72706a1be856d7d97be1f73fd455fb31041f9c1b62b5ac174f89b5",
+          "go_digest": "066e1ea05b72706a1be856d7d97be1f73fd455fb31041f9c1b62b5ac174f89b5"
+        },
+        {
+          "phase": "search-cancel",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "953dbcf30e02bc4a88c336e55419406bae463e93d3928a7b57dae4a03f1a7cef",
+          "go_digest": "953dbcf30e02bc4a88c336e55419406bae463e93d3928a7b57dae4a03f1a7cef"
+        },
+        {
+          "phase": "mouseout",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "fdd018df123b2450910990816d7355238aa78f3b21c0940192c43ae5d80a7f43",
+          "go_digest": "fdd018df123b2450910990816d7355238aa78f3b21c0940192c43ae5d80a7f43"
+        },
+        {
+          "phase": "darkmode-button",
+          "equal": true,
+          "java_draw_calls": 9,
+          "go_draw_calls": 9,
+          "java_digest": "b6a80c30cf0de982b3b1bab7ea695ef41a04e959282dc8bb9f74c549c58164e0",
+          "go_digest": "b6a80c30cf0de982b3b1bab7ea695ef41a04e959282dc8bb9f74c549c58164e0"
+        },
+        {
+          "phase": "darkmode-key",
+          "equal": true,
+          "java_draw_calls": 9,
+          "go_draw_calls": 9,
+          "java_digest": "22ae1c79bb59be9bff8bd3b21ef1b6faa052491cf4a8145303f74977f5d014c1",
+          "go_digest": "22ae1c79bb59be9bff8bd3b21ef1b6faa052491cf4a8145303f74977f5d014c1"
+        },
+        {
+          "phase": "legend-show",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "7ed88786984fe8b1f0bb664378bb1021b6e830fd5f671f66e800ea6993008b52",
+          "go_digest": "7ed88786984fe8b1f0bb664378bb1021b6e830fd5f671f66e800ea6993008b52"
+        },
+        {
+          "phase": "legend-hide",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "09b3d0c51754057c216ff426bc019f7028858735304b1323667fe8b78ef88fc2",
+          "go_digest": "09b3d0c51754057c216ff426bc019f7028858735304b1323667fe8b78ef88fc2"
+        }
+      ],
+      "all_phases_identical": true
+    },
+    {
+      "case": "mixed-heatmap",
+      "format": "heatmap",
+      "seeded": {
+        "java": "mixed-heatmap/seeded/java.html",
+        "go": "mixed-heatmap/seeded/go.html"
+      },
+      "renderer": "Native heatmap decoder covered separately; browser pixel/interaction check required."
+    },
+    {
+      "case": "ap-cpu",
+      "format": "html",
+      "files": {
+        "java": "ap-cpu/java.html",
+        "go": "ap-cpu/go.html"
+      },
+      "input_html_sha256": {
+        "java": "864296367a43ba547662928f9af0b779d0b61eb10eaf7c47962a76b96a4a399f",
+        "go": "9374355bcdc4e90bca3809600eb47bed04f06f938d44241fd434ea8802abb130"
+      },
+      "seeded": {
+        "java": "ap-cpu/seeded/java.html",
+        "go": "ap-cpu/seeded/go.html"
+      },
+      "checks_per_implementation": 21,
+      "java_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "go_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "phases": [
+        {
+          "phase": "initial",
+          "equal": true,
+          "java_draw_calls": 1095,
+          "go_draw_calls": 1095,
+          "java_digest": "237fbbc4fc2931896a6f8cd372739ff3bfb0f77477e8c3b0db6bf7918796cb18",
+          "go_digest": "237fbbc4fc2931896a6f8cd372739ff3bfb0f77477e8c3b0db6bf7918796cb18"
+        },
+        {
+          "phase": "hover",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "b64ff72e0363c6a552559dfa75420f2e05fc8108dd92240c46ad969f779ab1e0",
+          "go_digest": "b64ff72e0363c6a552559dfa75420f2e05fc8108dd92240c46ad969f779ab1e0"
+        },
+        {
+          "phase": "select-tooltip",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "0b922a2bf0a1991685057c08043bce10c0b7893f7fd2d55a2615c62a266248fa",
+          "go_digest": "0b922a2bf0a1991685057c08043bce10c0b7893f7fd2d55a2615c62a266248fa"
+        },
+        {
+          "phase": "zoom",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "a5adeb8a2c7bdfac74fc60dc980ec9d002acf5e771454aaafb354b82fd0989b2",
+          "go_digest": "a5adeb8a2c7bdfac74fc60dc980ec9d002acf5e771454aaafb354b82fd0989b2"
+        },
+        {
+          "phase": "invert",
+          "equal": true,
+          "java_draw_calls": 1095,
+          "go_draw_calls": 1095,
+          "java_digest": "92c237545510f5f78b897bb1f9cf1213a9af1b502a7bae26ce94fe7ae8b6e2a1",
+          "go_digest": "92c237545510f5f78b897bb1f9cf1213a9af1b502a7bae26ce94fe7ae8b6e2a1"
+        },
+        {
+          "phase": "search-button",
+          "equal": true,
+          "java_draw_calls": 1095,
+          "go_draw_calls": 1095,
+          "java_digest": "4d3b0b01b66e77cbf5458276bcf2085424e0d6bca550fbbb8386f6f43838264e",
+          "go_digest": "4d3b0b01b66e77cbf5458276bcf2085424e0d6bca550fbbb8386f6f43838264e"
+        },
+        {
+          "phase": "next-match",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "3aace72b837da739395a2c53175ec37eb6a9e063545f1ad5e282d06e4e6ac5a7",
+          "go_digest": "3aace72b837da739395a2c53175ec37eb6a9e063545f1ad5e282d06e4e6ac5a7"
+        },
+        {
+          "phase": "previous-match",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "2e214ce551ffe687a0de4becbdffe948814caeb895b0ec99f02e4ca5884c568b",
+          "go_digest": "2e214ce551ffe687a0de4becbdffe948814caeb895b0ec99f02e4ca5884c568b"
+        },
+        {
+          "phase": "escape-clear",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "c7a7b53e139078cbcd31e1a396ed6bedf3ac17d14227befc40c292b1f9a99c05",
+          "go_digest": "c7a7b53e139078cbcd31e1a396ed6bedf3ac17d14227befc40c292b1f9a99c05"
+        },
+        {
+          "phase": "ctrl-f",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "c53ee855172aceec0c1b7ed2912c21f53176563dfbecce0177b33d9f2998d4d9",
+          "go_digest": "c53ee855172aceec0c1b7ed2912c21f53176563dfbecce0177b33d9f2998d4d9"
+        },
+        {
+          "phase": "reset-button",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "5de7a0e9156a378334d37b82818c967e46eaec87afcbfb8f0ee3fde8e33761d9",
+          "go_digest": "5de7a0e9156a378334d37b82818c967e46eaec87afcbfb8f0ee3fde8e33761d9"
+        },
+        {
+          "phase": "search-cancel",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "97cec92421ec74099398bc909eca58ae8ea7b01ed85377e6431f094754602c57",
+          "go_digest": "97cec92421ec74099398bc909eca58ae8ea7b01ed85377e6431f094754602c57"
+        },
+        {
+          "phase": "mouseout",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "3767d29503ca220c923e418df5d69b046ab4be395394414cd5333b08f2ab53af",
+          "go_digest": "3767d29503ca220c923e418df5d69b046ab4be395394414cd5333b08f2ab53af"
+        },
+        {
+          "phase": "darkmode-button",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "378ab9df55a5accd19e36160d0d9a0deec0bf06a3e08a8672d2bce6d7dd3537e",
+          "go_digest": "378ab9df55a5accd19e36160d0d9a0deec0bf06a3e08a8672d2bce6d7dd3537e"
+        },
+        {
+          "phase": "darkmode-key",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "a6f6ac06852851a4e3ea4d10a71faed0adfa1d7cd9f961af7febae8091e39ede",
+          "go_digest": "a6f6ac06852851a4e3ea4d10a71faed0adfa1d7cd9f961af7febae8091e39ede"
+        },
+        {
+          "phase": "legend-show",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "4ad4b9b44b4d64dcc861c517c928eff2dcd8ccf536f0112f4a64f0c666cf0286",
+          "go_digest": "4ad4b9b44b4d64dcc861c517c928eff2dcd8ccf536f0112f4a64f0c666cf0286"
+        },
+        {
+          "phase": "legend-hide",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "c6677e68b54f072cbea0bd486c7a56bb782ef4fcc308788efa7e52d875d08dc9",
+          "go_digest": "c6677e68b54f072cbea0bd486c7a56bb782ef4fcc308788efa7e52d875d08dc9"
+        }
+      ],
+      "all_phases_identical": true
+    },
+    {
+      "case": "ap-alloc",
+      "format": "html",
+      "files": {
+        "java": "ap-alloc/java.html",
+        "go": "ap-alloc/go.html"
+      },
+      "input_html_sha256": {
+        "java": "10694c96c71f1013f1acffe97a052151ad55da371e3ff8af5e6c93182c74be3a",
+        "go": "74232deeba3de57e9d24247d13958b118c5eb93192b62cb1a802feaa84f12e5d"
+      },
+      "seeded": {
+        "java": "ap-alloc/seeded/java.html",
+        "go": "ap-alloc/seeded/go.html"
+      },
+      "checks_per_implementation": 21,
+      "java_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "go_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "phases": [
+        {
+          "phase": "initial",
+          "equal": true,
+          "java_draw_calls": 134,
+          "go_draw_calls": 134,
+          "java_digest": "e91ff7e5a940ea991bbbe951495ae8af663daa293f808590a53b28c2648256d6",
+          "go_digest": "e91ff7e5a940ea991bbbe951495ae8af663daa293f808590a53b28c2648256d6"
+        },
+        {
+          "phase": "hover",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "cf4c60265e55ba5d070c9e3d19b269c38b51907ec6341ad16b67fb69546b398b",
+          "go_digest": "cf4c60265e55ba5d070c9e3d19b269c38b51907ec6341ad16b67fb69546b398b"
+        },
+        {
+          "phase": "select-tooltip",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "53ff79bd06effdc23fc4e2313c5219e0de7767957b88df2fa5c7da4fce7a866e",
+          "go_digest": "53ff79bd06effdc23fc4e2313c5219e0de7767957b88df2fa5c7da4fce7a866e"
+        },
+        {
+          "phase": "zoom",
+          "equal": true,
+          "java_draw_calls": 21,
+          "go_draw_calls": 21,
+          "java_digest": "4db5226d331ea9591eacf46dcd2134552506f0850d4f2aa9d4fc039dfdfc297e",
+          "go_digest": "4db5226d331ea9591eacf46dcd2134552506f0850d4f2aa9d4fc039dfdfc297e"
+        },
+        {
+          "phase": "invert",
+          "equal": true,
+          "java_draw_calls": 134,
+          "go_draw_calls": 134,
+          "java_digest": "4c0cc1f8866e71553c654ef44789a9ef2fabaf70d41c6411a7207360980ab339",
+          "go_digest": "4c0cc1f8866e71553c654ef44789a9ef2fabaf70d41c6411a7207360980ab339"
+        },
+        {
+          "phase": "search-button",
+          "equal": true,
+          "java_draw_calls": 134,
+          "go_draw_calls": 134,
+          "java_digest": "4ae93ebb7e679c4e47cda4e54f88448f306e20fa940079a4933d334ee19f68e7",
+          "go_digest": "4ae93ebb7e679c4e47cda4e54f88448f306e20fa940079a4933d334ee19f68e7"
+        },
+        {
+          "phase": "next-match",
+          "equal": true,
+          "java_draw_calls": 21,
+          "go_draw_calls": 21,
+          "java_digest": "8b4c15a43c529bf23124ea6fd2b93113552ea3c03980505bb3097c7755052c79",
+          "go_digest": "8b4c15a43c529bf23124ea6fd2b93113552ea3c03980505bb3097c7755052c79"
+        },
+        {
+          "phase": "previous-match",
+          "equal": true,
+          "java_draw_calls": 21,
+          "go_draw_calls": 21,
+          "java_digest": "15413e17c1b15f8393fe92efe4a761cdadc18422986993a336736ef63ab9c536",
+          "go_digest": "15413e17c1b15f8393fe92efe4a761cdadc18422986993a336736ef63ab9c536"
+        },
+        {
+          "phase": "escape-clear",
+          "equal": true,
+          "java_draw_calls": 21,
+          "go_draw_calls": 21,
+          "java_digest": "8525c020b7a39c982a4534bc2e431131aa41802db897c0730af6e31de3387d29",
+          "go_digest": "8525c020b7a39c982a4534bc2e431131aa41802db897c0730af6e31de3387d29"
+        },
+        {
+          "phase": "ctrl-f",
+          "equal": true,
+          "java_draw_calls": 21,
+          "go_draw_calls": 21,
+          "java_digest": "e774de82b6737c6e187b50403919753b96c3bcc617a771cd1d37c0bccdecd7b3",
+          "go_digest": "e774de82b6737c6e187b50403919753b96c3bcc617a771cd1d37c0bccdecd7b3"
+        },
+        {
+          "phase": "reset-button",
+          "equal": true,
+          "java_draw_calls": 21,
+          "go_draw_calls": 21,
+          "java_digest": "d5e4366d5ed5b5124b74e659e26cae66a3b15b1559e9a73c61cfe866956e5466",
+          "go_digest": "d5e4366d5ed5b5124b74e659e26cae66a3b15b1559e9a73c61cfe866956e5466"
+        },
+        {
+          "phase": "search-cancel",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "4a7a133e95f6895ea56c10c92493e4e2eeb70c439f28fa5b4f51aeb71e0cbf22",
+          "go_digest": "4a7a133e95f6895ea56c10c92493e4e2eeb70c439f28fa5b4f51aeb71e0cbf22"
+        },
+        {
+          "phase": "mouseout",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "3b1f8dd62988d999437c79fcf1bf7d8d2d3735d236cc5a7c10fcccebbe163cc9",
+          "go_digest": "3b1f8dd62988d999437c79fcf1bf7d8d2d3735d236cc5a7c10fcccebbe163cc9"
+        },
+        {
+          "phase": "darkmode-button",
+          "equal": true,
+          "java_draw_calls": 21,
+          "go_draw_calls": 21,
+          "java_digest": "d4480e472d9de31ae37150c4c5c1271a0ffc032e5f74c3f2c6b8c81dff6665b5",
+          "go_digest": "d4480e472d9de31ae37150c4c5c1271a0ffc032e5f74c3f2c6b8c81dff6665b5"
+        },
+        {
+          "phase": "darkmode-key",
+          "equal": true,
+          "java_draw_calls": 21,
+          "go_draw_calls": 21,
+          "java_digest": "493ed55f2f239f4a4f65b68f5837d9c72173469a22dcd77c82ef7d61bf660c74",
+          "go_digest": "493ed55f2f239f4a4f65b68f5837d9c72173469a22dcd77c82ef7d61bf660c74"
+        },
+        {
+          "phase": "legend-show",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "3a9025b9befc13a949e8d8714b81b20264a8a1256231a147373af52ebbaf11f7",
+          "go_digest": "3a9025b9befc13a949e8d8714b81b20264a8a1256231a147373af52ebbaf11f7"
+        },
+        {
+          "phase": "legend-hide",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "ac5e170476b83d06e6fe2a72b8064d0257a47d4bee9305b674da4feddf289ed1",
+          "go_digest": "ac5e170476b83d06e6fe2a72b8064d0257a47d4bee9305b674da4feddf289ed1"
+        }
+      ],
+      "all_phases_identical": true
+    },
+    {
+      "case": "ap-reverse",
+      "format": "html",
+      "files": {
+        "java": "ap-reverse/java.html",
+        "go": "ap-reverse/go.html"
+      },
+      "input_html_sha256": {
+        "java": "674a6c5b1f6e28d789b9f1e25060349cea6ff38c7181b2a6c8a39c3cb397d406",
+        "go": "d8005699dd887392d69a7dea883f1a6c3c10a0ca8cc25a78948688d86a233780"
+      },
+      "seeded": {
+        "java": "ap-reverse/seeded/java.html",
+        "go": "ap-reverse/seeded/go.html"
+      },
+      "checks_per_implementation": 21,
+      "java_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "go_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "phases": [
+        {
+          "phase": "initial",
+          "equal": true,
+          "java_draw_calls": 3752,
+          "go_draw_calls": 3752,
+          "java_digest": "a50d535641c33d6a55d5752ac642a7c9b05ccd36e2ff7ecf762997576ec89919",
+          "go_digest": "a50d535641c33d6a55d5752ac642a7c9b05ccd36e2ff7ecf762997576ec89919"
+        },
+        {
+          "phase": "hover",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "8ead617f6c162d92508605fe6c781dcf74b349aee253e3b2a6b5bb9e84d75bb7",
+          "go_digest": "8ead617f6c162d92508605fe6c781dcf74b349aee253e3b2a6b5bb9e84d75bb7"
+        },
+        {
+          "phase": "select-tooltip",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "78867a7cc7439e7dc5550e7f5acc0310408bd3a56c63905f9865e717220db297",
+          "go_digest": "78867a7cc7439e7dc5550e7f5acc0310408bd3a56c63905f9865e717220db297"
+        },
+        {
+          "phase": "zoom",
+          "equal": true,
+          "java_draw_calls": 18,
+          "go_draw_calls": 18,
+          "java_digest": "17d9b3c1275b658f8a8cf4fcd1c2267c93179aeeddf2f1ca77826e6863fd7e15",
+          "go_digest": "17d9b3c1275b658f8a8cf4fcd1c2267c93179aeeddf2f1ca77826e6863fd7e15"
+        },
+        {
+          "phase": "invert",
+          "equal": true,
+          "java_draw_calls": 3752,
+          "go_draw_calls": 3752,
+          "java_digest": "52b044b60afebbd8b0b320e1265c580ba56acc1297621773563b356074342a4a",
+          "go_digest": "52b044b60afebbd8b0b320e1265c580ba56acc1297621773563b356074342a4a"
+        },
+        {
+          "phase": "search-button",
+          "equal": true,
+          "java_draw_calls": 3752,
+          "go_draw_calls": 3752,
+          "java_digest": "2339377b124fe85431030f0df7b93e540560fa382c10b1006d88235c3ef7d083",
+          "go_digest": "2339377b124fe85431030f0df7b93e540560fa382c10b1006d88235c3ef7d083"
+        },
+        {
+          "phase": "next-match",
+          "equal": true,
+          "java_draw_calls": 35,
+          "go_draw_calls": 35,
+          "java_digest": "3cd433d08d935d1c471ff3f90ab95dbe17dae4e55c882bae4d88a5fbb3df9228",
+          "go_digest": "3cd433d08d935d1c471ff3f90ab95dbe17dae4e55c882bae4d88a5fbb3df9228"
+        },
+        {
+          "phase": "previous-match",
+          "equal": true,
+          "java_draw_calls": 20,
+          "go_draw_calls": 20,
+          "java_digest": "1fc1c2ba14a9633e295d8090c4417e3f33f3a2a62046a7b85d3138397762122a",
+          "go_digest": "1fc1c2ba14a9633e295d8090c4417e3f33f3a2a62046a7b85d3138397762122a"
+        },
+        {
+          "phase": "escape-clear",
+          "equal": true,
+          "java_draw_calls": 20,
+          "go_draw_calls": 20,
+          "java_digest": "72f9a9e604863b4719ac013c5fcaca2b6c114d20080f02e4fb9d89c67338c175",
+          "go_digest": "72f9a9e604863b4719ac013c5fcaca2b6c114d20080f02e4fb9d89c67338c175"
+        },
+        {
+          "phase": "ctrl-f",
+          "equal": true,
+          "java_draw_calls": 20,
+          "go_draw_calls": 20,
+          "java_digest": "88d4906058bcfc91fd1d395ad48302e94af448a2d452fd40519ccdf9fb322cf5",
+          "go_digest": "88d4906058bcfc91fd1d395ad48302e94af448a2d452fd40519ccdf9fb322cf5"
+        },
+        {
+          "phase": "reset-button",
+          "equal": true,
+          "java_draw_calls": 20,
+          "go_draw_calls": 20,
+          "java_digest": "6d18b067b9971952971c4a6b2a1d9b26923ad64db7583ba8f0108f763a1e3797",
+          "go_digest": "6d18b067b9971952971c4a6b2a1d9b26923ad64db7583ba8f0108f763a1e3797"
+        },
+        {
+          "phase": "search-cancel",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "91dd46ea23bc08d9dacf930c93e2928882e8b2db3d85e39a34c18b2e5c1a2502",
+          "go_digest": "91dd46ea23bc08d9dacf930c93e2928882e8b2db3d85e39a34c18b2e5c1a2502"
+        },
+        {
+          "phase": "mouseout",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "275c45e8421c88070160e12f0d90b7af4b595b4240b2ee4e0bd813e4f927e220",
+          "go_digest": "275c45e8421c88070160e12f0d90b7af4b595b4240b2ee4e0bd813e4f927e220"
+        },
+        {
+          "phase": "darkmode-button",
+          "equal": true,
+          "java_draw_calls": 20,
+          "go_draw_calls": 20,
+          "java_digest": "c753c696065c3cc1f90829835a0761014716ac020519c3652523b55b0a7d054e",
+          "go_digest": "c753c696065c3cc1f90829835a0761014716ac020519c3652523b55b0a7d054e"
+        },
+        {
+          "phase": "darkmode-key",
+          "equal": true,
+          "java_draw_calls": 20,
+          "go_draw_calls": 20,
+          "java_digest": "6248a0614ead79e113b95ee57a4e4a117a8a00c5073097a7ddf31218649c7059",
+          "go_digest": "6248a0614ead79e113b95ee57a4e4a117a8a00c5073097a7ddf31218649c7059"
+        },
+        {
+          "phase": "legend-show",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "27769080562fb118741bfc9db3b0bf204baafd94cf46b6c43bff6ed361d30e48",
+          "go_digest": "27769080562fb118741bfc9db3b0bf204baafd94cf46b6c43bff6ed361d30e48"
+        },
+        {
+          "phase": "legend-hide",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "d4f1405f02556ea67bbd0fe8ff3b74e95fec24091ff0814757b4c77edaf8720a",
+          "go_digest": "d4f1405f02556ea67bbd0fe8ff3b74e95fec24091ff0814757b4c77edaf8720a"
+        }
+      ],
+      "all_phases_identical": true
+    },
+    {
+      "case": "ap-inverted",
+      "format": "html",
+      "files": {
+        "java": "ap-inverted/java.html",
+        "go": "ap-inverted/go.html"
+      },
+      "input_html_sha256": {
+        "java": "65d9307a9273c892e758cc0d44b4fe6efedb27772884a5a4826f8c79077435ba",
+        "go": "ed457ae568dc4890ef749bfa119f249d451f77df2173d9a9caccba1db87e6fac"
+      },
+      "seeded": {
+        "java": "ap-inverted/seeded/java.html",
+        "go": "ap-inverted/seeded/go.html"
+      },
+      "checks_per_implementation": 21,
+      "java_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "go_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "phases": [
+        {
+          "phase": "initial",
+          "equal": true,
+          "java_draw_calls": 1095,
+          "go_draw_calls": 1095,
+          "java_digest": "6cd091a754000ae2ded18d0e85e6200732718c24c5e6dfa284dee2d78d11f272",
+          "go_digest": "6cd091a754000ae2ded18d0e85e6200732718c24c5e6dfa284dee2d78d11f272"
+        },
+        {
+          "phase": "hover",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "de7e4c3e0bc333c2c148780d947152ff249a6e298114747fdc51816661d4219d",
+          "go_digest": "de7e4c3e0bc333c2c148780d947152ff249a6e298114747fdc51816661d4219d"
+        },
+        {
+          "phase": "select-tooltip",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "06596d9555e4f5cb07f835f62be528a69d4b42012785e2f35cdc11a33eaeb854",
+          "go_digest": "06596d9555e4f5cb07f835f62be528a69d4b42012785e2f35cdc11a33eaeb854"
+        },
+        {
+          "phase": "zoom",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "088526378d513064574e881545e073ca0b327e84b76e6f41f23d76c8573926e7",
+          "go_digest": "088526378d513064574e881545e073ca0b327e84b76e6f41f23d76c8573926e7"
+        },
+        {
+          "phase": "invert",
+          "equal": true,
+          "java_draw_calls": 1095,
+          "go_draw_calls": 1095,
+          "java_digest": "d83d9170b9e226397c6aa1dd30b3dfe21c64364d00d2de8e6e379ffbc861c1ba",
+          "go_digest": "d83d9170b9e226397c6aa1dd30b3dfe21c64364d00d2de8e6e379ffbc861c1ba"
+        },
+        {
+          "phase": "search-button",
+          "equal": true,
+          "java_draw_calls": 1095,
+          "go_draw_calls": 1095,
+          "java_digest": "4006a447521a272a33efe5341ffe85c5e8d47b766806584f6187f23a0e41ae43",
+          "go_digest": "4006a447521a272a33efe5341ffe85c5e8d47b766806584f6187f23a0e41ae43"
+        },
+        {
+          "phase": "next-match",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "9fec34b4d3410166e0a29f73740cf75b588cf4e89475871c5977a15d05753da3",
+          "go_digest": "9fec34b4d3410166e0a29f73740cf75b588cf4e89475871c5977a15d05753da3"
+        },
+        {
+          "phase": "previous-match",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "8a467a08e66fa7887664624bc63e88f561be9c4380932333fe30079aa63f5ada",
+          "go_digest": "8a467a08e66fa7887664624bc63e88f561be9c4380932333fe30079aa63f5ada"
+        },
+        {
+          "phase": "escape-clear",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "67ad7a86a3195176b36fe567c2f505e2ae31873752d6b9d082a673544588da02",
+          "go_digest": "67ad7a86a3195176b36fe567c2f505e2ae31873752d6b9d082a673544588da02"
+        },
+        {
+          "phase": "ctrl-f",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "777def1e3aebff0d6c925e41bba5c53f59d77287312d6fe0d8a20a1110a73db4",
+          "go_digest": "777def1e3aebff0d6c925e41bba5c53f59d77287312d6fe0d8a20a1110a73db4"
+        },
+        {
+          "phase": "reset-button",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "73d87294c874ea1bc81800bf16c00a4036e7fb1feedfb8d8d3d8f6a1387ea7c4",
+          "go_digest": "73d87294c874ea1bc81800bf16c00a4036e7fb1feedfb8d8d3d8f6a1387ea7c4"
+        },
+        {
+          "phase": "search-cancel",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "aea7e24b618487553105a70ca512d7818477a266be05a64a5dad91dd3b0db996",
+          "go_digest": "aea7e24b618487553105a70ca512d7818477a266be05a64a5dad91dd3b0db996"
+        },
+        {
+          "phase": "mouseout",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "942c527745011829dfe56d96caff823843b40c039bf4d749c08427d0ffe96443",
+          "go_digest": "942c527745011829dfe56d96caff823843b40c039bf4d749c08427d0ffe96443"
+        },
+        {
+          "phase": "darkmode-button",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "f627a747bc6a7c9c74b7d4102f21be3ed2a03f587c688a85e86f2f00ecb9c254",
+          "go_digest": "f627a747bc6a7c9c74b7d4102f21be3ed2a03f587c688a85e86f2f00ecb9c254"
+        },
+        {
+          "phase": "darkmode-key",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "75ad80b9e3314b7daf6766779b1ae1d92615a8c8878807fff3f3a31ccc145081",
+          "go_digest": "75ad80b9e3314b7daf6766779b1ae1d92615a8c8878807fff3f3a31ccc145081"
+        },
+        {
+          "phase": "legend-show",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "a2f885c2268e056702692f44e98127fe46ad8790a48a2e401f9d80eb72c0629a",
+          "go_digest": "a2f885c2268e056702692f44e98127fe46ad8790a48a2e401f9d80eb72c0629a"
+        },
+        {
+          "phase": "legend-hide",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "9a428a663a82eafabd27828c2bf0d07894f3c4a0b8419d70de36fce86897ceea",
+          "go_digest": "9a428a663a82eafabd27828c2bf0d07894f3c4a0b8419d70de36fce86897ceea"
+        }
+      ],
+      "all_phases_identical": true
+    },
+    {
+      "case": "ap-heatmap",
+      "format": "heatmap",
+      "seeded": {
+        "java": "ap-heatmap/seeded/java.html",
+        "go": "ap-heatmap/seeded/go.html"
+      },
+      "renderer": "Native heatmap decoder covered separately; browser pixel/interaction check required."
+    },
+    {
+      "case": "ap-heatmap-alloc",
+      "format": "heatmap",
+      "seeded": {
+        "java": "ap-heatmap-alloc/seeded/java.html",
+        "go": "ap-heatmap-alloc/seeded/go.html"
+      },
+      "renderer": "Native heatmap decoder covered separately; browser pixel/interaction check required."
+    },
+    {
+      "case": "ap-title-highlight",
+      "format": "html",
+      "files": {
+        "java": "ap-title-highlight/java.html",
+        "go": "ap-title-highlight/go.html"
+      },
+      "input_html_sha256": {
+        "java": "b00d67b859f7c01108a484076b3589b53ae9208f2c01d28c1316153bdecd3b89",
+        "go": "7799e73b06dcf051793da6d56cdbf68b3613d4924848058d5405cd661620c69a"
+      },
+      "seeded": {
+        "java": "ap-title-highlight/seeded/java.html",
+        "go": "ap-title-highlight/seeded/go.html"
+      },
+      "checks_per_implementation": 21,
+      "java_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "go_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "phases": [
+        {
+          "phase": "initial",
+          "equal": true,
+          "java_draw_calls": 1095,
+          "go_draw_calls": 1095,
+          "java_digest": "aa1a73aa9884d8e28e78b63e1367d56b6d5fc75957a0c04e29141488892aad34",
+          "go_digest": "aa1a73aa9884d8e28e78b63e1367d56b6d5fc75957a0c04e29141488892aad34"
+        },
+        {
+          "phase": "hover",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "3a684e10a3ed5dc37c95ee529831ddba6f7237c9eb6fa6a7534537dd9e1167d9",
+          "go_digest": "3a684e10a3ed5dc37c95ee529831ddba6f7237c9eb6fa6a7534537dd9e1167d9"
+        },
+        {
+          "phase": "select-tooltip",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "913faa6b31c0a1781b65b967d0386979b894f81de38bb7b089041cceddd0fa0a",
+          "go_digest": "913faa6b31c0a1781b65b967d0386979b894f81de38bb7b089041cceddd0fa0a"
+        },
+        {
+          "phase": "zoom",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "99fe6c279cb0d85ea583be23bc315bfff251fd02a921987d9ab371bbaee60e6c",
+          "go_digest": "99fe6c279cb0d85ea583be23bc315bfff251fd02a921987d9ab371bbaee60e6c"
+        },
+        {
+          "phase": "invert",
+          "equal": true,
+          "java_draw_calls": 1095,
+          "go_draw_calls": 1095,
+          "java_digest": "db7d44bb4c9d3d9d3d82dace16792f33b0b7e9cab4d3987e4ab4763a1741ee07",
+          "go_digest": "db7d44bb4c9d3d9d3d82dace16792f33b0b7e9cab4d3987e4ab4763a1741ee07"
+        },
+        {
+          "phase": "search-button",
+          "equal": true,
+          "java_draw_calls": 1095,
+          "go_draw_calls": 1095,
+          "java_digest": "73b03a863083f097257bf27d2a2aad4d934edbe722de490664330611406143ec",
+          "go_digest": "73b03a863083f097257bf27d2a2aad4d934edbe722de490664330611406143ec"
+        },
+        {
+          "phase": "next-match",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "601a1b63d6ddbe6b8923ad7d84c6bac6c0504a63072cf9adb8df4f88f5a922f1",
+          "go_digest": "601a1b63d6ddbe6b8923ad7d84c6bac6c0504a63072cf9adb8df4f88f5a922f1"
+        },
+        {
+          "phase": "previous-match",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "dbb822f340b7101ca531ef2571d5c7e65d123399b142825d56eaf0311a6d46f1",
+          "go_digest": "dbb822f340b7101ca531ef2571d5c7e65d123399b142825d56eaf0311a6d46f1"
+        },
+        {
+          "phase": "escape-clear",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "0941d39a33a0eedfdab28dffb6e603d20bbcd07e3ff09c95f567856c494ba2c3",
+          "go_digest": "0941d39a33a0eedfdab28dffb6e603d20bbcd07e3ff09c95f567856c494ba2c3"
+        },
+        {
+          "phase": "ctrl-f",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "8b00561dbfccdafe79203cd62749d4654db0aea1bc12dac56037250b3b9afa9e",
+          "go_digest": "8b00561dbfccdafe79203cd62749d4654db0aea1bc12dac56037250b3b9afa9e"
+        },
+        {
+          "phase": "reset-button",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "e35b24faed24121a984077e90d3980fb261484bf10eae3412675309192ce3515",
+          "go_digest": "e35b24faed24121a984077e90d3980fb261484bf10eae3412675309192ce3515"
+        },
+        {
+          "phase": "search-cancel",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "3ce6410b6dc5e10dc422b148bcd3856ccb8c382db6035d74bcd895dcd8a613f8",
+          "go_digest": "3ce6410b6dc5e10dc422b148bcd3856ccb8c382db6035d74bcd895dcd8a613f8"
+        },
+        {
+          "phase": "mouseout",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "c45dbfcd80c9cb8710d5ae69f9b0296549f045a37d8bde8985c3854dd5bf59e8",
+          "go_digest": "c45dbfcd80c9cb8710d5ae69f9b0296549f045a37d8bde8985c3854dd5bf59e8"
+        },
+        {
+          "phase": "darkmode-button",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "6eb8d7b5dacd1a82bdd8cf1f3082d1e8c88910ea1349d8f4a67119a3978414bd",
+          "go_digest": "6eb8d7b5dacd1a82bdd8cf1f3082d1e8c88910ea1349d8f4a67119a3978414bd"
+        },
+        {
+          "phase": "darkmode-key",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "d097ddd0451d75ae463aea80f55e3dd103f0afd17501f93fb2aa46ac46174dfd",
+          "go_digest": "d097ddd0451d75ae463aea80f55e3dd103f0afd17501f93fb2aa46ac46174dfd"
+        },
+        {
+          "phase": "legend-show",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "4505d4f975dc13d533d7d203cfe0e703bfb9cfb34aeac15e57b4c0e7097a6903",
+          "go_digest": "4505d4f975dc13d533d7d203cfe0e703bfb9cfb34aeac15e57b4c0e7097a6903"
+        },
+        {
+          "phase": "legend-hide",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "5942003ac0d31a82618309e426d83a9090e5872f1b92cbc225a4a8b8fb0c63c7",
+          "go_digest": "5942003ac0d31a82618309e426d83a9090e5872f1b92cbc225a4a8b8fb0c63c7"
+        }
+      ],
+      "all_phases_identical": true
+    },
+    {
+      "case": "ap-filtered",
+      "format": "html",
+      "files": {
+        "java": "ap-filtered/java.html",
+        "go": "ap-filtered/go.html"
+      },
+      "input_html_sha256": {
+        "java": "ca08d5f800efce84958c03de14f1f7053b08790339a1ea07f7db1e207672df6b",
+        "go": "d7e9e375d6337839944a0ac3d6acbbfe11ea7ca24d503db3fa2017e09558e977"
+      },
+      "seeded": {
+        "java": "ap-filtered/seeded/java.html",
+        "go": "ap-filtered/seeded/go.html"
+      },
+      "checks_per_implementation": 21,
+      "java_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "go_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "phases": [
+        {
+          "phase": "initial",
+          "equal": true,
+          "java_draw_calls": 746,
+          "go_draw_calls": 746,
+          "java_digest": "b6e0eebd1f438d45e24b00b8bb5cc7f0b3d2e3ac3f2cd40c70f905de444d8e63",
+          "go_digest": "b6e0eebd1f438d45e24b00b8bb5cc7f0b3d2e3ac3f2cd40c70f905de444d8e63"
+        },
+        {
+          "phase": "hover",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "365d3fd78c940e131a81839a1779e558b37019bf61b338f4ccb066a9d0c47457",
+          "go_digest": "365d3fd78c940e131a81839a1779e558b37019bf61b338f4ccb066a9d0c47457"
+        },
+        {
+          "phase": "select-tooltip",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "9721fed8a43bf30f27ed1a2fe3121ffe12ed0192fe2aeb9477f9d32fa5f3f55a",
+          "go_digest": "9721fed8a43bf30f27ed1a2fe3121ffe12ed0192fe2aeb9477f9d32fa5f3f55a"
+        },
+        {
+          "phase": "zoom",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "25d1e7057ffaf5bacca02ac00bff3ab4a0ebdfc3e8c9e573bbe014a85110dfa2",
+          "go_digest": "25d1e7057ffaf5bacca02ac00bff3ab4a0ebdfc3e8c9e573bbe014a85110dfa2"
+        },
+        {
+          "phase": "invert",
+          "equal": true,
+          "java_draw_calls": 746,
+          "go_draw_calls": 746,
+          "java_digest": "cad218201518687b26cf19f21fbaa69d4086eea5e77875993f84caaf7f73d649",
+          "go_digest": "cad218201518687b26cf19f21fbaa69d4086eea5e77875993f84caaf7f73d649"
+        },
+        {
+          "phase": "search-button",
+          "equal": true,
+          "java_draw_calls": 746,
+          "go_draw_calls": 746,
+          "java_digest": "6f04c5bda37429202c51d5281e2234eb0185b5bcadb1d6881419d1eaf8ac9617",
+          "go_digest": "6f04c5bda37429202c51d5281e2234eb0185b5bcadb1d6881419d1eaf8ac9617"
+        },
+        {
+          "phase": "next-match",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "98da4a9d21eaffdd901072422ebffef8e3e69010f79351ffb471621722601225",
+          "go_digest": "98da4a9d21eaffdd901072422ebffef8e3e69010f79351ffb471621722601225"
+        },
+        {
+          "phase": "previous-match",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "103579573f8f82727f0480cc578553bf2e41df274c538bebe5de11be1a5352cd",
+          "go_digest": "103579573f8f82727f0480cc578553bf2e41df274c538bebe5de11be1a5352cd"
+        },
+        {
+          "phase": "escape-clear",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "d9ec13c77f316ea9aa2de8af13ec1b340aa3776a79144de5c685882b71956824",
+          "go_digest": "d9ec13c77f316ea9aa2de8af13ec1b340aa3776a79144de5c685882b71956824"
+        },
+        {
+          "phase": "ctrl-f",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "8c1d80e6b7b4c1849a442b7a6feed87ddc7a0d256cd555f18327448e0ae668cf",
+          "go_digest": "8c1d80e6b7b4c1849a442b7a6feed87ddc7a0d256cd555f18327448e0ae668cf"
+        },
+        {
+          "phase": "reset-button",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "ee95d28614023631a59a5c340c56231ce4e5b4c60e429753aad5a25840e48296",
+          "go_digest": "ee95d28614023631a59a5c340c56231ce4e5b4c60e429753aad5a25840e48296"
+        },
+        {
+          "phase": "search-cancel",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "24041d76bd1c16817296c0a8009910d99c4d5a8f978b90288f7f18d6cb408a92",
+          "go_digest": "24041d76bd1c16817296c0a8009910d99c4d5a8f978b90288f7f18d6cb408a92"
+        },
+        {
+          "phase": "mouseout",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "e8ff2830c426c9de2a77a20eb79be20bb1b78efbfb04bc5d400f96bbb5126b91",
+          "go_digest": "e8ff2830c426c9de2a77a20eb79be20bb1b78efbfb04bc5d400f96bbb5126b91"
+        },
+        {
+          "phase": "darkmode-button",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "98bffe006cdc381fb6d2200fa4ca7fe47766d3ed9100dbbeb4656fc3a027ce23",
+          "go_digest": "98bffe006cdc381fb6d2200fa4ca7fe47766d3ed9100dbbeb4656fc3a027ce23"
+        },
+        {
+          "phase": "darkmode-key",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "2308dc0132e3002733ffce07da87ca7edb090e6381c31f6e53078401e5a91342",
+          "go_digest": "2308dc0132e3002733ffce07da87ca7edb090e6381c31f6e53078401e5a91342"
+        },
+        {
+          "phase": "legend-show",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "ee108492048715fd38e80dd25513fe0744b355f83e2f4070caaa1b4c7e2766b4",
+          "go_digest": "ee108492048715fd38e80dd25513fe0744b355f83e2f4070caaa1b4c7e2766b4"
+        },
+        {
+          "phase": "legend-hide",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "1b8ae03f298f90f503017a900e14189fa22e3b907449f11d84fa6680753679aa",
+          "go_digest": "1b8ae03f298f90f503017a900e14189fa22e3b907449f11d84fa6680753679aa"
+        }
+      ],
+      "all_phases_identical": true
+    },
+    {
+      "case": "ap-title-literal",
+      "format": "html",
+      "files": {
+        "java": "ap-title-literal/java.html",
+        "go": "ap-title-literal/go.html"
+      },
+      "input_html_sha256": {
+        "java": "3f2fd3b5dd77dd0bf78b79b34adc8f1d981edce999a2b7de08ac37acbe3e578e",
+        "go": "cda48456626b2ef8da9299b581ae069740766c828f1748945580d2c7ef090736"
+      },
+      "seeded": {
+        "java": "ap-title-literal/seeded/java.html",
+        "go": "ap-title-literal/seeded/go.html"
+      },
+      "checks_per_implementation": 21,
+      "java_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "go_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "phases": [
+        {
+          "phase": "initial",
+          "equal": true,
+          "java_draw_calls": 1095,
+          "go_draw_calls": 1095,
+          "java_digest": "34d79eed5c7ceb36cff854de6c333601a3eb7ca7b43a429fe06b89607360de49",
+          "go_digest": "34d79eed5c7ceb36cff854de6c333601a3eb7ca7b43a429fe06b89607360de49"
+        },
+        {
+          "phase": "hover",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "edd8b51b1e66228f94ab1dc93b7818fa18f28ed278966f88e27a972ffa26897a",
+          "go_digest": "edd8b51b1e66228f94ab1dc93b7818fa18f28ed278966f88e27a972ffa26897a"
+        },
+        {
+          "phase": "select-tooltip",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "6a423b538724b6218626ac57aa640b9e4a582a1b19698babf27e721e89f866b0",
+          "go_digest": "6a423b538724b6218626ac57aa640b9e4a582a1b19698babf27e721e89f866b0"
+        },
+        {
+          "phase": "zoom",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "3b5ee074c9557b728105b7e750e78cd459457c1d15dc5a7bd10ce819780f9794",
+          "go_digest": "3b5ee074c9557b728105b7e750e78cd459457c1d15dc5a7bd10ce819780f9794"
+        },
+        {
+          "phase": "invert",
+          "equal": true,
+          "java_draw_calls": 1095,
+          "go_draw_calls": 1095,
+          "java_digest": "3a7cdd2256e1c8cda9460dbcd85e8029d85c1a595e172562b5474a6eb5129153",
+          "go_digest": "3a7cdd2256e1c8cda9460dbcd85e8029d85c1a595e172562b5474a6eb5129153"
+        },
+        {
+          "phase": "search-button",
+          "equal": true,
+          "java_draw_calls": 1095,
+          "go_draw_calls": 1095,
+          "java_digest": "1effa42e562a5ef1a9abb2101835b0afe9d06f5a0e70d223515f7fe0a2adca72",
+          "go_digest": "1effa42e562a5ef1a9abb2101835b0afe9d06f5a0e70d223515f7fe0a2adca72"
+        },
+        {
+          "phase": "next-match",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "f2b541a3796f38df56efeb959bd2d801d65ede46c03e03eaf9824de4861b2d16",
+          "go_digest": "f2b541a3796f38df56efeb959bd2d801d65ede46c03e03eaf9824de4861b2d16"
+        },
+        {
+          "phase": "previous-match",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "3d235c042c743a70e9303fb132224901ab08a957fe7064f601be71ce4ae36a82",
+          "go_digest": "3d235c042c743a70e9303fb132224901ab08a957fe7064f601be71ce4ae36a82"
+        },
+        {
+          "phase": "escape-clear",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "bf8bbf8f4e029d6951efafefab3e81e536544f5c5feb5777ca93c2e98c4f0f33",
+          "go_digest": "bf8bbf8f4e029d6951efafefab3e81e536544f5c5feb5777ca93c2e98c4f0f33"
+        },
+        {
+          "phase": "ctrl-f",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "336a1b715f708db8e5e37a6bf6433ce947b5d557bf8c24656f8bf0ea7fbe88b7",
+          "go_digest": "336a1b715f708db8e5e37a6bf6433ce947b5d557bf8c24656f8bf0ea7fbe88b7"
+        },
+        {
+          "phase": "reset-button",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "8b1401c16279c110255a15a9bc897675d9d36e87546e7b6c7581ccee78d271a5",
+          "go_digest": "8b1401c16279c110255a15a9bc897675d9d36e87546e7b6c7581ccee78d271a5"
+        },
+        {
+          "phase": "search-cancel",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "b39613a843a70b7db9550f70a756d3cfeee0c7b077cff2e067045044cc7b49fb",
+          "go_digest": "b39613a843a70b7db9550f70a756d3cfeee0c7b077cff2e067045044cc7b49fb"
+        },
+        {
+          "phase": "mouseout",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "bd0683bb5a0931598dbf4c78599f01ac15ede6ffca0fb15f15663212784db265",
+          "go_digest": "bd0683bb5a0931598dbf4c78599f01ac15ede6ffca0fb15f15663212784db265"
+        },
+        {
+          "phase": "darkmode-button",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "1aacfdfe11a98eea83f42db59927b45b6883829fc84bdfbd6f36c7db391d2503",
+          "go_digest": "1aacfdfe11a98eea83f42db59927b45b6883829fc84bdfbd6f36c7db391d2503"
+        },
+        {
+          "phase": "darkmode-key",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "4f1551949f79986775efb9a7f7157b365b491737ff80cd60329f987330212f1f",
+          "go_digest": "4f1551949f79986775efb9a7f7157b365b491737ff80cd60329f987330212f1f"
+        },
+        {
+          "phase": "legend-show",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "533b82c8fbed206ad0d06c98beef70c27200675735cb0638f40e6125630e7b66",
+          "go_digest": "533b82c8fbed206ad0d06c98beef70c27200675735cb0638f40e6125630e7b66"
+        },
+        {
+          "phase": "legend-hide",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "7db0c46e2741d0c7dbbbafd47813cc69c99b56954f5b3d32112c0a43931ed3bd",
+          "go_digest": "7db0c46e2741d0c7dbbbafd47813cc69c99b56954f5b3d32112c0a43931ed3bd"
+        }
+      ],
+      "all_phases_identical": true
+    },
+    {
+      "case": "collapsed-skip-height",
+      "format": "html",
+      "files": {
+        "java": "collapsed-skip-height/java.html",
+        "go": "collapsed-skip-height/go.html"
+      },
+      "input_html_sha256": {
+        "java": "651f63304df5a7da383512cf5bd148473b5c22971e88a79ea4792a5a3090874b",
+        "go": "f6f2039ee98976fcca8ae846181c19d9568db189bd0dd3512b4de4b7eec7adc9"
+      },
+      "seeded": {
+        "java": "collapsed-skip-height/seeded/java.html",
+        "go": "collapsed-skip-height/seeded/go.html"
+      },
+      "checks_per_implementation": 21,
+      "java_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "go_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "phases": [
+        {
+          "phase": "initial",
+          "equal": true,
+          "java_draw_calls": 5,
+          "go_draw_calls": 5,
+          "java_digest": "8229e25066e4c3f8bf2a6266e71ec474be39756c3bcc2b0455952d5cac1ac0f4",
+          "go_digest": "8229e25066e4c3f8bf2a6266e71ec474be39756c3bcc2b0455952d5cac1ac0f4"
+        },
+        {
+          "phase": "hover",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "65a8c5fa33f5cce3cf3c792271bac56f7547579531f7c079221cdd2e106d159e",
+          "go_digest": "65a8c5fa33f5cce3cf3c792271bac56f7547579531f7c079221cdd2e106d159e"
+        },
+        {
+          "phase": "select-tooltip",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "31b61ccd31d8e2dab8913efef914e7805c78fac193a28e95c335effeb2a58e70",
+          "go_digest": "31b61ccd31d8e2dab8913efef914e7805c78fac193a28e95c335effeb2a58e70"
+        },
+        {
+          "phase": "zoom",
+          "equal": true,
+          "java_draw_calls": 6,
+          "go_draw_calls": 6,
+          "java_digest": "bdcfb3fc9a38e2c490454ac90770e1101194ef64122b9d621bd8f9f10140366a",
+          "go_digest": "bdcfb3fc9a38e2c490454ac90770e1101194ef64122b9d621bd8f9f10140366a"
+        },
+        {
+          "phase": "invert",
+          "equal": true,
+          "java_draw_calls": 5,
+          "go_draw_calls": 5,
+          "java_digest": "70bdc7de1dc67904c33642b87260d82870a7612a896a831957dd3ff14a961485",
+          "go_digest": "70bdc7de1dc67904c33642b87260d82870a7612a896a831957dd3ff14a961485"
+        },
+        {
+          "phase": "search-button",
+          "equal": true,
+          "java_draw_calls": 5,
+          "go_draw_calls": 5,
+          "java_digest": "ca894dea00fb9cbe4e20021c0263f5570982efc1664d5a835650f0719bb0c4be",
+          "go_digest": "ca894dea00fb9cbe4e20021c0263f5570982efc1664d5a835650f0719bb0c4be"
+        },
+        {
+          "phase": "next-match",
+          "equal": true,
+          "java_draw_calls": 6,
+          "go_draw_calls": 6,
+          "java_digest": "b7079f8a538ed0fdbd76729510a3c6c648c3526c69dbbccdae5ac8a6f6e7a64c",
+          "go_digest": "b7079f8a538ed0fdbd76729510a3c6c648c3526c69dbbccdae5ac8a6f6e7a64c"
+        },
+        {
+          "phase": "previous-match",
+          "equal": true,
+          "java_draw_calls": 6,
+          "go_draw_calls": 6,
+          "java_digest": "a4477a0706406cf12bd17da8387d396c34e179fa91b296d3ea7a798b66b556db",
+          "go_digest": "a4477a0706406cf12bd17da8387d396c34e179fa91b296d3ea7a798b66b556db"
+        },
+        {
+          "phase": "escape-clear",
+          "equal": true,
+          "java_draw_calls": 6,
+          "go_draw_calls": 6,
+          "java_digest": "4436d02dc34716453fda52036a52952e758719fcd857c4ab048e0fd716eb484d",
+          "go_digest": "4436d02dc34716453fda52036a52952e758719fcd857c4ab048e0fd716eb484d"
+        },
+        {
+          "phase": "ctrl-f",
+          "equal": true,
+          "java_draw_calls": 6,
+          "go_draw_calls": 6,
+          "java_digest": "f65a603361474403fb1ae47f4a8fe1446e4a20d66a36ab0113219c4016fede02",
+          "go_digest": "f65a603361474403fb1ae47f4a8fe1446e4a20d66a36ab0113219c4016fede02"
+        },
+        {
+          "phase": "reset-button",
+          "equal": true,
+          "java_draw_calls": 6,
+          "go_draw_calls": 6,
+          "java_digest": "3a82f488a39de69327aff9b1f34f8850ee5f574185cd5de1744d4cc86e265d8f",
+          "go_digest": "3a82f488a39de69327aff9b1f34f8850ee5f574185cd5de1744d4cc86e265d8f"
+        },
+        {
+          "phase": "search-cancel",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "6867c82c5a5e21583c5ecedfaae5283046b8cec1c5fe58cb7dc1ca057b291207",
+          "go_digest": "6867c82c5a5e21583c5ecedfaae5283046b8cec1c5fe58cb7dc1ca057b291207"
+        },
+        {
+          "phase": "mouseout",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "8d0ea4fb32b790962f61d34bc1100f00716934602ca51660fd2ed7ed52182043",
+          "go_digest": "8d0ea4fb32b790962f61d34bc1100f00716934602ca51660fd2ed7ed52182043"
+        },
+        {
+          "phase": "darkmode-button",
+          "equal": true,
+          "java_draw_calls": 6,
+          "go_draw_calls": 6,
+          "java_digest": "90a4b7c09edfb6b623c4641992d2287377d8d2bf34dce7ba36bc63f5f430de3f",
+          "go_digest": "90a4b7c09edfb6b623c4641992d2287377d8d2bf34dce7ba36bc63f5f430de3f"
+        },
+        {
+          "phase": "darkmode-key",
+          "equal": true,
+          "java_draw_calls": 6,
+          "go_draw_calls": 6,
+          "java_digest": "0c9e6298d9f73ac283f217d147ffdf7741beed2858c022feaa635fe85993b41a",
+          "go_digest": "0c9e6298d9f73ac283f217d147ffdf7741beed2858c022feaa635fe85993b41a"
+        },
+        {
+          "phase": "legend-show",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "5cfab788db2a100cb9d4bd4ab3035b27c210449e3df1bcb64d602b94119b75e4",
+          "go_digest": "5cfab788db2a100cb9d4bd4ab3035b27c210449e3df1bcb64d602b94119b75e4"
+        },
+        {
+          "phase": "legend-hide",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "1d582c0aa3d50f55f68ee42f8b7d94c90ebe9250752398c27446c321f3ae81c8",
+          "go_digest": "1d582c0aa3d50f55f68ee42f8b7d94c90ebe9250752398c27446c321f3ae81c8"
+        }
+      ],
+      "all_phases_identical": true
+    },
+    {
+      "case": "ap-html-skip",
+      "format": "html",
+      "files": {
+        "java": "ap-html-skip/java.html",
+        "go": "ap-html-skip/go.html"
+      },
+      "input_html_sha256": {
+        "java": "864296367a43ba547662928f9af0b779d0b61eb10eaf7c47962a76b96a4a399f",
+        "go": "9374355bcdc4e90bca3809600eb47bed04f06f938d44241fd434ea8802abb130"
+      },
+      "seeded": {
+        "java": "ap-html-skip/seeded/java.html",
+        "go": "ap-html-skip/seeded/go.html"
+      },
+      "checks_per_implementation": 21,
+      "java_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "go_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "phases": [
+        {
+          "phase": "initial",
+          "equal": true,
+          "java_draw_calls": 1095,
+          "go_draw_calls": 1095,
+          "java_digest": "237fbbc4fc2931896a6f8cd372739ff3bfb0f77477e8c3b0db6bf7918796cb18",
+          "go_digest": "237fbbc4fc2931896a6f8cd372739ff3bfb0f77477e8c3b0db6bf7918796cb18"
+        },
+        {
+          "phase": "hover",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "b64ff72e0363c6a552559dfa75420f2e05fc8108dd92240c46ad969f779ab1e0",
+          "go_digest": "b64ff72e0363c6a552559dfa75420f2e05fc8108dd92240c46ad969f779ab1e0"
+        },
+        {
+          "phase": "select-tooltip",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "0b922a2bf0a1991685057c08043bce10c0b7893f7fd2d55a2615c62a266248fa",
+          "go_digest": "0b922a2bf0a1991685057c08043bce10c0b7893f7fd2d55a2615c62a266248fa"
+        },
+        {
+          "phase": "zoom",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "a5adeb8a2c7bdfac74fc60dc980ec9d002acf5e771454aaafb354b82fd0989b2",
+          "go_digest": "a5adeb8a2c7bdfac74fc60dc980ec9d002acf5e771454aaafb354b82fd0989b2"
+        },
+        {
+          "phase": "invert",
+          "equal": true,
+          "java_draw_calls": 1095,
+          "go_draw_calls": 1095,
+          "java_digest": "92c237545510f5f78b897bb1f9cf1213a9af1b502a7bae26ce94fe7ae8b6e2a1",
+          "go_digest": "92c237545510f5f78b897bb1f9cf1213a9af1b502a7bae26ce94fe7ae8b6e2a1"
+        },
+        {
+          "phase": "search-button",
+          "equal": true,
+          "java_draw_calls": 1095,
+          "go_draw_calls": 1095,
+          "java_digest": "4d3b0b01b66e77cbf5458276bcf2085424e0d6bca550fbbb8386f6f43838264e",
+          "go_digest": "4d3b0b01b66e77cbf5458276bcf2085424e0d6bca550fbbb8386f6f43838264e"
+        },
+        {
+          "phase": "next-match",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "3aace72b837da739395a2c53175ec37eb6a9e063545f1ad5e282d06e4e6ac5a7",
+          "go_digest": "3aace72b837da739395a2c53175ec37eb6a9e063545f1ad5e282d06e4e6ac5a7"
+        },
+        {
+          "phase": "previous-match",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "2e214ce551ffe687a0de4becbdffe948814caeb895b0ec99f02e4ca5884c568b",
+          "go_digest": "2e214ce551ffe687a0de4becbdffe948814caeb895b0ec99f02e4ca5884c568b"
+        },
+        {
+          "phase": "escape-clear",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "c7a7b53e139078cbcd31e1a396ed6bedf3ac17d14227befc40c292b1f9a99c05",
+          "go_digest": "c7a7b53e139078cbcd31e1a396ed6bedf3ac17d14227befc40c292b1f9a99c05"
+        },
+        {
+          "phase": "ctrl-f",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "c53ee855172aceec0c1b7ed2912c21f53176563dfbecce0177b33d9f2998d4d9",
+          "go_digest": "c53ee855172aceec0c1b7ed2912c21f53176563dfbecce0177b33d9f2998d4d9"
+        },
+        {
+          "phase": "reset-button",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "5de7a0e9156a378334d37b82818c967e46eaec87afcbfb8f0ee3fde8e33761d9",
+          "go_digest": "5de7a0e9156a378334d37b82818c967e46eaec87afcbfb8f0ee3fde8e33761d9"
+        },
+        {
+          "phase": "search-cancel",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "97cec92421ec74099398bc909eca58ae8ea7b01ed85377e6431f094754602c57",
+          "go_digest": "97cec92421ec74099398bc909eca58ae8ea7b01ed85377e6431f094754602c57"
+        },
+        {
+          "phase": "mouseout",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "3767d29503ca220c923e418df5d69b046ab4be395394414cd5333b08f2ab53af",
+          "go_digest": "3767d29503ca220c923e418df5d69b046ab4be395394414cd5333b08f2ab53af"
+        },
+        {
+          "phase": "darkmode-button",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "378ab9df55a5accd19e36160d0d9a0deec0bf06a3e08a8672d2bce6d7dd3537e",
+          "go_digest": "378ab9df55a5accd19e36160d0d9a0deec0bf06a3e08a8672d2bce6d7dd3537e"
+        },
+        {
+          "phase": "darkmode-key",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "a6f6ac06852851a4e3ea4d10a71faed0adfa1d7cd9f961af7febae8091e39ede",
+          "go_digest": "a6f6ac06852851a4e3ea4d10a71faed0adfa1d7cd9f961af7febae8091e39ede"
+        },
+        {
+          "phase": "legend-show",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "4ad4b9b44b4d64dcc861c517c928eff2dcd8ccf536f0112f4a64f0c666cf0286",
+          "go_digest": "4ad4b9b44b4d64dcc861c517c928eff2dcd8ccf536f0112f4a64f0c666cf0286"
+        },
+        {
+          "phase": "legend-hide",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "c6677e68b54f072cbea0bd486c7a56bb782ef4fcc308788efa7e52d875d08dc9",
+          "go_digest": "c6677e68b54f072cbea0bd486c7a56bb782ef4fcc308788efa7e52d875d08dc9"
+        }
+      ],
+      "all_phases_identical": true
+    },
+    {
+      "case": "ap-html-reverse-skip",
+      "format": "html",
+      "files": {
+        "java": "ap-html-reverse-skip/java.html",
+        "go": "ap-html-reverse-skip/go.html"
+      },
+      "input_html_sha256": {
+        "java": "96f61df5da4aaea8560ed3e7fc6b6a21f8e10affad1d07826888f35994e56f2b",
+        "go": "fadabb13741f034248056754eb7db36fd431275ba62cfd7f109ba56fb983f24f"
+      },
+      "seeded": {
+        "java": "ap-html-reverse-skip/seeded/java.html",
+        "go": "ap-html-reverse-skip/seeded/go.html"
+      },
+      "checks_per_implementation": 21,
+      "java_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "go_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "phases": [
+        {
+          "phase": "initial",
+          "equal": true,
+          "java_draw_calls": 3280,
+          "go_draw_calls": 3280,
+          "java_digest": "6dd5a6d1c82b120c20b14f5a9f9f8f9807c2cf2904f98e415820c94f3772e195",
+          "go_digest": "6dd5a6d1c82b120c20b14f5a9f9f8f9807c2cf2904f98e415820c94f3772e195"
+        },
+        {
+          "phase": "hover",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "a4b97dfd71d762e85bc9338d6e28809dd0beda6da001857cd971a421e906ffa8",
+          "go_digest": "a4b97dfd71d762e85bc9338d6e28809dd0beda6da001857cd971a421e906ffa8"
+        },
+        {
+          "phase": "select-tooltip",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "fbfd7d3fbc64fdf65f59604fb7df545a700f90ae71905e52283323ed96207b91",
+          "go_digest": "fbfd7d3fbc64fdf65f59604fb7df545a700f90ae71905e52283323ed96207b91"
+        },
+        {
+          "phase": "zoom",
+          "equal": true,
+          "java_draw_calls": 12,
+          "go_draw_calls": 12,
+          "java_digest": "3db3f20fa89beffe000b0d49db89936868b6b2c3c2cbbfee9077e7cb30855233",
+          "go_digest": "3db3f20fa89beffe000b0d49db89936868b6b2c3c2cbbfee9077e7cb30855233"
+        },
+        {
+          "phase": "invert",
+          "equal": true,
+          "java_draw_calls": 3280,
+          "go_draw_calls": 3280,
+          "java_digest": "ae83369eafdaf068438367d5047e1ca1c17ef040904dec0b8697c776105ea061",
+          "go_digest": "ae83369eafdaf068438367d5047e1ca1c17ef040904dec0b8697c776105ea061"
+        },
+        {
+          "phase": "search-button",
+          "equal": true,
+          "java_draw_calls": 3280,
+          "go_draw_calls": 3280,
+          "java_digest": "4839c7cb685088550b067121c084080b2d4cc0cf46b6334de08328d8b64ca22c",
+          "go_digest": "4839c7cb685088550b067121c084080b2d4cc0cf46b6334de08328d8b64ca22c"
+        },
+        {
+          "phase": "next-match",
+          "equal": true,
+          "java_draw_calls": 30,
+          "go_draw_calls": 30,
+          "java_digest": "c38edc78025bc7249f7067523ab3a464a675770f4335f547b7c87f002ebbe955",
+          "go_digest": "c38edc78025bc7249f7067523ab3a464a675770f4335f547b7c87f002ebbe955"
+        },
+        {
+          "phase": "previous-match",
+          "equal": true,
+          "java_draw_calls": 15,
+          "go_draw_calls": 15,
+          "java_digest": "d4145a50ae7fed7c17340ed2102949b5a0d98383c1d12c089659bfd9b7d0c59f",
+          "go_digest": "d4145a50ae7fed7c17340ed2102949b5a0d98383c1d12c089659bfd9b7d0c59f"
+        },
+        {
+          "phase": "escape-clear",
+          "equal": true,
+          "java_draw_calls": 15,
+          "go_draw_calls": 15,
+          "java_digest": "46f1aeff636606bcbe2ca5bb1c02d0cad445524ddd142d6833f8df57cc47db47",
+          "go_digest": "46f1aeff636606bcbe2ca5bb1c02d0cad445524ddd142d6833f8df57cc47db47"
+        },
+        {
+          "phase": "ctrl-f",
+          "equal": true,
+          "java_draw_calls": 15,
+          "go_draw_calls": 15,
+          "java_digest": "0b71d3329d8ef598cd2ca4975ed272e90e943d2bca0b301a81e0079579e22fd2",
+          "go_digest": "0b71d3329d8ef598cd2ca4975ed272e90e943d2bca0b301a81e0079579e22fd2"
+        },
+        {
+          "phase": "reset-button",
+          "equal": true,
+          "java_draw_calls": 15,
+          "go_draw_calls": 15,
+          "java_digest": "17f77b083b9d4c8e466eca97ee294ba92cd2a7d9c559dd6cd3d0576993d1ac81",
+          "go_digest": "17f77b083b9d4c8e466eca97ee294ba92cd2a7d9c559dd6cd3d0576993d1ac81"
+        },
+        {
+          "phase": "search-cancel",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "f5b3c1d536174b38ca3a18e5645b2c34893fd5fac8820dc5ac3d57bc10af4852",
+          "go_digest": "f5b3c1d536174b38ca3a18e5645b2c34893fd5fac8820dc5ac3d57bc10af4852"
+        },
+        {
+          "phase": "mouseout",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "cf7355c1d0ff3d34c836f0184d52dcb0490c4bd625ac753f749ff9b2b1a38870",
+          "go_digest": "cf7355c1d0ff3d34c836f0184d52dcb0490c4bd625ac753f749ff9b2b1a38870"
+        },
+        {
+          "phase": "darkmode-button",
+          "equal": true,
+          "java_draw_calls": 15,
+          "go_draw_calls": 15,
+          "java_digest": "c4752a216ed6c24dbc1ad842e3c629299d0d6b54e49834c422b01ca42e711c2a",
+          "go_digest": "c4752a216ed6c24dbc1ad842e3c629299d0d6b54e49834c422b01ca42e711c2a"
+        },
+        {
+          "phase": "darkmode-key",
+          "equal": true,
+          "java_draw_calls": 15,
+          "go_draw_calls": 15,
+          "java_digest": "a870f2d4d5fa8d03f0c8285fbe34743446f0a138f00f5e9433dee725826d7dfb",
+          "go_digest": "a870f2d4d5fa8d03f0c8285fbe34743446f0a138f00f5e9433dee725826d7dfb"
+        },
+        {
+          "phase": "legend-show",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "e0eb527e61b47ee8c701d307319aabf0c1eff21040203b070ad3afe0da79d095",
+          "go_digest": "e0eb527e61b47ee8c701d307319aabf0c1eff21040203b070ad3afe0da79d095"
+        },
+        {
+          "phase": "legend-hide",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "5844f9420b0422c44f682ce2c73bbac5a1fb5a224a713ebed1231dd9d379ce48",
+          "go_digest": "5844f9420b0422c44f682ce2c73bbac5a1fb5a224a713ebed1231dd9d379ce48"
+        }
+      ],
+      "all_phases_identical": true
+    },
+    {
+      "case": "ap-html-reverse",
+      "format": "html",
+      "files": {
+        "java": "ap-html-reverse/java.html",
+        "go": "ap-html-reverse/go.html"
+      },
+      "input_html_sha256": {
+        "java": "7a6d9444c4badd216f2a7211d79d8e838d9de282fe92ebcafd30962d6c58c8c9",
+        "go": "0d227c943b3e7a9a5391ffe49a4e9d229e1071c09e30d050179ac30e2fda74d1"
+      },
+      "seeded": {
+        "java": "ap-html-reverse/seeded/java.html",
+        "go": "ap-html-reverse/seeded/go.html"
+      },
+      "checks_per_implementation": 21,
+      "java_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "go_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "phases": [
+        {
+          "phase": "initial",
+          "equal": true,
+          "java_draw_calls": 3752,
+          "go_draw_calls": 3752,
+          "java_digest": "ea8e465f0cd0fb67d8857b989405b8c880d068adc5ca661054effcf550ed4d26",
+          "go_digest": "ea8e465f0cd0fb67d8857b989405b8c880d068adc5ca661054effcf550ed4d26"
+        },
+        {
+          "phase": "hover",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "4dfe243ae6c6bfc9bd9da08c51136a64c7035210082872ef6f8abd8c891ee8a4",
+          "go_digest": "4dfe243ae6c6bfc9bd9da08c51136a64c7035210082872ef6f8abd8c891ee8a4"
+        },
+        {
+          "phase": "select-tooltip",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "e331196746fa7c69cff0a05cfff18461cc696968207b67546d4dabae6a92d748",
+          "go_digest": "e331196746fa7c69cff0a05cfff18461cc696968207b67546d4dabae6a92d748"
+        },
+        {
+          "phase": "zoom",
+          "equal": true,
+          "java_draw_calls": 18,
+          "go_draw_calls": 18,
+          "java_digest": "bfd74e2465d541436a607032e5939318b16340e0ed5fb3c6159fdc5a2831bcdc",
+          "go_digest": "bfd74e2465d541436a607032e5939318b16340e0ed5fb3c6159fdc5a2831bcdc"
+        },
+        {
+          "phase": "invert",
+          "equal": true,
+          "java_draw_calls": 3752,
+          "go_draw_calls": 3752,
+          "java_digest": "216b80d5eb80d0bb0e05e1b29d7d9e87a21cdbd1110a46217b5ddc0b271f122b",
+          "go_digest": "216b80d5eb80d0bb0e05e1b29d7d9e87a21cdbd1110a46217b5ddc0b271f122b"
+        },
+        {
+          "phase": "search-button",
+          "equal": true,
+          "java_draw_calls": 3752,
+          "go_draw_calls": 3752,
+          "java_digest": "2e67f47145be14acd3980b31dd82c623926215d8d28ccb2b678a29ea53901feb",
+          "go_digest": "2e67f47145be14acd3980b31dd82c623926215d8d28ccb2b678a29ea53901feb"
+        },
+        {
+          "phase": "next-match",
+          "equal": true,
+          "java_draw_calls": 35,
+          "go_draw_calls": 35,
+          "java_digest": "a8f000c41565445ec58d083ec448f95fc8cb9ecd7fe575a314e0f50511008908",
+          "go_digest": "a8f000c41565445ec58d083ec448f95fc8cb9ecd7fe575a314e0f50511008908"
+        },
+        {
+          "phase": "previous-match",
+          "equal": true,
+          "java_draw_calls": 20,
+          "go_draw_calls": 20,
+          "java_digest": "b56761777fbf7efb7d117d725fb275d3c5cc563de9d2aee27323889f18ad37a7",
+          "go_digest": "b56761777fbf7efb7d117d725fb275d3c5cc563de9d2aee27323889f18ad37a7"
+        },
+        {
+          "phase": "escape-clear",
+          "equal": true,
+          "java_draw_calls": 20,
+          "go_draw_calls": 20,
+          "java_digest": "109c0716ab9df3fe4a86e48d3abbad21885e07d39024c99ac2bda364d8319a7a",
+          "go_digest": "109c0716ab9df3fe4a86e48d3abbad21885e07d39024c99ac2bda364d8319a7a"
+        },
+        {
+          "phase": "ctrl-f",
+          "equal": true,
+          "java_draw_calls": 20,
+          "go_draw_calls": 20,
+          "java_digest": "ac2363b777441415a098a3932778b3a2da2506424b8f702ead83f0dad03d199d",
+          "go_digest": "ac2363b777441415a098a3932778b3a2da2506424b8f702ead83f0dad03d199d"
+        },
+        {
+          "phase": "reset-button",
+          "equal": true,
+          "java_draw_calls": 20,
+          "go_draw_calls": 20,
+          "java_digest": "c505ee972f228d2aecc4a05afc83725eddab581c229c08f5ce275ca745241d30",
+          "go_digest": "c505ee972f228d2aecc4a05afc83725eddab581c229c08f5ce275ca745241d30"
+        },
+        {
+          "phase": "search-cancel",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "c20d8c9ffce2bce58e87bc74f3d219bc178c80be510d1dd822374a9c31d27de3",
+          "go_digest": "c20d8c9ffce2bce58e87bc74f3d219bc178c80be510d1dd822374a9c31d27de3"
+        },
+        {
+          "phase": "mouseout",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "3ab276320d75efc75b8595763b6e1c784c8dd12616ab771a2e10d98cd7616809",
+          "go_digest": "3ab276320d75efc75b8595763b6e1c784c8dd12616ab771a2e10d98cd7616809"
+        },
+        {
+          "phase": "darkmode-button",
+          "equal": true,
+          "java_draw_calls": 20,
+          "go_draw_calls": 20,
+          "java_digest": "f678eccae4e8e13d47da5e6092a2203c75db0d70e94d6f98c8ce6b7266963613",
+          "go_digest": "f678eccae4e8e13d47da5e6092a2203c75db0d70e94d6f98c8ce6b7266963613"
+        },
+        {
+          "phase": "darkmode-key",
+          "equal": true,
+          "java_draw_calls": 20,
+          "go_draw_calls": 20,
+          "java_digest": "a9181c0ac3d4dc442babba2133f5d0ee981fe293f3e61a2b11aba69c5e1edb2f",
+          "go_digest": "a9181c0ac3d4dc442babba2133f5d0ee981fe293f3e61a2b11aba69c5e1edb2f"
+        },
+        {
+          "phase": "legend-show",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "7f63dffe5f196fed2babd48bfd6ce0f69f0a20be5aafb54edc002722f18e1196",
+          "go_digest": "7f63dffe5f196fed2babd48bfd6ce0f69f0a20be5aafb54edc002722f18e1196"
+        },
+        {
+          "phase": "legend-hide",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "520bbd2911b1f3856926667a1adff0cf2a213635ea912f10a382548fb6a454c7",
+          "go_digest": "520bbd2911b1f3856926667a1adff0cf2a213635ea912f10a382548fb6a454c7"
+        }
+      ],
+      "all_phases_identical": true
+    },
+    {
+      "case": "ap-html-filter",
+      "format": "html",
+      "files": {
+        "java": "ap-html-filter/java.html",
+        "go": "ap-html-filter/go.html"
+      },
+      "input_html_sha256": {
+        "java": "e960be25a2a59e9c325863ddb32162c368f4314d758c8324671108f6c6cc43c7",
+        "go": "1052bafaa24ae14da47473d8ede0dcaa78dac62687a1298157147c50b2d5d886"
+      },
+      "seeded": {
+        "java": "ap-html-filter/seeded/java.html",
+        "go": "ap-html-filter/seeded/go.html"
+      },
+      "checks_per_implementation": 21,
+      "java_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "go_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "phases": [
+        {
+          "phase": "initial",
+          "equal": true,
+          "java_draw_calls": 746,
+          "go_draw_calls": 746,
+          "java_digest": "70c4a5564a09da85466f02ff78e2b617b5a655a8b63b5abb24338bbe42b477c5",
+          "go_digest": "70c4a5564a09da85466f02ff78e2b617b5a655a8b63b5abb24338bbe42b477c5"
+        },
+        {
+          "phase": "hover",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "149799d7e1851ff49be2bd4d68097790a6f489f41e944dd4c07b2bb89566cb3c",
+          "go_digest": "149799d7e1851ff49be2bd4d68097790a6f489f41e944dd4c07b2bb89566cb3c"
+        },
+        {
+          "phase": "select-tooltip",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "279343b4d047af6ecbbc70edac681674a5e0586c94eeec5f5d1dff0b1e3a74c1",
+          "go_digest": "279343b4d047af6ecbbc70edac681674a5e0586c94eeec5f5d1dff0b1e3a74c1"
+        },
+        {
+          "phase": "zoom",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "339d8d1cdea79f94f74e2ef783401cb5916a9d6aaf58e3a0a1ede01c0b92f748",
+          "go_digest": "339d8d1cdea79f94f74e2ef783401cb5916a9d6aaf58e3a0a1ede01c0b92f748"
+        },
+        {
+          "phase": "invert",
+          "equal": true,
+          "java_draw_calls": 746,
+          "go_draw_calls": 746,
+          "java_digest": "0a1d2bd6593482bf60c74886229bc118ba54a35ddd01f8ac6c2b5c70c487f0f0",
+          "go_digest": "0a1d2bd6593482bf60c74886229bc118ba54a35ddd01f8ac6c2b5c70c487f0f0"
+        },
+        {
+          "phase": "search-button",
+          "equal": true,
+          "java_draw_calls": 746,
+          "go_draw_calls": 746,
+          "java_digest": "c320c86b051dcbb4892ab82af9c3d7e146471937ceb5781442db454d7ca45de7",
+          "go_digest": "c320c86b051dcbb4892ab82af9c3d7e146471937ceb5781442db454d7ca45de7"
+        },
+        {
+          "phase": "next-match",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "924e75306a6a8ba8157aac1ffe7fc8b803c0c181d81fb961c551673baf3aec0b",
+          "go_digest": "924e75306a6a8ba8157aac1ffe7fc8b803c0c181d81fb961c551673baf3aec0b"
+        },
+        {
+          "phase": "previous-match",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "8ec1d5a369a8e19f5830b97af40541e7ba5257117d2b1895eddf8e460a3ccc0a",
+          "go_digest": "8ec1d5a369a8e19f5830b97af40541e7ba5257117d2b1895eddf8e460a3ccc0a"
+        },
+        {
+          "phase": "escape-clear",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "1c829194060f9401c0ed5d67df3ae7f930405782f0f57b53526fc72721cd1771",
+          "go_digest": "1c829194060f9401c0ed5d67df3ae7f930405782f0f57b53526fc72721cd1771"
+        },
+        {
+          "phase": "ctrl-f",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "415ccaecffbf65eea486b4b7f847cc3fcde85421fd443b5c2a04705825d7f537",
+          "go_digest": "415ccaecffbf65eea486b4b7f847cc3fcde85421fd443b5c2a04705825d7f537"
+        },
+        {
+          "phase": "reset-button",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "c12a542ef898a8f57c111f9465ad147045bc253ba10b8e6db1bef57a5237e3ee",
+          "go_digest": "c12a542ef898a8f57c111f9465ad147045bc253ba10b8e6db1bef57a5237e3ee"
+        },
+        {
+          "phase": "search-cancel",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "99f6e1ebd1faa1c99701e1f1408426690bbb1fb3cd1adf45a031910b3a265f80",
+          "go_digest": "99f6e1ebd1faa1c99701e1f1408426690bbb1fb3cd1adf45a031910b3a265f80"
+        },
+        {
+          "phase": "mouseout",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "95858a0c266ed75bdd77233a15a16562b785444e3ddd4a019912621fc32f7e61",
+          "go_digest": "95858a0c266ed75bdd77233a15a16562b785444e3ddd4a019912621fc32f7e61"
+        },
+        {
+          "phase": "darkmode-button",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "11b5e5af1503368fa89e25ec627e018d871a390585bc1127fc163331b1182b6a",
+          "go_digest": "11b5e5af1503368fa89e25ec627e018d871a390585bc1127fc163331b1182b6a"
+        },
+        {
+          "phase": "darkmode-key",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "3e69d8db93e955f67b86601ebe2519db3b0531111c30d65ee14d56b0c1173a11",
+          "go_digest": "3e69d8db93e955f67b86601ebe2519db3b0531111c30d65ee14d56b0c1173a11"
+        },
+        {
+          "phase": "legend-show",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "efe54fdf9789ab4bd170b25791c26e96b313efb5756b9f2c2a270d9a25f445a1",
+          "go_digest": "efe54fdf9789ab4bd170b25791c26e96b313efb5756b9f2c2a270d9a25f445a1"
+        },
+        {
+          "phase": "legend-hide",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "6c9220838745119fdfa21e7a7f5a96135041f07ab307409ef48860902ac784ea",
+          "go_digest": "6c9220838745119fdfa21e7a7f5a96135041f07ab307409ef48860902ac784ea"
+        }
+      ],
+      "all_phases_identical": true
+    },
+    {
+      "case": "ap-regex-alternation",
+      "format": "html",
+      "files": {
+        "java": "ap-regex-alternation/java.html",
+        "go": "ap-regex-alternation/go.html"
+      },
+      "input_html_sha256": {
+        "java": "49aaca2f3542a1861c284b1c5486547b04c766eadff72b3f4b5c600377f2092e",
+        "go": "bde844eed97535b27bdbc6fa1b994772cbd19569783f119c722c78aa95705cfc"
+      },
+      "seeded": {
+        "java": "ap-regex-alternation/seeded/java.html",
+        "go": "ap-regex-alternation/seeded/go.html"
+      },
+      "checks_per_implementation": 21,
+      "java_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "go_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "phases": [
+        {
+          "phase": "initial",
+          "equal": true,
+          "java_draw_calls": 1019,
+          "go_draw_calls": 1019,
+          "java_digest": "ab72458ca7310612d4fb2083fbc546f4157cb7732be6265e7cc92d3ce63437f0",
+          "go_digest": "ab72458ca7310612d4fb2083fbc546f4157cb7732be6265e7cc92d3ce63437f0"
+        },
+        {
+          "phase": "hover",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "799850a4a99f69e5a2ec90410d569d52e2c6820d853459511032412d1248ef90",
+          "go_digest": "799850a4a99f69e5a2ec90410d569d52e2c6820d853459511032412d1248ef90"
+        },
+        {
+          "phase": "select-tooltip",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "0c572c3b9fa3cdf433d2a501dcfdc08d18d87e1a20bad15d0555054afa1bc6f9",
+          "go_digest": "0c572c3b9fa3cdf433d2a501dcfdc08d18d87e1a20bad15d0555054afa1bc6f9"
+        },
+        {
+          "phase": "zoom",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "415d42c879ad15285ae3aab426adcbfe91b3da28234281ae5648b307bc35dcd0",
+          "go_digest": "415d42c879ad15285ae3aab426adcbfe91b3da28234281ae5648b307bc35dcd0"
+        },
+        {
+          "phase": "invert",
+          "equal": true,
+          "java_draw_calls": 1019,
+          "go_draw_calls": 1019,
+          "java_digest": "c1147a54f0c8f34ba2da8a51bbd66a9ac5ad76660f50855e88cf6231f64524f3",
+          "go_digest": "c1147a54f0c8f34ba2da8a51bbd66a9ac5ad76660f50855e88cf6231f64524f3"
+        },
+        {
+          "phase": "search-button",
+          "equal": true,
+          "java_draw_calls": 1019,
+          "go_draw_calls": 1019,
+          "java_digest": "00bec54a1b1a15adcaac0e1bc5b88d08e54499cc4d092c7c5213085b85101544",
+          "go_digest": "00bec54a1b1a15adcaac0e1bc5b88d08e54499cc4d092c7c5213085b85101544"
+        },
+        {
+          "phase": "next-match",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "c5a60b820a9977788b3724350557388328e83fced0d3659e26a8116834264434",
+          "go_digest": "c5a60b820a9977788b3724350557388328e83fced0d3659e26a8116834264434"
+        },
+        {
+          "phase": "previous-match",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "946d5316d6c511f479bf58d624bb026a5f1e7a644c3d8c1d3880d1d63c3c905a",
+          "go_digest": "946d5316d6c511f479bf58d624bb026a5f1e7a644c3d8c1d3880d1d63c3c905a"
+        },
+        {
+          "phase": "escape-clear",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "1d909ce8c31723b2e7997231f0a3def1e40759caafd4f06c0be691e847b3765e",
+          "go_digest": "1d909ce8c31723b2e7997231f0a3def1e40759caafd4f06c0be691e847b3765e"
+        },
+        {
+          "phase": "ctrl-f",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "e048ac60834fc42f8b4a9703b3eaad5dfccd2dbcf5f077db5ce15e5d85392287",
+          "go_digest": "e048ac60834fc42f8b4a9703b3eaad5dfccd2dbcf5f077db5ce15e5d85392287"
+        },
+        {
+          "phase": "reset-button",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "4a4bf84d9fe1742f22a6a7e824c6f9ca3a7dcb6e92a3aaad3eaf6877e1db6d02",
+          "go_digest": "4a4bf84d9fe1742f22a6a7e824c6f9ca3a7dcb6e92a3aaad3eaf6877e1db6d02"
+        },
+        {
+          "phase": "search-cancel",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "daba9b96e00069efab29a30bd4258803270d10911a6f9135bf9619208fddf4bf",
+          "go_digest": "daba9b96e00069efab29a30bd4258803270d10911a6f9135bf9619208fddf4bf"
+        },
+        {
+          "phase": "mouseout",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "b5e8b114ee8f5523af6acf2e38230489ebda56c9b82b1f4c7785b7df36bceb3b",
+          "go_digest": "b5e8b114ee8f5523af6acf2e38230489ebda56c9b82b1f4c7785b7df36bceb3b"
+        },
+        {
+          "phase": "darkmode-button",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "f5718315264d4857013c1faf76f0acc4ea1331391e360bb5b4e11b91a804006d",
+          "go_digest": "f5718315264d4857013c1faf76f0acc4ea1331391e360bb5b4e11b91a804006d"
+        },
+        {
+          "phase": "darkmode-key",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "52d93ee1a3a14dd20a792a90c3843ba579ae3df1345ffaaa196ccfb201077058",
+          "go_digest": "52d93ee1a3a14dd20a792a90c3843ba579ae3df1345ffaaa196ccfb201077058"
+        },
+        {
+          "phase": "legend-show",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "e20aa1164fe3201238fdc4ace19b737f22b605ee877d4f9014f0eb6f5d4c4359",
+          "go_digest": "e20aa1164fe3201238fdc4ace19b737f22b605ee877d4f9014f0eb6f5d4c4359"
+        },
+        {
+          "phase": "legend-hide",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "9935ba450d1370b01f59be9b1c64b11dfa4b69714cc00c700676c4bfea1a08d6",
+          "go_digest": "9935ba450d1370b01f59be9b1c64b11dfa4b69714cc00c700676c4bfea1a08d6"
+        }
+      ],
+      "all_phases_identical": true
+    },
+    {
+      "case": "ap-regex-casefold",
+      "format": "html",
+      "files": {
+        "java": "ap-regex-casefold/java.html",
+        "go": "ap-regex-casefold/go.html"
+      },
+      "input_html_sha256": {
+        "java": "079ed29f9bf4683e3a06b3fb568ad0e44560545e01b4501d1e902bfc0d97578d",
+        "go": "5d09fac23546e7d882f26605a850ce6f06dfb4c4392960f62982527fccc6be42"
+      },
+      "seeded": {
+        "java": "ap-regex-casefold/seeded/java.html",
+        "go": "ap-regex-casefold/seeded/go.html"
+      },
+      "checks_per_implementation": 21,
+      "java_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "go_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "phases": [
+        {
+          "phase": "initial",
+          "equal": true,
+          "java_draw_calls": 750,
+          "go_draw_calls": 750,
+          "java_digest": "3fb52f4bbd484384c39dd7c3501a65df064efa3bda93d92af427619d385aba76",
+          "go_digest": "3fb52f4bbd484384c39dd7c3501a65df064efa3bda93d92af427619d385aba76"
+        },
+        {
+          "phase": "hover",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "527c998d26e6f47ed1c1bba658be3485157ae3de8a62ed895800eca7d0194cdb",
+          "go_digest": "527c998d26e6f47ed1c1bba658be3485157ae3de8a62ed895800eca7d0194cdb"
+        },
+        {
+          "phase": "select-tooltip",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "2874f0bf2c5a6bca18ec6fb0433f2b03383f4f5234034c3ead38ae941d1eb80b",
+          "go_digest": "2874f0bf2c5a6bca18ec6fb0433f2b03383f4f5234034c3ead38ae941d1eb80b"
+        },
+        {
+          "phase": "zoom",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "25feb1fbbc73d23d85ffc8f23e49110c15ab41b2ab0f04826e48d2f5fc4c664d",
+          "go_digest": "25feb1fbbc73d23d85ffc8f23e49110c15ab41b2ab0f04826e48d2f5fc4c664d"
+        },
+        {
+          "phase": "invert",
+          "equal": true,
+          "java_draw_calls": 750,
+          "go_draw_calls": 750,
+          "java_digest": "6e4b7ba32df2e9621c01a0b05a6ba1502526cce083b96ba0cde66d401a42705d",
+          "go_digest": "6e4b7ba32df2e9621c01a0b05a6ba1502526cce083b96ba0cde66d401a42705d"
+        },
+        {
+          "phase": "search-button",
+          "equal": true,
+          "java_draw_calls": 750,
+          "go_draw_calls": 750,
+          "java_digest": "ceb19878e0160da3556abaecc59e3aea15fc32e46e8b1fca00f24a32470846a1",
+          "go_digest": "ceb19878e0160da3556abaecc59e3aea15fc32e46e8b1fca00f24a32470846a1"
+        },
+        {
+          "phase": "next-match",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "c6f56429fccc04ce901471c36db8f6d33787c19796a2ef10344d137811303d35",
+          "go_digest": "c6f56429fccc04ce901471c36db8f6d33787c19796a2ef10344d137811303d35"
+        },
+        {
+          "phase": "previous-match",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "a93a68b8180672918a1d5ff59d34cbae0eeb2edc1480c483eafa94dad4850f59",
+          "go_digest": "a93a68b8180672918a1d5ff59d34cbae0eeb2edc1480c483eafa94dad4850f59"
+        },
+        {
+          "phase": "escape-clear",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "620ee0e9ad7c8b22166d908d87f82793e46c2187699320bc7cc676e3ee7c25b5",
+          "go_digest": "620ee0e9ad7c8b22166d908d87f82793e46c2187699320bc7cc676e3ee7c25b5"
+        },
+        {
+          "phase": "ctrl-f",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "6041e4ddfbbf9edbc5e5ee63216a7414dc51302e3bf76c36ef399053e15ebcb6",
+          "go_digest": "6041e4ddfbbf9edbc5e5ee63216a7414dc51302e3bf76c36ef399053e15ebcb6"
+        },
+        {
+          "phase": "reset-button",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "0b5da956c41f96a00bbcd4805c9c064a365b1d06867a381d15f9de3a2049c19c",
+          "go_digest": "0b5da956c41f96a00bbcd4805c9c064a365b1d06867a381d15f9de3a2049c19c"
+        },
+        {
+          "phase": "search-cancel",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "e7f20b76682bfcd781e7adf6c3d79fce2507e1f9e382889f7e42e4071e07e214",
+          "go_digest": "e7f20b76682bfcd781e7adf6c3d79fce2507e1f9e382889f7e42e4071e07e214"
+        },
+        {
+          "phase": "mouseout",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "88e6a8d407ce4b17106d7d90bbba48d15e9bb04f95768a3b1087df228c8ad6bd",
+          "go_digest": "88e6a8d407ce4b17106d7d90bbba48d15e9bb04f95768a3b1087df228c8ad6bd"
+        },
+        {
+          "phase": "darkmode-button",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "9a9992bf0cffc1be3582f5dbd3794ad18d1661fe1cc38d00e8c7718e22adba92",
+          "go_digest": "9a9992bf0cffc1be3582f5dbd3794ad18d1661fe1cc38d00e8c7718e22adba92"
+        },
+        {
+          "phase": "darkmode-key",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "c7c3f475c8552c185cd15d67e8c6133dc2d741c4a14c9f764b0763d39bcbb7c1",
+          "go_digest": "c7c3f475c8552c185cd15d67e8c6133dc2d741c4a14c9f764b0763d39bcbb7c1"
+        },
+        {
+          "phase": "legend-show",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "819d4b4caf8414be1c033ed059b07721988c7f9ee2ff14985e8acfa7d2ff3bdb",
+          "go_digest": "819d4b4caf8414be1c033ed059b07721988c7f9ee2ff14985e8acfa7d2ff3bdb"
+        },
+        {
+          "phase": "legend-hide",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "0a6f89c72ee86867cf46988435ece7da240b3ef424c2f8f2f49eeec0faecffcb",
+          "go_digest": "0a6f89c72ee86867cf46988435ece7da240b3ef424c2f8f2f49eeec0faecffcb"
+        }
+      ],
+      "all_phases_identical": true
+    },
+    {
+      "case": "ap-highlight-regex",
+      "format": "html",
+      "files": {
+        "java": "ap-highlight-regex/java.html",
+        "go": "ap-highlight-regex/go.html"
+      },
+      "input_html_sha256": {
+        "java": "339d0e10e3aa46d7e8f947a6d1da664e988b51b695d55f13a9c21b6c409c4036",
+        "go": "9613a910dc6b6344e78b1f3d5b5d727a508a59cb1ceb7c175aac5940341eaf2b"
+      },
+      "seeded": {
+        "java": "ap-highlight-regex/seeded/java.html",
+        "go": "ap-highlight-regex/seeded/go.html"
+      },
+      "checks_per_implementation": 21,
+      "java_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "go_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "phases": [
+        {
+          "phase": "initial",
+          "equal": true,
+          "java_draw_calls": 1095,
+          "go_draw_calls": 1095,
+          "java_digest": "c47da410ed0896c26145148cc41d9a54ac29062e1906ef89a7a6486afa3eaed3",
+          "go_digest": "c47da410ed0896c26145148cc41d9a54ac29062e1906ef89a7a6486afa3eaed3"
+        },
+        {
+          "phase": "hover",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "580449b3227f1906553181bd29bdda4223de3baf2ddb801eedfd1e5674449ecc",
+          "go_digest": "580449b3227f1906553181bd29bdda4223de3baf2ddb801eedfd1e5674449ecc"
+        },
+        {
+          "phase": "select-tooltip",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "caf59f4eb82f476a4a3fe7e6b2d2cdaf3bfbf78ad21893793be13e46aec119d2",
+          "go_digest": "caf59f4eb82f476a4a3fe7e6b2d2cdaf3bfbf78ad21893793be13e46aec119d2"
+        },
+        {
+          "phase": "zoom",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "6aedeb7611c6608297d5d39e2c44a108c366be05a85004d14c6be03db9d64d60",
+          "go_digest": "6aedeb7611c6608297d5d39e2c44a108c366be05a85004d14c6be03db9d64d60"
+        },
+        {
+          "phase": "invert",
+          "equal": true,
+          "java_draw_calls": 1095,
+          "go_draw_calls": 1095,
+          "java_digest": "4eede30823645f2b5e52bc0fbf7a9b2a6cae390abf9af00caa2e25f4cdb13489",
+          "go_digest": "4eede30823645f2b5e52bc0fbf7a9b2a6cae390abf9af00caa2e25f4cdb13489"
+        },
+        {
+          "phase": "search-button",
+          "equal": true,
+          "java_draw_calls": 1095,
+          "go_draw_calls": 1095,
+          "java_digest": "4d3b0b01b66e77cbf5458276bcf2085424e0d6bca550fbbb8386f6f43838264e",
+          "go_digest": "4d3b0b01b66e77cbf5458276bcf2085424e0d6bca550fbbb8386f6f43838264e"
+        },
+        {
+          "phase": "next-match",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "3aace72b837da739395a2c53175ec37eb6a9e063545f1ad5e282d06e4e6ac5a7",
+          "go_digest": "3aace72b837da739395a2c53175ec37eb6a9e063545f1ad5e282d06e4e6ac5a7"
+        },
+        {
+          "phase": "previous-match",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "2e214ce551ffe687a0de4becbdffe948814caeb895b0ec99f02e4ca5884c568b",
+          "go_digest": "2e214ce551ffe687a0de4becbdffe948814caeb895b0ec99f02e4ca5884c568b"
+        },
+        {
+          "phase": "escape-clear",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "c7a7b53e139078cbcd31e1a396ed6bedf3ac17d14227befc40c292b1f9a99c05",
+          "go_digest": "c7a7b53e139078cbcd31e1a396ed6bedf3ac17d14227befc40c292b1f9a99c05"
+        },
+        {
+          "phase": "ctrl-f",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "c53ee855172aceec0c1b7ed2912c21f53176563dfbecce0177b33d9f2998d4d9",
+          "go_digest": "c53ee855172aceec0c1b7ed2912c21f53176563dfbecce0177b33d9f2998d4d9"
+        },
+        {
+          "phase": "reset-button",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "5de7a0e9156a378334d37b82818c967e46eaec87afcbfb8f0ee3fde8e33761d9",
+          "go_digest": "5de7a0e9156a378334d37b82818c967e46eaec87afcbfb8f0ee3fde8e33761d9"
+        },
+        {
+          "phase": "search-cancel",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "97cec92421ec74099398bc909eca58ae8ea7b01ed85377e6431f094754602c57",
+          "go_digest": "97cec92421ec74099398bc909eca58ae8ea7b01ed85377e6431f094754602c57"
+        },
+        {
+          "phase": "mouseout",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "3767d29503ca220c923e418df5d69b046ab4be395394414cd5333b08f2ab53af",
+          "go_digest": "3767d29503ca220c923e418df5d69b046ab4be395394414cd5333b08f2ab53af"
+        },
+        {
+          "phase": "darkmode-button",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "378ab9df55a5accd19e36160d0d9a0deec0bf06a3e08a8672d2bce6d7dd3537e",
+          "go_digest": "378ab9df55a5accd19e36160d0d9a0deec0bf06a3e08a8672d2bce6d7dd3537e"
+        },
+        {
+          "phase": "darkmode-key",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "a6f6ac06852851a4e3ea4d10a71faed0adfa1d7cd9f961af7febae8091e39ede",
+          "go_digest": "a6f6ac06852851a4e3ea4d10a71faed0adfa1d7cd9f961af7febae8091e39ede"
+        },
+        {
+          "phase": "legend-show",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "4ad4b9b44b4d64dcc861c517c928eff2dcd8ccf536f0112f4a64f0c666cf0286",
+          "go_digest": "4ad4b9b44b4d64dcc861c517c928eff2dcd8ccf536f0112f4a64f0c666cf0286"
+        },
+        {
+          "phase": "legend-hide",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "c6677e68b54f072cbea0bd486c7a56bb782ef4fcc308788efa7e52d875d08dc9",
+          "go_digest": "c6677e68b54f072cbea0bd486c7a56bb782ef4fcc308788efa7e52d875d08dc9"
+        }
+      ],
+      "all_phases_identical": true
+    },
+    {
+      "case": "cross-go-html-filter",
+      "format": "html",
+      "files": {
+        "java": "cross-go-html-filter/java.html",
+        "go": "cross-go-html-filter/go.html"
+      },
+      "input_html_sha256": {
+        "java": "e960be25a2a59e9c325863ddb32162c368f4314d758c8324671108f6c6cc43c7",
+        "go": "1052bafaa24ae14da47473d8ede0dcaa78dac62687a1298157147c50b2d5d886"
+      },
+      "seeded": {
+        "java": "cross-go-html-filter/seeded/java.html",
+        "go": "cross-go-html-filter/seeded/go.html"
+      },
+      "checks_per_implementation": 21,
+      "java_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "go_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "phases": [
+        {
+          "phase": "initial",
+          "equal": true,
+          "java_draw_calls": 746,
+          "go_draw_calls": 746,
+          "java_digest": "70c4a5564a09da85466f02ff78e2b617b5a655a8b63b5abb24338bbe42b477c5",
+          "go_digest": "70c4a5564a09da85466f02ff78e2b617b5a655a8b63b5abb24338bbe42b477c5"
+        },
+        {
+          "phase": "hover",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "149799d7e1851ff49be2bd4d68097790a6f489f41e944dd4c07b2bb89566cb3c",
+          "go_digest": "149799d7e1851ff49be2bd4d68097790a6f489f41e944dd4c07b2bb89566cb3c"
+        },
+        {
+          "phase": "select-tooltip",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "279343b4d047af6ecbbc70edac681674a5e0586c94eeec5f5d1dff0b1e3a74c1",
+          "go_digest": "279343b4d047af6ecbbc70edac681674a5e0586c94eeec5f5d1dff0b1e3a74c1"
+        },
+        {
+          "phase": "zoom",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "339d8d1cdea79f94f74e2ef783401cb5916a9d6aaf58e3a0a1ede01c0b92f748",
+          "go_digest": "339d8d1cdea79f94f74e2ef783401cb5916a9d6aaf58e3a0a1ede01c0b92f748"
+        },
+        {
+          "phase": "invert",
+          "equal": true,
+          "java_draw_calls": 746,
+          "go_draw_calls": 746,
+          "java_digest": "0a1d2bd6593482bf60c74886229bc118ba54a35ddd01f8ac6c2b5c70c487f0f0",
+          "go_digest": "0a1d2bd6593482bf60c74886229bc118ba54a35ddd01f8ac6c2b5c70c487f0f0"
+        },
+        {
+          "phase": "search-button",
+          "equal": true,
+          "java_draw_calls": 746,
+          "go_draw_calls": 746,
+          "java_digest": "c320c86b051dcbb4892ab82af9c3d7e146471937ceb5781442db454d7ca45de7",
+          "go_digest": "c320c86b051dcbb4892ab82af9c3d7e146471937ceb5781442db454d7ca45de7"
+        },
+        {
+          "phase": "next-match",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "924e75306a6a8ba8157aac1ffe7fc8b803c0c181d81fb961c551673baf3aec0b",
+          "go_digest": "924e75306a6a8ba8157aac1ffe7fc8b803c0c181d81fb961c551673baf3aec0b"
+        },
+        {
+          "phase": "previous-match",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "8ec1d5a369a8e19f5830b97af40541e7ba5257117d2b1895eddf8e460a3ccc0a",
+          "go_digest": "8ec1d5a369a8e19f5830b97af40541e7ba5257117d2b1895eddf8e460a3ccc0a"
+        },
+        {
+          "phase": "escape-clear",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "1c829194060f9401c0ed5d67df3ae7f930405782f0f57b53526fc72721cd1771",
+          "go_digest": "1c829194060f9401c0ed5d67df3ae7f930405782f0f57b53526fc72721cd1771"
+        },
+        {
+          "phase": "ctrl-f",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "415ccaecffbf65eea486b4b7f847cc3fcde85421fd443b5c2a04705825d7f537",
+          "go_digest": "415ccaecffbf65eea486b4b7f847cc3fcde85421fd443b5c2a04705825d7f537"
+        },
+        {
+          "phase": "reset-button",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "c12a542ef898a8f57c111f9465ad147045bc253ba10b8e6db1bef57a5237e3ee",
+          "go_digest": "c12a542ef898a8f57c111f9465ad147045bc253ba10b8e6db1bef57a5237e3ee"
+        },
+        {
+          "phase": "search-cancel",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "99f6e1ebd1faa1c99701e1f1408426690bbb1fb3cd1adf45a031910b3a265f80",
+          "go_digest": "99f6e1ebd1faa1c99701e1f1408426690bbb1fb3cd1adf45a031910b3a265f80"
+        },
+        {
+          "phase": "mouseout",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "95858a0c266ed75bdd77233a15a16562b785444e3ddd4a019912621fc32f7e61",
+          "go_digest": "95858a0c266ed75bdd77233a15a16562b785444e3ddd4a019912621fc32f7e61"
+        },
+        {
+          "phase": "darkmode-button",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "11b5e5af1503368fa89e25ec627e018d871a390585bc1127fc163331b1182b6a",
+          "go_digest": "11b5e5af1503368fa89e25ec627e018d871a390585bc1127fc163331b1182b6a"
+        },
+        {
+          "phase": "darkmode-key",
+          "equal": true,
+          "java_draw_calls": 277,
+          "go_draw_calls": 277,
+          "java_digest": "3e69d8db93e955f67b86601ebe2519db3b0531111c30d65ee14d56b0c1173a11",
+          "go_digest": "3e69d8db93e955f67b86601ebe2519db3b0531111c30d65ee14d56b0c1173a11"
+        },
+        {
+          "phase": "legend-show",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "efe54fdf9789ab4bd170b25791c26e96b313efb5756b9f2c2a270d9a25f445a1",
+          "go_digest": "efe54fdf9789ab4bd170b25791c26e96b313efb5756b9f2c2a270d9a25f445a1"
+        },
+        {
+          "phase": "legend-hide",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "6c9220838745119fdfa21e7a7f5a96135041f07ab307409ef48860902ac784ea",
+          "go_digest": "6c9220838745119fdfa21e7a7f5a96135041f07ab307409ef48860902ac784ea"
+        }
+      ],
+      "all_phases_identical": true
+    },
+    {
+      "case": "cross-rust-html-regex",
+      "format": "html",
+      "files": {
+        "java": "cross-rust-html-regex/java.html",
+        "go": "cross-rust-html-regex/go.html"
+      },
+      "input_html_sha256": {
+        "java": "4751bfda9c8f40c831106cbfa1ceacd4a1b02f64a01953b7f5f7e837a32ee453",
+        "go": "aa32ca118189f18e9ee704aeecfed0f2c525529b87083954f892ab64bad13e35"
+      },
+      "seeded": {
+        "java": "cross-rust-html-regex/seeded/java.html",
+        "go": "cross-rust-html-regex/seeded/go.html"
+      },
+      "checks_per_implementation": 21,
+      "java_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "go_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "phases": [
+        {
+          "phase": "initial",
+          "equal": true,
+          "java_draw_calls": 750,
+          "go_draw_calls": 750,
+          "java_digest": "1ccc0f88a2e49625435f9c6d74b06948853fa77541c287f156f79a54515bcb40",
+          "go_digest": "1ccc0f88a2e49625435f9c6d74b06948853fa77541c287f156f79a54515bcb40"
+        },
+        {
+          "phase": "hover",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "de0326b574dac6210ae63188cf4425e89d74ade134eab9586aa07f9ef5fb107e",
+          "go_digest": "de0326b574dac6210ae63188cf4425e89d74ade134eab9586aa07f9ef5fb107e"
+        },
+        {
+          "phase": "select-tooltip",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "1bc0fd23e5772d5e077c3b359dd294d9381f5c0be55e3e033e5703cf333ae8e7",
+          "go_digest": "1bc0fd23e5772d5e077c3b359dd294d9381f5c0be55e3e033e5703cf333ae8e7"
+        },
+        {
+          "phase": "zoom",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "e39ba045264b0f59aa39693945be6ef5fca7722e2e507d388c4827d3ebd1450c",
+          "go_digest": "e39ba045264b0f59aa39693945be6ef5fca7722e2e507d388c4827d3ebd1450c"
+        },
+        {
+          "phase": "invert",
+          "equal": true,
+          "java_draw_calls": 750,
+          "go_draw_calls": 750,
+          "java_digest": "f1b9cdd2fe278fcac35415fe2b36d2eed6ad833092e006bcbf6c3b508dd2ba94",
+          "go_digest": "f1b9cdd2fe278fcac35415fe2b36d2eed6ad833092e006bcbf6c3b508dd2ba94"
+        },
+        {
+          "phase": "search-button",
+          "equal": true,
+          "java_draw_calls": 750,
+          "go_draw_calls": 750,
+          "java_digest": "c8d1fd918b179ab370063bc3938027f3b7bfb2c6275a2b639d6179e1b7fc7f10",
+          "go_digest": "c8d1fd918b179ab370063bc3938027f3b7bfb2c6275a2b639d6179e1b7fc7f10"
+        },
+        {
+          "phase": "next-match",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "476664cb52e2e4f7bee869a949654e6c7f904afe4f00cada90e0285363ceea42",
+          "go_digest": "476664cb52e2e4f7bee869a949654e6c7f904afe4f00cada90e0285363ceea42"
+        },
+        {
+          "phase": "previous-match",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "1f5b2222b81025f6223c446284d537920255e5777d643f571b023c0ed3765b2e",
+          "go_digest": "1f5b2222b81025f6223c446284d537920255e5777d643f571b023c0ed3765b2e"
+        },
+        {
+          "phase": "escape-clear",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "53bebf07f61fa3ceabdf673054c2238dca2700fd402cd587e50c6e49a1a8c959",
+          "go_digest": "53bebf07f61fa3ceabdf673054c2238dca2700fd402cd587e50c6e49a1a8c959"
+        },
+        {
+          "phase": "ctrl-f",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "dff348d72f727649cb3474ec0b9b2c6ff07dd7eb9b06df2b22c50fd8331ec840",
+          "go_digest": "dff348d72f727649cb3474ec0b9b2c6ff07dd7eb9b06df2b22c50fd8331ec840"
+        },
+        {
+          "phase": "reset-button",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "c85b7a2c799eb68d5b88ced86ebf3d5fcb5cac80482e9063bc8beb73250ec1fe",
+          "go_digest": "c85b7a2c799eb68d5b88ced86ebf3d5fcb5cac80482e9063bc8beb73250ec1fe"
+        },
+        {
+          "phase": "search-cancel",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "7e930707a8c407a8c4945c53e1c213b13dc4dd8290798fe2db89d9bcf89cb531",
+          "go_digest": "7e930707a8c407a8c4945c53e1c213b13dc4dd8290798fe2db89d9bcf89cb531"
+        },
+        {
+          "phase": "mouseout",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "96a07c465cdfb8c05d11770342726465abc87296f4e093b5af75812103f9b35b",
+          "go_digest": "96a07c465cdfb8c05d11770342726465abc87296f4e093b5af75812103f9b35b"
+        },
+        {
+          "phase": "darkmode-button",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "3e6c8b188da99cd5c0babc9511317e00c334fee86206bd599e82a9cadf1cc427",
+          "go_digest": "3e6c8b188da99cd5c0babc9511317e00c334fee86206bd599e82a9cadf1cc427"
+        },
+        {
+          "phase": "darkmode-key",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "9d91e887637ff23a9d2ff29d7df9b1134baf17d8af186c154a3600de903149a1",
+          "go_digest": "9d91e887637ff23a9d2ff29d7df9b1134baf17d8af186c154a3600de903149a1"
+        },
+        {
+          "phase": "legend-show",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "f17315c325c6bafa91dfcb289d3cdb833de91f78d9b8857f368fa47daefac9a0",
+          "go_digest": "f17315c325c6bafa91dfcb289d3cdb833de91f78d9b8857f368fa47daefac9a0"
+        },
+        {
+          "phase": "legend-hide",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "498721350a5b55c546931947c54f640a1a3c1fa08e1ea46638fed13efa598464",
+          "go_digest": "498721350a5b55c546931947c54f640a1a3c1fa08e1ea46638fed13efa598464"
+        }
+      ],
+      "all_phases_identical": true
+    },
+    {
+      "case": "java-html-regex-quoted",
+      "format": "html",
+      "files": {
+        "java": "java-html-regex-quoted/java.html",
+        "go": "java-html-regex-quoted/go.html"
+      },
+      "input_html_sha256": {
+        "java": "4751bfda9c8f40c831106cbfa1ceacd4a1b02f64a01953b7f5f7e837a32ee453",
+        "go": "aa32ca118189f18e9ee704aeecfed0f2c525529b87083954f892ab64bad13e35"
+      },
+      "seeded": {
+        "java": "java-html-regex-quoted/seeded/java.html",
+        "go": "java-html-regex-quoted/seeded/go.html"
+      },
+      "checks_per_implementation": 21,
+      "java_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "go_checks": {
+        "darkmode_button_changes_theme_and_persists": true,
+        "darkmode_keyboard_restores_theme": true,
+        "legend_hover_shows_original_content": true,
+        "legend_mouseout_hides_content": true,
+        "initial_canvas_has_draw_calls": true,
+        "initial_highlight_obeys_flag": true,
+        "tooltip_contains_frame_and_sample_count": true,
+        "hover_overlay_and_status_visible": true,
+        "double_click_selects_tooltip": true,
+        "zoom_selects_nonroot_frame": true,
+        "invert_changes_orientation": true,
+        "search_calls_original_prompt": true,
+        "search_marks_visible_frames": true,
+        "search_shows_positive_match_percentage": true,
+        "next_match_navigates": true,
+        "previous_match_wraps_navigation": true,
+        "escape_clears_search": true,
+        "ctrl_f_calls_prompt_and_prevents_browser_find": true,
+        "reset_clears_search": true,
+        "cancel_preserves_clear_state": true,
+        "mouseout_hides_tooltip": true
+      },
+      "phases": [
+        {
+          "phase": "initial",
+          "equal": true,
+          "java_draw_calls": 750,
+          "go_draw_calls": 750,
+          "java_digest": "1ccc0f88a2e49625435f9c6d74b06948853fa77541c287f156f79a54515bcb40",
+          "go_digest": "1ccc0f88a2e49625435f9c6d74b06948853fa77541c287f156f79a54515bcb40"
+        },
+        {
+          "phase": "hover",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "de0326b574dac6210ae63188cf4425e89d74ade134eab9586aa07f9ef5fb107e",
+          "go_digest": "de0326b574dac6210ae63188cf4425e89d74ade134eab9586aa07f9ef5fb107e"
+        },
+        {
+          "phase": "select-tooltip",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "1bc0fd23e5772d5e077c3b359dd294d9381f5c0be55e3e033e5703cf333ae8e7",
+          "go_digest": "1bc0fd23e5772d5e077c3b359dd294d9381f5c0be55e3e033e5703cf333ae8e7"
+        },
+        {
+          "phase": "zoom",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "e39ba045264b0f59aa39693945be6ef5fca7722e2e507d388c4827d3ebd1450c",
+          "go_digest": "e39ba045264b0f59aa39693945be6ef5fca7722e2e507d388c4827d3ebd1450c"
+        },
+        {
+          "phase": "invert",
+          "equal": true,
+          "java_draw_calls": 750,
+          "go_draw_calls": 750,
+          "java_digest": "f1b9cdd2fe278fcac35415fe2b36d2eed6ad833092e006bcbf6c3b508dd2ba94",
+          "go_digest": "f1b9cdd2fe278fcac35415fe2b36d2eed6ad833092e006bcbf6c3b508dd2ba94"
+        },
+        {
+          "phase": "search-button",
+          "equal": true,
+          "java_draw_calls": 750,
+          "go_draw_calls": 750,
+          "java_digest": "c8d1fd918b179ab370063bc3938027f3b7bfb2c6275a2b639d6179e1b7fc7f10",
+          "go_digest": "c8d1fd918b179ab370063bc3938027f3b7bfb2c6275a2b639d6179e1b7fc7f10"
+        },
+        {
+          "phase": "next-match",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "476664cb52e2e4f7bee869a949654e6c7f904afe4f00cada90e0285363ceea42",
+          "go_digest": "476664cb52e2e4f7bee869a949654e6c7f904afe4f00cada90e0285363ceea42"
+        },
+        {
+          "phase": "previous-match",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "1f5b2222b81025f6223c446284d537920255e5777d643f571b023c0ed3765b2e",
+          "go_digest": "1f5b2222b81025f6223c446284d537920255e5777d643f571b023c0ed3765b2e"
+        },
+        {
+          "phase": "escape-clear",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "53bebf07f61fa3ceabdf673054c2238dca2700fd402cd587e50c6e49a1a8c959",
+          "go_digest": "53bebf07f61fa3ceabdf673054c2238dca2700fd402cd587e50c6e49a1a8c959"
+        },
+        {
+          "phase": "ctrl-f",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "dff348d72f727649cb3474ec0b9b2c6ff07dd7eb9b06df2b22c50fd8331ec840",
+          "go_digest": "dff348d72f727649cb3474ec0b9b2c6ff07dd7eb9b06df2b22c50fd8331ec840"
+        },
+        {
+          "phase": "reset-button",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "c85b7a2c799eb68d5b88ced86ebf3d5fcb5cac80482e9063bc8beb73250ec1fe",
+          "go_digest": "c85b7a2c799eb68d5b88ced86ebf3d5fcb5cac80482e9063bc8beb73250ec1fe"
+        },
+        {
+          "phase": "search-cancel",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "7e930707a8c407a8c4945c53e1c213b13dc4dd8290798fe2db89d9bcf89cb531",
+          "go_digest": "7e930707a8c407a8c4945c53e1c213b13dc4dd8290798fe2db89d9bcf89cb531"
+        },
+        {
+          "phase": "mouseout",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "96a07c465cdfb8c05d11770342726465abc87296f4e093b5af75812103f9b35b",
+          "go_digest": "96a07c465cdfb8c05d11770342726465abc87296f4e093b5af75812103f9b35b"
+        },
+        {
+          "phase": "darkmode-button",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "3e6c8b188da99cd5c0babc9511317e00c334fee86206bd599e82a9cadf1cc427",
+          "go_digest": "3e6c8b188da99cd5c0babc9511317e00c334fee86206bd599e82a9cadf1cc427"
+        },
+        {
+          "phase": "darkmode-key",
+          "equal": true,
+          "java_draw_calls": 281,
+          "go_draw_calls": 281,
+          "java_digest": "9d91e887637ff23a9d2ff29d7df9b1134baf17d8af186c154a3600de903149a1",
+          "go_digest": "9d91e887637ff23a9d2ff29d7df9b1134baf17d8af186c154a3600de903149a1"
+        },
+        {
+          "phase": "legend-show",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "f17315c325c6bafa91dfcb289d3cdb833de91f78d9b8857f368fa47daefac9a0",
+          "go_digest": "f17315c325c6bafa91dfcb289d3cdb833de91f78d9b8857f368fa47daefac9a0"
+        },
+        {
+          "phase": "legend-hide",
+          "equal": true,
+          "java_draw_calls": 0,
+          "go_draw_calls": 0,
+          "java_digest": "498721350a5b55c546931947c54f640a1a3c1fa08e1ea46638fed13efa598464",
+          "go_digest": "498721350a5b55c546931947c54f640a1a3c1fa08e1ea46638fed13efa598464"
+        }
+      ],
+      "all_phases_identical": true
+    }
+  ]
+}

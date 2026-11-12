@@ -1,0 +1,213 @@
+{
+  "status": "PREDECLARED BEFORE ANY JAVA4.5 PERFORMANCE TIMINGS",
+  "declared_UTC": "2026-11-12T10:47:31.942262+00:00",
+  "target": {
+    "release": "v4.5",
+    "commit": "11aaea310cb75843f0e7532365d8cedc8d0e14c8",
+    "reference_manifest": "work/go-v45/reference/build-manifest.json",
+    "java_jar": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+    "java_jar_sha256": "ded43c350f75766b82570ac297c9dd3c3efd69e73de26474615cf2df90e1fc94",
+    "java_executable": "/opt/homebrew/opt/openjdk@21/bin/java"
+  },
+  "native_candidate": {
+    "path": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/frozen/jfrconv-final",
+    "sha256": "a9d7e8fc1fb440157df5f56ae34029e78cdf5b79005bc38d7a9406da4df1feb5",
+    "version": "0.2.0",
+    "target": "jfrconv4.5",
+    "source_manifest": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/source-freeze.json",
+    "source_manifest_sha256": "680a235d0231be4c6c001aea6b633ece193b19893f7700f89128e7b627147897"
+  },
+  "history": "Old Java4.1/Go0.1.x measurements stay unchanged and are not relabeled. This plan is a new pristine Java4.5 versus native-candidate paired comparison.",
+  "cases": [
+    {
+      "case": "startup-100k",
+      "dataset": "cpu-100k",
+      "format": "collapsed",
+      "flags": [],
+      "measured_pairs": 21
+    },
+    {
+      "case": "throughput-10m",
+      "dataset": "cpu-10m",
+      "format": "collapsed",
+      "flags": [],
+      "measured_pairs": 21
+    },
+    {
+      "case": "diverse-2m-collapsed",
+      "dataset": "cpu-diverse-2m",
+      "format": "collapsed",
+      "flags": [
+        "--lines"
+      ],
+      "measured_pairs": 21
+    },
+    {
+      "case": "diverse-2m-heatmap",
+      "dataset": "cpu-diverse-2m",
+      "format": "heatmap",
+      "flags": [
+        "--lines"
+      ],
+      "measured_pairs": 21
+    },
+    {
+      "case": "deep-shared-cp",
+      "dataset": "deep-shared-cp",
+      "format": "collapsed",
+      "flags": [],
+      "measured_pairs": 21
+    },
+    {
+      "case": "batch-limited-eight-inputs",
+      "dataset": "cpu-2m",
+      "format": "collapsed",
+      "flags": [],
+      "measured_pairs": 21,
+      "repeat_inputs": 8,
+      "native_flags": [
+        "--memory-limit",
+        "16M",
+        "--max-rss",
+        "32M"
+      ],
+      "additional_tree_rss_diagnostic_pairs": 5
+    },
+    {
+      "case": "otlp-2m-events",
+      "dataset": "cpu-2m",
+      "format": "otlp",
+      "flags": [],
+      "measured_pairs": 21
+    },
+    {
+      "case": "span-api-real-request",
+      "dataset": "span-api-real",
+      "format": "collapsed",
+      "flags": [
+        "--tag",
+        "request"
+      ],
+      "measured_pairs": 21
+    },
+    {
+      "case": "span-filter-stress",
+      "dataset": "span-stress",
+      "format": "collapsed",
+      "flags": [
+        "--tag",
+        "selected",
+        "--latency",
+        "10us"
+      ],
+      "measured_pairs": 21
+    }
+  ],
+  "datasets": {
+    "cpu-100k": {
+      "generator": "tools/fixtures.py",
+      "samples": 100000,
+      "chunks": 4,
+      "stacks": 3,
+      "path": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/fixtures/100000-samples.jfr",
+      "bytes": 1009416,
+      "sha256": "7e764afb74c723557eff93fe3346eb409465f803756a9019baa1bb270b40a1a7"
+    },
+    "cpu-10m": {
+      "generator": "tools/fixtures.py",
+      "samples": 10000000,
+      "chunks": 4,
+      "stacks": 3,
+      "path": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/fixtures/10000000-samples.jfr",
+      "bytes": 100009416,
+      "sha256": "86a8e2a1d047554c2045dab952622d9a48548fc3bfd80f39953cace61018d012"
+    },
+    "cpu-diverse-2m": {
+      "generator": "tools/fixtures.py",
+      "samples": 2000000,
+      "chunks": 4,
+      "stacks": 50000,
+      "path": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/fixtures/2000000-high-cardinality.jfr",
+      "bytes": 26017760,
+      "sha256": "acb11419fd390425986a09409a7281fbe6dda6c8e4d3c8f6eb573e5b0090cb76"
+    },
+    "deep-shared-cp": {
+      "generator": "tools/fixtures.py --deep-shared --chunks 2",
+      "chunks": 2,
+      "stacks_per_chunk": 20000,
+      "depth": 128,
+      "methods": 128,
+      "samples": 40000,
+      "location_variation": "each raw stack has distinct line/BCI; method names and IDs shared across chunks",
+      "merged_profile": "one 128-frame path without --lines",
+      "path": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-diagnostic/deep-shared-cp.jfr",
+      "sha256": "6e901634586c5e7ca3e2ef8d2e4ae181f77ff7a83b2c0492d8b4a9462d204a61",
+      "bytes": 33209440
+    },
+    "cpu-2m": {
+      "generator": "tools/fixtures.py",
+      "samples": 2000000,
+      "chunks": 4,
+      "stacks": 3,
+      "path": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/fixtures/2000000-samples.jfr",
+      "bytes": 20009416,
+      "sha256": "298e91ed2dd88afa93790c46073f0dcfb0d4bf43f6e7772eb8739fadda95c199"
+    },
+    "span-api-real": {
+      "path": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "bytes": 135712,
+      "producer_manifest": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/manifest.json"
+    },
+    "span-stress": {
+      "path": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-stress45.jfr",
+      "sha256": "b84720f3205c1e98bf31d77ae079132ea2eaf98b08cddcb2e6b93398e144cfe9",
+      "bytes": 21209520,
+      "producer_manifest": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-stress45.json"
+    }
+  },
+  "protocol": {
+    "pairs_per_case": 21,
+    "equal_warmups": 1,
+    "first_pair": "Separate retained first fresh-process pair, excluded from percentile stats; input cache state uncontrolled.",
+    "order": "Alternate Java/native order within every measured pair; serial subprocesses only.",
+    "latency": "Whole CLI process including startup/output writing, p50 median and p95 nearest rank.",
+    "RSS": "wait4 command high-water resident bytes normalized to bytes; exclude harness. Compute median/p95/max. Extra limited-row treeRSS diagnostics use five separately instrumented pairs and are excluded from latency statistics.",
+    "verification": "Remove outputs before each process; canonical output comparison after EVERY first,warmup,measured and tree pair outside timers. Strict4.5 OTLP types/periods/groups/per-event arrays/defaultsentinels; heatmap timeline/stacks/count and full used-ID/RGB digests.",
+    "isolation": "Explicit root exclusiveCPU GO only after all compilers,tests,profilers,Linux containers finish. Preserve all trials/errors; no outlier removal or repeat-count reduction.",
+    "storage": "Reuse trusted read-only content-addressed input pool; no hardlinks to mutable originals. Freeze actual executable/JAR copies; check all input/tool/oracle hashes. Stop before disk headroom below300MiB.",
+    "acceptance": "RSS primary. Report all nine cells, every latency or RSS regression, first/warmup/raw trials and output proofs. No universal latency or memory claim.",
+    "scope": "The new2M OTLP row deliberately measures4.5 per-event encoding/spill costs; old4.1 aggregate-OTLP results cannot stand in for it."
+  },
+  "current_tool_hashes_before_final_freeze": {
+    "tools/benchmark.py": "e83a7df5a4f95e0cebe8e0fb812d8d66d3e8f766e2add7ca7ac88194b8737a16",
+    "tools/validate.py": "9f2cf9d662ced82836962d721d4bad880ed232f63b252b3a965929a16b553c49",
+    "tools/otlp45.py": "369cb96346eed0fe77614d9aa6c8787de785bd051cb790c6196c217e34e3b4e9",
+    "tools/protobuf_wire.py": "803600771cddf24cbc78f1515a4edd2605e1257818a8adf4fdc0d4c7a4922daa",
+    "tools/heatmap_decode.js": "df1a00d0e7f095fa69e36fb73349109ae89d4a42ace933d35fcf9a297db9c365",
+    "tools/heatmap_colors.js": "ff78a2f06c6d3b40938de321c82980380a64353840fb4cc28b3533c39c485121",
+    "assets/heatmap.html": "5c930103fbda80712c2dca4e4493f834ee1950b43a9c3bde380669ec7ea31616"
+  },
+  "source_freeze_amendment": "Record final native core/source SHA and final tool/import/oracle hashes before first timing. Helper hashes may only change before that point.",
+  "final_tool_hashes": {
+    "assets/heatmap.html": "5c930103fbda80712c2dca4e4493f834ee1950b43a9c3bde380669ec7ea31616",
+    "tools/benchmark.py": "e83a7df5a4f95e0cebe8e0fb812d8d66d3e8f766e2add7ca7ac88194b8737a16",
+    "tools/heatmap_colors.js": "ff78a2f06c6d3b40938de321c82980380a64353840fb4cc28b3533c39c485121",
+    "tools/heatmap_decode.js": "df1a00d0e7f095fa69e36fb73349109ae89d4a42ace933d35fcf9a297db9c365",
+    "tools/otlp45.py": "369cb96346eed0fe77614d9aa6c8787de785bd051cb790c6196c217e34e3b4e9",
+    "tools/protobuf_wire.py": "803600771cddf24cbc78f1515a4edd2605e1257818a8adf4fdc0d4c7a4922daa",
+    "tools/ui_renderer_parity.js": "81dd3225467587bc543479a5256b566c2fdcef6087549ad0089da916cdafc68e",
+    "tools/validate.py": "b8bbe52f4b91014e6d4f7ef9f08e7960683d52b369d814e8f8280709ee06241d"
+  },
+  "timing_authorized": true,
+  "build_source_manifest": {
+    "path": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/build-source-freeze.json",
+    "sha256": "73968c9525ecf8895d3344f29fed525aa4445d1a23487bc6ff6920c0ff88f5d8"
+  },
+  "helper_amendment": {
+    "path": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/helper-amendment.json",
+    "sha256": "78c915f8f69e7220084509fbfd5d0cc96ee14d80ff57224d243cc84b1b5b217c"
+  },
+  "execution_runner_sha256": "b5dfea50906a70e2592272747d667e611a990adc0a52f33cff708efa776dfae9",
+  "authorization": "Root exclusive formal9-row N21 CPU GO after all correctness/public/Linux gates and profiling jobs exited."
+}

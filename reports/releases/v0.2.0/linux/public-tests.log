@@ -1,0 +1,124 @@
+INFO: Running with 1 test threads.
+INFO: Running JfrTests.cpuLoad (agentArgs: start,event=cpu,file=%profile.jfr)...
+Profiling started
+Converted /tmp/ap-profile17329570398333086123.jfr -> /tmp/jfrconv-public-1487468096949074274.collapsed (100 samples/units)
+Converted /tmp/ap-profile17329570398333086123.jfr -> /tmp/jfrconv-public-9890862574798198920.collapsed (167 samples/units)
+Converted /tmp/ap-profile17329570398333086123.jfr -> /tmp/jfrconv-public-2562233314112718045.collapsed (38 samples/units)
+PASS [1/27] tid[21] JfrTests.cpuLoad (agentArgs: start,event=cpu,file=%profile.jfr) took 4.173 s
+INFO: Running JfrTests.recordCpuMultiEngine (agentArgs: start,event=cpu,alluser,wall,record-cpu,file=%profile.jfr)...
+Profiling started
+Converted /tmp/ap-profile5742061184620855881.jfr -> /tmp/jfrconv-public-12146755512349290799.collapsed (1862 samples/units)
+Converted /tmp/ap-profile5742061184620855881.jfr -> /tmp/jfrconv-public-16525514204992056637.collapsed (283 samples/units)
+PASS [2/27] tid[21] JfrTests.recordCpuMultiEngine (agentArgs: start,event=cpu,alluser,wall,record-cpu,file=%profile.jfr) took 4.175 s
+INFO: Running JfrTests.ttsp (agentArgs: start,event=cpu,ttsp,interval=1ms,jfr,file=%f)...
+Profiling started
+Converted /tmp/ap-f7174727189567163372.tmp -> /tmp/jfrconv-public-4014896652449814114.collapsed (239 samples/units)
+PASS [3/27] tid[21] JfrTests.ttsp (agentArgs: start,event=cpu,ttsp,interval=1ms,jfr,file=%f) took 3.347 s
+INFO: Running JfrconverterTests.diffCollapsed (args: --diff test/test/jfrconverter/sample1.collapsed test/test/jfrconverter/sample2.collapsed %diff.collapsed)...
+Converted test/test/jfrconverter/sample2.collapsed -> /tmp/ap-diff12191726190350686222.collapsed (188 samples/units)
+PASS [4/27] tid[21] JfrconverterTests.diffCollapsed (args: --diff test/test/jfrconverter/sample1.collapsed test/test/jfrconverter/sample2.collapsed %diff.collapsed) took 0.714 s
+INFO: Running JfrconverterTests.diffHtml (args: --diff test/test/jfrconverter/sample1.collapsed test/test/jfrconverter/sample2.collapsed %diff.html)...
+Converted test/test/jfrconverter/sample2.collapsed -> /tmp/ap-diff17143354083041018530.html (188 samples/units)
+PASS [5/27] tid[21] JfrconverterTests.diffHtml (args: --diff test/test/jfrconverter/sample1.collapsed test/test/jfrconverter/sample2.collapsed %diff.html) took 0.724 s
+INFO: Running JfrconverterTests.flamegraphConversion (agentArgs: start,jfr,all,file=%f)...
+Profiling started
+Converted /tmp/ap-f16288720482390947039.tmp -> /dev/null (614 samples/units)
+Converted /tmp/ap-f16288720482390947039.tmp -> /dev/null (758 samples/units)
+PASS [6/27] tid[21] JfrconverterTests.flamegraphConversion (agentArgs: start,jfr,all,file=%f) took 1.082 s
+INFO: Running JfrconverterTests.heatmapConversion (agentArgs: start,jfr,all,file=%f)...
+Profiling started
+Converted /tmp/ap-f7937378740670892288.tmp -> /dev/null (628 samples/units)
+Converted /tmp/ap-f7937378740670892288.tmp -> /dev/null (103 samples/units)
+PASS [7/27] tid[21] JfrconverterTests.heatmapConversion (agentArgs: start,jfr,all,file=%f) took 1.109 s
+INFO: Running NativelockTests.ldpreloadAllLockTypes (args: once)...
+Profiling started
+Converted /tmp/ap-f2461348837925139204.jfr -> /tmp/jfrconv-public-18105558660113794678.collapsed (299 samples/units)
+PASS [8/27] tid[21] NativelockTests.ldpreloadAllLockTypes (args: once) took 1.465 s
+INFO: Running NativememTests.ldpreload (args: once)...
+Profiling started
+Converted /tmp/ap-f9789205675589729060.jfr -> /tmp/jfrconv-public-13039571780377423850.collapsed (76317 samples/units)
+PASS [9/27] tid[21] NativememTests.ldpreload (args: once) took 0.784 s
+INFO: Running OtlpTests.nonAggregatedSamplesFromJfr (agentArgs: start,jfr,file=%f)...
+Profiling started
+Converted /tmp/ap-f12129843197393968263.tmp -> /tmp/jfrconv-public-16079318673281979876.otlp (102 samples/units)
+PASS [10/27] tid[21] OtlpTests.nonAggregatedSamplesFromJfr (agentArgs: start,jfr,file=%f) took 1.115 s
+INFO: Running OtlpTests.periodFromJfr (agentArgs: start,jfr,event=itimer,interval=20ms,file=%f)...
+Profiling started
+Converted /tmp/ap-f9360277372272166826.tmp -> /tmp/jfrconv-public-4997267110256127281.otlp (52 samples/units)
+PASS [11/27] tid[21] OtlpTests.periodFromJfr (agentArgs: start,jfr,event=itimer,interval=20ms,file=%f) took 1.064 s
+INFO: Running OtlpTests.profileTimeFromJfr (agentArgs: start,jfr,file=%f)...
+Profiling started
+Converted /tmp/ap-f11021809959261036962.tmp -> /tmp/jfrconv-public-16601032826399915448.otlp (100 samples/units)
+PASS [12/27] tid[21] OtlpTests.profileTimeFromJfr (agentArgs: start,jfr,file=%f) took 1.062 s
+INFO: Running OtlpTests.samplesFromJfr (agentArgs: start,jfr,file=%f)...
+Profiling started
+Converted /tmp/ap-f1297050527669139122.tmp -> /tmp/jfrconv-public-12233338281756961561.otlp (100 samples/units)
+PASS [13/27] tid[21] OtlpTests.samplesFromJfr (agentArgs: start,jfr,file=%f) took 1.065 s
+INFO: Running OtlpTests.threadNameFromJfr (agentArgs: start,jfr,file=%f)...
+Profiling started
+Converted /tmp/ap-f16609480119706159713.tmp -> /tmp/jfrconv-public-8609371843704019055.otlp (102 samples/units)
+PASS [14/27] tid[21] OtlpTests.threadNameFromJfr (agentArgs: start,jfr,file=%f) took 1.060 s
+INFO: Running SpanTests.api (args: %f.jfr)...
+PASS [15/27] tid[21] SpanTests.api (args: %f.jfr) took 0.718 s
+INFO: Running SpanTests.attach...
+PASS [16/27] tid[21] SpanTests.attach took 1.777 s
+INFO: Running SpanTests.spans (agentArgs: start,event=cpu,interval=1ms,file=%f.jfr)...
+Profiling started
+PASS [17/27] tid[21] SpanTests.spans (agentArgs: start,event=cpu,interval=1ms,file=%f.jfr) took 1.210 s
+INFO: Running StackwalkerTests.debugFrame (agentArgs: start,event=cpu,file=%f.jfr)...
+Profiling started
+Converted /tmp/ap-f14688844713026630133.jfr -> /tmp/jfrconv-public-5280428311799734858.collapsed (91 samples/units)
+PASS [18/27] tid[21] StackwalkerTests.debugFrame (agentArgs: start,event=cpu,file=%f.jfr) took 0.959 s
+INFO: Running StackwalkerTests.deepStack/VM (args: deepFrame) (agentArgs: start,event=cpu,cstack=vm,file=%f.jfr)...
+Profiling started
+Converted /tmp/ap-f13106431315779035314.jfr -> /tmp/jfrconv-public-1563866059546085901.collapsed (172 samples/units)
+PASS [19/27] tid[21] StackwalkerTests.deepStack/VM (args: deepFrame) (agentArgs: start,event=cpu,cstack=vm,file=%f.jfr) took 1.791 s
+INFO: Running StackwalkerTests.deepStack/VMX (args: deepFrame) (agentArgs: start,event=cpu,cstack=vmx,file=%f.jfr)...
+Profiling started
+Converted /tmp/ap-f6636063201372007140.jfr -> /tmp/jfrconv-public-1076485015976702126.collapsed (155 samples/units)
+PASS [20/27] tid[21] StackwalkerTests.deepStack/VMX (args: deepFrame) (agentArgs: start,event=cpu,cstack=vmx,file=%f.jfr) took 1.619 s
+INFO: Running StackwalkerTests.largeFrame/VM (args: largeFrame) (agentArgs: start,event=cpu,cstack=vm,file=%f.jfr)...
+Profiling started
+Converted /tmp/ap-f1018395749266046518.jfr -> /tmp/jfrconv-public-17829921264010327747.collapsed (160 samples/units)
+PASS [21/27] tid[21] StackwalkerTests.largeFrame/VM (args: largeFrame) (agentArgs: start,event=cpu,cstack=vm,file=%f.jfr) took 1.660 s
+INFO: Running StackwalkerTests.largeFrame/VMX (args: largeFrame) (agentArgs: start,event=cpu,cstack=vmx,file=%f.jfr)...
+Profiling started
+Converted /tmp/ap-f16280798297382450535.jfr -> /tmp/jfrconv-public-12004167840481537393.collapsed (177 samples/units)
+PASS [22/27] tid[21] StackwalkerTests.largeFrame/VMX (args: largeFrame) (agentArgs: start,event=cpu,cstack=vmx,file=%f.jfr) took 1.832 s
+INFO: Running StackwalkerTests.largeInnerFrameVM (args: largeInnerFrame) (agentArgs: start,event=cpu,cstack=vm,file=%f.jfr)...
+Profiling started
+Converted /tmp/ap-f2218255374641204588.jfr -> /tmp/jfrconv-public-9152541035277390997.collapsed (367 samples/units)
+PASS [23/27] tid[21] StackwalkerTests.largeInnerFrameVM (args: largeInnerFrame) (agentArgs: start,event=cpu,cstack=vm,file=%f.jfr) took 3.736 s
+INFO: Running StackwalkerTests.normalStackVM (args: leafFrame) (agentArgs: start,event=cpu,cstack=vm,file=%f.jfr)...
+Profiling started
+Converted /tmp/ap-f5441589983987089936.jfr -> /tmp/jfrconv-public-17150104033843993407.collapsed (153 samples/units)
+PASS [24/27] tid[21] StackwalkerTests.normalStackVM (args: leafFrame) (agentArgs: start,event=cpu,cstack=vm,file=%f.jfr) took 1.584 s
+INFO: Running StackwalkerTests.normalStackVMX (args: leafFrame) (agentArgs: start,event=cpu,cstack=vmx,file=%f.jfr)...
+Profiling started
+Converted /tmp/ap-f16989386619308447851.jfr -> /tmp/jfrconv-public-8372846268306010127.collapsed (153 samples/units)
+PASS [25/27] tid[21] StackwalkerTests.normalStackVMX (args: leafFrame) (agentArgs: start,event=cpu,cstack=vmx,file=%f.jfr) took 1.583 s
+All tasks finished and executor is terminated.
+INFO: Starting single threaded tests...
+INFO: Running JfrconverterTests.latencyFilter (agentArgs: start,jfr,wall,trace=test.jfrconverter.Tracer.traceMethod,file=%f)...
+Profiling started
+PASS [26/27] tid[27] JfrconverterTests.latencyFilter (agentArgs: start,jfr,wall,trace=test.jfrconverter.Tracer.traceMethod,file=%f) took 0.787 s
+INFO: Running NativelockTests.nativeAllLockContention...
+Profiling started
+Test completed successfully.
+Testing all lock types...
+Testing mutex contention...
+Testing rwlock contention...
+Converted /tmp/ap-f10581711981658794730.jfr -> /tmp/jfrconv-public-2838398251330406833.collapsed (345 samples/units)
+PASS [27/27] tid[27] NativelockTests.nativeAllLockContention took 1.680 s
+All tasks finished and executor is terminated.
+
+Total test duration: 43.874 s
+Actual execution duration: 43.911 s
+Results Summary:
+PASS: 27 (100.0%)
+FAIL: 0
+SKIP (disabled): 0
+SKIP (config mismatch): 0
+SKIP (missing JAR): 0
+TOTAL: 27
+INFO: Test output and profiles are available in /task/results/public-native/profiles directory

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Differential/structural checks against async-profiler 4.1's Java converter.
+"""Differential/structural checks against the pinned async-profiler 4.5 Java converter.
 
 Example:
   python3 tools/validate.py --go bin/jfrconv \
-      --java-jar /path/to/v4.1/build/jar/jfr-converter.jar
+      --java-jar /path/to/v4.5/build/jar/jfr-converter.jar
 Fixtures and scratch outputs are written under work/validation by default.
 """
 from __future__ import annotations
@@ -14,11 +14,12 @@ import json
 import shutil
 import hashlib
 from pathlib import Path
-import struct
 import subprocess
 import tempfile
 import sys
-from fixtures import generate, EPOCH_NS
+from fixtures import generate, generate_cross_span, EPOCH_NS
+from protobuf_wire import varint, protobuf, integers
+from otlp45 import semantic_otlp, otlp_totals
 
 
 def collapsed(path: Path):
@@ -27,63 +28,6 @@ def collapsed(path: Path):
         stack, count = line.rsplit(' ', 1)
         result[stack] += int(count)
     return +result
-
-
-def varint(data, pos):
-    value = 0
-    for shift in range(0, 70, 7):
-        if pos >= len(data):
-            raise ValueError('truncated protobuf varint')
-        byte = data[pos]; pos += 1
-        value |= (byte & 127) << shift
-        if byte < 128:
-            return value, pos
-    raise ValueError('protobuf varint too long')
-
-
-def protobuf(data):
-    pos = 0
-    fields = []
-    while pos < len(data):
-        key, pos = varint(data, pos)
-        number, wire = key >> 3, key & 7
-        if not number:
-            raise ValueError('zero protobuf field number')
-        if wire == 0:
-            value, pos = varint(data, pos)
-        elif wire == 2:
-            size, pos = varint(data, pos)
-            value = data[pos:pos + size]
-            if len(value) != size:
-                raise ValueError('truncated protobuf field')
-            pos += size
-        elif wire in (1, 5):
-            size = 8 if wire == 1 else 4
-            value = data[pos:pos + size]
-            if len(value) != size:
-                raise ValueError('truncated fixed protobuf field')
-            pos += size
-        else:
-            raise ValueError(f'unsupported protobuf wire type {wire}')
-        fields.append((number, wire, value))
-    return fields
-
-
-def integers(fields, number):
-    result = []
-    for n, w, value in fields:
-        if n != number:
-            continue
-        if w == 0:
-            result.append(value)
-        elif w == 2:
-            pos = 0
-            while pos < len(value):
-                integer, pos = varint(value, pos)
-                result.append(integer)
-        else:
-            raise AssertionError('expected varint or packed varints')
-    return result
 
 
 def pprof_totals(path):
@@ -112,25 +56,6 @@ def pprof_totals(path):
                 assert location in locations, f'unknown pprof location {location}'
                 for function in locations[location]:
                     assert function in functions, f'unknown pprof function {function}'
-    return total
-
-
-def otlp_totals(path):
-    fields = protobuf(path.read_bytes())
-    profiles = []
-    for n, _, resource in fields:
-        if n == 1:
-            for rn, _, scope in protobuf(resource):
-                if rn == 2:
-                    profiles += [protobuf(p) for sn, _, p in protobuf(scope) if sn == 2]
-    assert profiles, 'OTLP must contain at least one profile'
-    total = 0
-    for profile in profiles:
-        for n, _, data in profile:
-            if n == 2:
-                samples = integers(protobuf(data), 3)
-                assert samples, 'OTLP sample has values'
-                total += samples[0]
     return total
 
 
@@ -163,50 +88,6 @@ def semantic_pprof(path):
                 labels.append((strings[(integers(label, 1) or [0])[0]], strings[(integers(label, 2) or [0])[0]]))
         result[(stack, tuple(sorted(labels)))] += sum(integers(f, 2))
     return +result
-
-
-def semantic_otlp(path):
-    fields = protobuf(path.read_bytes())
-    dictionary = protobuf(next(data for n, _, data in fields if n == 2))
-    strings = [data.decode('utf-8') for n, _, data in dictionary if n == 5]
-    functions = [strings[(integers(protobuf(data), 1) or [0])[0]] for n, _, data in dictionary if n == 3]
-    locations = []
-    for n, _, data in dictionary:
-        if n == 2:
-            locations.append(tuple((functions[(integers(line, 1) or [0])[0]], (integers(line, 2) or [0])[0]) for k, _, b in protobuf(data) if k == 3 for line in [protobuf(b)]))
-    attributes = []
-    for n, _, data in dictionary:
-        if n == 6:
-            f = protobuf(data)
-            key = next((v.decode('utf-8') for k, _, v in f if k == 1), '')
-            anyvalue = protobuf(next((v for k, _, v in f if k == 2), b''))
-            value = next((v.decode('utf-8') for k, _, v in anyvalue if k == 1), '')
-            attributes.append((key, value))
-    profiles = []
-    for n, _, resource in fields:
-        if n == 1:
-            for rn, _, scope in protobuf(resource):
-                if rn == 2:
-                    profiles += [protobuf(p) for sn, _, p in protobuf(scope) if sn == 2]
-    result = []
-    for profile in profiles:
-        sample_types = []
-        for n, _, data in profile:
-            if n == 1:
-                f = protobuf(data)
-                sample_types.append((strings[(integers(f, 1) or [0])[0]], strings[(integers(f, 2) or [0])[0]], (integers(f, 3) or [0])[0]))
-        indices = integers(profile, 3)
-        samples = []
-        for n, _, data in profile:
-            if n == 2:
-                f = protobuf(data)
-                start = (integers(f, 1) or [0])[0]
-                length = (integers(f, 2) or [0])[0]
-                stack = tuple(item for idx in indices[start:start+length] for item in locations[idx])
-                attrs = tuple(sorted(attributes[i] for i in integers(f, 4) if attributes[i] != ('','')))
-                samples.append((stack, attrs, tuple(integers(f, 3)), tuple(integers(f, 6))))
-        result.append(((integers(profile, 4) or [0])[0], (integers(profile, 5) or [0])[0], tuple(sample_types), tuple(sorted(samples))))
-    return result
 
 
 def main():
@@ -289,11 +170,15 @@ def main():
             check(full_name, lambda n=full_name, f=flags, s=source: compare(n, f, s))
 
     def span_check():
-        output = args.workdir / 'spans.collapsed'
-        run([args.go, '--cpu', '--tag', 'request-.*', '-o', 'collapsed', fixture, output])
-        actual = collapsed(output)
-        assert sum(actual.values()) == 4, actual
-        assert all('Worker.work' in stack for stack in actual), actual
+        source = generate_cross_span(args.workdir / 'span-api.jfr')
+        outputs = {}
+        for kind in ['java', 'go']:
+            output = args.workdir / ('spans.' + kind + '.collapsed')
+            command = [args.java, '-jar', args.java_jar] if kind == 'java' else [args.go]
+            run([*command, '--cpu', '--tag', 'cross-request', '-o', 'collapsed', source, output])
+            outputs[kind] = collapsed(output)
+        assert outputs['go'] == outputs['java'], outputs
+        assert sum(outputs['go'].values()) > 0, 'literal current Span API tag must select events'
     check('span-tag', span_check)
 
     def exports():
@@ -345,8 +230,9 @@ def main():
             decoder = Path(__file__).with_name('heatmap_decode.js')
             decoded[kind] = json.loads(subprocess.check_output(['node', str(decoder), str(output)], text=True))
         assert decoded['go'] == decoded['java'], decoded
-    for mode in ['cpu','wall']:
-        check('heatmap-' + mode, lambda m=mode: heatmap_parity(fixture, ['--'+m], 'heatmap-' + m), feature='heatmap')
+    wall_fixture = Path(__file__).resolve().parents[1] / 'tests/fixtures/heatmap-wall45.jfr'
+    for mode, source in [('cpu', fixture), ('wall', wall_fixture)]:
+        check('heatmap-' + mode, lambda m=mode, s=source: heatmap_parity(s, ['--'+m], 'heatmap-' + m), feature='heatmap')
     for source in args.real:
         for mode in ['wall','alloc','lock']:
             check(source.stem + '-heatmap-' + mode, lambda s=source, m=mode: heatmap_parity(s, ['--'+m], s.stem + '-heatmap-' + m), feature='heatmap')

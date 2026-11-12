@@ -15,11 +15,12 @@ import (
 	"math/bits"
 	"os"
 	"sort"
+	"strconv"
 )
 
 type heatCacheKey struct {
-	Stack, Class uint64
-	TLAB         bool
+	Stack, Class, Thread uint64
+	TLAB                 bool
 }
 type heatNames struct{ Display, Class, Method uint32 }
 type heatGroupKey struct {
@@ -124,22 +125,18 @@ func (h *exactHeatmap) Retained(leaf uint32, count, value, timeNS uint64) error 
 	return h.rawRecord(timeNS/1_000_000, leaf, count, value)
 }
 func heatMS(c *jfr.Chunk, ticks uint64) uint64 {
-	base := c.StartNS / 1_000_000
-	if ticks >= c.StartTicks {
-		return satAdd(base, mulDiv(ticks-c.StartTicks, 1000, c.TicksPerSec))
-	}
-	delta := mulDiv(c.StartTicks-ticks, 1000, c.TicksPerSec)
-	if delta > base {
-		return 0
-	}
-	return base - delta
+	return eventNS(c, ticks) / 1_000_000
 }
 func (h *exactHeatmap) resolve(c *jfr.Chunk, e *jfr.Event) (uint32, error) {
-	if !c.HasStack(e.StackID) {
+	if e.StackID == 0 || !c.HasStack(e.StackID) {
 		return 0, nil
 	}
 	stack := c.Stack(e.StackID)
 	ids := h.pathFrames[:0]
+	if h.o.Threads {
+		name := h.p.strings.intern(threadName(c, e.TID))
+		ids = append(ids, h.p.heatFrame(name, 0, name, 3, -1, -1))
+	}
 	for i := stack.Len() - 1; i >= 0; i-- {
 		f := stack.At(i)
 		key := methodKey{f.Method, f.Kind}
@@ -161,8 +158,28 @@ func (h *exactHeatmap) resolve(c *jfr.Chunk, e *jfr.Event) (uint32, error) {
 		ids = append(ids, h.p.heatFrame(class, class, 0, kind, -1, -1))
 	}
 	h.pathFrames = ids
+	included := h.o.Include == nil
+	for _, id := range ids {
+		key := h.ref.keys[id]
+		name := h.p.strings.text(key.Method)
+		if key.Class != 0 {
+			name = h.p.strings.text(key.Class)
+			if key.Method != 0 {
+				name += "." + h.p.strings.text(key.Method)
+			}
+		}
+		if h.o.Exclude != nil && h.o.Exclude.MatchString(name) {
+			return 0, nil
+		}
+		if h.o.Include != nil && h.o.Include.MatchString(name) {
+			included = true
+		}
+	}
+	if !included {
+		return 0, nil
+	}
 	leaf := h.p.path(ids, false).Leaf
-	if leaf != 0 && e.ClassID != 0 && (e.Kind == jfr.Allocation || e.Kind == jfr.Lock) {
+	if leaf != 0 && (h.o.Threads || e.ClassID != 0 && (e.Kind == jfr.Allocation || e.Kind == jfr.Lock)) {
 		if err := h.ref.recordExtra(h.chunk, leaf, h.o.TempDir); err != nil {
 			return 0, err
 		}
@@ -170,7 +187,10 @@ func (h *exactHeatmap) resolve(c *jfr.Chunk, e *jfr.Event) (uint32, error) {
 	return leaf, nil
 }
 func (h *exactHeatmap) Add(c *jfr.Chunk, e *jfr.Event) error {
-	key := heatCacheKey{e.StackID, e.ClassID, e.TLAB}
+	key := heatCacheKey{Stack: e.StackID, Class: e.ClassID, TLAB: e.TLAB}
+	if h.o.Threads {
+		key.Thread = e.TID
+	}
 	leaf, ok := h.cache[key]
 	if !ok {
 		var err error
@@ -183,8 +203,46 @@ func (h *exactHeatmap) Add(c *jfr.Chunk, e *jfr.Event) error {
 	if leaf == 0 {
 		return nil
 	}
-	ms := heatMS(c, e.Time)
 	value := normalizeValue(e.Value, c, h.o)
+	count := e.Samples
+	if count == 0 {
+		count = 1
+	}
+	if count > heatLimit {
+		return fmt.Errorf("heatmap sample count overflow")
+	}
+	interval := uint64(0)
+	if count > 1 {
+		setting, ok := c.Settings["wall"]
+		if !ok {
+			setting = c.Settings["interval"]
+		}
+		var err error
+		interval, err = strconv.ParseUint(setting, 10, 64)
+		if err != nil {
+			return fmt.Errorf("invalid wall sampling interval: %w", err)
+		}
+		if interval == 0 {
+			interval = 50_000_000
+		}
+		value /= count
+	}
+	timeNS := eventNS(c, e.Time)
+	for i := uint64(0); i < count; i++ {
+		if err := h.addSample(timeNS/1_000_000, leaf, value); err != nil {
+			return err
+		}
+		if i+1 < count {
+			if timeNS > math.MaxUint64-interval {
+				return fmt.Errorf("heatmap sample timestamp overflow")
+			}
+			timeNS += interval
+		}
+	}
+	return nil
+}
+
+func (h *exactHeatmap) addSample(ms uint64, leaf uint32, value uint64) error {
 	if !h.hasOrigin {
 		h.hasOrigin = true
 		h.origin = ms
@@ -276,6 +334,7 @@ type heatPrepared struct {
 	keys, counts            *os.File
 	values                  []uint32
 	blocks, samples, chunks uint64
+	firstMS                 uint64
 }
 
 func (d *heatPrepared) close() {
@@ -377,6 +436,9 @@ func (h *exactHeatmap) prepare(t *heatTree) (d heatPrepared, err error) {
 			break
 		}
 		block := v.Key >> 32
+		if !have {
+			d.firstMS = uint64(int64(first) + int64(int32(uint32(block)^0x80000000))*20)
+		}
 		if have && block != previous {
 			if err = put(uint32(count)); err != nil {
 				return d, err
@@ -700,11 +762,15 @@ func (h *exactHeatmap) Write(w *bufio.Writer) error {
 	if e = t.until("/*title:*/"); e != nil {
 		return e
 	}
-	w.WriteString(h.o.Title)
+	title := h.o.Title
+	if !h.o.HasTitle && title == "Flame Graph" {
+		title = "Heatmap"
+	}
+	w.WriteString(title)
 	if e = t.until("/*startMs:*/0"); e != nil {
 		return e
 	}
-	unsigned(w, h.p.StartNS/1_000_000)
+	unsigned(w, d.firstMS)
 	if e = t.until("/*cpool:*/"); e != nil {
 		return e
 	}

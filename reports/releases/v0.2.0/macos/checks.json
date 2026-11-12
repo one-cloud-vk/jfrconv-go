@@ -1,0 +1,71 @@
+{
+  "version": "0.2.0",
+  "reference": "v4.5",
+  "checks": [
+    {
+      "name": "format",
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/toolchains/go1.27.4/go/bin/gofmt",
+        "-l",
+        "internal",
+        "assets",
+        "cmd"
+      ],
+      "exit_code": 0,
+      "log": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/checks/format.log"
+    },
+    {
+      "name": "tests",
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/toolchains/go1.27.4/go/bin/go",
+        "test",
+        "-v",
+        "-count=1",
+        "./..."
+      ],
+      "exit_code": 0,
+      "log": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/checks/tests.log"
+    },
+    {
+      "name": "vet",
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/toolchains/go1.27.4/go/bin/go",
+        "vet",
+        "./..."
+      ],
+      "exit_code": 0,
+      "log": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/checks/vet.log"
+    },
+    {
+      "name": "build",
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/toolchains/go1.27.4/go/bin/go",
+        "build",
+        "-trimpath",
+        "-ldflags=-s -w",
+        "-o",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "./cmd/jfrconv"
+      ],
+      "exit_code": 0,
+      "log": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/checks/build.log"
+    },
+    {
+      "name": "python-codecs",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools",
+        "-p",
+        "test_otlp45.py"
+      ],
+      "exit_code": 0,
+      "log": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/checks/python-codecs.log"
+    }
+  ],
+  "binary": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+  "binary_sha256": "a9d7e8fc1fb440157df5f56ae34029e78cdf5b79005bc38d7a9406da4df1feb5"
+}

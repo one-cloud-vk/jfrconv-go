@@ -1,0 +1,195 @@
+=== RUN   TestOfflineJava41GoldenProfiles
+=== RUN   TestOfflineJava41GoldenProfiles/all
+=== RUN   TestOfflineJava41GoldenProfiles/cpu
+=== RUN   TestOfflineJava41GoldenProfiles/wall
+=== RUN   TestOfflineJava41GoldenProfiles/threads
+=== RUN   TestOfflineJava41GoldenProfiles/wall-threads
+=== RUN   TestOfflineJava41GoldenProfiles/alloc
+=== RUN   TestOfflineJava41GoldenProfiles/alloc-total
+=== RUN   TestOfflineJava41GoldenProfiles/alloc-thread-lines
+=== RUN   TestOfflineJava41GoldenProfiles/live
+=== RUN   TestOfflineJava41GoldenProfiles/lock
+=== RUN   TestOfflineJava41GoldenProfiles/lock-total
+=== RUN   TestOfflineJava41GoldenProfiles/malloc
+=== RUN   TestOfflineJava41GoldenProfiles/malloc-total
+=== RUN   TestOfflineJava41GoldenProfiles/lines
+=== RUN   TestOfflineJava41GoldenProfiles/bci
+=== RUN   TestOfflineJava41GoldenProfiles/simple
+=== RUN   TestOfflineJava41GoldenProfiles/dot
+=== RUN   TestOfflineJava41GoldenProfiles/norm
+=== RUN   TestOfflineJava41GoldenProfiles/classify
+=== RUN   TestOfflineJava41GoldenProfiles/reverse
+=== RUN   TestOfflineJava41GoldenProfiles/reverse-thread
+=== RUN   TestOfflineJava41GoldenProfiles/skip
+=== RUN   TestOfflineJava41GoldenProfiles/reverse-skip
+=== RUN   TestOfflineJava41GoldenProfiles/include
+=== RUN   TestOfflineJava41GoldenProfiles/exclude
+=== RUN   TestOfflineJava41GoldenProfiles/include-exclude
+=== RUN   TestOfflineJava41GoldenProfiles/state
+=== RUN   TestOfflineJava41GoldenProfiles/states
+=== RUN   TestOfflineJava41GoldenProfiles/relative-time
+=== RUN   TestOfflineJava41GoldenProfiles/absolute-time
+=== RUN   TestOfflineJava41GoldenProfiles/negative-time
+=== RUN   TestOfflineJava41GoldenProfiles/minwidth
+--- PASS: TestOfflineJava41GoldenProfiles (0.02s)
+    --- PASS: TestOfflineJava41GoldenProfiles/all (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/cpu (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/wall (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/threads (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/wall-threads (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/alloc (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/alloc-total (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/alloc-thread-lines (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/live (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/lock (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/lock-total (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/malloc (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/malloc-total (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/lines (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/bci (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/simple (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/dot (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/norm (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/classify (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/reverse (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/reverse-thread (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/skip (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/reverse-skip (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/include (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/exclude (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/include-exclude (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/state (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/states (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/relative-time (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/absolute-time (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/negative-time (0.00s)
+    --- PASS: TestOfflineJava41GoldenProfiles/minwidth (0.00s)
+=== RUN   TestSpanTagAndClockAcrossChunks
+--- PASS: TestSpanTagAndClockAcrossChunks (0.00s)
+=== RUN   TestNativeLeakChronologyKeepsOriginalChunkIdentity
+--- PASS: TestNativeLeakChronologyKeepsOriginalChunkIdentity (0.00s)
+=== RUN   TestMethodTraceMatchesJava45RawTicksAndRecordedStack
+--- PASS: TestMethodTraceMatchesJava45RawTicksAndRecordedStack (0.00s)
+=== RUN   TestEnginePreservesEmptySamplesInProtobufAndOmitsCollapsedRows
+--- PASS: TestEnginePreservesEmptySamplesInProtobufAndOmitsCollapsedRows (0.00s)
+=== RUN   TestDifferentialNewFramesHaveZeroBaseAndRoundTrip
+--- PASS: TestDifferentialNewFramesHaveZeroBaseAndRoundTrip (0.00s)
+=== RUN   TestHeatmapNativeLeakWritesOnlyRetainedPhysicalRecords
+--- PASS: TestHeatmapNativeLeakWritesOnlyRetainedPhysicalRecords (0.00s)
+=== RUN   TestHeatmapIdentityKeepsEqualVisibleNativeNamesDistinct
+--- PASS: TestHeatmapIdentityKeepsEqualVisibleNativeNamesDistinct (0.00s)
+=== RUN   TestHeatmapReferenceMatchesRecordedJavaIDsAndRGB
+=== RUN   TestHeatmapReferenceMatchesRecordedJavaIDsAndRGB/heatmap-order
+=== RUN   TestHeatmapReferenceMatchesRecordedJavaIDsAndRGB/heatmap-start
+--- PASS: TestHeatmapReferenceMatchesRecordedJavaIDsAndRGB (0.17s)
+    --- PASS: TestHeatmapReferenceMatchesRecordedJavaIDsAndRGB/heatmap-order (0.11s)
+    --- PASS: TestHeatmapReferenceMatchesRecordedJavaIDsAndRGB/heatmap-start (0.06s)
+=== RUN   TestHeatmap45WeightedWallAndFirstOccupiedBlock
+--- PASS: TestHeatmap45WeightedWallAndFirstOccupiedBlock (0.06s)
+=== RUN   TestHeatmapLZSpillPreservesEdgesAndCapsCaches
+--- PASS: TestHeatmapLZSpillPreservesEdgesAndCapsCaches (0.02s)
+=== RUN   TestHeatmapWeightedSortCoalescesExternalRuns
+--- PASS: TestHeatmapWeightedSortCoalescesExternalRuns (0.02s)
+=== RUN   TestHeatmapFrequencyUsesLZEdgesAndSkipsMillionRepeats
+--- PASS: TestHeatmapFrequencyUsesLZEdgesAndSkipsMillionRepeats (0.00s)
+=== RUN   TestTextImportsCapturedJava41HTMLWithUnicodeAndReusedWidths
+--- PASS: TestTextImportsCapturedJava41HTMLWithUnicodeAndReusedWidths (0.00s)
+=== RUN   TestTextHTMLRoundTripPreservesEscapesAndMixedCompilationCounters
+--- PASS: TestTextHTMLRoundTripPreservesEscapesAndMixedCompilationCounters (0.00s)
+=== RUN   TestTextHTMLRebuildKeepsEffectiveC1AndInterpretedColors
+--- PASS: TestTextHTMLRebuildKeepsEffectiveC1AndInterpretedColors (0.00s)
+=== RUN   TestTextDirectHTMLIgnoresSkipAndRetainsOriginalTitleIDs
+--- PASS: TestTextDirectHTMLIgnoresSkipAndRetainsOriginalTitleIDs (0.00s)
+=== RUN   TestTextCollapsedReverseRetainsThreadGroupingAndTypes
+--- PASS: TestTextCollapsedReverseRetainsThreadGroupingAndTypes (0.00s)
+=== RUN   TestTextMalformedInputsFailWithoutPanic
+--- PASS: TestTextMalformedInputsFailWithoutPanic (0.00s)
+=== RUN   TestTextLineLimitRejectsBeforeReadingWholeOversizedLine
+--- PASS: TestTextLineLimitRejectsBeforeReadingWholeOversizedLine (0.04s)
+=== RUN   TestJava45SpanLiteralTagsAndExclusiveEnd
+--- PASS: TestJava45SpanLiteralTagsAndExclusiveEnd (0.00s)
+=== RUN   TestJava45CPUTimeNativeLockAndTraceSelection
+--- PASS: TestJava45CPUTimeNativeLockAndTraceSelection (0.00s)
+=== RUN   TestJava45OTLPSpoolRetainsEachEventAndPeriod
+--- PASS: TestJava45OTLPSpoolRetainsEachEventAndPeriod (0.00s)
+=== RUN   TestJava45RawOTLPAllocationsDoNotScaleWithEventCount
+    jfr45_test.go:144: 100x events: 406 -> 406 allocations
+--- PASS: TestJava45RawOTLPAllocationsDoNotScaleWithEventCount (0.00s)
+=== RUN   TestPathResolverReusesScratchAndPreservesOwnedTiers
+=== RUN   TestPathResolverReusesScratchAndPreservesOwnedTiers/compiled-path-without-allocation
+=== RUN   TestPathResolverReusesScratchAndPreservesOwnedTiers/tiers-and-string-ownership
+=== RUN   TestPathResolverReusesScratchAndPreservesOwnedTiers/filter-before-interning
+--- PASS: TestPathResolverReusesScratchAndPreservesOwnedTiers (0.00s)
+    --- PASS: TestPathResolverReusesScratchAndPreservesOwnedTiers/compiled-path-without-allocation (0.00s)
+    --- PASS: TestPathResolverReusesScratchAndPreservesOwnedTiers/tiers-and-string-ownership (0.00s)
+    --- PASS: TestPathResolverReusesScratchAndPreservesOwnedTiers/filter-before-interning (0.00s)
+=== RUN   TestCPUConversionAllocationCountDoesNotScaleWithSampleCount
+    memory_regression_test.go:183: event expansion 100000x; conversion allocations 325 -> 325; allocated bytes/call 512928 -> 512928; units 3 -> 300000
+--- PASS: TestCPUConversionAllocationCountDoesNotScaleWithSampleCount (0.11s)
+=== RUN   TestMergedSpanFiltersReleaseOversizedBackingArrays
+--- PASS: TestMergedSpanFiltersReleaseOversizedBackingArrays (0.00s)
+=== RUN   TestStringArenaOwnershipAndJavaUTF16Order
+--- PASS: TestStringArenaOwnershipAndJavaUTF16Order (0.01s)
+=== RUN   TestMajorBudgetPanicPreservesCleanupAndDiffError
+--- PASS: TestMajorBudgetPanicPreservesCleanupAndDiffError (0.00s)
+=== RUN   TestNativeSortMultipleMergePassesAndCleanup
+--- PASS: TestNativeSortMultipleMergePassesAndCleanup (0.01s)
+=== RUN   TestNativeSortVisitorFailureStillCleansAllRuns
+--- PASS: TestNativeSortVisitorFailureStillCleansAllRuns (0.00s)
+=== RUN   TestProtobufNestedLengthsAndMaxVarint
+--- PASS: TestProtobufNestedLengthsAndMaxVarint (0.00s)
+=== RUN   TestPprofResolvesFramesLabelsUnitsAndTimes
+--- PASS: TestPprofResolvesFramesLabelsUnitsAndTimes (0.00s)
+=== RUN   TestGzipPprofMatchesUncompressedWire
+--- PASS: TestGzipPprofMatchesUncompressedWire (0.00s)
+=== RUN   TestOTLPV45PreservesPerEventArraysPeriodDictionaryAndDefaultThreads
+--- PASS: TestOTLPV45PreservesPerEventArraysPeriodDictionaryAndDefaultThreads (0.00s)
+=== RUN   TestOTLPRejectsMalformedSpools
+=== RUN   TestOTLPRejectsMalformedSpools/before-header
+=== RUN   TestOTLPRejectsMalformedSpools/reversed-time
+=== RUN   TestOTLPRejectsMalformedSpools/bad-leaf
+=== RUN   TestOTLPRejectsMalformedSpools/bad-thread
+=== RUN   TestOTLPRejectsMalformedSpools/truncated
+=== RUN   TestOTLPRejectsMalformedSpools/inconsistent-thread-group
+--- PASS: TestOTLPRejectsMalformedSpools (0.00s)
+    --- PASS: TestOTLPRejectsMalformedSpools/before-header (0.00s)
+    --- PASS: TestOTLPRejectsMalformedSpools/reversed-time (0.00s)
+    --- PASS: TestOTLPRejectsMalformedSpools/bad-leaf (0.00s)
+    --- PASS: TestOTLPRejectsMalformedSpools/bad-thread (0.00s)
+    --- PASS: TestOTLPRejectsMalformedSpools/truncated (0.00s)
+    --- PASS: TestOTLPRejectsMalformedSpools/inconsistent-thread-group (0.00s)
+=== RUN   TestOTLPV45LargeSingleGroupStreamsAcrossSpillAndEncodedBuffers
+--- PASS: TestOTLPV45LargeSingleGroupStreamsAcrossSpillAndEncodedBuffers (0.01s)
+=== RUN   TestProtobufInternedFunctionsAndOTLPLinesIgnoreFrameKindAndBCI
+--- PASS: TestProtobufInternedFunctionsAndOTLPLinesIgnoreFrameKindAndBCI (0.00s)
+=== RUN   TestOTLPSorterCompactsRunsAndPreservesGroupEventOrder
+--- PASS: TestOTLPSorterCompactsRunsAndPreservesGroupEventOrder (0.01s)
+=== RUN   TestOTLPSorterEqualLevelCompactionBoundsRewrittenRecords
+--- PASS: TestOTLPSorterEqualLevelCompactionBoundsRewrittenRecords (0.03s)
+=== RUN   TestOTLPSorterLimitFailsExplicitlyAndCleansRuns
+--- PASS: TestOTLPSorterLimitFailsExplicitlyAndCleansRuns (0.00s)
+=== RUN   TestOTLPDictionaryBudgetRejectsBeforeAllocatingAndCleansScratch
+--- PASS: TestOTLPDictionaryBudgetRejectsBeforeAllocatingAndCleansScratch (0.00s)
+=== RUN   TestOTLPDictionaryBudgetCountsTransientVectorAndMapGrowth
+--- PASS: TestOTLPDictionaryBudgetCountsTransientVectorAndMapGrowth (0.00s)
+=== RUN   TestEmptyStacksHavePresentEmptyLocationFields
+--- PASS: TestEmptyStacksHavePresentEmptyLocationFields (0.00s)
+=== RUN   TestProtobufWritersPropagateOutputErrors
+=== RUN   TestProtobufWritersPropagateOutputErrors/pprof
+=== RUN   TestProtobufWritersPropagateOutputErrors/pb.gz
+=== RUN   TestProtobufWritersPropagateOutputErrors/otlp
+--- PASS: TestProtobufWritersPropagateOutputErrors (0.00s)
+    --- PASS: TestProtobufWritersPropagateOutputErrors/pprof (0.00s)
+    --- PASS: TestProtobufWritersPropagateOutputErrors/pb.gz (0.00s)
+    --- PASS: TestProtobufWritersPropagateOutputErrors/otlp (0.00s)
+=== RUN   TestHTMLTitleInheritanceAndUnifiedDiffTemplate
+=== RUN   TestHTMLTitleInheritanceAndUnifiedDiffTemplate/inherited
+=== RUN   TestHTMLTitleInheritanceAndUnifiedDiffTemplate/override
+=== RUN   TestHTMLTitleInheritanceAndUnifiedDiffTemplate/explicit_default
+=== RUN   TestHTMLTitleInheritanceAndUnifiedDiffTemplate/empty
+--- PASS: TestHTMLTitleInheritanceAndUnifiedDiffTemplate (0.00s)
+    --- PASS: TestHTMLTitleInheritanceAndUnifiedDiffTemplate/inherited (0.00s)
+    --- PASS: TestHTMLTitleInheritanceAndUnifiedDiffTemplate/override (0.00s)
+    --- PASS: TestHTMLTitleInheritanceAndUnifiedDiffTemplate/explicit_default (0.00s)
+    --- PASS: TestHTMLTitleInheritanceAndUnifiedDiffTemplate/empty (0.00s)
+PASS

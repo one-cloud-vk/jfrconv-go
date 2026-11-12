@@ -1,0 +1,2 @@
+span-stress45.jfr x1: RSS Java 120.66 MiB vs Go 9.77 MiB (91.9% lower); p50 0.2765s vs 0.1170s; p95 0.3671s vs 0.1251s
+/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/performance-final/span-filter-stress/benchmark.json

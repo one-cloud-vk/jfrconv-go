@@ -1,0 +1,90 @@
+=== RUN   TestUTF8MatchesRecordedJDK21ReplacementGoldens
+=== RUN   TestUTF8MatchesRecordedJDK21ReplacementGoldens/modified-emoji-surrogates
+=== RUN   TestUTF8MatchesRecordedJDK21ReplacementGoldens/modified-nul
+=== RUN   TestUTF8MatchesRecordedJDK21ReplacementGoldens/truncated-three-byte-prefix
+=== RUN   TestUTF8MatchesRecordedJDK21ReplacementGoldens/three-byte-prefix-before-ascii
+=== RUN   TestUTF8MatchesRecordedJDK21ReplacementGoldens/overlong-three-byte
+=== RUN   TestUTF8MatchesRecordedJDK21ReplacementGoldens/overlong-four-byte
+=== RUN   TestUTF8MatchesRecordedJDK21ReplacementGoldens/above-unicode-range
+=== RUN   TestUTF8MatchesRecordedJDK21ReplacementGoldens/truncated-four-byte-prefix
+=== RUN   TestUTF8MatchesRecordedJDK21ReplacementGoldens/four-byte-prefix-before-ascii
+=== RUN   TestUTF8MatchesRecordedJDK21ReplacementGoldens/orphan-continuations
+=== RUN   TestUTF8MatchesRecordedJDK21ReplacementGoldens/valid-replacement-and-greek-cjk
+=== RUN   TestUTF8MatchesRecordedJDK21ReplacementGoldens/valid-supplementary-emoji
+=== RUN   TestUTF8MatchesRecordedJDK21ReplacementGoldens/truncated-two-byte
+=== RUN   TestUTF8MatchesRecordedJDK21ReplacementGoldens/two-byte-prefix-before-ascii
+=== RUN   TestUTF8MatchesRecordedJDK21ReplacementGoldens/three-byte-first-continuation-invalid
+=== RUN   TestUTF8MatchesRecordedJDK21ReplacementGoldens/four-byte-third-continuation-invalid
+--- PASS: TestUTF8MatchesRecordedJDK21ReplacementGoldens (0.01s)
+    --- PASS: TestUTF8MatchesRecordedJDK21ReplacementGoldens/modified-emoji-surrogates (0.00s)
+    --- PASS: TestUTF8MatchesRecordedJDK21ReplacementGoldens/modified-nul (0.00s)
+    --- PASS: TestUTF8MatchesRecordedJDK21ReplacementGoldens/truncated-three-byte-prefix (0.00s)
+    --- PASS: TestUTF8MatchesRecordedJDK21ReplacementGoldens/three-byte-prefix-before-ascii (0.00s)
+    --- PASS: TestUTF8MatchesRecordedJDK21ReplacementGoldens/overlong-three-byte (0.00s)
+    --- PASS: TestUTF8MatchesRecordedJDK21ReplacementGoldens/overlong-four-byte (0.00s)
+    --- PASS: TestUTF8MatchesRecordedJDK21ReplacementGoldens/above-unicode-range (0.00s)
+    --- PASS: TestUTF8MatchesRecordedJDK21ReplacementGoldens/truncated-four-byte-prefix (0.00s)
+    --- PASS: TestUTF8MatchesRecordedJDK21ReplacementGoldens/four-byte-prefix-before-ascii (0.00s)
+    --- PASS: TestUTF8MatchesRecordedJDK21ReplacementGoldens/orphan-continuations (0.00s)
+    --- PASS: TestUTF8MatchesRecordedJDK21ReplacementGoldens/valid-replacement-and-greek-cjk (0.00s)
+    --- PASS: TestUTF8MatchesRecordedJDK21ReplacementGoldens/valid-supplementary-emoji (0.00s)
+    --- PASS: TestUTF8MatchesRecordedJDK21ReplacementGoldens/truncated-two-byte (0.00s)
+    --- PASS: TestUTF8MatchesRecordedJDK21ReplacementGoldens/two-byte-prefix-before-ascii (0.00s)
+    --- PASS: TestUTF8MatchesRecordedJDK21ReplacementGoldens/three-byte-first-continuation-invalid (0.00s)
+    --- PASS: TestUTF8MatchesRecordedJDK21ReplacementGoldens/four-byte-third-continuation-invalid (0.00s)
+=== RUN   TestUTF8ExpansionChecksArenaBudgetBeforeAllocatingDecodedText
+    reader_test.go:69: denied UTF8 expansion: 3 allocations for raw arena/owner only
+--- PASS: TestUTF8ExpansionChecksArenaBudgetBeforeAllocatingDecodedText (0.00s)
+=== RUN   TestVarlongFullWidthAndSignedDeltaBits
+--- PASS: TestVarlongFullWidthAndSignedDeltaBits (0.00s)
+=== RUN   TestVarlongAcrossBufferAndBackwardSeek
+--- PASS: TestVarlongAcrossBufferAndBackwardSeek (0.00s)
+=== RUN   TestBoundariesFailBeforeFastCallback
+--- PASS: TestBoundariesFailBeforeFastCallback (0.00s)
+=== RUN   TestStringsAllEncodingsAndCPReferences
+--- PASS: TestStringsAllEncodingsAndCPReferences (0.00s)
+=== RUN   TestMixedFixtureAllFamiliesAndChunkOwnership
+--- PASS: TestMixedFixtureAllFamiliesAndChunkOwnership (0.00s)
+=== RUN   TestCurrentSpanAndMethodTraceFixtures
+--- PASS: TestCurrentSpanAndMethodTraceFixtures (0.00s)
+=== RUN   TestSpanDistinguishesNullAndPresentEmptyTags
+--- PASS: TestSpanDistinguishesNullAndPresentEmptyTags (0.00s)
+=== RUN   TestJava45CPUTimeAndNativeLockWireLayouts
+--- PASS: TestJava45CPUTimeAndNativeLockWireLayouts (0.00s)
+=== RUN   TestJava45WallTimeSpanConsumedAndValidated
+--- PASS: TestJava45WallTimeSpanConsumedAndValidated (0.00s)
+=== RUN   TestJava45PeriodSettingsRemainBoundedAndPersist
+--- PASS: TestJava45PeriodSettingsRemainBoundedAndPersist (0.00s)
+=== RUN   TestJava45PeriodSettingReplacementDoesNotAccumulateBudget
+--- PASS: TestJava45PeriodSettingReplacementDoesNotAccumulateBudget (0.00s)
+=== RUN   TestSelectedExecutionHasNoPerEventAllocations
+--- PASS: TestSelectedExecutionHasNoPerEventAllocations (0.00s)
+=== RUN   TestMaskSkipsUnselectedPayloadButValidatesRecords
+--- PASS: TestMaskSkipsUnselectedPayloadButValidatesRecords (0.00s)
+=== RUN   TestBudgetAndMalformedHeaders
+--- PASS: TestBudgetAndMalformedHeaders (0.00s)
+=== RUN   TestDuplicateConstantTextDoesNotGrowArena
+--- PASS: TestDuplicateConstantTextDoesNotGrowArena (0.00s)
+=== RUN   TestJavaDictionaryPreallocateAndClearRetainCapacity
+--- PASS: TestJavaDictionaryPreallocateAndClearRetainCapacity (0.00s)
+=== RUN   TestJava45DictionaryRemapsBeforeHashAndVisitsRawKeys
+--- PASS: TestJava45DictionaryRemapsBeforeHashAndVisitsRawKeys (0.00s)
+=== RUN   TestHasStackDistinguishesEmptyFromMissing
+--- PASS: TestHasStackDistinguishesEmptyFromMissing (0.00s)
+=== RUN   TestImpossibleCountsFailBeforeArenaOrReferenceOrderAllocation
+--- PASS: TestImpossibleCountsFailBeforeArenaOrReferenceOrderAllocation (0.00s)
+=== RUN   TestOptionalRealRecordings
+=== RUN   TestOptionalRealRecordings/jdk.jfr
+    reader_test.go:673: 1 chunks, 4432 recognized records
+=== RUN   TestOptionalRealRecordings/ap41.jfr
+    reader_test.go:673: 1 chunks, 31490 recognized records
+--- PASS: TestOptionalRealRecordings (0.00s)
+    --- PASS: TestOptionalRealRecordings/jdk.jfr (0.00s)
+    --- PASS: TestOptionalRealRecordings/ap41.jfr (0.00s)
+=== RUN   TestStackColumnsKeepFullValuesAcrossSlabs
+--- PASS: TestStackColumnsKeepFullValuesAcrossSlabs (0.00s)
+=== RUN   TestStackSlabsPackAdjacentTracesAndKeepViews
+--- PASS: TestStackSlabsPackAdjacentTracesAndKeepViews (0.00s)
+=== RUN   TestStackSlabBudgetGuardsEveryAllocation
+--- PASS: TestStackSlabBudgetGuardsEveryAllocation (0.00s)
+PASS

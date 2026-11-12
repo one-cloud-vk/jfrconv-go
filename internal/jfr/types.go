@@ -17,9 +17,13 @@ const (
 	Malloc
 	Free
 	Span
+	NativeLock
+	MethodTrace
 )
 
-type Mask uint8
+const CPUTimeSampleState = 254
+
+type Mask uint16
 
 const (
 	MaskExecution  Mask = 1 << Execution
@@ -27,8 +31,10 @@ const (
 	MaskLive       Mask = 1 << Live
 	MaskLock       Mask = 1 << Lock
 	MaskNative     Mask = 1<<Malloc | 1<<Free
-	MaskSpan       Mask = 1 << Span
-	MaskAll        Mask = 127
+	MaskSpan       Mask = 1<<Span | 1<<MethodTrace
+	MaskTrace      Mask = 1 << MethodTrace
+	MaskNativeLock Mask = 1 << NativeLock
+	MaskAll        Mask = 1<<(MethodTrace+1) - 1
 )
 
 type ClassRef struct{ Name uint64 }
@@ -112,6 +118,7 @@ type typ struct {
 type Chunk struct {
 	StartNS, EndNS, StartTicks, TicksPerSec uint64
 	Enums                                   map[string]map[uint64]string
+	Settings                                map[string]string
 	StackOrder                              []uint64
 	threads                                 map[uint64]strRef
 	classes                                 map[uint64]ClassRef
@@ -126,6 +133,7 @@ type Chunk struct {
 	frameCount                              uint64
 	budget, reserved                        uint64
 	offset, end                             uint64
+	wallTimeSpan                            bool
 }
 
 func (c *Chunk) Stack(id uint64) StackTrace {
@@ -136,6 +144,7 @@ func (c *Chunk) Stack(id uint64) StackTrace {
 	return StackTrace{chunk: c, start: r.start, length: r.length}
 }
 func (c *Chunk) HasStack(id uint64) bool            { _, ok := c.stacks[id]; return ok }
+func (c *Chunk) HasThread(id uint64) bool           { _, ok := c.threads[id]; return ok }
 func (c *Chunk) Method(id uint64) (MethodRef, bool) { v, ok := c.methods[id]; return v, ok }
 func (c *Chunk) Class(id uint64) (ClassRef, bool)   { v, ok := c.classes[id]; return v, ok }
 func (c *Chunk) Symbol(id uint64) string            { return c.text.string(c.symbols[id]) }

@@ -209,6 +209,14 @@ func readHTML(reader *bufio.Reader, o Options, p *profile) error {
 		if !ok {
 			break
 		}
+		if strings.HasPrefix(text, "<h1") {
+			from, to := strings.IndexByte(text, '>'), strings.LastIndex(text, "</h1>")
+			if from >= 0 && to > from {
+				title := text[from+1 : to]
+				p.budget.reserve(uint64(len(title)))
+				p.sourceTitle, p.hasSourceTitle = strings.Clone(title), true
+			}
+		}
 		if strings.HasPrefix(strings.TrimLeftFunc(text, unicode.IsSpace), "const cpool") {
 			foundPool = true
 			break

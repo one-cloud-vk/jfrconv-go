@@ -29,6 +29,7 @@ import tempfile
 import time
 import threading
 from fixtures import generate
+from otlp45 import semantic_otlp
 
 
 def file_hash(path):
@@ -214,7 +215,7 @@ def canonical_pprof(path):
     Producer comments and the producer-specific synthetic mapping name differ
     intentionally. They do not change profile samples or their interpretation.
     """
-    from validate import protobuf, integers
+    from protobuf_wire import protobuf, integers
     data = path.read_bytes()
     fields = protobuf(gzip.decompress(data) if data.startswith(b'\x1f\x8b') else data)
     strings = [v.decode('utf-8') for n, _, v in fields if n == 6]
@@ -262,9 +263,15 @@ def verify_outputs(args, source, outputs):
     if args.format == 'collapsed':
         expected, actual = canonical(outputs['java']), canonical(outputs['go'])
     elif args.format in ['pprof', 'pb.gz', 'otlp']:
-        from validate import semantic_otlp
         parse = semantic_otlp if args.format == 'otlp' else canonical_pprof
         expected, actual = parse(outputs['java']), parse(outputs['go'])
+        if args.format == 'otlp':
+            proof.update({'otlp_schema': 'async-profiler v4.5',
+                          'otlp_profiles': len(actual),
+                          'otlp_sample_groups': sum(len(p[5]) for p in actual),
+                          'otlp_event_timestamps': sum(len(s[3]) for p in actual for s in p[5]),
+                          'otlp_selected_value_total': sum(sum(s[2]) for p in actual for s in p[5]),
+                          'otlp_full_timestamp_value_pairs_match': expected == actual})
     elif args.format == 'heatmap':
         decoder = Path(__file__).with_name('heatmap_decode.js')
         decoded = {kind: json.loads(subprocess.check_output(['node', str(decoder), str(path)], text=True)) for kind, path in outputs.items()}
@@ -349,7 +356,7 @@ def main():
               'warmups_per_implementation': args.warmup, 'format': args.format,
               'java_options': args.java_option, 'flags': [*mode_flags, *args.flag], 'go_flags': args.go_flag,
               'method': 'Fresh processes measured with wait4 child ru_maxrss; equal warmups; alternating pair order; p50 median and p95 nearest-rank; first fresh pair kept separate; input page-cache state uncontrolled; macOS RSS bytes, Linux KiB normalized to bytes.',
-              'output_verification_method': 'Canonical output after every pair outside measurement; pprof includes vector values, resolved labels, sample types/units and time/duration, with producer comments/mapping title excluded; heatmap includes all used method IDs and RGB.',
+              'output_verification_method': 'Canonical output after every pair outside measurement; pprof includes vector values, resolved labels, sample types/units and time/duration, with producer comments/mapping title excluded; OTLP v4.5 includes every ordered timestamp/selected-value pair, explicit-vs-implicit values, resolved global stacks/attributes, sample/period types, sampling period, profile time/duration and chunk boundaries; heatmap includes all used method IDs and RGB.',
               'recordings': rows}
     destination = args.workdir / 'benchmark.json'
     def persist():

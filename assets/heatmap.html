@@ -106,7 +106,6 @@
 		padding: 4px
 	}
 	#heatmap-height-line {
-		text-decoration: #0366d6 dashed underline;
 		cursor: pointer;
 		font-family: monospace
 	}
@@ -158,7 +157,7 @@
 <body style='font: 12px Verdana, sans-serif'>
 <div class='bordered' style="display: flex">
 	<div class='bordered' style="width: 20px; margin-right: 1px; padding: 2px; float: left; background-color: #efefef; writing-mode: vertical-rl; transform: scale(-1); text-align: center; user-select: none">
-		<pre id="heatmap-height-line"> 1 sec : 20 ms </pre>
+		<div id="heatmap-height-line"> 1 sec : 20 ms </div>
 	</div>
 
 	<div id='heatmap-canvas-container' style="width: 100%; position: relative" autofocus>
@@ -966,9 +965,6 @@
 		if (className === '') {
 			return methodName + locationSuffix;
 		}
-		if (type >= 3 && type <= 5) {
-			return methodName + locationSuffix;
-		}
 
 		return className + "." + methodName + locationSuffix;
 	}
@@ -990,11 +986,11 @@
 			const line = data.nextInt18();
 			const type = data.nextInt6();
 
-			const noline = bci === 0xffff && line === 0xffff;
+			const isNative = type >= 3 && type <= 5;
 
-			names.push(methodName(cpool[className], cpool[name], noline ? 0 : bci, noline ? 0 : line, type));
+			names.push(methodName(cpool[className], cpool[name], bci === 0xffff ? 0 : bci, line === 0xffff ? 0 : line, type));
 			colors.push(getColorStable(palette[type], i + 1));
-			bcis[i + 1] = noline ? "" : ", bci: " + bci;
+			bcis[i + 1] = isNative || bci === 0xffff ? "" : ", bci: " + bci;
 		}
 
 		return {n: names, c: colors, b: bcis};
@@ -1064,6 +1060,25 @@
 		second: '2-digit',
 		hourCycle: 'h23'
 	};
+
+	const timeOptionsTinyWithTZ = {
+		hour: '2-digit',
+		minute: '2-digit',
+		second: '2-digit',
+		hourCycle: 'h23',
+		timeZoneName: 'short'
+	};
+
+	let currentTimezone = localStorage.getItem('heatmap-timezone') || 'Local';
+
+	function formatTime(ms, options) {
+		const date = new Date(ms);
+		if (currentTimezone === 'UTC') {
+			return date.toLocaleTimeString(undefined, {...options, timeZone: 'UTC'});
+		} else {
+			return date.toLocaleTimeString(undefined, options);
+		}
+	}
 
 	function getCount(counts, i) {
 		if (i < 0 || counts.length === 0) {
@@ -3661,7 +3676,7 @@
 			let ms = origin + markIndex * oneMarkMs;
 			let markOffset = markIndex * markPixels - dx;
 
-			let title = new Date(ms).toLocaleTimeString(undefined, timeOptionsTiny);
+			let title = formatTime(ms, currentTimezone === 'UTC' ? timeOptionsTinyWithTZ : timeOptionsTiny);
 			let x = markOffset + 4;
 			heatC.fillText(title, x, canvasTimeHeight - 1, markPixels);
 
@@ -4036,7 +4051,7 @@
 			status.style.display = 'none';
 		}
 		const ms = Math.floor(startMs / currentHeatmap.currentTimeSquareMs()) * currentHeatmap.currentTimeSquareMs() + currentHeatmap.minimalTimeSquare * index;
-		heatCanvas.title = new Date(ms).toLocaleTimeString(undefined, timeOptionsShort);
+		heatCanvas.title = formatTime(ms, timeOptionsShort);
 	}
 
 	function callActiveRedraw(sample, shiftPressed, ctrlPressed) {
@@ -4207,6 +4222,7 @@
 
 	let moved = false;
 	heatCanvas.onmousemove = function (event) {
+		heatCanvas.style.cursor = event.offsetY < canvasTimeHeightPx ? 'pointer' : '';
 		let x = Math.floor((event.offsetX + heatCanvasContainer.scrollLeft - canvasScrollPadding) / sqPx);
 		let y = Math.floor(Math.max(0, event.offsetY - canvasTimeHeightPx) / sqPx);
 		if (y >= currentHeatmap.timeSquareRowsCount) {
@@ -4226,6 +4242,11 @@
 	};
 
 	heatCanvas.onmousedown = function (event) {
+		if (event.offsetY < canvasTimeHeightPx) {
+			moved = false;
+			return;
+		}
+
 		let x = Math.floor((event.offsetX + heatCanvasContainer.scrollLeft - canvasScrollPadding) / sqPx);
 		let y = Math.floor(Math.max(0, event.offsetY - canvasTimeHeightPx) / sqPx);
 		let sample = x * currentHeatmap.timeSquareRowsCount + y;
@@ -4241,6 +4262,14 @@
 			let sample = x * currentHeatmap.timeSquareRowsCount + y;
 
 			callActiveRedraw(sample, true, event.ctrlKey);
+		}
+	};
+
+	heatCanvas.onclick = function (event) {
+		if (event.offsetY < canvasTimeHeightPx && !moved) {
+			currentTimezone = currentTimezone === 'Local' ? 'UTC' : 'Local';
+			localStorage.setItem('heatmap-timezone', currentTimezone);
+			redrawHeatMap();
 		}
 	};
 

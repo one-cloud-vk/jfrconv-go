@@ -11,6 +11,7 @@ import (
 	"math"
 	"math/bits"
 	"sort"
+	"strconv"
 	"strings"
 )
 
@@ -29,14 +30,23 @@ func mulDiv(v, m, d uint64) uint64 {
 	return q
 }
 func eventNS(c *jfr.Chunk, ticks uint64) uint64 {
-	if ticks >= c.StartTicks {
-		return satAdd(c.StartNS, mulDiv(ticks-c.StartTicks, 1_000_000_000, c.TicksPerSec))
+	delta := javaLong(float64(int64(ticks-c.StartTicks)) * (1e9 / float64(c.TicksPerSec)))
+	return c.StartNS + uint64(delta)
+}
+
+// Java's floating-point clock conversion truncates toward zero and saturates
+// on a narrowing double-to-long conversion, including sub-nanosecond bounds.
+func javaLong(value float64) int64 {
+	if value >= math.MaxInt64 {
+		return math.MaxInt64
 	}
-	delta := mulDiv(c.StartTicks-ticks, 1_000_000_000, c.TicksPerSec)
-	if delta > c.StartNS {
+	if value <= math.MinInt64 {
+		return math.MinInt64
+	}
+	if math.IsNaN(value) {
 		return 0
 	}
-	return c.StartNS - delta
+	return int64(value)
 }
 func readSpans(path string, o Options) (spanFilter, error) {
 	r, err := jfr.Open(path)
@@ -55,20 +65,20 @@ func readSpans(path string, o Options) (spanFilter, error) {
 		if err != nil {
 			return nil, parserError(err)
 		}
+		minTicks := javaLong(float64(o.LatencyNS) * (float64(c.TicksPerSec) / 1e9))
 		err = r.Events(c, jfr.MaskSpan, func(e *jfr.Event) error {
-			if e.Kind != jfr.Span {
-				return nil
-			}
 			found = true
-			duration := mulDiv(e.Duration, 1_000_000_000, c.TicksPerSec)
-			if o.HasLatency && float64(duration) < o.Latency*1_000_000 {
+			if int64(e.Duration) < minTicks {
 				return nil
 			}
-			if o.Tag != nil && (!e.TagPresent || !o.Tag.MatchString(e.Tag)) {
+			if o.HasTag && (!e.TagPresent || o.Tag != e.Tag) {
 				return nil
 			}
 			t := eventNS(c, e.Time)
-			f[e.TID] = append(f[e.TID], interval{t, satAdd(t, duration)})
+			end := eventNS(c, e.Time+e.Duration)
+			if end > t {
+				f[e.TID] = append(f[e.TID], interval{t, end})
+			}
 			return nil
 		})
 		if err != nil {
@@ -76,7 +86,7 @@ func readSpans(path string, o Options) (spanFilter, error) {
 		}
 	}
 	if !found {
-		return nil, fmt.Errorf("no profiler.Span / profiler.MethodTrace events found for span filtering")
+		return nil, fmt.Errorf("no Span/MethodTrace events found")
 	}
 	for tid, pairs := range f {
 		sort.Slice(pairs, func(i, j int) bool {
@@ -114,7 +124,7 @@ func readSpans(path string, o Options) (spanFilter, error) {
 func (f spanFilter) contains(tid, t uint64) bool {
 	pairs := f[tid]
 	at := sort.Search(len(pairs), func(i int) bool { return pairs[i].Start > t })
-	return at > 0 && t <= pairs[at-1].End
+	return at > 0 && t < pairs[at-1].End
 }
 func stateIDs(c *jfr.Chunk, o Options) (ids []uint64, restricted bool, err error) {
 	if o.Mode != ModeExecution {
@@ -148,6 +158,9 @@ func stateIDs(c *jfr.Chunk, o Options) (ids []uint64, restricted bool, err error
 		}
 		return ids, true, nil
 	}
+	if o.CPUTime {
+		return []uint64{jfr.CPUTimeSampleState}, true, nil
+	}
 	return nil, false, nil
 }
 func selected(e *jfr.Event, o Options) bool {
@@ -163,7 +176,9 @@ func selected(e *jfr.Event, o Options) bool {
 	case ModeNative:
 		return e.Kind == jfr.Malloc || e.Kind == jfr.Free
 	case ModeTrace:
-		return e.Kind == jfr.Span
+		return e.Kind == jfr.MethodTrace
+	case ModeNativeLock:
+		return e.Kind == jfr.NativeLock
 	}
 	return false
 }
@@ -178,7 +193,9 @@ func eventMask(o Options) jfr.Mask {
 	case ModeNative:
 		return jfr.MaskNative
 	case ModeTrace:
-		return jfr.MaskSpan
+		return jfr.MaskTrace
+	case ModeNativeLock:
+		return jfr.MaskNativeLock
 	default:
 		return jfr.MaskExecution
 	}
@@ -209,7 +226,7 @@ func timeBound(ms int64, start, end uint64) int64 {
 	return int64(base) + delta
 }
 func normalizeValue(value uint64, c *jfr.Chunk, o Options) uint64 {
-	if o.Mode == ModeLock || o.Mode == ModeTrace {
+	if o.Mode == ModeLock || o.Mode == ModeNativeLock {
 		return uint64(float64(value) * (1e9 / float64(c.TicksPerSec)))
 	}
 	return value
@@ -235,6 +252,45 @@ type outstanding struct {
 }
 type pathKey struct{ Stack, TID uint64 }
 
+func otlpPeriod(c *jfr.Chunk, o Options) (uint64, error) {
+	name, fallback := "interval", uint64(10_000_000)
+	switch o.Mode {
+	case ModeNative:
+		name, fallback = "nativemem", 1
+	case ModeAllocation, ModeLive:
+		name, fallback = "alloc", 524287
+	case ModeLock:
+		name, fallback = "lock", 10000
+	case ModeNativeLock:
+		name, fallback = "nativelock", 10000
+	default:
+		if o.Wall {
+			name, fallback = "wall", 50_000_000
+		}
+	}
+	if text, ok := c.Settings[name]; ok {
+		value, err := strconv.ParseInt(text, 10, 64)
+		if err != nil {
+			return 0, fmt.Errorf("invalid %s period %q: %w", name, text, err)
+		}
+		if value > 0 {
+			return uint64(value), nil
+		}
+	}
+	return fallback, nil
+}
+
+func otlpGroup(tid, stack uint64) uint64 {
+	return uint64(uint32(tid))<<32 | uint64(uint32(stack))
+}
+
+func (p *profile) creditOTLPStats(amount, samples uint64) {
+	// OTLP reads raw event records and frame/parent IDs, not trie counters.
+	root := p.nodes.at(0)
+	root.Total = satAdd(root.Total, amount)
+	root.Samples = satAdd(root.Samples, samples)
+}
+
 func readJFR(path string, o Options, p *profile, format string, heat heatmapSession) error {
 	var filter spanFilter
 	var err error
@@ -257,13 +313,14 @@ func readJFR(path string, o Options, p *profile, format string, heat heatmapSess
 		spool = bufio.NewWriterSize(p.spool, 128*1024)
 	}
 	otlp := format == "otlp"
-	needsTime := o.From != 0 || o.To != 0 || filter != nil || o.Leak || heat != nil
+	needsTime := o.From != 0 || o.To != 0 || filter != nil || o.Leak || heat != nil || otlp
 	var live map[uint64]outstanding
 	if o.Leak {
 		live = make(map[uint64]outstanding)
 	}
 	minTime, maxTime := uint64(math.MaxUint64), uint64(0)
 	var observedEnd uint64
+	var lastStart, lastEnd, lastPeriod uint64
 	for {
 		available, budgetErr := p.readerBudget()
 		if budgetErr != nil {
@@ -281,7 +338,15 @@ func readJFR(path string, o Options, p *profile, format string, heat heatmapSess
 			if c.EndNS > observedEnd {
 				observedEnd = c.EndNS
 			}
-			if otlp && !o.Leak {
+			var headerOffset int64
+			if otlp {
+				if err := spool.Flush(); err != nil {
+					return err
+				}
+				headerOffset, err = p.spool.Seek(0, io.SeekCurrent)
+				if err != nil {
+					return err
+				}
 				if err := writeRecord(spool, [5]uint64{c.StartNS, math.MaxUint64, c.EndNS, 0, 0}); err != nil {
 					return err
 				}
@@ -298,12 +363,34 @@ func readJFR(path string, o Options, p *profile, format string, heat heatmapSess
 				return err
 			}
 			var agg *aggregator
-			if !o.Leak && heat == nil {
+			if !o.Leak && heat == nil && !otlp {
 				agg = newAggregator(o.Threads)
 			}
 			var resolver pathResolver
 			if heat == nil {
 				resolver.names = make(nameCache)
+			}
+			var otlpCacheBytes uint64
+			if otlp {
+				defer func() { p.budget.release(otlpCacheBytes) }()
+			}
+			var otlpPaths map[pathKey]uint32
+			if otlp && !o.Leak {
+				otlpPaths = make(map[pathKey]uint32)
+			}
+			var otlpThreadName func(uint64) uint32
+			if otlp {
+				names := make(map[uint64]uint32)
+				otlpThreadName = func(tid uint64) uint32 {
+					if id, ok := names[tid]; ok {
+						return id
+					}
+					p.budget.reserve(64)
+					otlpCacheBytes += 64
+					id := p.strings.intern(threadName(c, tid))
+					names[tid] = id
+					return id
+				}
 			}
 			var native *nativeSorter
 			if o.Leak {
@@ -340,6 +427,34 @@ func readJFR(path string, o Options, p *profile, format string, heat heatmapSess
 				}
 				if filter != nil && !filter.contains(e.TID, t) {
 					return nil
+				}
+				if otlp && !o.Leak {
+					key := pathKey{Stack: e.StackID}
+					if o.Threads {
+						key.TID = e.TID
+					}
+					cached, exists := otlpPaths[key]
+					if !exists {
+						p.budget.reserve(64)
+						otlpCacheBytes += 64
+						cached = math.MaxUint32
+						resolved, ok := resolver.resolve(c, e, o, p, format)
+						if ok {
+							cached = resolved.Leaf
+						}
+						otlpPaths[key] = cached
+					}
+					if cached == math.MaxUint32 {
+						return nil
+					}
+					value := normalizeValue(e.Value, c, o)
+					amount := e.Samples
+					if o.Total {
+						amount = value
+					}
+					p.creditOTLPStats(amount, e.Samples)
+					thread := otlpThreadName(e.TID)
+					return writeRecord(spool, [5]uint64{t, uint64(cached), amount, otlpGroup(e.TID, e.StackID), uint64(thread)})
 				}
 				if o.Leak {
 					if t < minTime {
@@ -399,7 +514,7 @@ func readJFR(path string, o Options, p *profile, format string, heat heatmapSess
 					}
 					thread := uint32(0)
 					if otlp {
-						thread = p.strings.intern(threadName(c, record.TID))
+						thread = otlpThreadName(record.TID)
 					}
 					live[record.Address] = outstanding{cached, eventNS(c, record.Time), record.Size, thread}
 					return nil
@@ -408,7 +523,7 @@ func readJFR(path string, o Options, p *profile, format string, heat heatmapSess
 				if err != nil {
 					return err
 				}
-			} else if heat == nil {
+			} else if heat == nil && !otlp {
 				err = agg.each(o.Grain, func(a aggregate) error {
 					e := a.Event.expand()
 					resolved, ok := resolver.resolve(c, &e, o, p, format)
@@ -422,10 +537,6 @@ func readJFR(path string, o Options, p *profile, format string, heat heatmapSess
 					}
 					t := eventNS(c, e.Time)
 					p.credit(resolved, amount, a.Samples, value, t)
-					if otlp {
-						thread := p.strings.intern(threadName(c, e.TID))
-						return writeRecord(spool, [5]uint64{t, uint64(resolved.Leaf), a.Samples, value, uint64(thread)})
-					}
 					return nil
 				})
 				if err != nil {
@@ -437,18 +548,49 @@ func readJFR(path string, o Options, p *profile, format string, heat heatmapSess
 					return err
 				}
 			}
+			if otlp {
+				period, err := otlpPeriod(c, o)
+				if err != nil {
+					return err
+				}
+				if err = spool.Flush(); err != nil {
+					return err
+				}
+				var bytes [8]byte
+				binary.LittleEndian.PutUint64(bytes[:], period)
+				if _, err = p.spool.WriteAt(bytes[:], headerOffset+24); err != nil {
+					return err
+				}
+				lastStart, lastEnd, lastPeriod = c.StartNS, c.EndNS, period
+			}
 			return nil
 		}()
 		if err != nil {
 			return err
 		}
 	}
-	if o.Leak && minTime != math.MaxUint64 {
-		if otlp {
-			if err := writeRecord(spool, [5]uint64{start, math.MaxUint64, end, 0, 0}); err != nil {
+	if o.Leak && otlp {
+		if err := writeRecord(spool, [5]uint64{lastStart, math.MaxUint64, lastEnd, lastPeriod, 0}); err != nil {
+			return err
+		}
+		cutoff := satAdd(minTime, uint64(float64(maxTime-minTime)*(1-o.Tail)))
+		for _, v := range live {
+			if v.Time > cutoff {
+				continue
+			}
+			amount := uint64(1)
+			if o.Total {
+				amount = v.Value
+			}
+			p.creditOTLPStats(amount, 1)
+			group := uint64(v.Thread)<<32 | uint64(v.Path.Leaf)
+			if err := writeRecord(spool, [5]uint64{v.Time, uint64(v.Path.Leaf), amount, group, uint64(v.Thread)}); err != nil {
 				return err
 			}
 		}
+		return spool.Flush()
+	}
+	if o.Leak && minTime != math.MaxUint64 {
 		cutoff := satAdd(minTime, uint64(float64(maxTime-minTime)*(1-o.Tail)))
 		type group struct {
 			Path               *cachedPath
@@ -503,11 +645,6 @@ func readJFR(path string, o Options, p *profile, format string, heat heatmapSess
 			p.credit(*g.Path, amount, count, value, g.Time)
 			if heat != nil {
 				if err := heat.Retained(id, count, value, g.Time); err != nil {
-					return err
-				}
-			}
-			if otlp {
-				if err := writeRecord(spool, [5]uint64{g.Time, uint64(id), count, value, uint64(g.Thread)}); err != nil {
 					return err
 				}
 			}

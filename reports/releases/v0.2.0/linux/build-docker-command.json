@@ -1,0 +1,15 @@
+[
+  "docker",
+  "run",
+  "--rm",
+  "--cidfile",
+  "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/linux/results/build-container.cid",
+  "--mount",
+  "type=bind,src=/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/linux,dst=/task",
+  "--mount",
+  "type=bind,src=/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-rss-followup/linux/node,dst=/node,readonly",
+  "--entrypoint",
+  "/bin/bash",
+  "sha256:949f7645022e8cd5cd65eac4b342e7505c86b721b6338f8b677c6f2edc180262",
+  "/task/build.sh"
+]

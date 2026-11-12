@@ -1,0 +1,37 @@
+=== RUN   TestArgumentsPreserveSelectionAndSpanFilters
+--- PASS: TestArgumentsPreserveSelectionAndSpanFilters (0.00s)
+=== RUN   TestSpanDurationUnitsAndLiteralTags
+--- PASS: TestSpanDurationUnitsAndLiteralTags (0.00s)
+=== RUN   TestCheckedMemorySizes
+--- PASS: TestCheckedMemorySizes (0.00s)
+=== RUN   TestCalendarFractionsAreLiteralMilliseconds
+--- PASS: TestCalendarFractionsAreLiteralMilliseconds (0.00s)
+=== RUN   TestOutputPlanPreservesDottedNamesAndFormatAliases
+--- PASS: TestOutputPlanPreservesDottedNamesAndFormatAliases (0.00s)
+=== RUN   TestActualEngineLimitedBatchReleasesProfiles
+--- PASS: TestActualEngineLimitedBatchReleasesProfiles (0.06s)
+=== RUN   TestAtomicOutputPreservesExistingFileOnConversionError
+--- PASS: TestAtomicOutputPreservesExistingFileOnConversionError (0.00s)
+=== RUN   TestLimitedBatchPublishesOnlyAfterAllInputsSucceed
+=== RUN   TestLimitedBatchPublishesOnlyAfterAllInputsSucceed/success
+=== RUN   TestLimitedBatchPublishesOnlyAfterAllInputsSucceed/later-budget-failure
+--- PASS: TestLimitedBatchPublishesOnlyAfterAllInputsSucceed (0.01s)
+    --- PASS: TestLimitedBatchPublishesOnlyAfterAllInputsSucceed/success (0.00s)
+    --- PASS: TestLimitedBatchPublishesOnlyAfterAllInputsSucceed/later-budget-failure (0.01s)
+=== RUN   TestTinyRSSAndRuntimeBudgetsExit75WithoutChangingOutput
+--- PASS: TestTinyRSSAndRuntimeBudgetsExit75WithoutChangingOutput (0.02s)
+=== RUN   TestRSSGuardObservesWorkerInsteadOfTreatingGOMEMLIMITAsHardCap
+--- PASS: TestRSSGuardObservesWorkerInsteadOfTreatingGOMEMLIMITAsHardCap (0.01s)
+=== RUN   TestManifestValidationRejectsUnauthorizedAndSymlinkResults
+--- PASS: TestManifestValidationRejectsUnauthorizedAndSymlinkResults (0.00s)
+=== RUN   TestDescriptorCloneRetainsOffsetAndOwnership
+--- PASS: TestDescriptorCloneRetainsOffsetAndOwnership (0.00s)
+=== RUN   TestStdoutAliasPreservesRegularFilePrefixInBothModes
+    output_unix_test.go:57: skip system descriptor aliases as root; task-owned FIFO remains covered
+--- SKIP: TestStdoutAliasPreservesRegularFilePrefixInBothModes (0.00s)
+=== RUN   TestNullDeviceIdentityInBothModes
+    output_unix_test.go:96: skip direct /dev/null identity probe as root; task-owned FIFO remains covered
+--- SKIP: TestNullDeviceIdentityInBothModes (0.00s)
+=== RUN   TestOwnedFIFOReceivesCompletedResultAndKeepsIdentity
+--- PASS: TestOwnedFIFOReceivesCompletedResultAndKeepsIdentity (0.01s)
+PASS

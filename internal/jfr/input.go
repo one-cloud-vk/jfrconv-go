@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"strings"
 	"unicode/utf16"
 	"unicode/utf8"
 )
@@ -193,11 +192,8 @@ func (in *input) refString(cp map[uint64]strRef, a *byteArena) (strRef, bool) {
 		return strRef{}, true
 	case 2:
 		id := in.u()
-		if id == 0 {
-			return strRef{}, false
-		}
 		r, ok := cp[id]
-		if !ok {
+		if !ok && id != 0 {
 			in.fail(invalid("missing string constant"))
 		}
 		return r, ok
@@ -220,27 +216,36 @@ func (in *input) refString(cp map[uint64]strRef, a *byteArena) (strRef, bool) {
 			if utf8.Valid(b) {
 				return r, true
 			}
-			r, err = a.store(strings.ToValidUTF8(string(b), "\ufffd"))
-			in.fail(err)
+			size := javaUTF8Size(b)
+			out := b
+			if size > len(b) {
+				r, out, err = a.alloc(size)
+				if err != nil {
+					in.fail(err)
+					return strRef{}, false
+				}
+			}
+			javaUTF8Into(out, b)
 			return r, true
 		}
-		ascii := true
+		size := len(b)
 		for _, v := range b {
 			if v >= 128 {
-				ascii = false
-				break
+				size++
 			}
 		}
-		if ascii {
+		if size == len(b) {
 			return r, true
 		}
-		var text strings.Builder
-		text.Grow(n * 2)
-		for _, v := range b {
-			text.WriteRune(rune(v))
+		r, out, err := a.alloc(size)
+		if err != nil {
+			in.fail(err)
+			return strRef{}, false
 		}
-		r, err = a.store(text.String())
-		in.fail(err)
+		at := 0
+		for _, v := range b {
+			at += utf8.EncodeRune(out[at:], rune(v))
+		}
 		return r, true
 	case 4:
 		n := in.count()
@@ -294,6 +299,58 @@ func (in *input) refString(cp map[uint64]strRef, a *byteArena) (strRef, bool) {
 	}
 }
 
+// Java's UTF-8 decoder replaces a malformed sequence's valid prefix, rather
+// than merging adjacent errors or replacing every byte. JNI Span tags can
+// contain modified UTF-8 surrogate triples and overlong NUL bytes.
+func javaUTF8Step(b []byte) (n int, malformed bool) {
+	continuation := func(v byte) bool { return v&0xc0 == 0x80 }
+	_, n = utf8.DecodeRune(b)
+	if n != 1 || b[0] < utf8.RuneSelf {
+		return n, false
+	}
+	lead := b[0]
+	if lead >= 0xe0 && lead <= 0xef && len(b) >= 2 && continuation(b[1]) && (lead != 0xe0 || b[1] >= 0xa0) {
+		n = 2
+		if len(b) >= 3 && continuation(b[2]) {
+			n = 3
+		}
+	} else if lead >= 0xf0 && lead <= 0xf4 && len(b) >= 2 && continuation(b[1]) && (lead != 0xf0 || b[1] >= 0x90) && (lead != 0xf4 || b[1] < 0x90) {
+		n = 2
+		if len(b) >= 3 && continuation(b[2]) {
+			n = 3
+		}
+	}
+	return n, true
+}
+
+func javaUTF8Size(b []byte) int {
+	size := 0
+	for len(b) != 0 {
+		n, malformed := javaUTF8Step(b)
+		if malformed {
+			size += 3
+		} else {
+			size += n
+		}
+		b = b[n:]
+	}
+	return size
+}
+
+func javaUTF8Into(out, b []byte) {
+	at := 0
+	for len(b) != 0 {
+		n, malformed := javaUTF8Step(b)
+		if malformed {
+			out[at], out[at+1], out[at+2] = 0xef, 0xbf, 0xbd
+			at += 3
+		} else {
+			at += copy(out[at:], b[:n])
+		}
+		b = b[n:]
+	}
+}
+
 // valueString is transient: inline event tags never enter the chunk arena.
 func (in *input) valueString(c *Chunk) string {
 	v, _ := in.valueStringPresent(c)
@@ -316,12 +373,11 @@ func (in *input) valueStringPresent(c *Chunk) (string, bool) {
 	if in.buffer[in.cursor] == 2 {
 		in.cursor++
 		id := in.u()
-		if id == 0 {
-			return "", false
-		}
 		r, ok := c.strings[id]
 		if !ok {
-			in.fail(invalid("missing event string constant"))
+			if id != 0 {
+				in.fail(invalid("missing event string constant"))
+			}
 			return "", false
 		}
 		return c.text.string(r), true

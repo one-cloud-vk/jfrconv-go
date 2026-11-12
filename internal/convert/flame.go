@@ -256,9 +256,6 @@ func writeHTML(p *profile, w *bufio.Writer, o Options) error {
 		depth = p.originalDepth + 1
 	}
 	t := template{assets.Flame, w}
-	if p.isDiff {
-		t.tail = assets.FlameDiff
-	}
 	if err := t.until("/*height:*/300"); err != nil {
 		return err
 	}
@@ -270,27 +267,19 @@ func writeHTML(p *profile, w *bufio.Writer, o Options) error {
 	if err := t.until("/*title:*/"); err != nil {
 		return err
 	}
-	w.WriteString(o.Title)
+	title := o.Title
+	if !o.HasTitle && o.Title == "Flame Graph" && p.hasSourceTitle {
+		title = p.sourceTitle
+	}
+	w.WriteString(title)
 	if err := t.until("/*inverted:*/false"); err != nil {
 		return err
 	}
 	w.WriteString(strconv.FormatBool(o.Reverse != o.Inverted))
+	if err := t.until("/*maxdiff:*/-1"); err != nil {
+		return err
+	}
 	if p.isDiff {
-		if err := t.until("/*treeview:*/false"); err != nil {
-			return err
-		}
-		w.WriteString("false")
-		if err := t.until("/*units:*/"); err != nil {
-			return err
-		}
-		unit := p.Unit
-		if unit == "count" {
-			unit = "samples"
-		}
-		jsString(w, unit)
-		if err := t.until("/*maxdiff:*/-1"); err != nil {
-			return err
-		}
 		var max uint64
 		for _, d := range p.diffs {
 			v := uint64(d)
@@ -302,6 +291,8 @@ func writeHTML(p *profile, w *bufio.Writer, o Options) error {
 			}
 		}
 		unsigned(w, max)
+	} else {
+		w.WriteString("-1")
 	}
 	if err := t.until("/*depth:*/0"); err != nil {
 		return err

@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 // SPDX-License-Identifier: Apache-2.0
-// Decode only trusted bundled 4.1 JavaScript plus input data. Input scripts are
+// Decode only trusted bundled 4.5 JavaScript plus input data. Input scripts are
 // never executed. Compare USED semantic method identities, numeric IDs and RGB.
 'use strict';
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const template=fs.readFileSync(path.join(__dirname,'../assets/heatmap.html'),'utf8');
 function section(a,b){const from=template.indexOf(a),to=template.indexOf(b,from);if(from<0||to<0)throw Error('Missing upstream decoder');return template.slice(from,to);}
-const decoder=Function('const zoomToGroupSize=[1,50,250];'+section('class DataBuffer {','class HeatmapCollection extends')+section('function calculateMinMax(','function calculateInitialZoom(')+section('const palette =','function samples(')+'return {DataBuffer,decodeExecutions,palette,getColorStable};')();
+const decoder=Function('const localStorage={getItem:()=>null};const zoomToGroupSize=[1,50,250];'+section('class DataBuffer {','class HeatmapCollection extends')+section('function calculateMinMax(','function calculateInitialZoom(')+section('const palette =','function samples(')+'return {DataBuffer,decodeExecutions,palette,getColorStable};')();
 function colors(file){
  const html=fs.readFileSync(file,'utf8');
  if(html.trim()==='No samples found')return [];

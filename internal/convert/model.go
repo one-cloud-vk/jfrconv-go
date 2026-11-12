@@ -198,6 +198,8 @@ type profile struct {
 	originalDepth              int
 	htmlEncounter              bool
 	sourceTitles               []uint32
+	sourceTitle                string
+	hasSourceTitle             bool
 	isDiff                     bool
 	diffs                      map[uint32]int64
 	StartNS, EndNS             uint64

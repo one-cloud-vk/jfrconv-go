@@ -4,6 +4,8 @@ package jfr
 
 import (
 	"bytes"
+	"encoding/hex"
+	"encoding/json"
 	"errors"
 	"io"
 	"math"
@@ -12,6 +14,60 @@ import (
 	"reflect"
 	"testing"
 )
+
+func TestUTF8MatchesRecordedJDK21ReplacementGoldens(t *testing.T) {
+	data, err := os.ReadFile(filepath.Join("..", "..", "tests", "fixtures", "java-utf8-goldens.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	var golden struct {
+		Cases []struct {
+			Name     string `json:"case"`
+			Input    string `json:"input_hex"`
+			Expected string `json:"expected_utf8_hex"`
+		} `json:"cases"`
+	}
+	if err := json.Unmarshal(data, &golden); err != nil || len(golden.Cases) != 16 {
+		t.Fatal("invalid Java byte goldens", err)
+	}
+	for _, tc := range golden.Cases {
+		t.Run(tc.Name, func(t *testing.T) {
+			input, err := hex.DecodeString(tc.Input)
+			if err != nil {
+				t.Fatal(err)
+			}
+			payload := append([]byte{3}, varBytes(uint64(len(input)))...)
+			payload = append(payload, input...)
+			in := testInput(t, payload)
+			var arena byteArena
+			ref, present := in.refString(nil, &arena)
+			if in.err != nil || !present || hex.EncodeToString(arena.bytes(ref)) != tc.Expected {
+				t.Fatalf("UTF8 got %x want %s present=%v err=%v", arena.bytes(ref), tc.Expected, present, in.err)
+			}
+		})
+	}
+}
+
+func TestUTF8ExpansionChecksArenaBudgetBeforeAllocatingDecodedText(t *testing.T) {
+	const size = 8192
+	data := append([]byte{3}, varBytes(size)...)
+	data = append(data, bytes.Repeat([]byte{0x80}, size)...)
+	seed := testInput(t, data)
+	seed.refill()
+	allocations := testing.AllocsPerRun(10, func() {
+		c := Chunk{budget: size}
+		arena := byteArena{owner: &c, exact: true}
+		in := seed
+		_, present := in.refString(nil, &arena)
+		if !errors.Is(in.err, ErrBudget) || present || len(arena.blocks) != 1 || len(arena.blocks[0]) != size || c.reserved != size {
+			t.Fatalf("normalization bypassed budget: present=%v blocks=%d reserved=%d err=%v", present, len(arena.blocks), c.reserved, in.err)
+		}
+	})
+	if allocations > 4 {
+		t.Fatalf("budget denial allocated temporary decoded strings/buffers: %.0f allocations", allocations)
+	}
+	t.Logf("denied UTF8 expansion: %.0f allocations for raw arena/owner only", allocations)
+}
 
 func testInput(t *testing.T, data []byte) input {
 	t.Helper()
@@ -103,7 +159,7 @@ func TestBoundariesFailBeforeFastCallback(t *testing.T) {
 	copy(data, []byte{1, 2, 3, 4})
 	r := Reader{in: testInput(t, data)}
 	r.in.refill()
-	r.execution(false, 3)
+	r.execution(false, false, 3)
 	if r.in.err == nil || r.in.position() != 0 {
 		t.Fatal("fast execution crossed boundary")
 	}
@@ -271,6 +327,103 @@ func TestSpanDistinguishesNullAndPresentEmptyTags(t *testing.T) {
 		}
 	}
 }
+
+func TestJava45CPUTimeAndNativeLockWireLayouts(t *testing.T) {
+	values := func(fields ...uint64) []byte {
+		var b []byte
+		for _, value := range fields {
+			b = append(b, varBytes(value)...)
+		}
+		return b
+	}
+	cpu := append(values(123, 456, 789), 1)
+	cpu = append(cpu, values(1<<45)...)
+	cpu = append(cpu, 0)
+	r := Reader{in: testInput(t, cpu), event: Event{Kind: Execution, Samples: 1, Value: 1}}
+	r.cpuTime()
+	if r.in.err != nil || r.in.position() != uint64(len(cpu)) || r.event.Time != 123 || r.event.StackID != 456 || r.event.TID != 789 || r.event.State != CPUTimeSampleState || r.event.Samples != 1 || r.event.Value != 1 {
+		t.Fatalf("CPUTimeSample: %+v err=%v position=%d", r.event, r.in.err, r.in.position())
+	}
+	lock := values(123, 987, 789, 456, 1<<40)
+	r = Reader{in: testInput(t, lock), event: Event{Kind: NativeLock, Samples: 1, Value: 1}}
+	r.decode(&Chunk{}, typ{}, encNativeLock)
+	if r.in.err != nil || r.in.position() != uint64(len(lock)) || r.event.Time != 123 || r.event.Duration != 987 || r.event.Value != 987 || r.event.StackID != 456 || r.event.TID != 789 || r.event.Address != 1<<40 || r.event.ClassID != 0 {
+		t.Fatalf("NativeLock: %+v err=%v", r.event, r.in.err)
+	}
+	if encodingFor("profiler.MethodTrace") != encUnknown || encodingFor("jdk.MethodTrace") != encMethodTrace || MaskSpan&MaskTrace == 0 {
+		t.Fatal("legacy trace alias or interval/trace masks do not match 4.5")
+	}
+}
+
+func TestJava45WallTimeSpanConsumedAndValidated(t *testing.T) {
+	var data []byte
+	for _, value := range []uint64{123, 7, 9, 0, 17, 1 << 40} {
+		data = append(data, varBytes(value)...)
+	}
+	for _, fast := range []bool{false, true} {
+		payload := append([]byte(nil), data...)
+		if fast {
+			payload = append(payload, make([]byte, 64)...)
+		}
+		r := Reader{in: testInput(t, payload), event: Event{Kind: Execution, Samples: 1, Value: 1}}
+		if fast {
+			r.in.refill()
+		}
+		r.execution(true, true, uint64(len(data)))
+		if r.in.err != nil || r.in.position() != uint64(len(data)) || r.event.Samples != 17 || r.event.Value != 17 {
+			t.Fatalf("wall fast=%v event=%+v position=%d err=%v", fast, r.event, r.in.position(), r.in.err)
+		}
+	}
+	r := Reader{in: testInput(t, data[:len(data)-1]), event: Event{Kind: Execution}}
+	r.execution(true, true, uint64(len(data)-1))
+	if r.in.err == nil {
+		t.Fatal("truncated optional wall timeSpan accepted")
+	}
+}
+
+func TestJava45PeriodSettingsRemainBoundedAndPersist(t *testing.T) {
+	var r Reader
+	setting := func(c *Chunk, name, value string) {
+		var b []byte
+		for _, text := range []string{name, value} {
+			b = append(b, 3)
+			b = append(b, varBytes(uint64(len(text)))...)
+			b = append(b, text...)
+		}
+		r.in = testInput(t, b)
+		r.activeSetting(c, typ{fields: []field{{name: "name"}, {name: "value"}}})
+		if r.in.err != nil {
+			t.Fatal(r.in.err)
+		}
+	}
+	first := Chunk{}
+	setting(&first, "interval", "12345")
+	setting(&first, "unneeded", "not retained")
+	second := Chunk{Settings: r.settings, reserved: r.settingsBytes}
+	setting(&second, "wall", "6789")
+	if len(r.settings) != 2 || first.Settings["wall"] != "6789" || second.Settings["interval"] != "12345" || r.settingsBytes != 9 {
+		t.Fatalf("settings not cumulative/bounded: %v bytes=%d", r.settings, r.settingsBytes)
+	}
+	setting(&second, "interval", "1")
+	if r.settingsBytes != 5 || second.Settings["interval"] != "1" {
+		t.Fatal("replacement retained old settings bytes")
+	}
+}
+
+func TestJava45PeriodSettingReplacementDoesNotAccumulateBudget(t *testing.T) {
+	payload := []byte{3, 8, 'i', 'n', 't', 'e', 'r', 'v', 'a', 'l', 3, 6, '1', '2', '3', '4', '5', '6'}
+	seed := testInput(t, payload)
+	seed.refill()
+	r := Reader{}
+	c := Chunk{budget: 12}
+	for i := 0; i < 100; i++ {
+		r.in = seed
+		r.activeSetting(&c, typ{fields: []field{{name: "name"}, {name: "value"}}})
+		if r.in.err != nil || c.reserved != 6 || r.settingsBytes != 6 || c.Settings["interval"] != "123456" {
+			t.Fatalf("setting %d accumulated previous values: reserved=%d live=%d err=%v", i, c.reserved, r.settingsBytes, r.in.err)
+		}
+	}
+}
 func TestSelectedExecutionHasNoPerEventAllocations(t *testing.T) {
 	r := fixture(t, "mixed.jfr")
 	c, err := r.NextChunk()
@@ -410,8 +563,54 @@ func TestJavaDictionaryPreallocateAndClearRetainCapacity(t *testing.T) {
 	if len(order.keys) != 256 {
 		t.Fatal("preallocate shrank Java dictionary")
 	}
-	if err := order.put(0, &c); err == nil {
-		t.Fatal("zero key accepted")
+	if err := order.put(0, &c); err != nil {
+		t.Fatalf("Java 4.5 permits raw zero: %v", err)
+	}
+	if err := order.put(javaUsedBit, &c); err == nil {
+		t.Fatal("reserved high-bit key accepted")
+	}
+}
+
+func TestJava45DictionaryRemapsBeforeHashAndVisitsRawKeys(t *testing.T) {
+	var order javaOrder
+	c := Chunk{}
+	keys := []uint64{0, 3, 17, javaUsedBit | 7, ^uint64(0), 1, 2}
+	if err := order.preallocate(len(keys), &c); err != nil {
+		t.Fatal(err)
+	}
+	want := make([]uint64, len(order.keys))
+	for _, raw := range keys {
+		if err := order.put(raw, &c); err != nil {
+			t.Fatal(err)
+		}
+		mapped := raw ^ (uint64(1) << 63)
+		hash := mapped * 0xc6a4a7935bd1e995
+		at := int(uint32(hash^(hash>>32))) & (len(want) - 1)
+		for want[at] != 0 {
+			at = (at + 1) & (len(want) - 1)
+		}
+		want[at] = mapped
+	}
+	if !reflect.DeepEqual(order.keys, want) || order.size != len(keys) {
+		t.Fatalf("mapped dictionary = %v size %d, want %v", order.keys, order.size, want)
+	}
+	if err := order.put(0, &c); err != nil || order.size != len(keys) {
+		t.Fatal("zero-key replacement changed size", err)
+	}
+	var visited []uint64
+	for _, stored := range order.keys {
+		if stored != 0 {
+			visited = append(visited, stored^javaUsedBit)
+		}
+	}
+	for _, key := range keys {
+		found := false
+		for _, actual := range visited {
+			found = found || actual == key
+		}
+		if !found {
+			t.Fatalf("raw key %x absent from traversal %v", key, visited)
+		}
 	}
 }
 

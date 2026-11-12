@@ -25,12 +25,18 @@ const (
 	encMalloc
 	encFree
 	encSpan
+	encMethodTrace
+	encCPUTime
+	encNativeLock
+	encSetting
 )
 
 func encodingFor(name string) encoding {
 	switch name {
 	case "jdk.ExecutionSample", "jdk.NativeMethodSample":
 		return encExecution
+	case "jdk.CPUTimeSample":
+		return encCPUTime
 	case "profiler.WallClockSample":
 		return encWall
 	case "jdk.ObjectAllocationInNewTLAB":
@@ -47,15 +53,21 @@ func encodingFor(name string) encoding {
 		return encMalloc
 	case "profiler.Free":
 		return encFree
-	case "profiler.Span", "profiler.MethodTrace", "jdk.MethodTrace":
+	case "profiler.Span":
 		return encSpan
+	case "jdk.MethodTrace":
+		return encMethodTrace
+	case "profiler.NativeLock":
+		return encNativeLock
+	case "jdk.ActiveSetting":
+		return encSetting
 	default:
 		return encUnknown
 	}
 }
 func (e encoding) kind() (EventKind, bool) {
 	switch e {
-	case encExecution, encWall:
+	case encExecution, encWall, encCPUTime:
 		return Execution, true
 	case encAllocation, encTLAB:
 		return Allocation, true
@@ -69,6 +81,10 @@ func (e encoding) kind() (EventKind, bool) {
 		return Free, true
 	case encSpan:
 		return Span, true
+	case encMethodTrace:
+		return MethodTrace, true
+	case encNativeLock:
+		return NativeLock, true
 	default:
 		return 0, false
 	}
@@ -83,6 +99,8 @@ type Reader struct {
 	order                javaOrder
 	event                Event
 	closed               bool
+	settings             map[string]string
+	settingsBytes        uint64
 }
 type header struct{ size, cp, metadata, start, end, ticks, frequency uint64 }
 
@@ -176,6 +194,10 @@ func (r *Reader) NextChunk() (*Chunk, error) {
 	}
 	c := &Chunk{StartNS: h.start, EndNS: h.end, StartTicks: h.ticks, TicksPerSec: h.frequency, Enums: make(map[string]map[uint64]string), threads: make(map[uint64]strRef), classes: make(map[uint64]ClassRef), symbols: make(map[uint64]strRef), methods: make(map[uint64]MethodRef), stacks: make(map[uint64]stackRef), strings: make(map[uint64]strRef), types: make(map[uint64]typ), budget: r.Budget, offset: offset, end: offset + h.size}
 	c.text.owner = c
+	c.Settings = r.settings
+	if err := c.reserve(r.settingsBytes); err != nil {
+		return nil, err
+	}
 	if r.TrackStackOrder {
 		r.order.clear()
 		if err := c.reserve(uint64(len(r.order.keys)) * 8); err != nil {
@@ -199,6 +221,13 @@ func (r *Reader) NextChunk() (*Chunk, error) {
 	}
 	c.encodings = make([]encoding, int(maxID)+1)
 	for id, t := range c.types {
+		if t.name == "profiler.WallClockSample" {
+			for _, f := range t.fields {
+				if f.name == "timeSpan" {
+					c.wallTimeSpan = true
+				}
+			}
+		}
 		if id < uint64(len(c.encodings)) {
 			c.encodings[id] = encodingFor(t.name)
 		}
@@ -214,7 +243,7 @@ func (r *Reader) NextChunk() (*Chunk, error) {
 		c.StackOrder = make([]uint64, 0, r.order.size)
 		for _, id := range r.order.keys {
 			if id != 0 {
-				c.StackOrder = append(c.StackOrder, id)
+				c.StackOrder = append(c.StackOrder, id^javaUsedBit)
 			}
 		}
 	}
@@ -394,6 +423,13 @@ func (r *Reader) pool(c *Chunk, t typ) {
 	}
 	for i := 0; i < count && in.err == nil; i++ {
 		id := in.u()
+		if id == javaUsedBit {
+			switch t.name {
+			case "java.lang.Thread", "java.lang.Class", "java.lang.String", "jdk.types.Symbol", "jdk.types.Method", "jdk.types.StackTrace":
+				in.fail(invalid("constant-pool key is reserved by Java Dictionary"))
+				return
+			}
+		}
 		switch t.name {
 		case "java.lang.Thread":
 			if _, exists := c.threads[id]; exists {
@@ -577,10 +613,17 @@ func (r *Reader) Events(c *Chunk, mask Mask, visit func(*Event) error) error {
 		} else {
 			enc = encodingFor(c.types[id].name)
 		}
-		if kind, ok := enc.kind(); ok && mask&(1<<kind) != 0 {
+		if enc == encSetting {
+			r.activeSetting(c, c.types[id])
+			if in.err != nil {
+				return in.err
+			}
+		} else if kind, ok := enc.kind(); ok && mask&(1<<kind) != 0 {
 			r.event = Event{Kind: kind, Samples: 1, Value: 1}
-			if kind == Execution {
-				r.execution(enc == encWall, end)
+			if enc == encCPUTime {
+				r.cpuTime()
+			} else if kind == Execution {
+				r.execution(enc == encWall, enc == encWall && c.wallTimeSpan, end)
 			} else {
 				r.decode(c, c.types[id], enc)
 			}
@@ -597,10 +640,14 @@ func (r *Reader) Events(c *Chunk, mask Mask, visit func(*Event) error) error {
 	}
 	return in.err
 }
-func (r *Reader) execution(wall bool, end uint64) {
+func (r *Reader) execution(wall, timeSpan bool, end uint64) {
 	in, e := &r.in, &r.event
 	e.Wall = wall
-	if in.filled-in.cursor >= 45 {
+	lookahead := 45
+	if timeSpan {
+		lookahead += 9
+	}
+	if in.filled-in.cursor >= lookahead {
 		at := in.cursor
 		e.Time, at = bufferedVar(in.buffer, at)
 		e.TID, at = bufferedVar(in.buffer, at)
@@ -608,6 +655,9 @@ func (r *Reader) execution(wall bool, end uint64) {
 		e.State, at = bufferedVar(in.buffer, at)
 		if wall {
 			e.Samples, at = bufferedVar(in.buffer, at)
+		}
+		if timeSpan {
+			_, at = bufferedVar(in.buffer, at)
 		}
 		if in.base+uint64(at) > end {
 			in.fail(invalid("truncated execution sample"))
@@ -622,27 +672,82 @@ func (r *Reader) execution(wall bool, end uint64) {
 		if wall {
 			e.Samples = in.u()
 		}
+		if timeSpan {
+			in.u()
+		}
 	}
 	e.Value = e.Samples
 }
+func (r *Reader) cpuTime() {
+	in, e := &r.in, &r.event
+	e.Time = in.u()
+	e.StackID = in.u()
+	e.TID = in.u()
+	in.b() // failed
+	in.u() // samplingPeriod
+	in.b() // biased
+	e.State = CPUTimeSampleState
+}
+
+func periodSetting(name string) bool {
+	switch name {
+	case "interval", "wall", "alloc", "lock", "nativelock", "nativemem":
+		return true
+	}
+	return false
+}
+
+func (r *Reader) activeSetting(c *Chunk, t typ) {
+	var name, value string
+	for _, f := range t.fields {
+		switch f.name {
+		case "name":
+			name = r.in.valueString(c)
+		case "value":
+			if periodSetting(name) {
+				value = r.in.valueString(c)
+			} else {
+				r.in.discardString(c)
+			}
+		default:
+			r.skip(c, f, 0)
+		}
+	}
+	if r.in.err != nil || !periodSetting(name) {
+		return
+	}
+	if err := c.reserve(uint64(len(value))); err != nil {
+		r.in.fail(err)
+		return
+	}
+	if r.settings == nil {
+		r.settings = make(map[string]string)
+	}
+	oldBytes := uint64(len(r.settings[name]))
+	c.reserved -= oldBytes
+	r.settingsBytes -= oldBytes
+	r.settings[name] = value
+	r.settingsBytes += uint64(len(value))
+	c.Settings = r.settings
+}
+
 func (r *Reader) decode(c *Chunk, t typ, enc encoding) {
 	in, e := &r.in, &r.event
-	if e.Kind == Span {
+	if e.Kind == Span || e.Kind == MethodTrace {
 		for _, f := range t.fields {
 			if in.err != nil {
 				return
 			}
-			if f.name == "tag" && c.types[f.typeID].name == "java.lang.String" {
+			if e.Kind == Span && f.name == "tag" && c.types[f.typeID].name == "java.lang.String" {
 				if f.constantPool {
 					id := in.u()
-					if id != 0 {
-						ref, ok := c.strings[id]
-						if !ok {
-							in.fail(invalid("missing span tag constant"))
-							return
-						}
+					ref, ok := c.strings[id]
+					if ok {
 						e.Tag = c.text.string(ref)
 						e.TagPresent = true
+					} else if id != 0 {
+						in.fail(invalid("missing span tag constant"))
+						return
 					}
 				} else {
 					e.Tag, e.TagPresent = in.valueStringPresent(c)
@@ -668,13 +773,15 @@ func (r *Reader) decode(c *Chunk, t typ, enc encoding) {
 		return
 	}
 	e.Time = in.u()
-	if e.Kind == Lock {
+	if e.Kind == Lock || e.Kind == NativeLock {
 		e.Duration = in.u()
 		e.Value = e.Duration
 	}
 	e.TID = in.u()
 	e.StackID = in.u()
 	switch e.Kind {
+	case NativeLock:
+		e.Address = in.u()
 	case Allocation:
 		e.ClassID = in.u()
 		e.Value = in.u()
@@ -712,6 +819,8 @@ type javaOrder struct {
 	size int
 }
 
+const javaUsedBit uint64 = 1 << 63
+
 func javaHash(key uint64) uint32 { key *= 0xc6a4a7935bd1e995; return uint32(key ^ (key >> 32)) }
 func (o *javaOrder) clear()      { clear(o.keys); o.size = 0 }
 func (o *javaOrder) resize(n int, c *Chunk) error {
@@ -748,9 +857,10 @@ func (o *javaOrder) preallocate(n int, c *Chunk) error {
 	return nil
 }
 func (o *javaOrder) put(key uint64, c *Chunk) error {
-	if key == 0 {
-		return invalid("zero stack constant key")
+	if key == javaUsedBit {
+		return invalid("constant-pool stack key is reserved by Java Dictionary")
 	}
+	key ^= javaUsedBit
 	if len(o.keys) == 0 {
 		if err := o.resize(16, c); err != nil {
 			return err

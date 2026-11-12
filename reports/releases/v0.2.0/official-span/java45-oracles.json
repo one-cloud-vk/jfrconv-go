@@ -1,0 +1,534 @@
+{
+  "release": "v4.5",
+  "commit": "11aaea310cb75843f0e7532365d8cedc8d0e14c8",
+  "java_jar_sha256": "ded43c350f75766b82570ac297c9dd3c3efd69e73de26474615cf2df90e1fc94",
+  "recording": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+  "recording_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+  "cases": [
+    {
+      "case": "cpu",
+      "flags": [
+        "--cpu"
+      ],
+      "format": "collapsed",
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/cpu.collapsed"
+      ],
+      "file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/cpu.collapsed",
+      "total": 1018,
+      "stacks": 27,
+      "sha256": "50483c634d7fb547bf1fe5a196e10d63c56d286d0e81777a383dd8707762c65e"
+    },
+    {
+      "case": "wall",
+      "flags": [
+        "--wall"
+      ],
+      "format": "collapsed",
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--wall",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/wall.collapsed"
+      ],
+      "file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/wall.collapsed",
+      "total": 18901,
+      "stacks": 35,
+      "sha256": "555cd799f06bd97e883808808ac49e63e8e22b962c54a6bc25e4ae02f534b54d"
+    },
+    {
+      "case": "request-cpu",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "request"
+      ],
+      "format": "collapsed",
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "request",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/request-cpu.collapsed"
+      ],
+      "file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/request-cpu.collapsed",
+      "total": 129,
+      "stacks": 5,
+      "sha256": "0076a3eed0d69d7aafc2bf9050b6175823020dd178ddbf2e6104279df62d5790"
+    },
+    {
+      "case": "request-wall",
+      "flags": [
+        "--wall",
+        "--tag",
+        "request"
+      ],
+      "format": "collapsed",
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--wall",
+        "--tag",
+        "request",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/request-wall.collapsed"
+      ],
+      "file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/request-wall.collapsed",
+      "total": 135,
+      "stacks": 2,
+      "sha256": "f52c1994e8d52588e7165257f6976d6addc5a18de93d094ad37a576dc3b8a177"
+    },
+    {
+      "case": "cross-chunk",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "cross-chunk",
+        "--threads"
+      ],
+      "format": "collapsed",
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "cross-chunk",
+        "--threads",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/cross-chunk.collapsed"
+      ],
+      "file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/cross-chunk.collapsed",
+      "total": 241,
+      "stacks": 3,
+      "sha256": "211b1beab34f4578b4f88effd850308e63f60996ab5237d451a759b7c4f7521b"
+    },
+    {
+      "case": "empty-tag",
+      "flags": [
+        "--cpu",
+        "--tag",
+        ""
+      ],
+      "format": "collapsed",
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/empty-tag.collapsed"
+      ],
+      "file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/empty-tag.collapsed",
+      "total": 67,
+      "stacks": 2,
+      "sha256": "9c2c2695a7a126f3d7675e4ad6eab96515c288ef7c11c0b2c7c4d66b12fe31cb"
+    },
+    {
+      "case": "literal-metachar-tag",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "literal.*"
+      ],
+      "format": "collapsed",
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "literal.*",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/literal-metachar-tag.collapsed"
+      ],
+      "file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/literal-metachar-tag.collapsed",
+      "total": 8,
+      "stacks": 2,
+      "sha256": "73d2da64cd8d49006efcafaa7831c5477e5612b77ce7483cd3da70c6c1ea03be"
+    },
+    {
+      "case": "nonmatching-metachar-tag",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "literalZZ"
+      ],
+      "format": "collapsed",
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "literalZZ",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/nonmatching-metachar-tag.collapsed"
+      ],
+      "file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/nonmatching-metachar-tag.collapsed",
+      "total": 0,
+      "stacks": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "case": "nested-min50ms",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "nested.inner",
+        "--latency",
+        "50ms"
+      ],
+      "format": "collapsed",
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "nested.inner",
+        "--latency",
+        "50ms",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/nested-min50ms.collapsed"
+      ],
+      "file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/nested-min50ms.collapsed",
+      "total": 72,
+      "stacks": 4,
+      "sha256": "bbcfb4ecb3c4c4d485a3df6c8920f762d4c0fdbf7fc737114a9812e6eca06597"
+    },
+    {
+      "case": "nested-min100ms",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "nested.inner",
+        "--latency",
+        "100ms"
+      ],
+      "format": "collapsed",
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "nested.inner",
+        "--latency",
+        "100ms",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/nested-min100ms.collapsed"
+      ],
+      "file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/nested-min100ms.collapsed",
+      "total": 0,
+      "stacks": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "case": "latency80ms",
+      "flags": [
+        "--cpu",
+        "--latency",
+        "80ms"
+      ],
+      "format": "collapsed",
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--latency",
+        "80ms",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/latency80ms.collapsed"
+      ],
+      "file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/latency80ms.collapsed",
+      "total": 766,
+      "stacks": 10,
+      "sha256": "9790867f24dfc410e4ebc9402f44019724b1796b4ac8ea55b6245e14b36d887e"
+    },
+    {
+      "case": "worker-a",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "worker.a",
+        "--threads"
+      ],
+      "format": "collapsed",
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "worker.a",
+        "--threads",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/worker-a.collapsed"
+      ],
+      "file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/worker-a.collapsed",
+      "total": 139,
+      "stacks": 5,
+      "sha256": "3c074a32bf96f3f53c0ba72bf29ca4df4c0733233b5df78826a14da435ca1f28"
+    },
+    {
+      "case": "worker-b",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "worker.b",
+        "--threads"
+      ],
+      "format": "collapsed",
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "worker.b",
+        "--threads",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/worker-b.collapsed"
+      ],
+      "file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/worker-b.collapsed",
+      "total": 107,
+      "stacks": 3,
+      "sha256": "07534f0428667306131509745503633f9d187dca6da4f5897037e8a165af97f8"
+    },
+    {
+      "case": "zero-duration",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "zero-duration",
+        "--latency",
+        "0ns"
+      ],
+      "format": "collapsed",
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "zero-duration",
+        "--latency",
+        "0ns",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/zero-duration.collapsed"
+      ],
+      "file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/zero-duration.collapsed",
+      "total": 0,
+      "stacks": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "case": "before-session",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "before-session"
+      ],
+      "format": "collapsed",
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "before-session",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/before-session.collapsed"
+      ],
+      "file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/before-session.collapsed",
+      "total": 0,
+      "stacks": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "case": "after-session",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "after-session"
+      ],
+      "format": "collapsed",
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "after-session",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/after-session.collapsed"
+      ],
+      "file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/after-session.collapsed",
+      "total": 0,
+      "stacks": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "case": "request-html",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "request"
+      ],
+      "format": "html",
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "request",
+        "-o",
+        "html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/request-html.html"
+      ],
+      "file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/request-html.html",
+      "sha256": "d1ff05c3a2620403cb43e9b0e5903faa8dbff75bc0e427144c546c19173f7425"
+    },
+    {
+      "case": "request-pprof",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "request"
+      ],
+      "format": "pprof",
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "request",
+        "-o",
+        "pprof",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/request-pprof.pprof"
+      ],
+      "file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/request-pprof.pprof",
+      "sha256": "9b94102ab8ccbd72027f5d6e2383884d97341927c1aaa8156dadd47d8851db5b"
+    },
+    {
+      "case": "request-pb.gz",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "request"
+      ],
+      "format": "pb.gz",
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "request",
+        "-o",
+        "pb.gz",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/request-pb.gz.pb.gz"
+      ],
+      "file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/request-pb.gz.pb.gz",
+      "sha256": "f9c8bdcee6d12651fc3e94565595a6e796dddced013f2013c6f14adbb1e67fa8"
+    },
+    {
+      "case": "request-otlp",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "request"
+      ],
+      "format": "otlp",
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "request",
+        "-o",
+        "otlp",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/request-otlp.otlp"
+      ],
+      "file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/request-otlp.otlp",
+      "sha256": "d6bba57684ddc7769f0931d4ba1333c331f6667a47f6afe6da9e5d0431577c7b"
+    },
+    {
+      "case": "request-heatmap",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "request"
+      ],
+      "format": "heatmap",
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "request",
+        "-o",
+        "heatmap",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/request-heatmap.html"
+      ],
+      "file": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/request-heatmap.html",
+      "sha256": "46f221d8437646b098ce150308fad0b004e9aa7115db710c14a000ac6f0d9048"
+    }
+  ]
+}

@@ -202,7 +202,7 @@ func (h *exactHeatmap) referenceOrder() error {
 				key := heatMethodKey{names.Class, names.Method, uint32(uint16(f.Line))<<16 | uint32(uint16(f.BCI)), f.Kind}
 				frame, ok := r.frames[key]
 				if names.Known && ok {
-					r.method(frame, i == stack.Len()-1)
+					r.method(frame, i == stack.Len()-1 && !h.o.Threads)
 					frames = append(frames, frame)
 				} else {
 					complete = false
@@ -218,7 +218,14 @@ func (h *exactHeatmap) referenceOrder() error {
 			if next.Leaf >= p.nodes.n {
 				return fmt.Errorf("invalid heatmap extra chronology")
 			}
-			r.method(p.nodes.at(next.Leaf).Frame, false)
+			frames = frames[:0]
+			for at := next.Leaf; at != 0; at = p.nodes.at(at).Parent {
+				frames = append(frames, at)
+			}
+			for i := len(frames) - 1; i >= 0; i-- {
+				n := p.nodes.at(frames[i])
+				r.method(n.Frame, n.Parent == 0)
+			}
 			r.stack(next.Leaf)
 			next, have, e = heatReadExtra(extraReader)
 			if e != nil {

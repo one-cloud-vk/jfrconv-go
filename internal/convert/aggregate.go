@@ -29,6 +29,9 @@ func newAggregator(threads bool) *aggregator {
 }
 func (a *aggregator) hash(e representative) uint32 {
 	h := uint32(e.StackID)
+	if e.Kind == jfr.MethodTrace {
+		h += uint32(e.MethodID) * 127
+	}
 	if e.Kind == jfr.Allocation || e.Kind == jfr.Live || e.Kind == jfr.Lock {
 		h += uint32(e.ClassID) * 127
 		if e.Kind == jfr.Allocation && !e.TLAB {

@@ -1,6 +1,6 @@
 # jfrconv-go
 
-Native Go converter **0.1.1** for async-profiler **4.1** recordings. It includes
+Native Go converter **0.2.0** targeting async-profiler **4.5**. It includes
 flamegraphs, heatmaps, Span API filters and differential flamegraphs. The
 executable needs no JVM, cgo or external Go modules.
 
@@ -22,7 +22,7 @@ go vet ./...
 ./bin/jfrconv --alloc --total recording.jfr allocations.collapsed
 ./bin/jfrconv --cpu -o pprof recording.jfr profile.pprof
 ./bin/jfrconv --cpu -o heatmap recording.jfr heatmap.html
-./bin/jfrconv --latency 100 --tag 'request-.*' recording.jfr requests.html
+./bin/jfrconv --cpu --latency 100ms --tag 'GET /api/orders' recording.jfr requests.html
 ./bin/jfrconv --diff base.collapsed current.collapsed difference.html
 ```
 
@@ -41,8 +41,29 @@ mkdir -p converted
 ./bin/jfrconv --cpu a.jfr b.jfr converted/
 ```
 
-As in Java 4.1, `--cpu` selects async-profiler's `STATE_DEFAULT` convention.
+As in Java 4.5, `--cpu` selects async-profiler's `STATE_DEFAULT` convention.
 For JDK RUNNABLE execution samples, omit `--cpu`/`--wall`.
+
+## Span API
+
+Record spans with the official async-profiler 4.5 Java API:
+
+```java
+long span = one.profiler.Span.start();
+try {
+    handleRequest();
+} finally {
+    one.profiler.Span.end(span, "GET /api/orders");
+}
+```
+
+Convert the resulting JFR with `--latency 100ms --tag 'GET /api/orders'`.
+Both conditions must match the same span on the sampled thread. Intervals are
+`[start, end)`. `--tag` is an exact literal match in 4.5; regex matching from
+older jfrconv-go extensions is no longer used. Durations accept integer
+`s`, `ms`, `us` and `ns`, defaulting to milliseconds. `--trace` selects
+`jdk.MethodTrace` events; it does not convert Span API spans into method traces.
+`--cpu-time` and `--nativelock` select the additional 4.5 event families.
 
 ## Memory limits
 
@@ -73,18 +94,17 @@ allocations and merged span intervals. See [ARCHITECTURE.md](ARCHITECTURE.md).
 
 ## Compatibility and measurements
 
-The flamegraph and heatmap templates are the original async-profiler 4.1
+The flamegraph and heatmap templates are the original async-profiler 4.5
 HTML/CSS/JavaScript. Heatmap encoding preserves Java's used method IDs and RGB
-shades. The diff template comes from the official newer upstream. See
+shades. Normal and differential flamegraphs use the same official 4.5 template. See
 [UI-PARITY.md](UI-PARITY.md) for checks and documented Java bug exceptions.
 
 [COMPATIBILITY.md](COMPATIBILITY.md) describes public test scope and how to run
 the Java/Node reference checks. [BENCHMARKS.md](BENCHMARKS.md) contains versioned
-RSS/latency measurements and raw trials. In 21-pair comparisons with 0.1.0,
-0.1.1 reduced median RSS from **128.09 to 53.73 MiB** on deep stacks and
-**49.81 to 40.73 MiB** on diverse stacks. Small-input RSS was unchanged; some
-p95 latency results regressed. Initial design reviews are recorded in
-[QUORUM.md](QUORUM.md).
+RSS/latency measurements and raw trials. Version 0.2.0 writes the OTLP Profiles
+Alpha schema bundled with 4.5 (opentelemetry-proto 1.10); this replaces the old
+4.1 OTLP format. Historical measurements retain their original versions and
+binary hashes. Initial design reviews are recorded in [QUORUM.md](QUORUM.md).
 
 ## License
 

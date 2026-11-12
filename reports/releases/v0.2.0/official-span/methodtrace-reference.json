@@ -1,0 +1,65 @@
+{
+  "release": "v4.5",
+  "commit": "11aaea310cb75843f0e7532365d8cedc8d0e14c8",
+  "java_jar_sha256": "ded43c350f75766b82570ac297c9dd3c3efd69e73de26474615cf2df90e1fc94",
+  "input_sha256": "cc3bcd80b3e4adee7aed3483daa2896f73b223555efd51475a4926b48e27115d",
+  "rows": [
+    {
+      "case": "trace",
+      "flags": [
+        "--trace"
+      ],
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--trace",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tests/fixtures/method-trace.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/reference/methodtrace-oracle/trace.collapsed"
+      ],
+      "collapsed": "demo/Main.run_[j];malloc 1\n"
+    },
+    {
+      "case": "trace-total",
+      "flags": [
+        "--trace",
+        "--total"
+      ],
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--trace",
+        "--total",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tests/fixtures/method-trace.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/reference/methodtrace-oracle/trace-total.collapsed"
+      ],
+      "collapsed": "demo/Main.run_[j];malloc 75000000\n"
+    },
+    {
+      "case": "trace-min40ms",
+      "flags": [
+        "--trace",
+        "--latency",
+        "40ms"
+      ],
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--trace",
+        "--latency",
+        "40ms",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tests/fixtures/method-trace.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/reference/methodtrace-oracle/trace-min40ms.collapsed"
+      ],
+      "collapsed": ""
+    }
+  ]
+}

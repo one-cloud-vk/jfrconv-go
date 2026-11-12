@@ -1,0 +1,22 @@
+{
+  "kind": "deterministic synthetic stress using exact4.5 Span constant-pool layout",
+  "producer": "generate_span_stress.py",
+  "producer_sha256": "f57512eaf100996a36f80cc1d4bcdcd10cc0f3293ca2fc545a39edbae30be7b6",
+  "path": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-stress45.jfr",
+  "sha256": "b84720f3205c1e98bf31d77ae079132ea2eaf98b08cddcb2e6b93398e144cfe9",
+  "bytes": 21209520,
+  "chunks": 4,
+  "CPU_events": 2000000,
+  "Span_events": 100003,
+  "threads": 2,
+  "tags": [
+    "selected",
+    "other"
+  ],
+  "properties": [
+    "monotonic distinct CPU timestamps across each1s chunk",
+    "20us intervals with20us gaps and exact end-boundary samples",
+    "per-thread/tag selection",
+    "three selected spans crossing real header/CP boundaries"
+  ]
+}

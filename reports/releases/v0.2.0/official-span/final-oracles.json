@@ -1,0 +1,2597 @@
+{
+  "release": "v0.2.0",
+  "target": "async-profiler v4.5",
+  "upstream_commit": "11aaea310cb75843f0e7532365d8cedc8d0e14c8",
+  "native_binary_sha256": "a9d7e8fc1fb440157df5f56ae34029e78cdf5b79005bc38d7a9406da4df1feb5",
+  "java_jar_sha256": "ded43c350f75766b82570ac297c9dd3c3efd69e73de26474615cf2df90e1fc94",
+  "source_freeze_sha256": "680a235d0231be4c6c001aea6b633ece193b19893f7700f89128e7b627147897",
+  "all_passed": true,
+  "official_span_cases": 21,
+  "unicode_tag_cases": 6,
+  "unicode_formats_per_case": 6,
+  "unicode_comparisons": 36,
+  "method_trace_cases": 3,
+  "total_comparisons": 60,
+  "driver_sha256": "1fc30d20640541015b1d2db49a95ded2966efb7446993c91e24c515bece486c6",
+  "note": "Official21pairs use hash-verified immutableJava4.5 oracle outputs. All36 Unicode pairs generated freshly with exactJava4.5 and finalnativebinary; three trace goldens are pinned pristineJava4.5. HTML compared by originalJava reader, heatmaps by original4.5 decoder plus used methodID/RGB.",
+  "cases": [
+    {
+      "case": "span-cpu",
+      "format": "collapsed",
+      "flags": [
+        "--cpu"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "input_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "java_output_sha256": "50483c634d7fb547bf1fe5a196e10d63c56d286d0e81777a383dd8707762c65e",
+      "native_output_sha256": "c1e4f7adb500381f794d2469f5fcab92a4a7c9d0209abed8199b6c8aebf5f534",
+      "canonical_equal": true,
+      "canonical_sha256": "254f2db7128d340ad7392f333c476103990c39fef54f904fd4c0406abbb90f2c"
+    },
+    {
+      "case": "span-wall",
+      "format": "collapsed",
+      "flags": [
+        "--wall"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "input_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "java_output_sha256": "555cd799f06bd97e883808808ac49e63e8e22b962c54a6bc25e4ae02f534b54d",
+      "native_output_sha256": "7daf11b2e9a17288a34d1709c1461c67feac56546960ad4446ea75269d7e5ada",
+      "canonical_equal": true,
+      "canonical_sha256": "741f0875533116aa5cacf5b970f3ec140f6ae7ab0969e6261a762836d6f39d64"
+    },
+    {
+      "case": "span-request-cpu",
+      "format": "collapsed",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "request"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "input_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "java_output_sha256": "0076a3eed0d69d7aafc2bf9050b6175823020dd178ddbf2e6104279df62d5790",
+      "native_output_sha256": "999fff4c323efe14862f5126cd204359af8fc6776934178855409f6254b21542",
+      "canonical_equal": true,
+      "canonical_sha256": "c50e69b4cc00be63edc8576a396e8ad7c7c9f0b2fc0278f6821e465f76808066"
+    },
+    {
+      "case": "span-request-wall",
+      "format": "collapsed",
+      "flags": [
+        "--wall",
+        "--tag",
+        "request"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "input_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "java_output_sha256": "f52c1994e8d52588e7165257f6976d6addc5a18de93d094ad37a576dc3b8a177",
+      "native_output_sha256": "f52c1994e8d52588e7165257f6976d6addc5a18de93d094ad37a576dc3b8a177",
+      "canonical_equal": true,
+      "canonical_sha256": "49d22c8f343bcbadddeafda0950bc625ef1923346bfb9c4f677ba932dc40ce94"
+    },
+    {
+      "case": "span-cross-chunk",
+      "format": "collapsed",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "cross-chunk",
+        "--threads"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "input_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "java_output_sha256": "211b1beab34f4578b4f88effd850308e63f60996ab5237d451a759b7c4f7521b",
+      "native_output_sha256": "8359db1c7ab16aea87f0fe4dfbf54b215f99a7523e03dce92af2743ca79e0a5e",
+      "canonical_equal": true,
+      "canonical_sha256": "d48235635cd71f68d01b393473c840febcfe2e2bdacd376bede35255d6f17684"
+    },
+    {
+      "case": "span-empty-tag",
+      "format": "collapsed",
+      "flags": [
+        "--cpu",
+        "--tag",
+        ""
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "input_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "java_output_sha256": "9c2c2695a7a126f3d7675e4ad6eab96515c288ef7c11c0b2c7c4d66b12fe31cb",
+      "native_output_sha256": "45b570118923d6ba24061c7d834fc90d94664159d83ea82e93f1a511e924273c",
+      "canonical_equal": true,
+      "canonical_sha256": "51ba6919e6f840d9da32ead66b00ad55ef6a0bace175c53255460ed166821472"
+    },
+    {
+      "case": "span-literal-metachar-tag",
+      "format": "collapsed",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "literal.*"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "input_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "java_output_sha256": "73d2da64cd8d49006efcafaa7831c5477e5612b77ce7483cd3da70c6c1ea03be",
+      "native_output_sha256": "7c0249041dbb60f981bd68175f5b77534f264fe386da98c3b4c0a6ec02fead20",
+      "canonical_equal": true,
+      "canonical_sha256": "d43bf45db2d8b9de1a9b5aa0a0a233bffbaf496c5c4ed11c6c4d983c3d4d61bb"
+    },
+    {
+      "case": "span-nonmatching-metachar-tag",
+      "format": "collapsed",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "literalZZ"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "input_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "java_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "native_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "canonical_equal": true,
+      "canonical_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "case": "span-nested-min50ms",
+      "format": "collapsed",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "nested.inner",
+        "--latency",
+        "50ms"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "input_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "java_output_sha256": "bbcfb4ecb3c4c4d485a3df6c8920f762d4c0fdbf7fc737114a9812e6eca06597",
+      "native_output_sha256": "275d27df0a0fb4984f5a6da8225afed97c79ac646c7c257c6a398f797e4eb964",
+      "canonical_equal": true,
+      "canonical_sha256": "6c789a64e638a008bb8f27c7cfd0ef44e197074423548882d87481c765b2d8b4"
+    },
+    {
+      "case": "span-nested-min100ms",
+      "format": "collapsed",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "nested.inner",
+        "--latency",
+        "100ms"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "input_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "java_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "native_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "canonical_equal": true,
+      "canonical_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "case": "span-latency80ms",
+      "format": "collapsed",
+      "flags": [
+        "--cpu",
+        "--latency",
+        "80ms"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "input_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "java_output_sha256": "9790867f24dfc410e4ebc9402f44019724b1796b4ac8ea55b6245e14b36d887e",
+      "native_output_sha256": "44df3845395582bd5d780e64833c1b44b6ca935b73bfe8ec093666012847a4b1",
+      "canonical_equal": true,
+      "canonical_sha256": "0afb572d103fdf24987513363c4e1a96e493963d8b6be0efa48aa618147c081e"
+    },
+    {
+      "case": "span-worker-a",
+      "format": "collapsed",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "worker.a",
+        "--threads"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "input_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "java_output_sha256": "3c074a32bf96f3f53c0ba72bf29ca4df4c0733233b5df78826a14da435ca1f28",
+      "native_output_sha256": "065b4466750b1b04a9407054f8cd280d4a160ea8c6cee1649e64bfd182e5de05",
+      "canonical_equal": true,
+      "canonical_sha256": "aa85f37c749fa67db772c6abd7725875444519c58767f3787791e022dc03323c"
+    },
+    {
+      "case": "span-worker-b",
+      "format": "collapsed",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "worker.b",
+        "--threads"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "input_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "java_output_sha256": "07534f0428667306131509745503633f9d187dca6da4f5897037e8a165af97f8",
+      "native_output_sha256": "94f5439332ce1060900000eff65bd43c0b42e8ef44561660df3b91f5a2d66311",
+      "canonical_equal": true,
+      "canonical_sha256": "97bbc9e8a1ce32063505e3632e08bb2d10110823465d012ad7f5b392323e0908"
+    },
+    {
+      "case": "span-zero-duration",
+      "format": "collapsed",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "zero-duration",
+        "--latency",
+        "0ns"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "input_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "java_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "native_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "canonical_equal": true,
+      "canonical_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "case": "span-before-session",
+      "format": "collapsed",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "before-session"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "input_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "java_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "native_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "canonical_equal": true,
+      "canonical_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "case": "span-after-session",
+      "format": "collapsed",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "after-session"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "input_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "java_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "native_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "canonical_equal": true,
+      "canonical_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "case": "span-request-html",
+      "format": "html",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "request"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "input_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "java_output_sha256": "d1ff05c3a2620403cb43e9b0e5903faa8dbff75bc0e427144c546c19173f7425",
+      "native_output_sha256": "e9137a0a772277a6199c245d3233917fa6eba5a93a475a90ca6f6c7b9c29e9c3",
+      "canonical_equal": true,
+      "canonical_sha256": "c50e69b4cc00be63edc8576a396e8ad7c7c9f0b2fc0278f6821e465f76808066"
+    },
+    {
+      "case": "span-request-pprof",
+      "format": "pprof",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "request"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "input_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "java_output_sha256": "9b94102ab8ccbd72027f5d6e2383884d97341927c1aaa8156dadd47d8851db5b",
+      "native_output_sha256": "f5186a0495c5f4db79b19f637a1a1097c0fe77133a586b2f9f8623ba10f7ecec",
+      "canonical_equal": true,
+      "canonical_sha256": "939d10f7724c0f01eb358b32bb2e6b96663a0f5580b4bd1c967859f5c2498bfb"
+    },
+    {
+      "case": "span-request-pb.gz",
+      "format": "pb.gz",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "request"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "input_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "java_output_sha256": "f9c8bdcee6d12651fc3e94565595a6e796dddced013f2013c6f14adbb1e67fa8",
+      "native_output_sha256": "64d70399f3d2732868fc8c007fae64e7a48978467d8f28b38226d28d1bafee3b",
+      "canonical_equal": true,
+      "canonical_sha256": "939d10f7724c0f01eb358b32bb2e6b96663a0f5580b4bd1c967859f5c2498bfb"
+    },
+    {
+      "case": "span-request-otlp",
+      "format": "otlp",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "request"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "input_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "java_output_sha256": "d6bba57684ddc7769f0931d4ba1333c331f6667a47f6afe6da9e5d0431577c7b",
+      "native_output_sha256": "b662996b4448c6e70152779bc94e4e0bbe2bed9c15d507b59ab952f37535e6dd",
+      "canonical_equal": true,
+      "canonical_sha256": "ecc8dfb092cb544b6b6e6aabf3716d90e8ef58304f5e680ee27b2aee963e4c8f"
+    },
+    {
+      "case": "span-request-heatmap",
+      "format": "heatmap",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "request"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+      "input_sha256": "43f70e962dffdcd7544aa7cb830488f1af4162bf956d3d14b81768e2b4db83b5",
+      "java_output_sha256": "46f221d8437646b098ce150308fad0b004e9aa7115db710c14a000ac6f0d9048",
+      "native_output_sha256": "d2b2b0d5d13a01f7ee95ab8be05825dcd3609a767c6f430555ba2cdc8444edd7",
+      "canonical_equal": true,
+      "canonical_sha256": "16387a76e8986a0923f300e6703f5117611c702584ba64720fc072071945996c",
+      "colors": {
+        "same_used_method_IDs_RGB": true,
+        "java_methods": 18,
+        "native_methods": 18,
+        "java_digest": "5b0d39bc969feb8abebc970f0a8d515f6904158b24326b597075b3c9d93ace77",
+        "native_digest": "5b0d39bc969feb8abebc970f0a8d515f6904158b24326b597075b3c9d93ace77",
+        "difference_count": 0,
+        "differences": []
+      }
+    },
+    {
+      "case": "unicode-default-0",
+      "format": "collapsed",
+      "flags": [
+        "--tag",
+        "unicode-α/雪"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "d6c6effaef89cb49d78d5a661181a4595334e2edf22a3d03811243bf791aaef6",
+      "native_output_sha256": "47b11b6c29a02c8cb7c585948c689d61167be4f27a18769acb9e10c68d8c1c02",
+      "canonical_equal": true,
+      "canonical_sha256": "e3200bd0ae509b7c7fda94caac8a7edf260925f14c094a8129ae2cde44fb2c70"
+    },
+    {
+      "case": "unicode-default-0",
+      "format": "html",
+      "flags": [
+        "--tag",
+        "unicode-α/雪"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "4ddc362ee29ee3ad0a7a1e8258b6e3641da502b1041590511767647cc0e281ae",
+      "native_output_sha256": "bc0bfac1071d489f21af7fa05ff52c4e1f469d2fc8a18b6f552ebf0d869d8175",
+      "canonical_equal": true,
+      "canonical_sha256": "e3200bd0ae509b7c7fda94caac8a7edf260925f14c094a8129ae2cde44fb2c70"
+    },
+    {
+      "case": "unicode-default-0",
+      "format": "pprof",
+      "flags": [
+        "--tag",
+        "unicode-α/雪"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "18191d4ae1e90ef05b71a8345e59b2edff35682ea7f9e83fc5ecb3e4a7333b51",
+      "native_output_sha256": "5e84e1e65be41f807cf24b2d9c7306c15c5e57adf561a4ff1b233c7d75e36462",
+      "canonical_equal": true,
+      "canonical_sha256": "52535aaab0715dc48cd539e29b2b8925ecab639d51a7e040e0e6fa65f3d1144e"
+    },
+    {
+      "case": "unicode-default-0",
+      "format": "pb.gz",
+      "flags": [
+        "--tag",
+        "unicode-α/雪"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "9240ed931613c59a3661e693a9c3d6c07c7de3209a46191f443dc9820065551d",
+      "native_output_sha256": "0e359a034a6b9e84755a9906af809e4329a7c0500c20bbc3fe77df5e28e8ac87",
+      "canonical_equal": true,
+      "canonical_sha256": "52535aaab0715dc48cd539e29b2b8925ecab639d51a7e040e0e6fa65f3d1144e"
+    },
+    {
+      "case": "unicode-default-0",
+      "format": "otlp",
+      "flags": [
+        "--tag",
+        "unicode-α/雪"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "b39bf77d4e45a66a408782d2634739e73c869131bb1ff5a34b1ac9758fadd34c",
+      "native_output_sha256": "91da69f25ef7c0bbf48c0f8e7071762268288e17744087c5ba55c5eb05d50e28",
+      "canonical_equal": true,
+      "canonical_sha256": "03a07795c2252c8dd548257c66fbc74fd236dc0b03b0a99d0a4d06422ec6d5a3"
+    },
+    {
+      "case": "unicode-default-0",
+      "format": "heatmap",
+      "flags": [
+        "--tag",
+        "unicode-α/雪"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "fbd0d450c969ca887c08b2c651b4d4db5fc96cb840a68036249c907779dfc88a",
+      "native_output_sha256": "137945cbb6e40fc1f9494498ac27af0e3d858080efc8632c0d08b92ddeaa0f1e",
+      "canonical_equal": true,
+      "canonical_sha256": "8fa6fbdbf7b8046f1163aed2c9a3f1e7ce56ca94e953804c4314624d2fdbd2ec",
+      "colors": {
+        "same_used_method_IDs_RGB": true,
+        "java_methods": 14,
+        "native_methods": 14,
+        "java_digest": "eb85a36a46e21862f06826e8e639fcda1cfee67fa0771007d76314631ecf8c66",
+        "native_digest": "eb85a36a46e21862f06826e8e639fcda1cfee67fa0771007d76314631ecf8c66",
+        "difference_count": 0,
+        "differences": []
+      }
+    },
+    {
+      "case": "unicode-default-1",
+      "format": "collapsed",
+      "flags": [
+        "--tag",
+        "emoji-��"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "8597ff5c4d07e9f20a244664f91f0f06670387c5ea714958781dc5dc10913b7f",
+      "native_output_sha256": "f34b1e13a8e3cb14c9927cc678da80eb3d2a704ff97d78b469bb2bd6c2b3345a",
+      "canonical_equal": true,
+      "canonical_sha256": "ba9adf4b82f916738e058c6c3b9e40bd664cd6ba5bba80ec44e782dd1b9f0bd2"
+    },
+    {
+      "case": "unicode-default-1",
+      "format": "html",
+      "flags": [
+        "--tag",
+        "emoji-��"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "8f9b0e8d5cdbe9348818cf7d0b50d0c24b10ea427de5c48115fab7c302c19ec3",
+      "native_output_sha256": "7db93b059b8bb0bfcf0d4a8744b467eb49c9b6d43e21528b4716adfe69f79bf1",
+      "canonical_equal": true,
+      "canonical_sha256": "ba9adf4b82f916738e058c6c3b9e40bd664cd6ba5bba80ec44e782dd1b9f0bd2"
+    },
+    {
+      "case": "unicode-default-1",
+      "format": "pprof",
+      "flags": [
+        "--tag",
+        "emoji-��"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "be9d697f63fc48d2abadc96b839894c4a0fba70f8bcb8500a97fb249e9127a63",
+      "native_output_sha256": "06b56e33c3b3f3dca351a9e199e03ad29e3a8dfadac1441ab2d2acd6a6cb9646",
+      "canonical_equal": true,
+      "canonical_sha256": "957ca0f435dc7b9335b2c559ee55eec562e5361aec8eadcb568e4cdaf816c2a6"
+    },
+    {
+      "case": "unicode-default-1",
+      "format": "pb.gz",
+      "flags": [
+        "--tag",
+        "emoji-��"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "e807ed643023c13dc49d9a931b4cf0410097feca056444bff2cc106c39ff6383",
+      "native_output_sha256": "3f24e04f5f9e85cad2d1fa309e325e3f7c158af7f0d93242d8340a88e6ea1fb4",
+      "canonical_equal": true,
+      "canonical_sha256": "957ca0f435dc7b9335b2c559ee55eec562e5361aec8eadcb568e4cdaf816c2a6"
+    },
+    {
+      "case": "unicode-default-1",
+      "format": "otlp",
+      "flags": [
+        "--tag",
+        "emoji-��"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "e48ea859783fd22116302ae01eacc158f64ca67c2034311aac8b0f3865bd6b1a",
+      "native_output_sha256": "71746cba99f9334bb342b92c89b307d33cbce95c46092b3ec6f446070a76ab51",
+      "canonical_equal": true,
+      "canonical_sha256": "400d742df90d61635359b27fe4b6708773df249f22197a9e655e88be8c96897e"
+    },
+    {
+      "case": "unicode-default-1",
+      "format": "heatmap",
+      "flags": [
+        "--tag",
+        "emoji-��"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "a8f882211764ce477467e8741676019ef7864a2711322fa61b3904e88f4f6233",
+      "native_output_sha256": "d7829bc116b2b541c0036a4a49253968a4322dd00a23c0bb1154f705e345efe5",
+      "canonical_equal": true,
+      "canonical_sha256": "f3cc6233be6ce586f7f190e38e00ece6cb1178c7cf542a0f4e31686cdc3a91b3",
+      "colors": {
+        "same_used_method_IDs_RGB": true,
+        "java_methods": 6,
+        "native_methods": 6,
+        "java_digest": "b5345e9369f077864576a6cf5b011204833492d881f3610c6afa264aaf943064",
+        "native_digest": "b5345e9369f077864576a6cf5b011204833492d881f3610c6afa264aaf943064",
+        "difference_count": 0,
+        "differences": []
+      }
+    },
+    {
+      "case": "unicode-default-2",
+      "format": "collapsed",
+      "flags": [
+        "--tag",
+        "nul-��-X"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "d059daeb22282535fff7895f0b0c849d42f6a2aa84fd8b66162b59bb20599993",
+      "native_output_sha256": "96247353cc12572b080c6b0c9d3dec43033ab3a88fc333355d9efdc326bfdf03",
+      "canonical_equal": true,
+      "canonical_sha256": "071c118938dbd7a5ac220153e51fc8b9f376ef36fec16440f6ca6e8696bd293d"
+    },
+    {
+      "case": "unicode-default-2",
+      "format": "html",
+      "flags": [
+        "--tag",
+        "nul-��-X"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "73365f1446985383440e127c3ed86df306b3285ebba04095e44a47b41238195a",
+      "native_output_sha256": "4101dda7e919400b1ee05404b68a6e29ad45260f0e7d34db566f2ebbe78ddb3e",
+      "canonical_equal": true,
+      "canonical_sha256": "071c118938dbd7a5ac220153e51fc8b9f376ef36fec16440f6ca6e8696bd293d"
+    },
+    {
+      "case": "unicode-default-2",
+      "format": "pprof",
+      "flags": [
+        "--tag",
+        "nul-��-X"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "1e4ea4454696917f4d0e2679318f12de80b0f79cce6c142865d2a59ea6ff70e5",
+      "native_output_sha256": "2284e9f4be27e458bbcd48171e9e48fe413ee21c7682b42c4dabe610982cf142",
+      "canonical_equal": true,
+      "canonical_sha256": "e66d53d2be7c7241e4b2622e9948a880ccad54f864c0eeb4ae329c63bd787460"
+    },
+    {
+      "case": "unicode-default-2",
+      "format": "pb.gz",
+      "flags": [
+        "--tag",
+        "nul-��-X"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "e26f0a6df637557a233d089b028cea4ef5d45c1a2c7780bdc01ffcf5aa5f25b1",
+      "native_output_sha256": "27f73e2d8b6af293d4f343393f460de46061bbe4b8a7894ea93963120f6ffcfb",
+      "canonical_equal": true,
+      "canonical_sha256": "e66d53d2be7c7241e4b2622e9948a880ccad54f864c0eeb4ae329c63bd787460"
+    },
+    {
+      "case": "unicode-default-2",
+      "format": "otlp",
+      "flags": [
+        "--tag",
+        "nul-��-X"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "41b1fe56dbd9973676b61428f4f9dd24b530baef794886b21f35ae3497d822a8",
+      "native_output_sha256": "ca4debb801f6feac84831b3a05b6c77fba40161953329704828e1f91acfd688f",
+      "canonical_equal": true,
+      "canonical_sha256": "762e9054c6f583b96c2df2e3fc55b0b098ef8742f55e90ee88f416c15715b457"
+    },
+    {
+      "case": "unicode-default-2",
+      "format": "heatmap",
+      "flags": [
+        "--tag",
+        "nul-��-X"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "2d7a5c9667c02197af8ba28abd002e17aac20c5859900284fe699089c1ee6c46",
+      "native_output_sha256": "832b3ef6662b175611c87e5d20e43fb56556933c2736d1c4b854bb9e4586dba1",
+      "canonical_equal": true,
+      "canonical_sha256": "84ebf961ce99ccb647d36bc298cd978253e346e8f2a7fce0c63ecc88cd992689",
+      "colors": {
+        "same_used_method_IDs_RGB": true,
+        "java_methods": 5,
+        "native_methods": 5,
+        "java_digest": "84bccbf765c3c01d8c9fdfa84ee0f6315a6efe590f18f951960a04b7008fe85a",
+        "native_digest": "84bccbf765c3c01d8c9fdfa84ee0f6315a6efe590f18f951960a04b7008fe85a",
+        "difference_count": 0,
+        "differences": []
+      }
+    },
+    {
+      "case": "unicode-cpu-0",
+      "format": "collapsed",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "unicode-α/雪"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "d6c6effaef89cb49d78d5a661181a4595334e2edf22a3d03811243bf791aaef6",
+      "native_output_sha256": "47b11b6c29a02c8cb7c585948c689d61167be4f27a18769acb9e10c68d8c1c02",
+      "canonical_equal": true,
+      "canonical_sha256": "e3200bd0ae509b7c7fda94caac8a7edf260925f14c094a8129ae2cde44fb2c70"
+    },
+    {
+      "case": "unicode-cpu-0",
+      "format": "html",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "unicode-α/雪"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "4ddc362ee29ee3ad0a7a1e8258b6e3641da502b1041590511767647cc0e281ae",
+      "native_output_sha256": "bc0bfac1071d489f21af7fa05ff52c4e1f469d2fc8a18b6f552ebf0d869d8175",
+      "canonical_equal": true,
+      "canonical_sha256": "e3200bd0ae509b7c7fda94caac8a7edf260925f14c094a8129ae2cde44fb2c70"
+    },
+    {
+      "case": "unicode-cpu-0",
+      "format": "pprof",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "unicode-α/雪"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "18191d4ae1e90ef05b71a8345e59b2edff35682ea7f9e83fc5ecb3e4a7333b51",
+      "native_output_sha256": "5e84e1e65be41f807cf24b2d9c7306c15c5e57adf561a4ff1b233c7d75e36462",
+      "canonical_equal": true,
+      "canonical_sha256": "52535aaab0715dc48cd539e29b2b8925ecab639d51a7e040e0e6fa65f3d1144e"
+    },
+    {
+      "case": "unicode-cpu-0",
+      "format": "pb.gz",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "unicode-α/雪"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "9240ed931613c59a3661e693a9c3d6c07c7de3209a46191f443dc9820065551d",
+      "native_output_sha256": "0e359a034a6b9e84755a9906af809e4329a7c0500c20bbc3fe77df5e28e8ac87",
+      "canonical_equal": true,
+      "canonical_sha256": "52535aaab0715dc48cd539e29b2b8925ecab639d51a7e040e0e6fa65f3d1144e"
+    },
+    {
+      "case": "unicode-cpu-0",
+      "format": "otlp",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "unicode-α/雪"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "b39bf77d4e45a66a408782d2634739e73c869131bb1ff5a34b1ac9758fadd34c",
+      "native_output_sha256": "91da69f25ef7c0bbf48c0f8e7071762268288e17744087c5ba55c5eb05d50e28",
+      "canonical_equal": true,
+      "canonical_sha256": "03a07795c2252c8dd548257c66fbc74fd236dc0b03b0a99d0a4d06422ec6d5a3"
+    },
+    {
+      "case": "unicode-cpu-0",
+      "format": "heatmap",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "unicode-α/雪"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "fbd0d450c969ca887c08b2c651b4d4db5fc96cb840a68036249c907779dfc88a",
+      "native_output_sha256": "137945cbb6e40fc1f9494498ac27af0e3d858080efc8632c0d08b92ddeaa0f1e",
+      "canonical_equal": true,
+      "canonical_sha256": "8fa6fbdbf7b8046f1163aed2c9a3f1e7ce56ca94e953804c4314624d2fdbd2ec",
+      "colors": {
+        "same_used_method_IDs_RGB": true,
+        "java_methods": 14,
+        "native_methods": 14,
+        "java_digest": "eb85a36a46e21862f06826e8e639fcda1cfee67fa0771007d76314631ecf8c66",
+        "native_digest": "eb85a36a46e21862f06826e8e639fcda1cfee67fa0771007d76314631ecf8c66",
+        "difference_count": 0,
+        "differences": []
+      }
+    },
+    {
+      "case": "unicode-cpu-1",
+      "format": "collapsed",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "emoji-��"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "8597ff5c4d07e9f20a244664f91f0f06670387c5ea714958781dc5dc10913b7f",
+      "native_output_sha256": "f34b1e13a8e3cb14c9927cc678da80eb3d2a704ff97d78b469bb2bd6c2b3345a",
+      "canonical_equal": true,
+      "canonical_sha256": "ba9adf4b82f916738e058c6c3b9e40bd664cd6ba5bba80ec44e782dd1b9f0bd2"
+    },
+    {
+      "case": "unicode-cpu-1",
+      "format": "html",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "emoji-��"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "8f9b0e8d5cdbe9348818cf7d0b50d0c24b10ea427de5c48115fab7c302c19ec3",
+      "native_output_sha256": "7db93b059b8bb0bfcf0d4a8744b467eb49c9b6d43e21528b4716adfe69f79bf1",
+      "canonical_equal": true,
+      "canonical_sha256": "ba9adf4b82f916738e058c6c3b9e40bd664cd6ba5bba80ec44e782dd1b9f0bd2"
+    },
+    {
+      "case": "unicode-cpu-1",
+      "format": "pprof",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "emoji-��"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "be9d697f63fc48d2abadc96b839894c4a0fba70f8bcb8500a97fb249e9127a63",
+      "native_output_sha256": "06b56e33c3b3f3dca351a9e199e03ad29e3a8dfadac1441ab2d2acd6a6cb9646",
+      "canonical_equal": true,
+      "canonical_sha256": "957ca0f435dc7b9335b2c559ee55eec562e5361aec8eadcb568e4cdaf816c2a6"
+    },
+    {
+      "case": "unicode-cpu-1",
+      "format": "pb.gz",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "emoji-��"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "e807ed643023c13dc49d9a931b4cf0410097feca056444bff2cc106c39ff6383",
+      "native_output_sha256": "3f24e04f5f9e85cad2d1fa309e325e3f7c158af7f0d93242d8340a88e6ea1fb4",
+      "canonical_equal": true,
+      "canonical_sha256": "957ca0f435dc7b9335b2c559ee55eec562e5361aec8eadcb568e4cdaf816c2a6"
+    },
+    {
+      "case": "unicode-cpu-1",
+      "format": "otlp",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "emoji-��"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "e48ea859783fd22116302ae01eacc158f64ca67c2034311aac8b0f3865bd6b1a",
+      "native_output_sha256": "71746cba99f9334bb342b92c89b307d33cbce95c46092b3ec6f446070a76ab51",
+      "canonical_equal": true,
+      "canonical_sha256": "400d742df90d61635359b27fe4b6708773df249f22197a9e655e88be8c96897e"
+    },
+    {
+      "case": "unicode-cpu-1",
+      "format": "heatmap",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "emoji-��"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "a8f882211764ce477467e8741676019ef7864a2711322fa61b3904e88f4f6233",
+      "native_output_sha256": "d7829bc116b2b541c0036a4a49253968a4322dd00a23c0bb1154f705e345efe5",
+      "canonical_equal": true,
+      "canonical_sha256": "f3cc6233be6ce586f7f190e38e00ece6cb1178c7cf542a0f4e31686cdc3a91b3",
+      "colors": {
+        "same_used_method_IDs_RGB": true,
+        "java_methods": 6,
+        "native_methods": 6,
+        "java_digest": "b5345e9369f077864576a6cf5b011204833492d881f3610c6afa264aaf943064",
+        "native_digest": "b5345e9369f077864576a6cf5b011204833492d881f3610c6afa264aaf943064",
+        "difference_count": 0,
+        "differences": []
+      }
+    },
+    {
+      "case": "unicode-cpu-2",
+      "format": "collapsed",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "nul-��-X"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "d059daeb22282535fff7895f0b0c849d42f6a2aa84fd8b66162b59bb20599993",
+      "native_output_sha256": "96247353cc12572b080c6b0c9d3dec43033ab3a88fc333355d9efdc326bfdf03",
+      "canonical_equal": true,
+      "canonical_sha256": "071c118938dbd7a5ac220153e51fc8b9f376ef36fec16440f6ca6e8696bd293d"
+    },
+    {
+      "case": "unicode-cpu-2",
+      "format": "html",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "nul-��-X"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "73365f1446985383440e127c3ed86df306b3285ebba04095e44a47b41238195a",
+      "native_output_sha256": "4101dda7e919400b1ee05404b68a6e29ad45260f0e7d34db566f2ebbe78ddb3e",
+      "canonical_equal": true,
+      "canonical_sha256": "071c118938dbd7a5ac220153e51fc8b9f376ef36fec16440f6ca6e8696bd293d"
+    },
+    {
+      "case": "unicode-cpu-2",
+      "format": "pprof",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "nul-��-X"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "1e4ea4454696917f4d0e2679318f12de80b0f79cce6c142865d2a59ea6ff70e5",
+      "native_output_sha256": "2284e9f4be27e458bbcd48171e9e48fe413ee21c7682b42c4dabe610982cf142",
+      "canonical_equal": true,
+      "canonical_sha256": "e66d53d2be7c7241e4b2622e9948a880ccad54f864c0eeb4ae329c63bd787460"
+    },
+    {
+      "case": "unicode-cpu-2",
+      "format": "pb.gz",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "nul-��-X"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "e26f0a6df637557a233d089b028cea4ef5d45c1a2c7780bdc01ffcf5aa5f25b1",
+      "native_output_sha256": "27f73e2d8b6af293d4f343393f460de46061bbe4b8a7894ea93963120f6ffcfb",
+      "canonical_equal": true,
+      "canonical_sha256": "e66d53d2be7c7241e4b2622e9948a880ccad54f864c0eeb4ae329c63bd787460"
+    },
+    {
+      "case": "unicode-cpu-2",
+      "format": "otlp",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "nul-��-X"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "41b1fe56dbd9973676b61428f4f9dd24b530baef794886b21f35ae3497d822a8",
+      "native_output_sha256": "ca4debb801f6feac84831b3a05b6c77fba40161953329704828e1f91acfd688f",
+      "canonical_equal": true,
+      "canonical_sha256": "762e9054c6f583b96c2df2e3fc55b0b098ef8742f55e90ee88f416c15715b457"
+    },
+    {
+      "case": "unicode-cpu-2",
+      "format": "heatmap",
+      "flags": [
+        "--cpu",
+        "--tag",
+        "nul-��-X"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+      "input_sha256": "d2426da91d244876f75ffec90bf1540f0a6f6b2340de6c75a948668a3bd93523",
+      "java_output_sha256": "2d7a5c9667c02197af8ba28abd002e17aac20c5859900284fe699089c1ee6c46",
+      "native_output_sha256": "832b3ef6662b175611c87e5d20e43fb56556933c2736d1c4b854bb9e4586dba1",
+      "canonical_equal": true,
+      "canonical_sha256": "84ebf961ce99ccb647d36bc298cd978253e346e8f2a7fce0c63ecc88cd992689",
+      "colors": {
+        "same_used_method_IDs_RGB": true,
+        "java_methods": 5,
+        "native_methods": 5,
+        "java_digest": "84bccbf765c3c01d8c9fdfa84ee0f6315a6efe590f18f951960a04b7008fe85a",
+        "native_digest": "84bccbf765c3c01d8c9fdfa84ee0f6315a6efe590f18f951960a04b7008fe85a",
+        "difference_count": 0,
+        "differences": []
+      }
+    },
+    {
+      "case": "trace",
+      "format": "collapsed",
+      "flags": [
+        "--trace"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tests/fixtures/method-trace.jfr",
+      "input_sha256": "cc3bcd80b3e4adee7aed3483daa2896f73b223555efd51475a4926b48e27115d",
+      "java_output_sha256": "0340e0d05ec84509f5a33e65e214751f62409870ff6e51cf448834a7cc893cf4",
+      "native_output_sha256": "0340e0d05ec84509f5a33e65e214751f62409870ff6e51cf448834a7cc893cf4",
+      "canonical_equal": true,
+      "canonical_sha256": "333582c30d3195cc25d8642410d03a6923768dbaf14cbe30f1b205b13de969ca"
+    },
+    {
+      "case": "trace-total",
+      "format": "collapsed",
+      "flags": [
+        "--trace",
+        "--total"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tests/fixtures/method-trace.jfr",
+      "input_sha256": "cc3bcd80b3e4adee7aed3483daa2896f73b223555efd51475a4926b48e27115d",
+      "java_output_sha256": "44ea27a0bafd227f9cc959d427768eddfb85e0ef377d86cc9b9d7d59a775c3f0",
+      "native_output_sha256": "44ea27a0bafd227f9cc959d427768eddfb85e0ef377d86cc9b9d7d59a775c3f0",
+      "canonical_equal": true,
+      "canonical_sha256": "4078035b4d10377a542756e78e48e20c4472f9ed71f681d2935f214671e72040"
+    },
+    {
+      "case": "trace-min40ms",
+      "format": "collapsed",
+      "flags": [
+        "--trace",
+        "--latency",
+        "40ms"
+      ],
+      "input": "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tests/fixtures/method-trace.jfr",
+      "input_sha256": "cc3bcd80b3e4adee7aed3483daa2896f73b223555efd51475a4926b48e27115d",
+      "java_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "native_output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "canonical_equal": true,
+      "canonical_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ],
+  "commands": [
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-cpu.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--wall",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-wall.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "request",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-request-cpu.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--wall",
+        "--tag",
+        "request",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-request-wall.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "cross-chunk",
+        "--threads",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-cross-chunk.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-empty-tag.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "literal.*",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-literal-metachar-tag.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "literalZZ",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-nonmatching-metachar-tag.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "nested.inner",
+        "--latency",
+        "50ms",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-nested-min50ms.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "nested.inner",
+        "--latency",
+        "100ms",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-nested-min100ms.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--latency",
+        "80ms",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-latency80ms.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "worker.a",
+        "--threads",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-worker-a.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "worker.b",
+        "--threads",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-worker-b.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "zero-duration",
+        "--latency",
+        "0ns",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-zero-duration.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "before-session",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-before-session.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "after-session",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-after-session.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "request",
+        "-o",
+        "html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-request-html.html"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/request-html.html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/request-html.html.decoded.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-request-html.html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-request-html.html.decoded.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "request",
+        "-o",
+        "pprof",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-request-pprof.pprof"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "request",
+        "-o",
+        "pb.gz",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-request-pb.gz.pb.gz"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "request",
+        "-o",
+        "otlp",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-request-otlp.otlp"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "request",
+        "-o",
+        "heatmap",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-api45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-request-heatmap.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/heatmap_decode.js",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/request-heatmap.html"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/heatmap_decode.js",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-request-heatmap.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/heatmap_colors.js",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/java45-oracles/request-heatmap.html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/span-request-heatmap.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-0.java.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-0.native.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-0.java.html"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-0.native.html"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-0.java.html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-0.java.html.decoded.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-0.native.html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-0.native.html.decoded.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "pprof",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-0.java.pprof"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "pprof",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-0.native.pprof"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "pb.gz",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-0.java.pb.gz"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "pb.gz",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-0.native.pb.gz"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "otlp",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-0.java.otlp"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "otlp",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-0.native.otlp"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "heatmap",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-0.java.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "heatmap",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-0.native.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/heatmap_decode.js",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-0.java.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/heatmap_decode.js",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-0.native.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/heatmap_colors.js",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-0.java.heatmap",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-0.native.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-1.java.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-1.native.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-1.java.html"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-1.native.html"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-1.java.html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-1.java.html.decoded.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-1.native.html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-1.native.html.decoded.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "pprof",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-1.java.pprof"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "pprof",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-1.native.pprof"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "pb.gz",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-1.java.pb.gz"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "pb.gz",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-1.native.pb.gz"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "otlp",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-1.java.otlp"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "otlp",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-1.native.otlp"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "heatmap",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-1.java.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "heatmap",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-1.native.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/heatmap_decode.js",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-1.java.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/heatmap_decode.js",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-1.native.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/heatmap_colors.js",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-1.java.heatmap",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-1.native.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-2.java.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-2.native.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-2.java.html"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-2.native.html"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-2.java.html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-2.java.html.decoded.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-2.native.html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-2.native.html.decoded.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "pprof",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-2.java.pprof"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "pprof",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-2.native.pprof"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "pb.gz",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-2.java.pb.gz"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "pb.gz",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-2.native.pb.gz"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "otlp",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-2.java.otlp"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "otlp",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-2.native.otlp"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "heatmap",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-2.java.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "heatmap",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-2.native.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/heatmap_decode.js",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-2.java.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/heatmap_decode.js",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-2.native.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/heatmap_colors.js",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-2.java.heatmap",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-default-2.native.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-0.java.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-0.native.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-0.java.html"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-0.native.html"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-0.java.html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-0.java.html.decoded.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-0.native.html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-0.native.html.decoded.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "pprof",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-0.java.pprof"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "pprof",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-0.native.pprof"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "pb.gz",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-0.java.pb.gz"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "pb.gz",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-0.native.pb.gz"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "otlp",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-0.java.otlp"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "otlp",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-0.native.otlp"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "heatmap",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-0.java.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "unicode-α/雪",
+        "-o",
+        "heatmap",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-0.native.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/heatmap_decode.js",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-0.java.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/heatmap_decode.js",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-0.native.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/heatmap_colors.js",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-0.java.heatmap",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-0.native.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-1.java.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-1.native.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-1.java.html"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-1.native.html"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-1.java.html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-1.java.html.decoded.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-1.native.html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-1.native.html.decoded.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "pprof",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-1.java.pprof"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "pprof",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-1.native.pprof"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "pb.gz",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-1.java.pb.gz"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "pb.gz",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-1.native.pb.gz"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "otlp",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-1.java.otlp"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "otlp",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-1.native.otlp"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "heatmap",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-1.java.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "emoji-��",
+        "-o",
+        "heatmap",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-1.native.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/heatmap_decode.js",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-1.java.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/heatmap_decode.js",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-1.native.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/heatmap_colors.js",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-1.java.heatmap",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-1.native.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-2.java.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-2.native.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-2.java.html"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-2.native.html"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-2.java.html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-2.java.html.decoded.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-2.native.html",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-2.native.html.decoded.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "pprof",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-2.java.pprof"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "pprof",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-2.native.pprof"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "pb.gz",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-2.java.pb.gz"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "pb.gz",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-2.native.pb.gz"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "otlp",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-2.java.otlp"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "otlp",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-2.native.otlp"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/opt/homebrew/opt/openjdk@21/bin/java",
+        "-jar",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/async-profiler-4.5/build/jar/jfr-converter.jar",
+        "--cpu",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "heatmap",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-2.java.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--cpu",
+        "--tag",
+        "nul-��-X",
+        "-o",
+        "heatmap",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/fixtures/span-unicode45.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-2.native.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/heatmap_decode.js",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-2.java.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/heatmap_decode.js",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-2.native.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "node",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tools/heatmap_colors.js",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-2.java.heatmap",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/unicode-cpu-2.native.heatmap"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--trace",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tests/fixtures/method-trace.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/trace.native.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--trace",
+        "--total",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tests/fixtures/method-trace.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/trace-total.native.collapsed"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/candidate/jfrconv",
+        "--trace",
+        "--latency",
+        "40ms",
+        "-o",
+        "collapsed",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/outputs/jfrconv-go/tests/fixtures/method-trace.jfr",
+        "/Users/v.matskevich/Documents/Codex/2026-11-10/si/work/go-v45/final-official-oracles/trace-min40ms.native.collapsed"
+      ],
+      "exit_code": 0
+    }
+  ]
+}

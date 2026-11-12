@@ -1,0 +1,302 @@
+{
+  "release": "v0.2.0",
+  "target": "pristine Java jfrconv4.5",
+  "upstream_commit": "11aaea310cb75843f0e7532365d8cedc8d0e14c8",
+  "native_binary_sha256": "a9d7e8fc1fb440157df5f56ae34029e78cdf5b79005bc38d7a9406da4df1feb5",
+  "java_jar_sha256": "ded43c350f75766b82570ac297c9dd3c3efd69e73de26474615cf2df90e1fc94",
+  "source_freeze_sha256": "680a235d0231be4c6c001aea6b633ece193b19893f7700f89128e7b627147897",
+  "matrix_sha256": "bb24e4496994c3949faed519cae4943cd9f3171b7f38a437b4d91f85a5a7094a",
+  "plan_sha256": "bd65520ef048b0076cd373e133757fb973a5f6558629d3435882c5df8774a159",
+  "status": "complete",
+  "cases": 9,
+  "measured_pairs_per_case": 21,
+  "median_RSS_wins": 9,
+  "p95_RSS_wins": 9,
+  "p50_latency_wins": 4,
+  "p95_latency_wins": 5,
+  "median_RSS_reduction_percent_range": [
+    68.77961555654895,
+    97.38644414705188
+  ],
+  "p95_RSS_reduction_percent_range": [
+    68.68355776045358,
+    97.27208591361605
+  ],
+  "history": "These are new Java4.5 comparisons. Older Java4.1 and native0.1.x reports remain unchanged.",
+  "protocol": {
+    "pairs_per_case": 21,
+    "equal_warmups": 1,
+    "first_pair": "Separate retained first fresh-process pair, excluded from percentile stats; input cache state uncontrolled.",
+    "order": "Alternate Java/native order within every measured pair; serial subprocesses only.",
+    "latency": "Whole CLI process including startup/output writing, p50 median and p95 nearest rank.",
+    "RSS": "wait4 command high-water resident bytes normalized to bytes; exclude harness. Compute median/p95/max. Extra limited-row treeRSS diagnostics use five separately instrumented pairs and are excluded from latency statistics.",
+    "verification": "Remove outputs before each process; canonical output comparison after EVERY first,warmup,measured and tree pair outside timers. Strict4.5 OTLP types/periods/groups/per-event arrays/defaultsentinels; heatmap timeline/stacks/count and full used-ID/RGB digests.",
+    "isolation": "Explicit root exclusiveCPU GO only after all compilers,tests,profilers,Linux containers finish. Preserve all trials/errors; no outlier removal or repeat-count reduction.",
+    "storage": "Reuse trusted read-only content-addressed input pool; no hardlinks to mutable originals. Freeze actual executable/JAR copies; check all input/tool/oracle hashes. Stop before disk headroom below300MiB.",
+    "acceptance": "RSS primary. Report all nine cells, every latency or RSS regression, first/warmup/raw trials and output proofs. No universal latency or memory claim.",
+    "scope": "The new2M OTLP row deliberately measures4.5 per-event encoding/spill costs; old4.1 aggregate-OTLP results cannot stand in for it."
+  },
+  "rows": [
+    {
+      "case": "startup-100k",
+      "raw_report": "raw/startup-100k.json",
+      "raw_report_sha256": "2e67d62f60bc5bcf991b6c0ad016cbfde3d3d761d3cb1460e6f161c9e390b9b2",
+      "repeat": 21,
+      "java": {
+        "median_peak_rss_bytes": 49053696,
+        "p95_peak_rss_bytes": 49430528,
+        "max_peak_rss_bytes": 49987584,
+        "median_wall_seconds": 0.05928116600262001,
+        "p95_wall_seconds": 0.07686654198914766,
+        "max_wall_seconds": 0.12911541701760143
+      },
+      "go": {
+        "median_peak_rss_bytes": 5292032,
+        "p95_peak_rss_bytes": 5390336,
+        "max_peak_rss_bytes": 5390336,
+        "median_wall_seconds": 0.006497958034742624,
+        "p95_wall_seconds": 0.006668917019851506,
+        "max_wall_seconds": 0.006679249985609204
+      },
+      "rss_reduction_percent": 89.21175684702739,
+      "latency_p50_speedup_ratio": 9.123045376049134,
+      "latency_p95_speedup_ratio": 11.526090632157727,
+      "output_matches": true,
+      "losses": []
+    },
+    {
+      "case": "throughput-10m",
+      "raw_report": "raw/throughput-10m.json",
+      "raw_report_sha256": "2f23861dc2b80be12d66a3ecd7ac3f0693afe0a24c33a1c58e4956931e1122f0",
+      "repeat": 21,
+      "java": {
+        "median_peak_rss_bytes": 208125952,
+        "p95_peak_rss_bytes": 209010688,
+        "max_peak_rss_bytes": 209272832,
+        "median_wall_seconds": 0.22050629201112315,
+        "p95_wall_seconds": 0.2821981669985689,
+        "max_wall_seconds": 0.33154650003416464
+      },
+      "go": {
+        "median_peak_rss_bytes": 5439488,
+        "p95_peak_rss_bytes": 5701632,
+        "max_peak_rss_bytes": 5718016,
+        "median_wall_seconds": 0.26942779100500047,
+        "p95_wall_seconds": 0.31535383401205763,
+        "max_wall_seconds": 0.4481121249846183
+      },
+      "rss_reduction_percent": 97.38644414705188,
+      "latency_p50_speedup_ratio": 0.8184244512735905,
+      "latency_p95_speedup_ratio": 0.8948620139109487,
+      "output_matches": true,
+      "losses": [
+        "latency_p50_speedup_ratio",
+        "latency_p95_speedup_ratio"
+      ]
+    },
+    {
+      "case": "diverse-2m-collapsed",
+      "raw_report": "raw/diverse-2m-collapsed.json",
+      "raw_report_sha256": "54468e9bd61ff9e2f90281cb4b457e7be1e94bec143bf0da36e5f1dd6584a857",
+      "repeat": 21,
+      "java": {
+        "median_peak_rss_bytes": 229867520,
+        "p95_peak_rss_bytes": 232013824,
+        "max_peak_rss_bytes": 232456192,
+        "median_wall_seconds": 0.5307042089989409,
+        "p95_wall_seconds": 0.5766809579799883,
+        "max_wall_seconds": 0.6357972089899704
+      },
+      "go": {
+        "median_peak_rss_bytes": 43745280,
+        "p95_peak_rss_bytes": 46596096,
+        "max_peak_rss_bytes": 46743552,
+        "median_wall_seconds": 0.21670454094419256,
+        "p95_wall_seconds": 0.23577037500217557,
+        "max_wall_seconds": 0.23639029200421646
+      },
+      "rss_reduction_percent": 80.96935138987882,
+      "latency_p50_speedup_ratio": 2.4489759498653605,
+      "latency_p95_speedup_ratio": 2.4459432529412015,
+      "output_matches": true,
+      "losses": []
+    },
+    {
+      "case": "diverse-2m-heatmap",
+      "raw_report": "raw/diverse-2m-heatmap.json",
+      "raw_report_sha256": "869bfc01d9ff2b7536141180b151316b254a06eb2fd4bbccc1db292df03e1e63",
+      "repeat": 21,
+      "java": {
+        "median_peak_rss_bytes": 324796416,
+        "p95_peak_rss_bytes": 339918848,
+        "max_peak_rss_bytes": 340328448,
+        "median_wall_seconds": 0.7215211250004359,
+        "p95_wall_seconds": 0.8282718330156058,
+        "max_wall_seconds": 0.8459005829645321
+      },
+      "go": {
+        "median_peak_rss_bytes": 58441728,
+        "p95_peak_rss_bytes": 62275584,
+        "max_peak_rss_bytes": 62390272,
+        "median_wall_seconds": 0.7277906250092201,
+        "p95_wall_seconds": 0.8216044579748996,
+        "max_wall_seconds": 0.8873772089718841
+      },
+      "rss_reduction_percent": 82.00665859564165,
+      "latency_p50_speedup_ratio": 0.991385571903039,
+      "latency_p95_speedup_ratio": 1.00811506677695,
+      "output_matches": true,
+      "losses": [
+        "latency_p50_speedup_ratio"
+      ]
+    },
+    {
+      "case": "deep-shared-cp",
+      "raw_report": "raw/deep-shared-cp.json",
+      "raw_report_sha256": "023277955b5ab5303f06cc670b7506b129bd82731639fd5ff7d2479401069859",
+      "repeat": 21,
+      "java": {
+        "median_peak_rss_bytes": 183255040,
+        "p95_peak_rss_bytes": 184942592,
+        "max_peak_rss_bytes": 185368576,
+        "median_wall_seconds": 0.29549554199911654,
+        "p95_wall_seconds": 0.41530329099623486,
+        "max_wall_seconds": 0.4588663749746047
+      },
+      "go": {
+        "median_peak_rss_bytes": 57212928,
+        "p95_peak_rss_bytes": 57917440,
+        "max_peak_rss_bytes": 57999360,
+        "median_wall_seconds": 0.40876749996095896,
+        "p95_wall_seconds": 0.43265925004379824,
+        "max_wall_seconds": 0.43637250002939254
+      },
+      "rss_reduction_percent": 68.77961555654895,
+      "latency_p50_speedup_ratio": 0.7228939238744251,
+      "latency_p95_speedup_ratio": 0.9598853854486956,
+      "output_matches": true,
+      "losses": [
+        "latency_p50_speedup_ratio",
+        "latency_p95_speedup_ratio"
+      ]
+    },
+    {
+      "case": "batch-limited-eight-inputs",
+      "raw_report": "raw/batch-limited-eight-inputs.json",
+      "raw_report_sha256": "0afbf16c854a67444bd9170e36b84df18bbb155929931b0f3a93ef944783065d",
+      "repeat": 21,
+      "java": {
+        "median_peak_rss_bytes": 218578944,
+        "p95_peak_rss_bytes": 220561408,
+        "max_peak_rss_bytes": 222609408,
+        "median_wall_seconds": 0.36578937503509223,
+        "p95_wall_seconds": 0.46056024997960776,
+        "max_wall_seconds": 0.4683336659800261
+      },
+      "go": {
+        "median_peak_rss_bytes": 7634944,
+        "p95_peak_rss_bytes": 7913472,
+        "max_peak_rss_bytes": 7995392,
+        "median_wall_seconds": 0.48933595803100616,
+        "p95_wall_seconds": 0.6849251250387169,
+        "max_wall_seconds": 0.7625392919871956
+      },
+      "rss_reduction_percent": 96.50700847012968,
+      "latency_p50_speedup_ratio": 0.7475219612042376,
+      "latency_p95_speedup_ratio": 0.6724242302449827,
+      "output_matches": true,
+      "losses": [
+        "latency_p50_speedup_ratio",
+        "latency_p95_speedup_ratio"
+      ]
+    },
+    {
+      "case": "otlp-2m-events",
+      "raw_report": "raw/otlp-2m-events.json",
+      "raw_report_sha256": "4f3e1263e9c7fadbc76ce4c25105fca1d431a173ea31f6a5c1bdf6407bffb242",
+      "repeat": 21,
+      "java": {
+        "median_peak_rss_bytes": 189890560,
+        "p95_peak_rss_bytes": 192135168,
+        "max_peak_rss_bytes": 193626112,
+        "median_wall_seconds": 0.1816627910011448,
+        "p95_wall_seconds": 0.2367331249988638,
+        "max_wall_seconds": 0.24706516595324501
+      },
+      "go": {
+        "median_peak_rss_bytes": 15138816,
+        "p95_peak_rss_bytes": 15794176,
+        "max_peak_rss_bytes": 15974400,
+        "median_wall_seconds": 0.8930616250145249,
+        "p95_wall_seconds": 1.0400187089690007,
+        "max_wall_seconds": 1.2233532079844736
+      },
+      "rss_reduction_percent": 92.02761000862813,
+      "latency_p50_speedup_ratio": 0.20341573964527945,
+      "latency_p95_speedup_ratio": 0.22762390999056534,
+      "output_matches": true,
+      "losses": [
+        "latency_p50_speedup_ratio",
+        "latency_p95_speedup_ratio"
+      ]
+    },
+    {
+      "case": "span-api-real-request",
+      "raw_report": "raw/span-api-real-request.json",
+      "raw_report_sha256": "e6c438234b42a20e97bf85eded31f04858d2a71d38029104790ff14f0d9465b3",
+      "repeat": 21,
+      "java": {
+        "median_peak_rss_bytes": 44859392,
+        "p95_peak_rss_bytes": 45056000,
+        "max_peak_rss_bytes": 45236224,
+        "median_wall_seconds": 0.06939050002256408,
+        "p95_wall_seconds": 0.07214649999514222,
+        "max_wall_seconds": 0.07234045898076147
+      },
+      "go": {
+        "median_peak_rss_bytes": 6307840,
+        "p95_peak_rss_bytes": 6389760,
+        "max_peak_rss_bytes": 6406144,
+        "median_wall_seconds": 0.004655249998904765,
+        "p95_wall_seconds": 0.005075416993349791,
+        "max_wall_seconds": 0.0059054160374216735
+      },
+      "rss_reduction_percent": 85.93864134404676,
+      "latency_p50_speedup_ratio": 14.90585898477837,
+      "latency_p95_speedup_ratio": 14.214891129078502,
+      "output_matches": true,
+      "losses": []
+    },
+    {
+      "case": "span-filter-stress",
+      "raw_report": "raw/span-filter-stress.json",
+      "raw_report_sha256": "0492af2ab35f9401eb4b1c74dc7f9c34fcd5f733ab554012a9d0cac6ad91f5e8",
+      "repeat": 21,
+      "java": {
+        "median_peak_rss_bytes": 126517248,
+        "p95_peak_rss_bytes": 128270336,
+        "max_peak_rss_bytes": 128548864,
+        "median_wall_seconds": 0.2765030000009574,
+        "p95_wall_seconds": 0.36714254203252494,
+        "max_wall_seconds": 0.37340187502559274
+      },
+      "go": {
+        "median_peak_rss_bytes": 10240000,
+        "p95_peak_rss_bytes": 10502144,
+        "max_peak_rss_bytes": 10518528,
+        "median_wall_seconds": 0.11698658397654071,
+        "p95_wall_seconds": 0.12508683296618983,
+        "max_wall_seconds": 0.13189508294453844
+      },
+      "rss_reduction_percent": 91.9062419062419,
+      "latency_p50_speedup_ratio": 2.3635445245277396,
+      "latency_p95_speedup_ratio": 2.935101427755879,
+      "output_matches": true,
+      "losses": []
+    }
+  ],
+  "independent_raw_recomputation": "independent-audit.json",
+  "functional_evidence": "../../reports/releases/v0.2.0/evidence.json",
+  "public_evidence": "../../reports/releases/v0.2.0/public/summary.json",
+  "packaging": "Original raw JSON/logs retain actual absolute execution paths. No duplicated large inputs, measured executables/JARs, temporary spill files or generated outputs are included. The small real official-API JFR is included for exact replay; deterministic synthetic inputs have generators and hashes."
+}
